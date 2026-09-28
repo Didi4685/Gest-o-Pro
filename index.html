@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GestãoPro - Sistema Integrado de Gestão Corporativa</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%236366f1%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238b5cf6%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22url%28%23g%29%22/%3E%3Crect%20x%3D%2213%22%20y%3D%2217%22%20width%3D%2238%22%20height%3D%2233%22%20rx%3D%226%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M13%2023a6%206%200%200%201%206-6h26a6%206%200%200%201%206%206v4H13z%22%20fill%3D%22%23312e81%22/%3E%3Cpath%20d%3D%22M22%2039l7%207%2013-14%22%20stroke%3D%22%236366f1%22%20stroke-width%3D%225%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E">
-  <meta name="theme-color" content="#4f46e5">
+  <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
+  <meta name="theme-color" content="#1e3a8a">
   <style>
     :root{
-      --primary: #818cf8;
-      --primary-dark: #6366f1;
-      --accent: #fbbf24;
+      --primary: #2563eb;
+      --primary-dark: #1e3a8a;
+      --accent: #d97706;
       --accent-light: #fef3c7;
       --bg-main: #f8fafc;
       --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --text-main: #334155;
-      --text-muted: #64748b;
-      --danger: #f87171;
+      --border-color: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --danger: #dc2626;
       --danger-bg: #fef2f2;
-      --success: #34d399;
-      --success-bg: #ecfdf5;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
-      --team-accent: var(--primary);
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --team-accent: var(--primary-dark);
     }
     [data-theme="dark"]{
-      --primary: #818cf8;
-      --primary-dark: #a5b4fc;
-      --accent: #fcd34d;
+      --primary: #38bdf8;
+      --primary-dark: #60a5fa;
+      --accent: #fbbf24;
       --accent-light: #451a03;
       --bg-main: #0f172a;
       --card-bg: #1e293b;
@@ -52,22 +52,23 @@
     }
 
     body::before {
-      content: "GESTÃOPRO";
+      content: "";
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      font-size: 11vw;
-      font-weight: 900;
-      color: var(--border-color);
-      opacity: 0.12;
+      transform: translate(-50%, -50%);
+      width: 45vw;
+      height: 45vw;
+      max-width: 550px;
+      max-height: 550px;
+      background-image: url('https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.04;
       z-index: 0;
       pointer-events: none;
-      letter-spacing: 12px;
-      white-space: nowrap;
-      transition: color 0.3s;
     }
-    [data-theme="dark"] body::before { opacity: 0.04; }
 
     h1,h2,h3{font-family: 'Inter', sans-serif; margin:0;}
     .wrap{max-width:1300px;margin:0 auto;position:relative;z-index:1;}
@@ -75,20 +76,17 @@
     .brand-header {
       display: flex; justify-content: space-between; align-items: center;
       background: var(--card-bg); border: 1px solid var(--border-color);
-      padding: 14px 24px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow);
+      padding: 16px 24px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow);
+      border-top: 4px solid var(--primary-dark);
     }
-    .brand-logo-area { display: flex; align-items: center; gap: 14px; }
-    .brand-logo-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, #a5b4fc, #818cf8);
-      color: #fff; font-size: 22px; display: flex; align-items: center; justify-content: center;
-      border-radius: 10px; font-weight: 800; box-shadow: 0 4px 10px rgba(129,140,248,0.25);
-    }
-    .brand-texts h1 { font-size: 18px; font-weight: 800; color: var(--text-main); letter-spacing: 0.5px; }
-    .brand-texts p { font-size: 12px; color: var(--text-muted); font-weight: 600; margin: 2px 0 0; }
+    .brand-logo-area { display: flex; align-items: center; gap: 18px; }
+    .brand-logo-img { width: 96px; height: 96px; object-fit: contain; border-radius: 10px; }
+    .brand-texts h1 { font-size: 22px; font-weight: 800; color: var(--text-main); letter-spacing: 0.5px; text-transform: uppercase; }
+    .brand-texts p { font-size: 12.5px; color: var(--text-muted); font-weight: 600; margin: 3px 0 0; text-transform: uppercase; }
+    .brand-badge{ font-size: 11.5px; font-weight: 700; color: var(--primary-dark); background: #eff6ff; border: 1px solid #bfdbfe; padding: 6px 12px; border-radius: 20px; letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
 
     .top-bar-actions{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .user-session-info { font-size: 13.5px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+    .user-session-info { font-size: 13.5px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
     .auth-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -101,29 +99,30 @@
       border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       width: 100%; max-width: 440px; overflow: hidden; margin: auto;
     }
-    .auth-header { background: linear-gradient(135deg, #a5b4fc, #818cf8); color: #fff; padding: 24px 20px; text-align: center; }
-    .auth-header h2 { font-size: 20px; margin-bottom: 4px; font-weight: 700; }
-    .auth-header p { font-size: 13px; color: #f8fafc; margin: 0; }
+    .auth-header { background: linear-gradient(135deg, #385a7c, #1e334a); color: #fff; padding: 28px 20px; text-align: center; }
+    .auth-header img { width: 110px; height: 110px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+    .auth-header h2 { font-size: 20px; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; }
+    .auth-header p { font-size: 13px; color: #cbd5e1; margin: 0; text-transform: uppercase; }
     .auth-tabs { display: flex; background: var(--border-color); padding: 4px; gap: 4px; }
     .auth-tab {
-      flex: 1; text-align: center; padding: 9px; font-size: 12px; font-weight: 600;
-      color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s;
+      flex: 1; text-align: center; padding: 9px 4px; font-size: 11.5px; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s; text-transform: uppercase; white-space: nowrap;
     }
-    .auth-tab.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+    .auth-tab.active { background: var(--card-bg); color: var(--primary-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
     .auth-body { padding: 24px; }
     .auth-form { display: flex; flex-direction: column; gap: 16px; }
     .auth-group { display: flex; flex-direction: column; gap: 6px; }
-    .auth-group label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); }
+    .auth-group label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
     .auth-group input, .auth-group select {
       padding: 10px 14px; border: 1px solid var(--border-color);
       background: var(--card-bg); color: var(--text-main); border-radius: 8px; font-size: 14px;
     }
-    .auth-group input:focus, .auth-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15); }
+    .auth-group input:focus, .auth-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
     .auth-btn {
-      margin-top: 4px; padding: 12px; background: var(--primary); color: #fff;
-      font-weight: 600; border: none; border-radius: 8px; cursor: pointer; font-size: 14px;
+      margin-top: 4px; padding: 12px; background: var(--primary-dark); color: #fff;
+      font-weight: 600; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; text-transform: uppercase; white-space: nowrap;
     }
-    .auth-btn:hover { filter: brightness(0.95); }
+    .auth-btn:hover { filter: brightness(1.1); }
     .auth-msg { margin-top: 8px; font-size: 13px; text-align: center; font-weight: 500; }
     .auth-msg.error { color: var(--danger); }
     .auth-msg.success { color: var(--success); }
@@ -139,67 +138,67 @@
       padding: 14px 18px; margin-bottom: 16px; background: var(--card-bg);
       border: 1px solid var(--border-color); border-radius: 8px;
     }
-    select, button, input{ font-family:inherit; font-size:14px; }
+    select, button, input{ font-family:inherit; font-size:14px; text-transform: uppercase; }
     select, input[type=text], input[type=date], input[type=time], input[type=number], input[type=password], input[type=email]{
       padding: 10px 14px; border: 1px solid var(--border-color);
       background: var(--card-bg); color: var(--text-main); border-radius: 8px; transition: all 0.2s;
     }
-    select:focus, input:focus{outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);}
+    select:focus, input:focus{outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.15);}
     
     button{
-      padding: 10px 18px; border: none; background: #a5b4fc; color: #1e293b;
-      border-radius: 8px; cursor: pointer; font-weight: 600; transition: filter 0.15s;
+      padding: 10px 18px; border: none; background: #e0f2fe; color: #0369a1;
+      border-radius: 8px; cursor: pointer; font-weight: 600; transition: filter 0.15s; text-transform: uppercase; white-space: nowrap;
     }
     button.secondary{background: var(--border-color); color: var(--text-main); border: 1px solid var(--border-color);}
     button.danger{background: var(--danger-bg); color: var(--danger); border: 1px solid var(--border-color);}
-    button.gold{background: #fde047; color: #713f12;}
+    button.gold{background: #fef08a; color: #713f12;}
     button:hover{filter: brightness(0.95);}
 
     .tabs{
       display:flex; gap:8px; margin-bottom: 24px; padding: 6px;
-      background: var(--border-color); border-radius: 10px; width: fit-content; flex-wrap: wrap;
+      background: var(--border-color); border-radius: 10px; width: fit-content; flex-wrap: nowrap; overflow-x: auto; max-width: 100%;
     }
     .tab{
-      padding: 10px 22px; cursor: pointer; font-size: 14px; color: var(--text-muted);
-      border-radius: 8px; user-select: none; font-weight: 600; transition: all 0.2s;
+      padding: 10px 20px; cursor: pointer; font-size: 13.5px; color: var(--text-muted);
+      border-radius: 8px; user-select: none; font-weight: 600; transition: all 0.2s; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
     }
-    .tab.active{ color: #1e293b; background: #a5b4fc !important; box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .tab.active{ color: var(--primary-dark) !important; background: var(--card-bg) !important; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
     .tab.inicio-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
     .tab.home-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
     .tab.travel-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
     .tab.vacation-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
 
-    .ho-subtabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); flex-wrap: wrap; }
+    .ho-subtabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); flex-wrap: nowrap; overflow-x: auto; }
     .ho-subtab {
       padding: 10px 18px; background: var(--card-bg); border: 1px solid var(--border-color);
       border-bottom: none; color: var(--text-muted); border-top-left-radius: 8px; border-top-right-radius: 8px;
-      font-size: 13.5px; cursor: pointer; font-weight: 600; position: relative; top: 2px;
+      font-size: 13px; cursor: pointer; font-weight: 600; position: relative; top: 2px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
     }
     .ho-subtab.active {
-      background: var(--card-bg); color: var(--primary); border-color: var(--border-color);
-      border-top: 3px solid var(--primary); border-bottom: 2px solid var(--card-bg); z-index: 2;
+      background: var(--card-bg); color: var(--primary-dark); border-color: var(--border-color);
+      border-top: 3px solid var(--primary-dark); border-bottom: 2px solid var(--card-bg); z-index: 2;
     }
 
     .team-panel{ padding: 24px; border-top: 4px solid var(--team-accent); }
     .team-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color); }
-    .team-panel h3{font-size: 16px; color: var(--text-main); font-weight: 700; margin: 0;}
+    .team-panel h3{font-size: 16px; color: var(--text-main); font-weight: 700; margin: 0; text-transform: uppercase;}
     .section-subtitle{ font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 10px; }
     .member-list{display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:12px; margin-top:2px; margin-bottom:22px;}
     .member-chip{
-      background: var(--card-bg); border: 1px solid var(--border-color); border-left: 3px solid var(--primary);
+      background: var(--card-bg); border: 1px solid var(--border-color); border-left: 3px solid var(--primary-dark);
       border-radius: 10px; padding: 12px 14px; font-size: 13.5px; display: flex; flex-direction: column; gap: 8px; font-weight: 500;
-      transition: box-shadow 0.15s;
+      transition: box-shadow 0.15s; text-transform: uppercase;
     }
     .member-chip:hover{ box-shadow: var(--shadow); }
     .member-chip-actions { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
     .member-chip button{
       background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 6px;
-      padding: 4px 8px; font-size: 11px; cursor: pointer; font-weight: 600;
+      padding: 4px 8px; font-size: 11px; cursor: pointer; font-weight: 600; text-transform: uppercase; white-space: nowrap;
     }
-    .member-chip button.edit-btn { color: var(--primary); }
+    .member-chip button.edit-btn { color: var(--primary-dark); }
     .member-chip button.delete-btn { color: var(--danger); background: var(--danger-bg); border-color: var(--danger-bg); }
-    .member-meta{ font-size: 11px; color: var(--text-muted); display:flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .member-badge{ padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: 10.5px; }
+    .member-meta{ font-size: 11px; color: var(--text-muted); display:flex; gap: 8px; align-items: center; flex-wrap: wrap; text-transform: uppercase; }
+    .member-badge{ padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: 10.5px; text-transform: uppercase; white-space: nowrap; }
     .member-badge.newbie{ background:#fef3c7; color:#b45309; }
     .member-badge.blocked{ background:#fee2e2; color:#991b1b; }
 
@@ -211,18 +210,18 @@
 
     .forced-section{ margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); }
     .forced-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-    .forced-section-header strong{ font-size: 14px; color: var(--text-main); }
-    .forced-section-hint{ font-size: 12px; color: var(--text-muted); margin: 0 0 14px; }
+    .forced-section-header strong{ font-size: 14px; color: var(--text-main); text-transform: uppercase; }
+    .forced-section-hint{ font-size: 12px; color: var(--text-muted); margin: 0 0 14px; text-transform: uppercase; }
     .forced-options{display:flex;flex-direction:column;gap:10px; margin-top: 12px;}
     .forced-row{
       display:flex;gap:12px;align-items:center;flex-wrap:wrap;
       background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px;
     }
-    .forced-row .opt-label{font-size: 13px; font-weight: 600; color: var(--text-main); min-width: 130px;}
+    .forced-row .opt-label{font-size: 13px; font-weight: 600; color: var(--text-main); min-width: 130px; text-transform: uppercase;}
     .forced-list{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
     .forced-chip{
       background: #fef08a; border: 1px solid #fde047; color: #713f12;
-      border-radius: 20px; padding: 6px 10px 6px 14px; font-size: 13px; display: flex; align-items: center; gap: 8px; font-weight: 600;
+      border-radius: 20px; padding: 6px 10px 6px 14px; font-size: 13px; display: flex; align-items: center; gap: 8px; font-weight: 600; text-transform: uppercase; white-space: nowrap;
     }
     .forced-chip button{
       background: var(--card-bg);border: 1px solid var(--border-color);border-radius: 50%;
@@ -236,148 +235,217 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 14px 18px; background: var(--card-bg); border-bottom: 1px solid var(--border-color);
     }
-    .rule-quadrant-header h4 { font-size: 14.5px; color: var(--primary); font-weight: 700; margin: 0; }
+    .rule-quadrant-header h4 { font-size: 14.5px; color: var(--primary-dark); font-weight: 700; margin: 0; text-transform: uppercase; }
     .rule-quadrant-body { padding: 16px; }
     .rule-box-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
-    .rule-box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 13px; }
-    .rule-badge { background: #a5b4fc; color: #1e293b; padding: 2px 8px; border-radius: 12px; font-size: 10.5px; }
+    .rule-box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 13px; text-transform: uppercase; }
+    .rule-badge { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-size: 10.5px; text-transform: uppercase; white-space: nowrap; }
     .conflict-pair-chip {
       background: var(--danger-bg); border: 1px solid var(--border-color); color: var(--danger);
-      border-radius: 20px; padding: 4px 10px 4px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px;
+      border-radius: 20px; padding: 4px 10px 4px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px; text-transform: uppercase; white-space: nowrap;
     }
     .conflict-pair-chip button { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50%; width: 15px; height: 15px; color: var(--danger); padding: 0; font-size: 9px; cursor: pointer; }
 
     .inicio-panel{padding: 32px; display:none;}
     .inicio-panel.visible{display:block;}
-    .inicio-hero{ text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); color: #334155; border-radius: 12px; margin-bottom: 30px; }
-    .inicio-hero h2{font-size: 28px; margin-bottom: 10px; color: #1e293b;}
-    .inicio-hero p{color: #475569; font-size: 15px; max-width: 800px; margin: 0 auto;}
+    
+    .inicio-hero{ 
+      text-align: left; 
+      padding: 48px 40px; 
+      background: linear-gradient(135deg, rgba(56, 90, 124, 0.85) 0%, rgba(42, 67, 92, 0.85) 50%, rgba(30, 51, 74, 0.85) 100%), 
+                  url('https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Logo%20baixo.png');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff; 
+      border-radius: 16px; 
+      margin-bottom: 30px; 
+      box-shadow: 0 10px 25px -5px rgba(30, 51, 74, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .inicio-hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .inicio-hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .inicio-hero h2{
+      font-size: 38px; 
+      margin: 0; 
+      color: #ffffff; 
+      text-transform: uppercase; 
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .inicio-hero h2 span {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+    .inicio-hero p{
+      color: #cbd5e1; 
+      font-size: 14.5px; 
+      max-width: 750px; 
+      margin: 4px 0 0 0; 
+      text-transform: uppercase; 
+      line-height: 1.6;
+    }
+    
     .inicio-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .inicio-card{ background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
-    .inicio-card h3{color: var(--primary); font-size: 18px;}
-    .inicio-card p{color: var(--text-muted); font-size: 13.5px; line-height: 1.5; flex: 1;}
+    .inicio-card{ background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px; text-transform: uppercase; }
+    .inicio-card h3{color: var(--primary-dark); font-size: 18px; text-transform: uppercase;}
+    .inicio-card p{color: var(--text-muted); font-size: 13.5px; line-height: 1.5; flex: 1; text-transform: uppercase;}
 
     .home-panel{padding: 24px; display:none;}
     .home-panel.visible{display:block;}
-    .home-header-banner{ background: #e2e8f0; color: #334155; text-align: center; padding: 14px; font-weight: 700; font-size: 18px; border-radius: 8px; margin-bottom: 16px; }
+    
+    .banner-corporativo {
+      background: linear-gradient(135deg, #385a7c 0%, #2a435c 50%, #1e334a 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 18px 20px;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(42, 67, 92, 0.25);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 3px solid #52799e;
+    }
 
     .travel-panel{padding: 24px; display:none;}
     .travel-panel.visible{display:block;}
-    .travel-header-banner{ background: #a7f3d0; color: #065f46; text-align: center; padding: 14px; font-weight: 700; font-size: 18px; border-radius: 8px 8px 0 0; margin-bottom: 12px; }
-    .travel-sub-banner{ background: var(--success-bg); color: var(--success); text-align: center; padding: 10px; font-weight: 700; font-size: 14px; margin-bottom: 20px; border-radius: 6px; }
-    .travel-config-bar{ display: flex; gap: 12px; align-items: center; background: var(--card-bg); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; flex-wrap: wrap; border: 1px solid var(--border-color); }
-    .travel-section-title{ background: #fef08a; color: #713f12; padding: 10px 14px; font-weight: 700; font-size: 14px; margin-top: 24px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent); }
-    .travel-table{ width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
-    .travel-table th, .travel-table td{ border: 1px solid var(--border-color); padding: 10px 12px; text-align: center; color: var(--text-main); }
-    .travel-table th{ background: var(--bg-main); font-weight: 600; }
-    .travel-form-row{ display: flex; gap: 12px; flex-wrap: wrap; background: var(--card-bg); padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; align-items: flex-end; }
-    .travel-form-group{ display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; }
-    .travel-form-group label{ font-size: 12px; font-weight: 600; color: var(--text-muted); }
-    .travel-form-group input, .travel-form-group select{ padding: 9px 12px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); border-radius: 6px; font-size: 13px; }
+    .travel-sub-banner{ background: var(--success-bg); color: var(--success); text-align: center; padding: 10px; font-weight: 700; font-size: 14px; margin-bottom: 20px; border-radius: 6px; text-transform: uppercase; }
+    .travel-config-bar{ display: flex; gap: 12px; align-items: center; background: var(--card-bg); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; flex-wrap: wrap; border: 1px solid var(--border-color); text-transform: uppercase; }
+    .travel-section-title{ background: #fef08a; color: #713f12; padding: 10px 14px; font-weight: 700; font-size: 14px; margin-top: 24px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent); text-transform: uppercase; }
+    .travel-table{ width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); text-transform: uppercase; }
+    .travel-table th, .travel-table td{ border: 1px solid var(--border-color); padding: 10px 12px; text-align: center; color: var(--text-main); text-transform: uppercase; }
+    .travel-table th{ background: var(--bg-main); font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+    .travel-form-row{ display: flex; gap: 12px; flex-wrap: wrap; background: var(--card-bg); padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; align-items: flex-end; text-transform: uppercase; }
+    .travel-form-group{ display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; text-transform: uppercase; }
+    .travel-form-group label{ font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
+    .travel-form-group input, .travel-form-group select{ padding: 9px 12px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); border-radius: 6px; font-size: 13px; text-transform: uppercase; }
 
     .vacation-panel{padding: 24px; display:none;}
     .vacation-panel.visible{display:block;}
 
-    .saved-schedules-container { margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--border-color); }
-    .saved-schedule-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
-    .saved-schedule-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--bg-main); cursor: pointer; }
-    .saved-schedule-body { padding: 16px; border-top: 1px solid var(--border-color); display: none; background: var(--card-bg); }
+    .saved-schedules-container { margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--border-color); text-transform: uppercase; }
+    .saved-schedule-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 12px; overflow: hidden; text-transform: uppercase; }
+    .saved-schedule-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--bg-main); cursor: pointer; text-transform: uppercase; }
+    .saved-schedule-body { padding: 16px; border-top: 1px solid var(--border-color); display: none; background: var(--card-bg); text-transform: uppercase; }
     .saved-schedule-body.visible { display: block; }
 
-    .dropdown-check-container { position: relative; width: 100%; }
-    .dropdown-check-btn { width: 100%; padding: 9px 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }
-    .dropdown-check-content { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); border-radius: 8px; z-index: 100; max-height: 200px; overflow-y: auto; padding: 8px; margin-top: 4px; }
+    .dropdown-check-container { position: relative; width: 100%; text-transform: uppercase; }
+    .dropdown-check-btn { width: 100%; padding: 9px 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
+    .dropdown-check-content { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-radius: 8px; z-index: 100; max-height: 200px; overflow-y: auto; padding: 8px; margin-top: 4px; text-transform: uppercase; }
     .dropdown-check-content.visible { display: block; }
-    .dropdown-item-label { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 6px 8px; cursor: pointer; border-radius: 6px; color: var(--text-main); }
+    .dropdown-item-label { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 6px 8px; cursor: pointer; border-radius: 6px; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
     .dropdown-item-label:hover { background: var(--border-color); }
 
-    .status-line{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
-    .badge{ font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); font-weight: 500; }
+    .status-line{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap; text-transform: uppercase;}
+    .badge{ font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); font-weight: 500; text-transform: uppercase; white-space: nowrap; }
     .badge.ok{border-color: #34d399; color: #065f46; background: #ecfdf5;}
     .badge.warn{border-color: #f87171; color: #991b1b; background: #fef2f2;}
 
     .table-card{padding: 8px;}
-    table.schedule{ width:100%; table-layout:fixed; border-collapse:collapse; font-size: 13.5px; }
-    table.schedule th:first-child, table.schedule td.name-cell{ width:180px; }
-    table.schedule th, table.schedule td{ border: 1px solid var(--border-color); padding:0; text-align:center; color: var(--text-main); }
-    table.schedule th{ background: #a5b4fc; color:#1e293b; font-weight: 600; padding: 12px 6px; font-size: 12.5px; }
-    table.schedule th.week-head{background: #818cf8; font-size: 11px; text-transform: uppercase; color: #fff;}
-    table.schedule th.forced-head{background: #fde047; color: #713f12;}
-    table.schedule td.name-cell{ text-align: left; padding: 10px 14px; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    table.schedule{ width:100%; table-layout:fixed; border-collapse:collapse; font-size: 13px; text-transform: uppercase; }
+    table.schedule th:first-child, table.schedule td.name-cell{ width:180px; text-transform: uppercase; }
+    table.schedule th, table.schedule td{ border: 1px solid var(--border-color); padding:0; text-align:center; color: var(--text-main); text-transform: uppercase; }
+    table.schedule th{ background: #e2e8f0; color:#1e293b; font-weight: 600; padding: 10px 4px; font-size: 12px; text-transform: uppercase; white-space: nowrap; }
+    table.schedule th.week-head{background: #2a435c; font-size: 11px; text-transform: uppercase; color: #ffffff;}
+    table.schedule th.forced-head{background: #fef08a; color: #713f12;}
+    table.schedule td.name-cell{ text-align: left; padding: 8px 12px; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; }
     
-    .cell-btn{ width:100%; height: 44px; display:block; cursor:pointer; background: transparent; border:none; font-size: 12px; color: var(--text-muted); transition: background 0.15s; }
-    .cell-btn:hover{background: #fef3c7;}
-    .cell-btn.ho{background: #ecfdf5; color: #059669; font-weight: 700;}
+    .cell-btn{ width:100%; height: 38px; display:block; cursor:pointer; background: transparent; border:none; font-size: 11.5px; color: var(--text-muted); transition: background 0.15s; text-transform: uppercase; }
+    .cell-btn:hover{background: #f1f5f9;}
+    .cell-btn.ho{background: #dcfce7; color: #166534; font-weight: 700;}
     .cell-btn.ho::after{content:"HO";}
     .cell-btn.forced{background: #fef08a; color: #713f12; font-weight: 700; cursor: not-allowed;}
     .cell-btn.forced::after{content:"★";}
     .cell-btn.trip{background: #e0f2fe; color: #0369a1; font-weight: 700; cursor: not-allowed;}
-    .cell-btn.trip::after{content:"✈"; font-size: 14px;}
+    .cell-btn.trip::after{content:"✈"; font-size: 13px;}
     .cell-btn.vacation{background: #fef3c7; color: #b45309; font-weight: 700; cursor: not-allowed;}
-    .cell-btn.vacation::after{content:"🏖️"; font-size: 12px;}
+    .cell-btn.vacation::after{content:"🏖️"; font-size: 11px;}
     .cell-btn.newbie-blocked{background: var(--border-color); color: var(--text-muted); font-weight: 700; cursor: not-allowed;}
-    .cell-btn.newbie-blocked::after{content:"🔒 6M"; font-size: 10px;}
+    .cell-btn.newbie-blocked::after{content:"🔒 6M"; font-size: 9.5px;}
     .cell-btn.manager-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed;}
-    .cell-btn.manager-blocked::after{content:"⛔ BLOQ"; font-size: 10px;}
+    .cell-btn.manager-blocked::after{content:"⛔ BLOQ"; font-size: 9.5px;}
     .cell-btn.conflict-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed;}
-    .cell-btn.conflict-blocked::after{content:"⛔"; font-size: 13px;}
+    .cell-btn.conflict-blocked::after{content:"⛔"; font-size: 12px;}
 
-    .error-logs-panel { margin-top: 24px; padding: 20px; border-left: 4px solid #f87171; background: var(--card-bg); }
-    .error-logs-panel h3 { font-size: 15px; color: var(--danger); margin-bottom: 12px; font-weight: 700; }
-    .error-log-list { display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto; }
-    .error-log-item { font-size: 13px; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 8px 12px; border-radius: 6px; font-weight: 500; }
+    .error-logs-panel { margin-top: 24px; padding: 20px; border-left: 4px solid #dc2626; background: var(--card-bg); text-transform: uppercase; }
+    .error-logs-panel h3 { font-size: 15px; color: var(--danger); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+    .error-log-list { display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto; text-transform: uppercase; }
+    .error-log-item { font-size: 13px; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 8px 12px; border-radius: 6px; font-weight: 500; text-transform: uppercase; }
 
-    .mini-consult-panel { margin-top: 24px; padding: 20px; }
-    .mini-consult-panel h3 { font-size: 16px; color: var(--text-main); margin-bottom: 16px; font-weight: 700; }
+    .mini-consult-panel { margin-top: 24px; padding: 20px; text-transform: uppercase; }
+    .mini-consult-panel h3 { font-size: 16px; color: var(--text-main); margin-bottom: 16px; font-weight: 700; text-transform: uppercase; }
     .mini-teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-    .mini-team-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; }
-    .mini-team-card h4 { margin: 0 0 10px 0; font-size: 14px; color: var(--primary); border-bottom: 2px solid var(--border-color); padding-bottom: 6px; font-weight: 700; }
+    .mini-team-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; text-transform: uppercase; }
+    .mini-team-card h4 { margin: 0 0 10px 0; font-size: 14px; color: var(--primary-dark); border-bottom: 2px solid var(--border-color); padding-bottom: 6px; font-weight: 700; text-transform: uppercase; }
     
-    .mini-table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); }
-    .mini-table { width: max-content; border-collapse: collapse; font-size: 11.5px; }
-    .mini-table th, .mini-table td { border: 1px solid var(--border-color); padding: 5px 8px; text-align: center; color: var(--text-main); height: 28px; min-width: 32px; }
-    .mini-table th { background: var(--card-bg); position: sticky; top: 0; z-index: 2; }
-    .mini-table td.m-name { text-align: left; font-weight: 600; white-space: nowrap; position: sticky; left: 0; background: var(--card-bg); z-index: 1; min-width: 140px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; border-right: 2px solid var(--border-color); }
-    .mini-table th:first-child { position: sticky; left: 0; z-index: 3; min-width: 140px; border-right: 2px solid var(--border-color); }
+    .mini-table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); text-transform: uppercase; }
+    .mini-table { width: max-content; border-collapse: collapse; font-size: 11px; text-transform: uppercase; }
+    .mini-table th, .mini-table td { border: 1px solid var(--border-color); padding: 4px 6px; text-align: center; color: var(--text-main); height: 26px; min-width: 30px; text-transform: uppercase; white-space: nowrap; }
+    .mini-table th { background: var(--card-bg); position: sticky; top: 0; z-index: 2; text-transform: uppercase; white-space: nowrap; }
+    .mini-table td.m-name { text-align: left; font-weight: 600; white-space: nowrap; position: sticky; left: 0; background: var(--card-bg); z-index: 1; min-width: 140px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; border-right: 2px solid var(--border-color); text-transform: uppercase; }
+    .mini-table th:first-child { position: sticky; left: 0; z-index: 3; min-width: 140px; border-right: 2px solid var(--border-color); text-transform: uppercase; white-space: nowrap; }
 
-    .empty-note{color: var(--text-muted); font-size: 13.5px; font-style: italic;}
-    footer.note{ margin-top: 32px; font-size: 13px; color: var(--text-muted); text-align: center; }
+    .empty-note{color: var(--text-muted); font-size: 13.5px; font-style: italic; text-transform: uppercase;}
+    footer.note{ margin-top: 32px; font-size: 13px; color: var(--text-muted); text-align: center; text-transform: uppercase; }
 
     .print-footer-info {
       display: none;
-      margin-top: 20px;
-      padding-top: 10px;
-      border-top: 1px solid #cbd5e1;
-      font-size: 11px;
+      margin-top: 6px;
+      padding-top: 4px;
+      border-top: 1px solid #94a3b8;
+      font-size: 9px;
       color: #000;
       justify-content: space-between;
       align-items: center;
+      text-transform: uppercase;
     }
 
     .print-alerts-summary {
       display: none;
-      margin-top: 20px;
-      padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
+      margin-top: 6px;
+      padding: 6px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
       background: #f8fafc;
-      font-size: 12px;
+      font-size: 9.5px;
       color: #000;
+      text-transform: uppercase;
     }
-    .print-alerts-summary h4 { font-size: 13px; margin: 0 0 8px 0; color: #1e293b; font-weight: 700; }
+    .print-alerts-summary h4 { font-size: 10.5px; margin: 0 0 2px 0; color: #0f172a; font-weight: 700; text-transform: uppercase; }
 
-    /* ESTILOS DE IMPRESSÃO - FORÇANDO CORES E ÍCONES */
     @media print {
       * { 
         -webkit-print-color-adjust: exact !important; 
         print-color-adjust: exact !important; 
-        color-adjust: exact !important;
         box-shadow: none !important;
       }
       body {
         background: #ffffff !important;
         color: #000000 !important;
         padding: 0 !important;
+        font-size: 9.5px !important;
       }
       .top-bar-actions, .controls, .tabs, footer.note, 
       .travel-config-bar, .travel-form-row, button:not(.cell-btn), .mini-consult-panel, .inicio-panel,
@@ -386,17 +454,27 @@
       .saved-schedule-header button,
       .saved-schedule-header span[id^="arrow-"],
       .error-logs-panel,
-      .team-panel {
+      .team-panel,
+      #printSummaryTableBox {
         display: none !important;
       }
       body::before { display: none !important; }
 
-      @page { size: landscape; margin: 8mm; }
+      @page { size: landscape; margin: 4mm; }
       
       .print-footer-info { display: flex !important; }
       .print-alerts-summary { display: block !important; }
 
-      /* FORÇA O PAINEL DE HOME OFFICE E AS CÉLULAS COM SEUS ÍCONES */
+      .card { border: none !important; margin-bottom: 4px !important; padding: 0 !important; }
+      table.schedule { font-size: 9.5px !important; }
+      table.schedule th { padding: 4px 1px !important; }
+      .cell-btn { height: 24px !important; font-size: 9px !important; }
+
+      .travel-table { font-size: 9.5px !important; margin-bottom: 8px !important; }
+      .travel-table th, .travel-table td { padding: 4px 6px !important; }
+      .travel-section-title { font-size: 11px !important; padding: 4px 8px !important; margin-top: 10px !important; margin-bottom: 6px !important; }
+      .travel-sub-banner { padding: 4px !important; font-size: 11px !important; margin-bottom: 8px !important; }
+
       body.printing-home .travel-panel,
       body.printing-home .vacation-panel,
       body.printing-home .inicio-panel {
@@ -404,29 +482,26 @@
       }
       body.printing-home .home-panel {
         display: block !important;
-        border: none !important;
-        box-shadow: none !important;
         padding: 0 !important;
         background: #fff !important;
       }
-      body.printing-home .home-panel table.schedule {
-        display: table !important;
-        width: 100% !important;
+      body.printing-home .home-panel .banner-corporativo {
+        background: #2a435c !important;
+        color: #ffffff !important;
+        padding: 8px !important;
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
       }
-      body.printing-home .home-panel table.schedule tr { display: table-row !important; }
-      body.printing-home .home-panel table.schedule th,
-      body.printing-home .home-panel table.schedule td { display: table-cell !important; }
-      
       body.printing-home .home-panel table.schedule th {
-        background: #a5b4fc !important;
-        color: #1e293b !important;
+        background: #cbd5e1 !important;
+        color: #0f172a !important;
       }
       body.printing-home .home-panel table.schedule th.week-head {
-        background: #818cf8 !important;
-        color: #fff !important;
+        background: #2a435c !important;
+        color: #ffffff !important;
       }
       body.printing-home .home-panel table.schedule th.forced-head {
-        background: #fde047 !important;
+        background: #fef08a !important;
         color: #713f12 !important;
       }
       body.printing-home .home-panel table.schedule td.name-cell {
@@ -434,64 +509,34 @@
         color: #000000 !important;
         font-weight: 600 !important;
       }
-
-      /* GARANTE QUE CADA BOTÃO DA TABELA MANTENHA A COR E O CONTEÚDO (HO, ✈, 🏖️, 🔒, ⛔) NA IMPRESSÃO */
-      body.printing-home .home-panel .cell-btn {
-        display: block !important;
-        opacity: 1 !important;
-        border: 1px solid #cbd5e1 !important;
-      }
-      body.printing-home .home-panel .cell-btn.ho {
-        background: #ecfdf5 !important;
-        color: #059669 !important;
-      }
+      body.printing-home .home-panel .cell-btn { display: block !important; opacity: 1 !important; border: 1px solid #cbd5e1 !important; }
+      body.printing-home .home-panel .cell-btn.ho { background: #dcfce7 !important; color: #166534 !important; }
       body.printing-home .home-panel .cell-btn.ho::after { content: "HO" !important; }
-
-      body.printing-home .home-panel .cell-btn.forced {
-        background: #fef08a !important;
-        color: #713f12 !important;
-      }
+      body.printing-home .home-panel .cell-btn.forced { background: #fef08a !important; color: #713f12 !important; }
       body.printing-home .home-panel .cell-btn.forced::after { content: "★" !important; }
-
-      body.printing-home .home-panel .cell-btn.trip {
-        background: #e0f2fe !important;
-        color: #0369a1 !important;
-      }
+      body.printing-home .home-panel .cell-btn.trip { background: #e0f2fe !important; color: #0369a1 !important; }
       body.printing-home .home-panel .cell-btn.trip::after { content: "✈" !important; }
-
-      body.printing-home .home-panel .cell-btn.vacation {
-        background: #fef3c7 !important;
-        color: #b45309 !important;
-      }
+      body.printing-home .home-panel .cell-btn.vacation { background: #fef3c7 !important; color: #b45309 !important; }
       body.printing-home .home-panel .cell-btn.vacation::after { content: "🏖️" !important; }
-
-      body.printing-home .home-panel .cell-btn.newbie-blocked {
-        background: #e2e8f0 !important;
-        color: #64748b !important;
-      }
+      body.printing-home .home-panel .cell-btn.newbie-blocked { background: #e2e8f0 !important; color: #64748b !important; }
       body.printing-home .home-panel .cell-btn.newbie-blocked::after { content: "🔒 6M" !important; }
-
-      body.printing-home .home-panel .cell-btn.manager-blocked {
-        background: #fee2e2 !important;
-        color: #991b1b !important;
-      }
+      body.printing-home .home-panel .cell-btn.manager-blocked { background: #fee2e2 !important; color: #991b1b !important; }
       body.printing-home .home-panel .cell-btn.manager-blocked::after { content: "⛔ BLOQ" !important; }
-
-      body.printing-home .home-panel .cell-btn.conflict-blocked {
-        background: #fee2e2 !important;
-        color: #991b1b !important;
-      }
+      body.printing-home .home-panel .cell-btn.conflict-blocked { background: #fee2e2 !important; color: #991b1b !important; }
       body.printing-home .home-panel .cell-btn.conflict-blocked::after { content: "⛔" !important; }
 
-      /* Demais telas de impressão */
       body.printing-travel .home-panel,
       body.printing-travel .vacation-panel,
       body.printing-travel .saved-schedules-container,
       body.printing-travel .print-alerts-summary { display: none !important; }
       
       body.printing-travel .travel-panel { 
-        display: block !important; border: none !important; box-shadow: none !important; padding: 0 !important; background: #fff !important; 
+        display: block !important; border: none !important; padding: 0 !important; background: #fff !important; 
       }
+      body.printing-travel .travel-panel .banner-corporativo {
+        background: #2a435c !important; color: #ffffff !important; font-size: 12px !important; padding: 8px !important; margin-bottom: 6px !important;
+      }
+      body.printing-travel .travel-panel .travel-table th { background: #e2e8f0 !important; color: #000 !important; }
 
       body.printing-vacation .home-panel,
       body.printing-vacation .travel-panel,
@@ -501,13 +546,16 @@
       body.printing-vacation .print-alerts-summary { display: none !important; }
 
       body.printing-vacation .vacation-panel {
-        display: block !important; border: none !important; box-shadow: none !important; padding: 0 !important; background: #fff !important;
+        display: block !important; border: none !important; padding: 0 !important; background: #fff !important;
       }
+      body.printing-vacation .vacation-panel .banner-corporativo {
+        background: #2a435c !important; color: #ffffff !important; font-size: 12px !important; padding: 8px !important; margin-bottom: 6px !important;
+      }
+      body.printing-vacation .vacation-panel .travel-table th { background: #e2e8f0 !important; color: #000 !important; }
     }
-    .brand-header{ border-top: 3px solid #6366f1; background: linear-gradient(180deg,#fff,#f8fafc); }
-    .brand-texts h1{ background: linear-gradient(90deg,#4338ca,#7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .brand-badge{ font-size: 11.5px; font-weight: 700; color: #4338ca; background: #eef2ff; border: 1px solid #c7d2fe; padding: 6px 12px; border-radius: 20px; letter-spacing: .3px; }
-    .auth-header{ background: linear-gradient(135deg,#4f46e5,#7c3aed) !important; }
+
+    .brand-header{ border-top: 3px solid var(--primary-dark); background: linear-gradient(180deg,#ffffff,#f8fafc); }
+    .brand-texts h1{ background: linear-gradient(90deg,#2a435c,#385a7c); -webkit-background-clip: text; background-clip: text; color: transparent; text-transform: uppercase; }
     .pub-print-head, .pub-print-foot{ display:none; }
     @media print{
       body.printing-public-report > *:not(#publicResultModal){ display:none !important; }
@@ -515,101 +563,99 @@
       body.printing-public-report #publicResultModal .auth-card{ box-shadow:none !important; max-width:100% !important; width:100% !important; border:none !important; }
       body.printing-public-report #publicResultModal .auth-header, body.printing-public-report .pub-actions{ display:none !important; }
       body.printing-public-report #publicResultModal .auth-body{ padding:0 !important; }
-      body.printing-public-report #publicSearchResult{ max-height:none !important; overflow:visible !important; border:none !important; background:#fff !important; padding:0 !important; font-size:13px !important; }
-      body.printing-public-report .pub-print-head{ display:flex !important; align-items:center; gap:14px; border-bottom:3px solid #4f46e5; padding-bottom:12px; margin-bottom:18px; }
-      body.printing-public-report .pub-print-head h2{ font-size:20px; color:#312e81; margin:0; }
-      body.printing-public-report .pub-print-head p{ font-size:12px; color:#64748b; margin:2px 0 0; }
-      body.printing-public-report .pub-print-foot{ display:block !important; margin-top:28px; padding-top:10px; border-top:1px solid #cbd5e1; font-size:11px; color:#64748b; }
+      body.printing-public-report #publicSearchResult{ max-height:none !important; overflow:visible !important; border:none !important; background:#fff !important; padding:0 !important; font-size:11px !important; }
+      body.printing-public-report .pub-print-head{ display:flex !important; align-items:center; gap:14px; border-bottom:3px solid #2a435c; padding-bottom:8px; margin-bottom:10px; }
+      body.printing-public-report .pub-print-head h2{ font-size:16px; color:#2a435c; margin:0; text-transform: uppercase; }
+      body.printing-public-report .pub-print-head p{ font-size:10px; color:#64748b; margin:2px 0 0; text-transform: uppercase; }
+      body.printing-public-report .pub-print-foot{ display:block !important; margin-top:10px; padding-top:4px; border-top:1px solid #cbd5e1; font-size:9px; color:#64748b; text-transform: uppercase; }
       body.printing-public-report *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gpg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><symbol id="gp-logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="url(#gpg)"/><rect x="13" y="17" width="38" height="33" rx="6" fill="#fff"/><path d="M13 23a6 6 0 0 1 6-6h26a6 6 0 0 1 6 6v4H13z" fill="#312e81"/><circle cx="23" cy="14" r="3" fill="#fff"/><circle cx="41" cy="14" r="3" fill="#fff"/><path d="M22 39l7 7 13-14" stroke="#6366f1" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
-
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-card">
     <div class="auth-header">
-      <svg width="56" height="56" style="margin-bottom:8px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25))"><use href="#gp-logo"/></svg>
-      <h2>GestãoPro</h2>
-      <p>Sistema Integrado de Gestão Corporativa</p>
+      <img src="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png" alt="Logo ADL">
+      <h2>ADL GESTÃO INTELIGENTE</h2>
+      <p>SISTEMA INTEGRADO DE GESTÃO CORPORATIVA</p>
     </div>
     <div class="auth-tabs" id="authTabsHeader">
-      <div class="auth-tab active" id="tabLoginBtn" onclick="switchAuthMode('login')">Entrar</div>
-      <div class="auth-tab" id="tabRegisterBtn" onclick="switchAuthMode('register')">Cadastrar</div>
-      <div class="auth-tab" id="tabPublicSearchBtn" onclick="switchAuthMode('publicSearch')" style="color: var(--primary);">🔍 Consulta Externa</div>
+      <div class="auth-tab active" id="tabLoginBtn" onclick="switchAuthMode('login')">ENTRAR</div>
+      <div class="auth-tab" id="tabRegisterBtn" onclick="switchAuthMode('register')">CADASTRAR</div>
+      <div class="auth-tab" id="tabPublicSearchBtn" onclick="switchAuthMode('publicSearch')" style="color: var(--primary);">🔍 CONSULTA EXTERNA</div>
     </div>
     <div class="auth-body">
       <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
         <div class="auth-group">
-          <label>E-mail Corporativo</label>
-          <input type="email" id="loginEmail" placeholder="admin@gestupro.com" required>
+          <label>E-MAIL CORPORATIVO</label>
+          <input type="email" id="loginEmail" placeholder="ADMIN@ADLGESTAO.COM" required>
         </div>
         <div class="auth-group">
-          <label>Senha</label>
+          <label>SENHA</label>
           <input type="password" id="loginPassword" placeholder="••••••••" required>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-          <a href="#" onclick="switchAuthMode('forgot')" style="color: var(--primary); text-decoration: none; font-weight: 600;">Esqueci a senha</a>
+          <a href="#" onclick="switchAuthMode('forgot')" style="color: var(--primary-dark); text-decoration: none; font-weight: 600; text-transform: uppercase;">ESQUECI A SENHA</a>
         </div>
-        <button type="submit" class="auth-btn">Acessar Sistema</button>
+        <button type="submit" class="auth-btn">ACESSAR SISTEMA</button>
         <div class="auth-msg" id="loginMsg"></div>
       </form>
 
       <form id="forgotForm" class="auth-form" style="display: none;" onsubmit="handleForgot(event)">
-        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 8px 0;">Informe seu e-mail cadastrado para receber as instruções.</p>
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 8px 0; text-transform: uppercase;">INFORME SEU E-MAIL CADASTRADO PARA RECEBER AS INSTRUÇÕES.</p>
         <div class="auth-group">
-          <label>E-mail Cadastrado</label>
-          <input type="email" id="forgotEmail" placeholder="seu.email@empresa.com" required>
+          <label>E-MAIL CADASTRADO</label>
+          <input type="email" id="forgotEmail" placeholder="SEU.EMAIL@EMPRESA.COM" required>
         </div>
-        <button type="submit" class="auth-btn" style="background: #fde047; color: #713f12;">Enviar E-mail</button>
+        <button type="submit" class="auth-btn" style="background: #fde047; color: #713f12;">ENVIAR E-MAIL</button>
         <div style="text-align: center; margin-top: 8px;">
-          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline;">Voltar ao Login</a>
+          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
         </div>
         <div class="auth-msg" id="forgotMsg"></div>
       </form>
 
       <form id="registerForm" class="auth-form" style="display: none;" onsubmit="handleRegister(event)">
         <div class="auth-group">
-          <label>Nome Completo</label>
-          <input type="text" id="regName" placeholder="Seu Nome" required>
+          <label>NOME COMPLETO</label>
+          <input type="text" id="regName" placeholder="SEU NOME" required>
         </div>
         <div class="auth-group">
-          <label>E-mail Corporativo</label>
-          <input type="email" id="regEmail" placeholder="seu.email@empresa.com" required>
+          <label>E-MAIL CORPORATIVO</label>
+          <input type="email" id="regEmail" placeholder="SEU.EMAIL@EMPRESA.COM" required>
         </div>
         <div class="auth-group">
-          <label>Criar Senha</label>
-          <input type="password" id="regPassword" placeholder="Mínimo 3 caracteres" required>
+          <label>CRIAR SENHA</label>
+          <input type="password" id="regPassword" placeholder="MÍNIMO 3 CARACTERES" required>
         </div>
-        <button type="submit" class="auth-btn" style="background: #34d399; color: #065f46;">Criar Conta</button>
+        <button type="submit" class="auth-btn">CRIAR CONTA</button>
         <div style="text-align: center; margin-top: 8px;">
-          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline;">Já tem conta? Entrar</a>
+          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">JÁ TEM CONTA? ENTRAR</a>
         </div>
         <div class="auth-msg" id="regMsg"></div>
       </form>
 
       <div id="publicSearchForm" class="auth-form" style="display: none;">
-        <p style="font-size: 13.5px; color: var(--text-muted); margin: 0 0 10px 0;">Consulte os seus dias de Home Office, Viagens e Férias sem precisar fazer login no sistema.</p>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin: 0 0 10px 0; text-transform: uppercase;">CONSULTE OS SEUS DIAS DE HOME OFFICE, VIAGENS E FÉRIAS SEM PRECISAR FAZER LOGIN NO SISTEMA.</p>
         <div class="auth-group">
-          <label>Selecione seu Nome</label>
+          <label>SELECIONE SEU NOME</label>
           <select id="publicSearchMemberSelect" style="padding: 10px;">
-            <option value="">Carregando colaboradores...</option>
+            <option value="">CARREGANDO COLABORADORES...</option>
           </select>
         </div>
         <div style="display: flex; gap: 8px;">
           <div class="auth-group" style="flex: 1;">
-            <label>Mês</label>
+            <label>MÊS</label>
             <select id="publicSearchMonth" style="padding: 10px;"></select>
           </div>
           <div class="auth-group" style="flex: 1;">
-            <label>Ano</label>
+            <label>ANO</label>
             <select id="publicSearchYear" style="padding: 10px;"></select>
           </div>
         </div>
-        <button type="button" class="auth-btn" style="background: #fde047; color: #713f12;" onclick="handlePublicSearch()">🔍 Consultar Escala</button>
+        <button type="button" class="auth-btn" style="background: #fde047; color: #713f12;" onclick="handlePublicSearch()">🔍 CONSULTAR ESCALA</button>
         <div style="text-align: center; margin-top: 4px;">
-          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline;">Voltar ao Login</a>
+          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
         </div>
       </div>
     </div>
@@ -618,18 +664,21 @@
 
 <div class="auth-overlay" id="publicResultModal" style="display: none; z-index: 10000;">
   <div class="auth-card" style="max-width: 600px;">
-    <div class="pub-print-head"><svg width="52" height="52"><use href="#gp-logo"/></svg><div><h2>Comprovante de Escala Individual</h2><p>GestãoPro — Sistema Integrado de Gestão Corporativa</p></div></div>
-    <div class="auth-header" style="background: linear-gradient(135deg, #a5b4fc, #818cf8);">
-      <h2>Relatório de Escala Individual</h2>
-      <p>GestãoPro — Comprovante Corporativo</p>
+    <div class="pub-print-head">
+      <img src="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png" alt="Logo ADL" style="width:48px;height:48px;object-fit:contain;">
+      <div><h2>COMPROVANTE DE ESCALA INDIVIDUAL</h2><p>ADL GESTÃO INTELIGENTE — SISTEMA INTEGRADO</p></div>
+    </div>
+    <div class="auth-header">
+      <h2>RELATÓRIO DE ESCALA INDIVIDUAL</h2>
+      <p>ADL GESTÃO INTELIGENTE — COMPROVANTE CORPORATIVO</p>
     </div>
     <div class="auth-body">
-      <div id="publicSearchResult" style="font-size: 14px; background: var(--bg-main); padding: 16px; border-radius: 10px; border: 1px solid var(--border-color); max-height: 380px; overflow-y: auto;"></div>
+      <div id="publicSearchResult" style="font-size: 13.5px; background: var(--bg-main); padding: 16px; border-radius: 10px; border: 1px solid var(--border-color); max-height: 380px; overflow-y: auto; text-transform: uppercase;"></div>
       <div class="pub-actions" style="display: flex; gap: 10px; margin-top: 16px;">
-        <button type="button" class="auth-btn" style="background: #34d399; color: #065f46; flex: 1; margin: 0;" onclick="printPublicReport()">📥 Baixar PDF / Imprimir</button>
-        <button type="button" class="secondary" style="flex: 1;" onclick="closePublicResultModal()">Fechar Janela</button>
+        <button type="button" class="auth-btn" style="flex: 1; margin: 0;" onclick="printPublicReport()">📥 BAIXAR PDF / IMPRIMIR</button>
+        <button type="button" class="secondary" style="flex: 1;" onclick="closePublicResultModal()">FECHAR JANELA</button>
       </div>
-      <div class="pub-print-foot">Documento gerado em <span id="pubPrintDate"></span> · GestãoPro. Informações sujeitas a alteração pela coordenação.</div>
+      <div class="pub-print-foot">DOCUMENTO GERADO EM <span id="pubPrintDate"></span> · ADL GESTÃO INTELIGENTE. INFORMAÇÕES SUJEITAS A ALTERAÇÃO PELA COORDENAÇÃO.</div>
     </div>
   </div>
 </div>
@@ -637,26 +686,26 @@
 <div class="auth-overlay" id="passwordModal" style="display: none;">
   <div class="auth-card">
     <div class="auth-header" style="background: #fde047; color: #713f12;">
-      <h2>Alterar Senha</h2>
-      <p>Atualize sua senha de acesso</p>
+      <h2>ALTERAR SENHA</h2>
+      <p>ATUALIZE SUA SENHA DE ACESSO</p>
     </div>
     <div class="auth-body">
       <form class="auth-form" onsubmit="handleChangePassword(event)">
         <div class="auth-group">
-          <label>Senha Atual</label>
+          <label>SENHA ATUAL</label>
           <input type="password" id="currentPassInput" required>
         </div>
         <div class="auth-group">
-          <label>Nova Senha</label>
-          <input type="password" id="newPassInput" required placeholder="Mínimo 3 caracteres">
+          <label>NOVA SENHA</label>
+          <input type="password" id="newPassInput" required placeholder="MÍNIMO 3 CARACTERES">
         </div>
         <div class="auth-group">
-          <label>Confirmar Nova Senha</label>
+          <label>CONFIRMAR NOVA SENHA</label>
           <input type="password" id="confirmPassInput" required>
         </div>
         <div style="display: flex; gap: 10px; margin-top: 8px;">
-          <button type="button" class="secondary" style="flex: 1;" onclick="closePasswordModal()">Cancelar</button>
-          <button type="submit" class="auth-btn" style="flex: 1; margin: 0; background: #fde047; color: #713f12;">Salvar Senha</button>
+          <button type="button" class="secondary" style="flex: 1;" onclick="closePasswordModal()">CANCELAR</button>
+          <button type="submit" class="auth-btn" style="flex: 1; margin: 0; background: #fde047; color: #713f12;">SALVAR SENHA</button>
         </div>
         <div class="auth-msg" id="passModalMsg"></div>
       </form>
@@ -667,23 +716,23 @@
 <div class="wrap">
   <div class="brand-header">
     <div class="brand-logo-area">
-      <svg class="brand-logo-svg" width="48" height="48" role="img" aria-label="GestãoPro"><use href="#gp-logo"/></svg>
+      <img src="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png" alt="ADL Logo" class="brand-logo-img">
       <div class="brand-texts">
-        <h1>GestãoPro</h1>
-        <p>Conectando equipes, otimizando resultados.</p>
+        <h1>ADL GESTÃO INTELIGENTE</h1>
+        <p>CONECTANDO EQUIPES, OTIMIZANDO RESULTADOS.</p>
       </div>
     </div>
-    <div class="brand-badge">Solução Corporativa Integrada</div>
+    <div class="brand-badge">SOLUÇÃO CORPORATIVA INTEGRADA</div>
   </div>
 
   <div class="top-bar-actions">
     <div class="user-session-info" id="userSessionInfo">
-      <span>👤 <strong id="loggedUserName">Usuário</strong></span>
+      <span>👤 <strong id="loggedUserName">USUÁRIO</strong></span>
     </div>
     <div style="display: flex; gap: 10px; align-items: center;">
-      <button class="secondary" style="padding: 6px 14px; font-size: 12px;" onclick="openPasswordModal()">🔒 Alterar Senha</button>
-      <button id="themeToggleBtn" class="secondary" style="padding: 6px 14px; font-size: 12px;">🌙 Modo Escuro</button>
-      <button id="logoutBtn" class="danger secondary" style="padding: 6px 14px; font-size: 12px;" onclick="handleLogout()">Sair</button>
+      <button class="secondary" style="padding: 6px 14px; font-size: 12px;" onclick="openPasswordModal()">🔒 ALTERAR SENHA</button>
+      <button id="themeToggleBtn" class="secondary" style="padding: 6px 14px; font-size: 12px;">🌙 MODO ESCURO</button>
+      <button id="logoutBtn" class="danger secondary" style="padding: 6px 14px; font-size: 12px;" onclick="handleLogout()">SAIR</button>
     </div>
   </div>
 
@@ -691,92 +740,94 @@
 
   <div class="inicio-panel card" id="inicioPanel">
     <div class="inicio-hero">
-      <h2>GestãoPro — Solução Inteligente Corporativa</h2>
-      <p>Plataforma integrada: controle dinâmico de escalas em home office, coordenação de equipes, agendamento de viagens e monitoramento completo de férias.</p>
+      <div class="inicio-hero-content">
+        <h2> <span></span></h2>
+        <p></p>
+      </div>
     </div>
     <div class="inicio-grid">
       <div class="inicio-card">
-        <h3>🏠 Home Office</h3>
-        <p>Acesse o painel central para gerir as equipes, configurar regras de escala e restrições.</p>
-        <button onclick="switchTab('home')" class="gold">Acessar Home Office</button>
+        <h3>🏠 PAINEL CENTRAL DE HOME OFFICE</h3>
+        <p>ACESSE O PAINEL CENTRAL PARA GERIR AS EQUIPES, CONFIGURAR REGRAS DE ESCALA E RESTRIÇÕES.</p>
+        <button onclick="switchTab('home')" class="gold">ACESSAR HOME OFFICE</button>
       </div>
       <div class="inicio-card">
-        <h3>✈️ Programação de Viagens</h3>
-        <p>Planeje visitas corporativas, calcule diárias automaticamente e mantenha o histórico impresso.</p>
-        <button onclick="switchTab('travel')">Acessar Viagens</button>
+        <h3>✈️ CONTROLE DE VIAGENS E VISITAS</h3>
+        <p>PLANEJE VISITAS CORPORATIVAS, CALCULE DIÁRIAS AUTOMATICAMENTE E MANTENHA O HISTÓRICO IMPRESSO.</p>
+        <button onclick="switchTab('travel')">ACESSAR VIAGENS</button>
       </div>
       <div class="inicio-card">
-        <h3>🏖️ Controle de Férias</h3>
-        <p>Acompanhe os períodos de férias e o mês de admissão de cada colaborador integrado.</p>
-        <button onclick="switchTab('vacation')" class="secondary">Acessar Férias</button>
+        <h3>🏖️ CONTROLE DE FÉRIAS</h3>
+        <p>ACOMPANHE OS PERÍODOS DE FÉRIAS E O MÊS DE ADMISSÃO DE CADA COLABORADOR INTEGRADO.</p>
+        <button onclick="switchTab('vacation')" class="secondary">ACESSAR FÉRIAS</button>
       </div>
     </div>
   </div>
 
   <div class="home-panel card" id="homePanel">
-    <div class="home-header-banner">Painel Central de Home Office</div>
+    <div class="banner-corporativo">PAINEL CENTRAL DE HOME OFFICE</div>
     
     <div class="controls" id="topControls">
       <select id="monthSelect"></select>
       <select id="yearSelect"></select>
-      <button id="generateBtn">✨ Gerar escala automática</button>
-      <button id="duplicatePreviousBtn" class="secondary">📋 Duplicar Mês Anterior</button>
-      <button id="saveHomeScheduleBtn" class="gold">💾 Salvar Escala</button>
-      <button id="clearBtn" class="secondary">🗑️ Limpar equipe</button>
-      <button id="exportPdfBtn" class="secondary">🖨️ Imprimir Escala</button>
+      <button id="generateBtn">✨ GERAR ESCALA AUTOMÁTICA</button>
+      <button id="duplicatePreviousBtn" class="secondary">📋 DUPLICAR MÊS ANTERIOR</button>
+      <button id="saveHomeScheduleBtn" class="gold">💾 SALVAR ESCALA</button>
+      <button id="clearBtn" class="secondary">🗑️ LIMPAR EQUIPE</button>
+      <button id="exportPdfBtn" class="secondary">🖨️ IMPRIMIR ESCALA</button>
     </div>
 
     <div class="ho-subtabs" id="hoSubtabs">
-      <div id="hoSubtabsContainer" style="display:flex; gap:4px; flex-wrap:wrap; align-items:center; width:100%;"></div>
+      <div id="hoSubtabsContainer" style="display:flex; gap:4px; flex-wrap:nowrap; align-items:center; width:100%; overflow-x:auto;"></div>
     </div>
 
     <div id="hoTeamContentContainer">
       <div class="team-panel card">
         <div class="team-panel-header">
-          <h3 id="teamPanelTitle">Pessoas da equipe</h3>
-          <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleCardSection('teamMemberListBody', this)">➕ Maximizar</button>
+          <h3 id="teamPanelTitle">PESSOAS DA EQUIPE</h3>
+          <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleCardSection('teamMemberListBody', this)">➕ MAXIMIZAR</button>
         </div>
         <div id="teamMemberListBody" style="display: none;">
-          <div class="section-subtitle">Colaboradores cadastrados</div>
+          <div class="section-subtitle">COLABORADORES CADASTRADOS</div>
           <div class="member-list" id="memberList"></div>
           <div class="add-member-box">
-            <div class="add-member-title">➕ Adicionar novo colaborador</div>
+            <div class="add-member-title">➕ ADICIONAR NOVO COLABORADOR</div>
             <div class="add-row">
-              <input type="text" id="newMemberInput" placeholder="Nome do colaborador">
+              <input type="text" id="newMemberInput" placeholder="NOME DO COLABORADOR">
               <select id="newMemberAdmissaoMonth" style="padding: 8px;">
-                <option value="">Mês Admissão (Atual)</option>
-                <option value="0">Janeiro</option><option value="1">Fevereiro</option><option value="2">Março</option><option value="3">Abril</option><option value="4">Maio</option><option value="5">Junho</option><option value="6">Julho</option><option value="7">Agosto</option><option value="8">Setembro</option><option value="9">Outubro</option><option value="10">Novembro</option><option value="11">Dezembro</option>
+                <option value="">MÊS ADMISSÃO (ATUAL)</option>
+                <option value="0">JANEIRO</option><option value="1">FEVEREIRO</option><option value="2">MARÇO</option><option value="3">ABRIL</option><option value="4">MAIO</option><option value="5">JUNHO</option><option value="6">JULHO</option><option value="7">AGOSTO</option><option value="8">SETEMBRO</option><option value="9">OUTUBRO</option><option value="10">NOVEMBRO</option><option value="11">DEZEMBRO</option>
               </select>
-              <input type="number" id="newMemberAdmissaoYear" placeholder="Ano (Ex: 2026)" style="width: 110px; padding: 8px;">
-              <button id="addMemberBtn" class="secondary">+ Adicionar Colaborador</button>
+              <input type="number" id="newMemberAdmissaoYear" placeholder="ANO (EX: 2026)" style="width: 110px; padding: 8px;">
+              <button id="addMemberBtn" class="secondary">+ ADICIONAR COLABORADOR</button>
             </div>
           </div>
         </div>
 
         <div class="forced-section">
           <div class="forced-section-header">
-            <strong>📌 Dias de Presença Obrigatória / Presença Coletiva</strong>
-            <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleCardSection('forcedSectionBody', this)">➕ Maximizar</button>
+            <strong>📌 DIAS DE PRESENÇA OBRIGATÓRIA / PRESENÇA COLETIVA</strong>
+            <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleCardSection('forcedSectionBody', this)">➕ MAXIMIZAR</button>
           </div>
           <div id="forcedSectionBody" style="display: none;">
-            <p class="forced-section-hint">Defina datas ou dias fixos da semana em que toda a equipe deve comparecer presencialmente.</p>
+            <p class="forced-section-hint">DEFINA DATAS OU DIAS FIXOS DA SEMANA EM QUE TODA A EQUIPE DEVE COMPARECER PRESENCIALMENTE.</p>
             <div class="forced-options">
               <div class="forced-row">
-                <span class="opt-label">📅 Data específica:</span>
+                <span class="opt-label">📅 DATA ESPECÍFICA:</span>
                 <input type="date" id="forcedDateInput">
-                <button id="forceDayBtn" class="gold">Marcar este dia</button>
+                <button id="forceDayBtn" class="gold">MARCAR ESTE DIA</button>
               </div>
               <div class="forced-row">
-                <span class="opt-label">🔁 Dia da semana:</span>
+                <span class="opt-label">🔁 DIA DA SEMANA:</span>
                 <select id="forcedWeekdaySelect">
-                  <option value="">Escolha…</option>
-                  <option value="1">Segunda-feira</option>
-                  <option value="2">Terça-feira</option>
-                  <option value="3">Quarta-feira</option>
-                  <option value="4">Quinta-feira</option>
-                  <option value="5">Sexta-feira</option>
+                  <option value="">ESCOLHA…</option>
+                  <option value="1">SEGUNDA-FEIRA</option>
+                  <option value="2">TERÇA-FEIRA</option>
+                  <option value="3">QUARTA-FEIRA</option>
+                  <option value="4">QUINTA-FEIRA</option>
+                  <option value="5">SEXTA-FEIRA</option>
                 </select>
-                <button id="forceWeekdayBtn" class="gold">Preencher o mês</button>
+                <button id="forceWeekdayBtn" class="gold">PREENCHER O MÊS</button>
               </div>
             </div>
             <div class="forced-list" id="forcedList"></div>
@@ -787,70 +838,69 @@
       <div class="status-line" id="statusLine"></div>
       <div class="card table-card" id="tableHolder"></div>
 
-      <!-- Tabela Informativa para Impressão e Consulta -->
-      <div class="card" style="padding: 16px; margin-top: 16px; font-size: 13px;" id="printSummaryTableBox">
-        <div style="font-weight: 700; color: var(--primary); margin-bottom: 8px;">📋 Informações Importantes & Legenda da Escala</div>
+      <div class="card" style="padding: 16px; margin-top: 16px; font-size: 13px; text-transform: uppercase;" id="printSummaryTableBox">
+        <div style="font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">📋 INFORMAÇÕES IMPORTANTES & LEGENDA DA ESCALA</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; color: var(--text-muted);">
-          <div><strong>HO:</strong> Home Office Autorizado</div>
-          <div><strong>★:</strong> Presença Coletiva Obrigatória</div>
-          <div><strong>✈:</strong> Viagem Corporativa Ativa</div>
-          <div><strong>🏖️:</strong> Período de Férias</div>
-          <div><strong>🔒 6M:</strong> Carência Recém-Contratado</div>
-          <div><strong>⛔ BLOQ:</strong> Impedimento da Coordenação</div>
+          <div><strong>HO:</strong> HOME OFFICE AUTORIZADO</div>
+          <div><strong>★:</strong> PRESENÇA COLETIVA OBRIGATÓRIA</div>
+          <div><strong>✈:</strong> VIAGEM CORPORATIVA ATIVA</div>
+          <div><strong>🏖️:</strong> PERÍODO DE FÉRIAS</div>
+          <div><strong>🔒 6M:</strong> CARÊNCIA RECÉM-CONTRATADO</div>
+          <div><strong>⛔ BLOQ:</strong> IMPEDIMENTO DA COORDENAÇÃO</div>
         </div>
       </div>
 
       <div class="card error-logs-panel">
-        <h3>⚠️ Alertas, Férias, Viagens e Consistências de Regras</h3>
+        <h3>⚠️ ALERTAS, FÉRIAS, VIAGENS E CONSISTÊNCIAS DE REGRAS</h3>
         <div class="error-log-list" id="errorLogList"></div>
       </div>
 
       <div class="card mini-consult-panel" id="miniConsultPanelCard">
-        <h3>📊 Consulta Rápida — Escalas do Mês</h3>
+        <h3>📊 CONSULTA RÁPIDA — ESCALAS DO MÊS</h3>
         <div class="mini-teams-grid" id="miniTeamsGrid"></div>
       </div>
     </div>
 
-    <div id="hoRulesContentContainer" style="display:none; padding: 24px;">
-      <h3 style="margin-bottom: 8px; color: var(--primary);">⚙️ Configurações e Parâmetros de Regras</h3>
-      <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">Gerencie parâmetros, restrições de conflitos e impedimentos do coordenador.</p>
+    <div id="hoRulesContentContainer" style="display:none; padding: 24px; text-transform: uppercase;">
+      <h3 style="margin-bottom: 8px; color: var(--primary-dark);">⚙️ CONFIGURAÇÕES E PARÂMETROS DE REGRAS</h3>
+      <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">GERENCIE PARÂMETROS, RESTRIÇÕES DE CONFLITOS E IMPEDIMENTOS DO COORDENADOR.</p>
       
       <div class="rules-grid">
         <div class="rule-quadrant">
           <div class="rule-quadrant-header">
-            <h4>🛠️ Parâmetros Gerais</h4>
-            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody1', this)">➕ Maximizar</button>
+            <h4>🛠️ PARÂMETROS GERAIS</h4>
+            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody1', this)">➕ MAXIMIZAR</button>
           </div>
           <div class="rule-quadrant-body" id="quadBody1" style="display: none;">
             <div style="display: flex; flex-direction: column; gap: 16px;">
               <div style="display: flex; align-items: center; gap: 10px; background: var(--card-bg); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border-color);">
                 <input type="checkbox" id="ruleEnableTeams" style="width: 18px; height: 18px; cursor: pointer;">
-                <label for="ruleEnableTeams" style="font-weight: 600; font-size: 13px; cursor: pointer;">Ativar divisão por equipes</label>
+                <label for="ruleEnableTeams" style="font-weight: 600; font-size: 13px; cursor: pointer;">ATIVAR DIVISÃO POR EQUIPES</label>
               </div>
               <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-weight: 600; font-size: 13px;">Máximo de dias de HO por Semana:</label>
+                <label style="font-weight: 600; font-size: 13px;">MÁXIMO DE DIAS DE HO POR SEMANA:</label>
                 <input type="number" id="ruleMaxHoDays" value="2" min="1" max="5">
               </div>
               <div style="display: flex; flex-direction: column; gap: 6px;">
-                <label style="font-weight: 600; font-size: 13px;">Anos no Seletor:</label>
+                <label style="font-weight: 600; font-size: 13px;">ANOS NO SELETOR:</label>
                 <input type="number" id="ruleYearsCount" value="4" min="1" max="20">
               </div>
-              <div><button id="saveRulesBtn" class="gold" style="width: 100%;">💾 Salvar Parâmetros</button></div>
+              <div><button id="saveRulesBtn" class="gold" style="width: 100%;">💾 SALVAR PARÂMETROS</button></div>
             </div>
           </div>
         </div>
 
         <div class="rule-quadrant">
           <div class="rule-quadrant-header">
-            <h4>📁 Gestão de Equipes / Sistemas</h4>
-            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody2', this)">➕ Maximizar</button>
+            <h4>📁 GESTÃO DE EQUIPES / SISTEMAS</h4>
+            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody2', this)">➕ MAXIMIZAR</button>
           </div>
           <div class="rule-quadrant-body" id="quadBody2" style="display: none;">
             <div style="display: flex; flex-direction: column; gap: 14px;">
-              <label style="font-weight: 600; font-size: 13px;">Adicionar Nova Equipe:</label>
+              <label style="font-weight: 600; font-size: 13px;">ADICIONAR NOVA EQUIPE:</label>
               <div style="display: flex; gap: 8px;">
-                <input type="text" id="newTeamNameInput" placeholder="Ex: Setor X..." style="flex: 1;">
-                <button class="gold" onclick="addNewTeam()" style="padding: 8px 14px;">+ Criar</button>
+                <input type="text" id="newTeamNameInput" placeholder="EX: SETOR X..." style="flex: 1;">
+                <button class="gold" onclick="addNewTeam()" style="padding: 8px 14px;">+ CRIAR</button>
               </div>
               <div id="existingTeamsList" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;"></div>
             </div>
@@ -859,17 +909,17 @@
 
         <div class="rule-quadrant" style="grid-column: 1 / -1;">
           <div class="rule-quadrant-header">
-            <h4>🔒 Restrições, Conflitos e Impedimentos do Coordenador</h4>
-            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody3', this)">➕ Maximizar</button>
+            <h4>🔒 RESTRIÇÕES, CONFLITOS E IMPEDIMENTOS DO COORDENADOR</h4>
+            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody3', this)">➕ MAXIMIZAR</button>
           </div>
           <div class="rule-quadrant-body" id="quadBody3" style="display: none;">
-            <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">Gerencie pares conflitantes e colaboradores impedidos pelo coordenador de realizar Home Office.</p>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">GERENCIE PARES CONFLITANTES E COLABORADORES IMPEDIDOS PELA COORDENAÇÃO DE REALIZAR HOME OFFICE.</p>
             
             <div style="margin-bottom: 20px; background: var(--card-bg); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
-              <label style="font-weight: 700; font-size: 13px; display: block; margin-bottom: 8px;">🚫 Impedimento de Home Office por Avaliação da Coordenação:</label>
+              <label style="font-weight: 700; font-size: 13px; display: block; margin-bottom: 8px;">🚫 IMPEDIMENTO DE HOME OFFICE POR AVALIAÇÃO DA COORDENAÇÃO:</label>
               <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-                <select id="managerBlockedMemberSelect" style="flex: 1; font-size: 13px; padding: 8px;"><option value="">Selecione o colaborador...</option></select>
-                <button class="danger secondary" onclick="toggleManagerBlockMember()" style="padding: 8px 14px; font-size: 13px;">Alternar Impedimento</button>
+                <select id="managerBlockedMemberSelect" style="flex: 1; font-size: 13px; padding: 8px;"><option value="">SELECIONE O COLABORADOR...</option></select>
+                <button class="danger secondary" onclick="toggleManagerBlockMember()" style="padding: 8px 14px; font-size: 13px;">ALTERNAR IMPEDIMENTO</button>
               </div>
               <div id="managerBlockedListContainer" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div>
             </div>
@@ -880,130 +930,130 @@
       </div>
 
       <div style="display:flex; gap:12px; margin-top:24px; justify-content: flex-end;">
-        <button class="danger secondary" onclick="resetDefaultConflicts()">Restaurar regras padrão</button>
-        <button class="secondary" onclick="switchHoSubtab(TEAM_NAMES[0])">Voltar à escala</button>
+        <button class="danger secondary" onclick="resetDefaultConflicts()">RESTAURAR REGRAS PADRÃO</button>
+        <button class="secondary" onclick="switchHoSubtab(TEAM_NAMES[0])">VOLTAR À ESCALA</button>
       </div>
     </div>
   </div>
 
   <div class="travel-panel card" id="travelPanel">
-    <div class="travel-header-banner">GestãoPro - Módulo de Viagens e Visitas</div>
+    <div class="banner-corporativo">CONTROLE DE VIAGENS E VISITAS</div>
     
     <div class="travel-config-bar">
       <div style="display:flex; gap:8px; align-items:center;">
-        <label style="font-size:12px; font-weight:600;">Data Inicial:</label>
+        <label style="font-size:12px; font-weight:600;">DATA INICIAL:</label>
         <input type="date" id="travelStartDate">
       </div>
       <div style="display:flex; gap:8px; align-items:center;">
-        <label style="font-size:12px; font-weight:600;">Data Final:</label>
+        <label style="font-size:12px; font-weight:600;">DATA FINAL:</label>
         <input type="date" id="travelEndDate">
       </div>
-      <button id="updateTravelTitleBtn" class="secondary" style="font-size:12px;">Atualizar Título</button>
-      <button id="saveTravelScheduleBtn" class="gold" style="font-size:12px;">💾 Salvar</button>
-      <button id="printTravelBtn" class="secondary" style="font-size:12px;">🖨️ Imprimir Programação Atual</button>
-      <div style="margin-left:auto;"><button id="clearTravelDataBtn" class="danger secondary" style="font-size:12px;">🗑️ Limpar</button></div>
+      <button id="updateTravelTitleBtn" class="secondary" style="font-size:12px;">ATUALIZAR TÍTULO</button>
+      <button id="saveTravelScheduleBtn" class="gold" style="font-size:12px;">💾 SALVAR</button>
+      <button id="printTravelBtn" class="secondary" style="font-size:12px;">🖨️ IMPRIMIR PROGRAMAÇÃO ATUAL</button>
+      <div style="margin-left:auto;"><button id="clearTravelDataBtn" class="danger secondary" style="font-size:12px;">🗑️ LIMPAR</button></div>
     </div>
 
     <div class="travel-sub-banner" id="travelTitleBanner">PROGRAMAÇÃO SEMANAL</div>
-    <div style="font-size:13.5px; font-weight:600; margin-bottom:14px; color:var(--text-main);">Visitas Técnicas - Atendimento Corporativo</div>
+    <div style="font-size:13.5px; font-weight:600; margin-bottom:14px; color:var(--text-main); text-transform: uppercase;">VISITAS TÉCNICAS - ATENDIMENTO CORPORATIVO</div>
 
-    <div class="travel-section-title">Visitas Realizadas / Agendadas</div>
+    <div class="travel-section-title">VISITAS REALIZADAS / AGENDADAS</div>
     <div style="overflow-x:auto;">
       <table class="travel-table" id="travelVisitsTable">
         <thead>
           <tr>
-            <th rowspan="2">Cliente</th><th rowspan="2">Sistema(s)</th><th rowspan="2">Motivo(s)</th><th rowspan="2">Técnicos</th>
-            <th colspan="2">Saída</th><th colspan="2">Chegada</th>
-            <th rowspan="2">Veículo</th><th rowspan="2">Hotel</th><th rowspan="2">Hotel Pref.</th><th rowspan="2">Ações</th>
+            <th rowspan="2">CLIENTE</th><th rowspan="2">SISTEMA(S)</th><th rowspan="2">MOTIVO(S)</th><th rowspan="2">TÉCNICOS</th>
+            <th colspan="2">SAÍDA</th><th colspan="2">CHEGADA</th>
+            <th rowspan="2">VEÍCULO</th><th rowspan="2">HOTEL</th><th rowspan="2">HOTEL PREF.</th><th rowspan="2">AÇÕES</th>
           </tr>
-          <tr><th>Data</th><th>Horário</th><th>Data</th><th>Horário</th></tr>
+          <tr><th>DATA</th><th>HORÁRIO</th><th>DATA</th><th>HORÁRIO</th></tr>
         </thead>
         <tbody id="travelVisitsBody"></tbody>
       </table>
     </div>
 
     <div class="travel-form-row">
-      <div class="travel-form-group"><label>Cliente</label><input type="text" id="tCliente" placeholder="Empresa"></div>
-      <div class="travel-form-group"><label>Sistema(s)</label><input type="text" id="tSistemas" value="Sistema Integrado"></div>
-      <div class="travel-form-group" style="flex:2;"><label>Motivo(s)</label><input type="text" id="tMotivo" placeholder="Motivo"></div>
+      <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="tCliente" placeholder="EMPRESA"></div>
+      <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="tSistemas" value="SISTEMA INTEGRADO"></div>
+      <div class="travel-form-group" style="flex:2;"><label>MOTIVO(S)</label><input type="text" id="tMotivo" placeholder="MOTIVO"></div>
       <div class="travel-form-group">
-        <label>Técnicos</label>
+        <label>TÉCNICOS</label>
         <div class="dropdown-check-container" id="tDropdownContainer">
-          <button type="button" class="dropdown-check-btn" id="tDropdownBtn">Selecione ▾</button>
+          <button type="button" class="dropdown-check-btn" id="tDropdownBtn">SELECIONE ▾</button>
           <div class="dropdown-check-content" id="tDropdownContent"></div>
         </div>
       </div>
-      <div class="travel-form-group"><label>Saída Data</label><input type="date" id="tSaidaData"></div>
-      <div class="travel-form-group"><label>Saída Hora</label><input type="time" id="tSaidaHora" value="09:00"></div>
-      <div class="travel-form-group"><label>Chegada Data</label><input type="date" id="tChegadaData"></div>
-      <div class="travel-form-group"><label>Chegada Hora</label><input type="time" id="tChegadaHora" value="18:00"></div>
-      <div class="travel-form-group"><label>Veículo</label><select id="tReservaVeiculo"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
-      <div class="travel-form-group"><label>Hotel</label><select id="tReservaHotel"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
-      <div class="travel-form-group"><label>Hotel Pref.</label><input type="text" id="tHotelPref" placeholder="Hotel"></div>
-      <button id="addTravelVisitBtn" class="gold" style="height:38px;align-self:flex-end;">+ Adicionar</button>
+      <div class="travel-form-group"><label>SAÍDA DATA</label><input type="date" id="tSaidaData"></div>
+      <div class="travel-form-group"><label>SAÍDA HORA</label><input type="time" id="tSaidaHora" value="09:00"></div>
+      <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="tChegadaData"></div>
+      <div class="travel-form-group"><label>CHEGADA HORA</label><input type="time" id="tChegadaHora" value="18:00"></div>
+      <div class="travel-form-group"><label>VEÍCULO</label><select id="tReservaVeiculo"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
+      <div class="travel-form-group"><label>HOTEL</label><select id="tReservaHotel"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
+      <div class="travel-form-group"><label>HOTEL PREF.</label><input type="text" id="tHotelPref" placeholder="HOTEL"></div>
+      <button id="addTravelVisitBtn" class="gold" style="height:38px;align-self:flex-end;">+ ADICIONAR</button>
     </div>
 
-    <div class="travel-section-title">Créditos de Tickets por Técnico</div>
+    <div class="travel-section-title">CRÉDITOS DE TICKETS POR TÉCNICO</div>
     <div style="overflow-x:auto;">
       <table class="travel-table" id="travelCreditsTable">
-        <thead><tr><th>Técnicos</th><th>Período(s)</th><th>Quantidade</th><th>Descrição</th></tr></thead>
+        <thead><tr><th>TÉCNICOS</th><th>PERÍODO(S)</th><th>QUANTIDADE</th><th>DESCRIÇÃO</th></tr></thead>
         <tbody id="travelCreditsBody"></tbody>
       </table>
     </div>
 
-    <div class="travel-section-title">Visitas Pendentes</div>
+    <div class="travel-section-title">VISITAS PENDENTES</div>
     <div style="overflow-x:auto;">
       <table class="travel-table" id="travelPendingTable">
-        <thead><tr><th>Cliente</th><th>Sistema</th><th>Motivo</th><th>Técnicos</th><th>Saída</th><th>Chegada</th><th>Veículo</th><th>Hotel</th><th>Obs</th><th>Ações</th></tr></thead>
+        <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th><th>VEÍCULO</th><th>HOTEL</th><th>OBS</th><th>AÇÕES</th></tr></thead>
         <tbody id="travelPendingBody"></tbody>
       </table>
     </div>
 
     <div class="travel-form-row">
-      <div class="travel-form-group"><label>Cliente</label><input type="text" id="pCliente" placeholder="Cliente"></div>
-      <div class="travel-form-group"><label>Sistema(s)</label><input type="text" id="pSistemas" value="Sistema Integrado"></div>
-      <div class="travel-form-group" style="flex:2;"><label>Motivo</label><input type="text" id="pMotivo" placeholder="Motivo"></div>
+      <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="pCliente" placeholder="CLIENTE"></div>
+      <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="pSistemas" value="SISTEMA INTEGRADO"></div>
+      <div class="travel-form-group" style="flex:2;"><label>MOTIVO</label><input type="text" id="pMotivo" placeholder="MOTIVO"></div>
       <div class="travel-form-group">
-        <label>Técnicos</label>
+        <label>TÉCNICOS</label>
         <div class="dropdown-check-container" id="pDropdownContainer">
-          <button type="button" class="dropdown-check-btn" id="pDropdownBtn">Selecione ▾</button>
+          <button type="button" class="dropdown-check-btn" id="pDropdownBtn">SELECIONE ▾</button>
           <div class="dropdown-check-content" id="pDropdownContent"></div>
         </div>
       </div>
-      <div class="travel-form-group"><label>Saída Data</label><input type="date" id="pSaidaData"></div>
-      <div class="travel-form-group"><label>Chegada Data</label><input type="date" id="pChegadaData"></div>
-      <div class="travel-form-group"><label>Veículo</label><input type="text" id="pVeiculo" value="NO CLIENTE"></div>
-      <div class="travel-form-group"><label>Hotel</label><input type="text" id="pHotel" value="NO CLIENTE"></div>
-      <div class="travel-form-group" style="flex:2;"><label>Observação</label><input type="text" id="pObs" placeholder="Obs"></div>
-      <button id="addTravelPendingBtn" class="gold" style="height:38px;align-self:flex-end;">+ Adicionar Pendente</button>
+      <div class="travel-form-group"><label>SAÍDA DATA</label><input type="date" id="pSaidaData"></div>
+      <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="pChegadaData"></div>
+      <div class="travel-form-group"><label>VEÍCULO</label><input type="text" id="pVeiculo" value="NO CLIENTE"></div>
+      <div class="travel-form-group"><label>HOTEL</label><input type="text" id="pHotel" value="NO CLIENTE"></div>
+      <div class="travel-form-group" style="flex:2;"><label>OBSERVAÇÃO</label><input type="text" id="pObs" placeholder="OBS"></div>
+      <button id="addTravelPendingBtn" class="gold" style="height:38px;align-self:flex-end;">+ ADICIONAR PENDENTE</button>
     </div>
 
     <div class="saved-schedules-container">
-      <div class="travel-section-title" style="background:var(--border-color); color:var(--text-main);">Histórico de Programações Salvas</div>
+      <div class="travel-section-title" style="background:var(--border-color); color:var(--text-main);">HISTÓRICO DE PROGRAMAÇÕES SALVAS</div>
       <div id="savedSchedulesList"></div>
     </div>
   </div>
 
   <div class="vacation-panel card" id="vacationPanel">
-    <div class="travel-header-banner" style="background: #fef08a; color: #713f12;">Controle de Férias</div>
+    <div class="banner-corporativo">CONTROLE DE FÉRIAS</div>
     
     <div class="travel-config-bar">
       <div style="display:flex; gap:12px; align-items:center;">
-        <label style="font-weight:600; color:var(--text-main);">Ano de Referência:</label>
+        <label style="font-weight:600; color:var(--text-main);">ANO DE REFERÊNCIA:</label>
         <select id="vacationYearSelect" style="padding:6px 12px; font-size:13px;"></select>
       </div>
-      <div style="margin-left:auto;"><button id="printVacationBtn" class="secondary" style="font-size:12px;">🖨️ Imprimir Férias</button></div>
+      <div style="margin-left:auto;"><button id="printVacationBtn" class="secondary" style="font-size:12px;">🖨️ IMPRIMIR FÉRIAS</button></div>
     </div>
 
     <div class="travel-form-row vacation-form-row" style="margin-bottom: 24px; border-left: 4px solid var(--accent);">
-      <div style="width: 100%; font-weight: 700; font-size: 14px; color: #b45309; margin-bottom: 4px;">➕ Nova Solicitação de Férias</div>
-      <div class="travel-form-group"><label>Funcionário</label><select id="vFuncionarioSelect"></select></div>
-      <div class="travel-form-group"><label>Data Inicial</label><input type="date" id="vDataInicioInput"></div>
-      <div class="travel-form-group"><label>Data Final</label><input type="date" id="vDataFimInput"></div>
-      <button id="saveVacationBtn" class="gold" style="height:38px;align-self:flex-end;">💾 Salvar</button>
+      <div style="width: 100%; font-weight: 700; font-size: 14px; color: #b45309; margin-bottom: 4px; text-transform: uppercase;">➕ NOVA SOLICITAÇÃO DE FÉRIAS</div>
+      <div class="travel-form-group"><label>FUNCIONÁRIO</label><select id="vFuncionarioSelect"></select></div>
+      <div class="travel-form-group"><label>DATA INICIAL</label><input type="date" id="vDataInicioInput"></div>
+      <div class="travel-form-group"><label>DATA FINAL</label><input type="date" id="vDataFimInput"></div>
+      <button id="saveVacationBtn" class="gold" style="height:38px;align-self:flex-end;">💾 SALVAR</button>
     </div>
 
-    <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">📋 Relação de Férias Cadastradas</div>
+    <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); text-transform: uppercase;">📋 RELAÇÃO DE FÉRIAS CADASTRADAS</div>
     <div style="overflow-x:auto;">
       <table class="travel-table" id="vacationTable">
         <thead>
@@ -1019,22 +1069,22 @@
     </div>
   </div>
 
-  <footer class="note">GestãoPro — Sistema Integrado de Gestão Corporativa.</footer>
+  <footer class="note">ADL GESTÃO INTELIGENTE — SISTEMA INTEGRADO DE GESTÃO CORPORATIVA.</footer>
 </div>
 
 <script>
-let registeredUsers = JSON.parse(localStorage.getItem("gestupro-users")) || [];
-const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@gestupro.com");
+let registeredUsers = JSON.parse(localStorage.getItem("adl-users")) || [];
+const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@adlgestao.com");
 if (adminIndex === -1) {
-  registeredUsers.unshift({ name: "Administrador", email: "admin@gestupro.com", password: "adm4685", status: "ativo", role: "admin" });
+  registeredUsers.unshift({ name: "ADMINISTRADOR", email: "admin@adlgestao.com", password: "adm4685", status: "ativo", role: "admin" });
 } else {
   registeredUsers[adminIndex].password = "adm4685";
   registeredUsers[adminIndex].status = "ativo";
   registeredUsers[adminIndex].role = "admin";
 }
-localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
+localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
 
-let currentUser = JSON.parse(sessionStorage.getItem("gestupro-current-user")) || null;
+let currentUser = JSON.parse(sessionStorage.getItem("adl-current-user")) || null;
 
 function switchAuthMode(mode) {
   const loginForm = document.getElementById("loginForm");
@@ -1068,7 +1118,7 @@ async function populatePublicSearchDropdowns() {
   
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key && key.startsWith("gestupro:")) {
+    if (key && key.startsWith("adl:")) {
       try {
         const val = JSON.parse(localStorage.getItem(key));
         if (val && Array.isArray(val.members)) {
@@ -1087,7 +1137,7 @@ async function populatePublicSearchDropdowns() {
   const uniqueMems = Array.from(new Set([...allMems, ...Object.keys(VACATION_DATA).filter(k => !k.startsWith("__"))])).sort((a,b)=>a.localeCompare(b,"pt-BR"));
   
   const sel = document.getElementById("publicSearchMemberSelect");
-  if(sel) sel.innerHTML = `<option value="">Selecione seu nome...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
+  if(sel) sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
   
   const mSel = document.getElementById("publicSearchMonth");
   if(mSel) mSel.innerHTML = MONTH_NAMES.map((n, i) => `<option value="${i}" ${i===new Date().getMonth()?'selected':''}>${n}</option>`).join("");
@@ -1107,7 +1157,7 @@ async function handlePublicSearch() {
   const resultDiv = document.getElementById("publicSearchResult");
   
   if(!memberName) {
-    alert("Por favor, selecione um colaborador.");
+    alert("POR FAVOR, SELECIONE UM COLABORADOR.");
     return;
   }
 
@@ -1128,57 +1178,57 @@ async function handlePublicSearch() {
   if(TRAVEL_DATA && TRAVEL_DATA.visits) {
     TRAVEL_DATA.visits.forEach(v => {
       if(v.tecnicos && v.tecnicos.includes(memberName)) {
-        memberTrips.push(`<tr><td>${formatDatePt(v.saidaData)} à ${formatDatePt(v.chegadaData)}</td><td>${v.cliente}</td></tr>`);
+        memberTrips.push(`<tr><td>${formatDatePt(v.saidaData)} À ${formatDatePt(v.chegadaData)}</td><td>${v.cliente}</td></tr>`);
       }
     });
   }
 
   const vacationRec = VACATION_DATA[memberName];
-  let vacationInfo = "<tr><td colspan='2' style='text-align:center; color:var(--text-muted);'>Nenhuma férias registrada para este período.</td></tr>";
+  let vacationInfo = "<tr><td colspan='2' style='text-align:center; color:var(--text-muted);'>NENHUMA FÉRIAS REGISTRADA PARA ESTE PERÍODO.</td></tr>";
   if(vacationRec && vacationRec.solicitacao) {
     vacationInfo = `<tr><td colspan='2'>${vacationRec.solicitacao}</td></tr>`;
   }
 
   resultDiv.innerHTML = `
-    <div style="border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 14px;">
-      <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Comprovante Individual</span>
-      <h3 style="color: var(--primary); font-size: 17px; margin: 2px 0 0 0;">${memberName}</h3>
+    <div style="border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px;">
+      <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">COMPROVANTE INDIVIDUAL</span>
+      <h3 style="color: var(--primary-dark); font-size: 16px; margin: 2px 0 0 0; text-transform: uppercase;">${memberName}</h3>
     </div>
-    <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 14px;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 12px; text-transform: uppercase;">
       <tr>
-        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main); width: 30%;"><strong>Período:</strong></td>
+        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main); width: 30%;"><strong>PERÍODO:</strong></td>
         <td style="padding: 6px; border: 1px solid var(--border-color);">${MONTH_NAMES[month]} / ${year}</td>
       </tr>
       <tr>
-        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main);"><strong>Equipe / Setor:</strong></td>
+        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main);"><strong>EQUIPE / SETOR:</strong></td>
         <td style="padding: 6px; border: 1px solid var(--border-color);">${targetTeam}</td>
       </tr>
       <tr>
-        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main);"><strong>Total dias HO:</strong></td>
-        <td style="padding: 6px; border: 1px solid var(--border-color);">${hoFormatted.length} dia(s) autorizado(s)</td>
+        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main);"><strong>TOTAL DIAS HO:</strong></td>
+        <td style="padding: 6px; border: 1px solid var(--border-color);">${hoFormatted.length} DIA(S) AUTORIZADO(S)</td>
       </tr>
     </table>
 
-    <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text-main);">📅 Dias de Home Office Agendados:</div>
-    <div style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 6px; font-size: 12.5px; margin-bottom: 14px; max-height: 90px; overflow-y: auto;">
-      ${hoFormatted.length ? hoFormatted.join(" • ") : "Nenhum dia de Home Office agendado neste mês."}
+    <div style="font-weight: 700; font-size: 12.5px; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase;">📅 DIAS DE HOME OFFICE AGENDADOS:</div>
+    <div style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 12px; max-height: 80px; overflow-y: auto; text-transform: uppercase;">
+      ${hoFormatted.length ? hoFormatted.join(" • ") : "NENHUM DIA DE HOME OFFICE AGENDADO NESTE MÊS."}
     </div>
 
-    <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text-main);">✈️ Viagens Corporativas:</div>
-    <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 14px;">
+    <div style="font-weight: 700; font-size: 12.5px; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase;">✈️ VIAGENS CORPORATIVAS:</div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px; text-transform: uppercase;">
       <thead>
         <tr style="background: var(--bg-main);">
-          <th style="border: 1px solid var(--border-color); padding: 6px; text-align: left;">Período da Viagem</th>
-          <th style="border: 1px solid var(--border-color); padding: 6px; text-align: left;">Destino / Cliente</th>
+          <th style="border: 1px solid var(--border-color); padding: 6px; text-align: left;">PERÍODO DA VIAGEM</th>
+          <th style="border: 1px solid var(--border-color); padding: 6px; text-align: left;">DESTINO / CLIENTE</th>
         </tr>
       </thead>
       <tbody>
-        ${memberTrips.length ? memberTrips.join("") : '<tr><td colspan="2" style="border: 1px solid var(--border-color); padding: 6px; text-align: center; color: var(--text-muted);">Nenhuma viagem cadastrada.</td></tr>'}
+        ${memberTrips.length ? memberTrips.join("") : '<tr><td colspan="2" style="border: 1px solid var(--border-color); padding: 6px; text-align: center; color: var(--text-muted);">NENHUMA VIAGEM CADASTRADA.</td></tr>'}
       </tbody>
     </table>
 
-    <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text-main);">🏖️ Período de Férias:</div>
-    <table style="width: 100%; border-collapse: collapse; font-size: 12.5px;">
+    <div style="font-weight: 700; font-size: 12.5px; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase;">🏖️ PERÍODO DE FÉRIAS:</div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-transform: uppercase;">
       <tbody>
         ${vacationInfo}
       </tbody>
@@ -1193,7 +1243,7 @@ function closePublicResultModal() {
 }
 
 function printPublicReport() {
-  const pd=document.getElementById("pubPrintDate"); if(pd) pd.textContent=new Date().toLocaleString("pt-BR");
+  const pd=document.getElementById("pubPrintDate"); if(pd) pd.textContent=new Date().toLocaleString("pt-BR").toUpperCase();
   document.body.classList.add("printing-public-report");
   window.print();
   document.body.classList.remove("printing-public-report");
@@ -1208,17 +1258,17 @@ function handleLogin(e) {
   const found = registeredUsers.find(u => u.email.toLowerCase() === email && u.password === pass);
   if(found) {
     if(found.status === "pendente") {
-      msg.textContent = "A sua conta aguarda aprovação do administrador.";
+      msg.textContent = "A SUA CONTA AGUARDA APROVAÇÃO DO ADMINISTRADOR.";
       msg.className = "auth-msg error";
       return;
     }
     currentUser = found;
-    sessionStorage.setItem("gestupro-current-user", JSON.stringify(currentUser));
-    msg.textContent = "Login realizado com sucesso!";
+    sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
+    msg.textContent = "LOGIN REALIZADO COM SUCESSO!";
     msg.className = "auth-msg success";
     setTimeout(() => { document.getElementById("authOverlay").style.display = "none"; updateSessionDisplay(); }, 600);
   } else {
-    msg.textContent = "E-mail ou senha inválidos.";
+    msg.textContent = "E-MAIL OU SENHA INVÁLIDOS.";
     msg.className = "auth-msg error";
   }
 }
@@ -1231,30 +1281,30 @@ function handleForgot(e) {
   if(found) {
     const tempNewPass = "temp" + Math.floor(1000 + Math.random() * 9000);
     found.password = tempNewPass;
-    localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
-    msg.innerHTML = `Enviado para <strong>${email}</strong>.<br>Senha temporária: <code style="background:var(--card-bg); padding:2px 6px; border-radius:4px;">${tempNewPass}</code>`;
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    msg.innerHTML = `ENVIADO PARA <strong>${email.toUpperCase()}</strong>.<br>SENHA TEMPORÁRIA: <code style="background:var(--card-bg); padding:2px 6px; border-radius:4px;">${tempNewPass}</code>`;
     msg.className = "auth-msg success";
   } else {
-    msg.textContent = "E-mail não encontrado.";
+    msg.textContent = "E-MAIL NÃO ENCONTRADO.";
     msg.className = "auth-msg error";
   }
 }
 
 function handleRegister(e) {
   e.preventDefault();
-  const name = document.getElementById("regName").value.trim();
+  const name = document.getElementById("regName").value.trim().toUpperCase();
   const email = document.getElementById("regEmail").value.trim().toLowerCase();
   const pass = document.getElementById("regPassword").value;
   const msg = document.getElementById("regMsg");
 
   if(pass.length < 3) {
-    msg.textContent = "A senha deve ter pelo menos 3 caracteres.";
+    msg.textContent = "A SENHA DEVE TER PELO MENOS 3 CARACTERES.";
     msg.className = "auth-msg error";
     return;
   }
   const exists = registeredUsers.some(u => u.email.toLowerCase() === email);
   if(exists) {
-    msg.textContent = "Este e-mail já está cadastrado.";
+    msg.textContent = "ESTE E-MAIL JÁ ESTÁ CADASTRADO.";
     msg.className = "auth-msg error";
     return;
   }
@@ -1264,9 +1314,9 @@ function handleRegister(e) {
 
   const newUser = { name, email, password: pass, status: statusInicial, role: "user" };
   registeredUsers.push(newUser);
-  localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
+  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
 
-  msg.textContent = statusInicial === "pendente" ? "Cadastro realizado! Conta aguardando aprovação." : "Cadastro realizado com sucesso! Faça login.";
+  msg.textContent = statusInicial === "pendente" ? "CADASTRO REALIZADO! CONTA AGUARDANDO APROVAÇÃO." : "CADASTRO REALIZADO COM SUCESSO! FAÇA LOGIN.";
   msg.className = "auth-msg success";
 
   setTimeout(() => {
@@ -1278,7 +1328,7 @@ function handleRegister(e) {
 
 function handleLogout() {
   currentUser = null;
-  sessionStorage.removeItem("gestupro-current-user");
+  sessionStorage.removeItem("adl-current-user");
   const existingPanel = document.getElementById("adminApprovalPanel");
   if(existingPanel) existingPanel.remove();
   document.getElementById("authOverlay").style.display = "flex";
@@ -1293,9 +1343,9 @@ function updateSessionDisplay() {
     const latestUser = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
     if(latestUser) currentUser = latestUser;
 
-    document.getElementById("loggedUserName").textContent = currentUser.name + (currentUser.role === 'admin' ? ' (Admin)' : '');
+    document.getElementById("loggedUserName").textContent = (currentUser.name || "").toUpperCase() + (currentUser.role === 'admin' ? ' (ADMIN)' : '');
     document.getElementById("authOverlay").style.display = "none";
-    if(currentUser.email.toLowerCase() === "admin@gestupro.com" || currentUser.role === "admin") {
+    if(currentUser.email.toLowerCase() === "admin@adlgestao.com" || currentUser.role === "admin") {
       criarPainelAprovacaoAdmin();
     }
   } else {
@@ -1306,8 +1356,8 @@ function updateSessionDisplay() {
 function toggleAdminPanel(btnEl) {
   const content = document.getElementById("adminPanelContent");
   if(!content) return;
-  if(content.style.display === "none"){ content.style.display = "block"; btnEl.textContent = "➖ Minimizar"; }
-  else { content.style.display = "none"; btnEl.textContent = "➕ Maximizar"; }
+  if(content.style.display === "none"){ content.style.display = "block"; btnEl.textContent = "➖ MINIMIZAR"; }
+  else { content.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
 }
 
 function criarPainelAprovacaoAdmin() {
@@ -1316,7 +1366,7 @@ function criarPainelAprovacaoAdmin() {
     adminPanel = document.createElement("div");
     adminPanel.id = "adminApprovalPanel";
     adminPanel.className = "card";
-    adminPanel.style.cssText = "margin-bottom: 24px; padding: 20px; border-left: 4px solid var(--accent);";
+    adminPanel.style.cssText = "margin-bottom: 24px; padding: 20px; border-left: 4px solid var(--accent); text-transform: uppercase;";
     const wrap = document.querySelector(".wrap");
     wrap.insertBefore(adminPanel, wrap.children[2]);
   }
@@ -1326,29 +1376,29 @@ function criarPainelAprovacaoAdmin() {
   
   adminPanel.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-      <h3 style="color: var(--accent); font-size: 16px; margin: 0;">🛡️ Painel de Aprovação e Gestão de Usuários</h3>
-      <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleAdminPanel(this)">➕ Maximizar</button>
+      <h3 style="color: var(--accent); font-size: 16px; margin: 0; text-transform: uppercase;">🛡️ PAINEL DE APROVAÇÃO E GESTÃO DE USUÁRIOS</h3>
+      <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleAdminPanel(this)">➕ MAXIMIZAR</button>
     </div>
     
     <div id="adminPanelContent" style="display: none;">
       <div style="margin-bottom: 20px;">
-        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main);">Cadastros Pendentes:</h4>
+        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">CADASTROS PENDENTES:</h4>
         ${
           pendentes.length === 0 
-          ? `<div class="empty-note">Nenhum usuário aguardando aprovação no momento.</div>`
+          ? `<div class="empty-note">NENHUM USUÁRIO AGUARDANDO APROVAÇÃO NO MOMENTO.</div>`
           : `<div style="display: flex; flex-direction: column; gap: 8px;">
               ${pendentes.map(p => `
                 <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;">
                   <div>
-                    <strong>${p.name}</strong> <span style="font-size: 12px; color: var(--text-muted);">(${p.email})</span> — Cargo atual: <span style="font-weight:600; color:var(--primary);">${p.role === 'admin' ? 'Administrador' : 'Usuário Comum'}</span>
+                    <strong>${(p.name||"").toUpperCase()}</strong> <span style="font-size: 12px; color: var(--text-muted);">(${p.email})</span> — CARGO ATUAL: <span style="font-weight:600; color:var(--primary-dark);">${p.role === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO COMUM'}</span>
                   </div>
                   <div style="display: flex; gap: 8px; align-items: center;">
                     <select id="role-select-${p.email.replace(/[@.]/g, '_')}" style="padding: 4px 8px; font-size: 12px;">
-                      <option value="user" ${p.role==='user'?'selected':''}>Usuário Comum</option>
-                      <option value="admin" ${p.role==='admin'?'selected':''}>Administrador</option>
+                      <option value="user" ${p.role==='user'?'selected':''}>USUÁRIO COMUM</option>
+                      <option value="admin" ${p.role==='admin'?'selected':''}>ADMINISTRADOR</option>
                     </select>
-                    <button class="gold" style="padding: 4px 10px; font-size: 12px;" onclick="aprovarUsuario('${p.email}')">Aprovar</button>
-                    <button class="danger secondary" style="padding: 4px 10px; font-size: 12px;" onclick="rejeitarUsuario('${p.email}')">Recusar</button>
+                    <button class="gold" style="padding: 4px 10px; font-size: 12px;" onclick="aprovarUsuario('${p.email}')">APROVAR</button>
+                    <button class="danger secondary" style="padding: 4px 10px; font-size: 12px;" onclick="rejeitarUsuario('${p.email}')">RECUSAR</button>
                   </div>
                 </div>
               `).join("")}
@@ -1357,21 +1407,21 @@ function criarPainelAprovacaoAdmin() {
       </div>
 
       <div style="border-top: 1px dashed var(--border-color); padding-top: 16px;">
-        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main);">Usuários do Sistema (Alterar Nível de Acesso):</h4>
+        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">USUÁRIOS DO SISTEMA (ALTERAR NÍVEL DE ACESSO):</h4>
         <div style="display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto;">
           ${todosUsuarios.map(u => `
             <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 13px; flex-wrap: wrap; gap: 8px;">
               <div>
-                <strong>${u.name}</strong> <span style="color: var(--text-muted);">(${u.email})</span>
+                <strong>${(u.name||"").toUpperCase()}</strong> <span style="color: var(--text-muted);">(${u.email})</span>
               </div>
               <div style="display: flex; gap: 8px; align-items: center;">
-                <select onchange="alterarCargoUsuario('${u.email}', this.value)" style="padding: 3px 8px; font-size: 11.5px;" ${u.email.toLowerCase() === 'admin@gestupro.com' ? 'disabled' : ''}>
-                  <option value="user" ${u.role==='user'?'selected':''}>Usuário Comum</option>
-                  <option value="admin" ${u.role==='admin'?'selected':''}>Administrador</option>
+                <select onchange="alterarCargoUsuario('${u.email}', this.value)" style="padding: 3px 8px; font-size: 11.5px;" ${u.email.toLowerCase() === 'admin@adlgestao.com' ? 'disabled' : ''}>
+                  <option value="user" ${u.role==='user'?'selected':''}>USUÁRIO COMUM</option>
+                  <option value="admin" ${u.role==='admin'?'selected':''}>ADMINISTRADOR</option>
                 </select>
-                ${u.email.toLowerCase() !== 'admin@gestupro.com' ? `
-                  <button class="danger secondary" style="padding: 3px 8px; font-size: 11px;" onclick="excluirUsuarioSistema('${u.email}')">Excluir</button>
-                ` : `<span style="font-size: 11px; font-style: italic; color: var(--text-muted);">Master</span>`}
+                ${u.email.toLowerCase() !== 'admin@adlgestao.com' ? `
+                  <button class="danger secondary" style="padding: 3px 8px; font-size: 11px;" onclick="excluirUsuarioSistema('${u.email}')">EXCLUIR</button>
+                ` : `<span style="font-size: 11px; font-style: italic; color: var(--text-muted);">MASTER</span>`}
               </div>
             </div>
           `).join("")}
@@ -1390,9 +1440,9 @@ window.aprovarUsuario = function(email) {
       user.role = selectEl.value;
     }
     user.status = "ativo";
-    localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
     criarPainelAprovacaoAdmin();
-    alert(`Usuário ${user.name} aprovado com sucesso!`);
+    alert(`USUÁRIO ${(user.name||"").toUpperCase()} APROVADO COM SUCESSO!`);
   }
 };
 
@@ -1400,23 +1450,23 @@ window.alterarCargoUsuario = function(email, novoCargo) {
   const user = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
   if(user) {
     user.role = novoCargo;
-    localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
-    alert(`Cargo de ${user.name} alterado para ${novoCargo === 'admin' ? 'Administrador' : 'Usuário Comum'}.`);
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    alert(`CARGO DE ${(user.name||"").toUpperCase()} ALTERADO PARA ${novoCargo === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO COMUM'}.`);
   }
 };
 
 window.rejeitarUsuario = function(email) {
-  if(!confirm("Deseja rejeitar e remover este cadastro pendente?")) return;
+  if(!confirm("DESEJA REJEITAR E REMOVER ESTE CADASTRO PENDENTE?")) return;
   registeredUsers = registeredUsers.filter(u => u.email !== email);
-  localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
+  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
   criarPainelAprovacaoAdmin();
 };
 
 window.excluirUsuarioSistema = function(email) {
-  if(email.toLowerCase() === 'admin@gestupro.com'){ alert("Não é permitido excluir o admin principal."); return; }
-  if(!confirm(`Excluir o usuário ${email}?`)) return;
+  if(email.toLowerCase() === 'admin@adlgestao.com'){ alert("NÃO É PERMITIDO EXCLUIR O ADMIN PRINCIPAL."); return; }
+  if(!confirm(`EXCLUIR O USUÁRIO ${email}?`)) return;
   registeredUsers = registeredUsers.filter(u => u.email !== email);
-  localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
+  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
   criarPainelAprovacaoAdmin();
 };
 
@@ -1436,54 +1486,54 @@ function handleChangePassword(e) {
   const confirmPass = document.getElementById("confirmPassInput").value;
   const msg = document.getElementById("passModalMsg");
 
-  if(currentPass !== currentUser.password) { msg.textContent = "Senha atual incorreta."; msg.className = "auth-msg error"; return; }
-  if(newPass.length < 3) { msg.textContent = "Mínimo 3 caracteres."; msg.className = "auth-msg error"; return; }
-  if(newPass !== confirmPass) { msg.textContent = "As senhas não coincidem."; msg.className = "auth-msg error"; return; }
+  if(currentPass !== currentUser.password) { msg.textContent = "SENHA ATUAL INCORRETA."; msg.className = "auth-msg error"; return; }
+  if(newPass.length < 3) { msg.textContent = "MÍNIMO 3 CARACTERES."; msg.className = "auth-msg error"; return; }
+  if(newPass !== confirmPass) { msg.textContent = "AS SENHAS NÃO COINCIDEM."; msg.className = "auth-msg error"; return; }
 
   const userRef = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
   if(userRef) {
     userRef.password = newPass; currentUser.password = newPass;
-    localStorage.setItem("gestupro-users", JSON.stringify(registeredUsers));
-    sessionStorage.setItem("gestupro-current-user", JSON.stringify(currentUser));
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
   }
-  msg.textContent = "Senha alterada com sucesso!"; msg.className = "auth-msg success";
+  msg.textContent = "SENHA ALTERADA COM SUCESSO!"; msg.className = "auth-msg success";
   setTimeout(() => { closePasswordModal(); }, 1200);
 }
 
 function toggleCardSection(bodyId, btnEl) {
   const body = document.getElementById(bodyId);
   if(!body) return;
-  if(body.style.display === "none"){ body.style.display = "block"; btnEl.textContent = "➖ Minimizar"; }
-  else { body.style.display = "none"; btnEl.textContent = "➕ Maximizar"; }
+  if(body.style.display === "none"){ body.style.display = "block"; btnEl.textContent = "➖ MINIMIZAR"; }
+  else { body.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
 }
 
 function toggleQuadrant(bodyId, btnEl) {
   const body = document.getElementById(bodyId);
   if(!body) return;
-  if(body.style.display === "none"){ body.style.display = "block"; btnEl.textContent = "➖ Minimizar"; }
-  else { body.style.display = "none"; btnEl.textContent = "➕ Maximizar"; }
+  if(body.style.display === "none"){ body.style.display = "block"; btnEl.textContent = "➖ MINIMIZAR"; }
+  else { body.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
 }
 
-let TEAM_NAMES = ["IPTU", "ISS", "Dívida Ativa"];
-let TEAM_SLUGS = {"IPTU": "iptu", "ISS": "iss", "Dívida Ativa": "divida-ativa"};
-const TEAM_ACCENTS = {"IPTU": "#818cf8", "ISS": "#f87171", "Dívida Ativa": "#34d399"};
+let TEAM_NAMES = ["IPTU", "ISS", "DÍVIDA ATIVA"];
+let TEAM_SLUGS = {"IPTU": "iptu", "ISS": "iss", "DÍVIDA ATIVA": "divida-ativa"};
+const TEAM_ACCENTS = {"IPTU": "#2a435c", "ISS": "#dc2626", "DÍVIDA ATIVA": "#16a34a"};
 const DEFAULT_MEMBERS = {
   "IPTU": ["ADILSON", "MURILO", "EMERSON", "DIÓGENES", "SINDY"],
   "ISS": ["ANA VANESSA", "BRAULIO", "LUCELIA"],
-  "Dívida Ativa": ["ROSEANE", "KARINA", "MAIRA", "SIDNEY", "GISELLE", "JULIO"]
+  "DÍVIDA ATIVA": ["ROSEANE", "KARINA", "MAIRA", "SIDNEY", "GISELLE", "JULIO"]
 };
-let TEAM_ICONS = {"IPTU": "🏠", "ISS": "🧾", "Dívida Ativa": "⚖️"};
+let TEAM_ICONS = {"IPTU": "🏠", "ISS": "🧾", "DÍVIDA ATIVA": "⚖️"};
 const DEFAULT_VACATION_DATA = {
   "ADILSON": { admissao: "MARÇO", solicitacao: "" },
-  "ANA VANESSA": { admissao: "AGOSTO", solicitacao: "21/12/2026 à 03/01/2027 - 14 dias (AUTORIZADO no PORTALRH)." },
-  "BRAULIO": { admissao: "NOVEMBRO", solicitacao: "23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO no PORTALRH)" },
-  "DIÓGENES": { admissao: "JULHO", solicitacao: "05/10/2026 à 13/10/2026 - 09 dias (AUTORIZADO no PORTALRH) - 23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO no PORTALRH)." },
-  "EMERSON": { admissao: "ABRIL", solicitacao: "26/10/2026 à 08/11/2026 - 14 dias (AUTORIZADO no PORTALRH)." },
-  "GISELLE": { admissao: "JUNHO", solicitacao: "30/11/2026 à 13/12/2026 - 14 dias (AUTORIZADO no PORTALRH)" },
+  "ANA VANESSA": { admissao: "AGOSTO", solicitacao: "21/12/2026 À 03/01/2027 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "BRAULIO": { admissao: "NOVEMBRO", solicitacao: "23/11/2026 À 06/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)" },
+  "DIÓGENES": { admissao: "JULHO", solicitacao: "05/10/2026 À 13/10/2026 - 09 DIAS (AUTORIZADO NO PORTALRH) - 23/11/2026 À 06/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "EMERSON": { admissao: "ABRIL", solicitacao: "26/10/2026 À 08/11/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "GISELLE": { admissao: "JUNHO", solicitacao: "30/11/2026 À 13/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)" },
   "JULIO": { admissao: "JANEIRO", solicitacao: "" },
-  "KARINA": { admissao: "MARÇO", solicitacao: "30/07/2026 à 23/08/2026 - 24 dias (AUTORIZADO no PORTALRH)." },
-  "LUCELIA": { admissao: "ABRIL", solicitacao: "05/10/2026 à 13/10/2026 - 09 dias (AUTORIZADO no PORTALRH) - 23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO no PORTALRH)." },
-  "MAIRA": { admissao: "AGOSTO", solicitacao: "27/07/2026 à 02/08/2026 - 07 dias (AUTORIZADO no PORTALRH)." },
+  "KARINA": { admissao: "MARÇO", solicitacao: "30/07/2026 À 23/08/2026 - 24 DIAS (AUTORIZADO NO PORTALRH)." },
+  "LUCELIA": { admissao: "ABRIL", solicitacao: "05/10/2026 À 13/10/2026 - 09 DIAS (AUTORIZADO NO PORTALRH) - 23/11/2026 À 06/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "MAIRA": { admissao: "AGOSTO", solicitacao: "27/07/2026 À 02/08/2026 - 07 DIAS (AUTORIZADO NO PORTALRH)." },
   "MURILO": { admissao: "JUNHO", solicitacao: "" },
   "ROSEANE": { admissao: "FEVEREIRO", solicitacao: "" },
   "SIDNEY": { admissao: "JULHO", solicitacao: "" },
@@ -1497,15 +1547,15 @@ let VACATION_DATA = {};
 let currentVacationYear = new Date().getFullYear();
 let RULE_CONFIGS = {
   maxHoDays: 2, enableTeams: true, yearsCount: 4,
-  teamsList: ["IPTU", "ISS", "Dívida Ativa"], teamIcons: TEAM_ICONS,
-  conflicts: { "IPTU": [["SINDY", "DIÓGENES"]], "ISS": [["ANA VANESSA", "LUCELIA"]], "Dívida Ativa": [["JULIO", "SIDNEY"]] },
+  teamsList: ["IPTU", "ISS", "DÍVIDA ATIVA"], teamIcons: TEAM_ICONS,
+  conflicts: { "IPTU": [["SINDY", "DIÓGENES"]], "ISS": [["ANA VANESSA", "LUCELIA"]], "DÍVIDA ATIVA": [["JULIO", "SIDNEY"]] },
   managerBlocked: {}
 };
 
-const TRAVEL_STORAGE_KEY = "gestupro:travel-data";
-const SAVED_TRAVEL_LIST_KEY = "gestupro:saved-travel-list";
-const VACATION_STORAGE_KEY = "gestupro:vacation-data";
-const RULES_STORAGE_KEY = "gestupro:rules-config";
+const TRAVEL_STORAGE_KEY = "adl:travel-data";
+const SAVED_TRAVEL_LIST_KEY = "adl:saved-travel-list";
+const VACATION_STORAGE_KEY = "adl:vacation-data";
+const RULES_STORAGE_KEY = "adl:rules-config";
 let memoryStore = {};
 
 function hasSharedStorage(){ return typeof window.storage === "object" && window.storage !== null && typeof window.storage.get === "function"; }
@@ -1540,8 +1590,8 @@ async function saveSavedSchedulesList(){ await storageSet(SAVED_TRAVEL_LIST_KEY,
 async function saveVacationData(){ await storageSet(VACATION_STORAGE_KEY, JSON.stringify(VACATION_DATA)); }
 async function saveRulesData(){ RULE_CONFIGS.teamIcons = TEAM_ICONS; await storageSet(RULES_STORAGE_KEY, JSON.stringify(RULE_CONFIGS)); }
 
-const WEEKDAY_LABELS = ["Seg","Ter","Qua","Qui","Sex"];
-const MONTH_NAMES = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const WEEKDAY_LABELS = ["SEG","TER","QUA","QUI","SEX"];
+const MONTH_NAMES = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"];
 
 let currentTeam = TEAM_NAMES[0];
 let currentHoSubtab = TEAM_NAMES[0];
@@ -1576,16 +1626,16 @@ function getMondayKey(date){
   return d.toISOString().slice(0,10);
 }
 
-function storageKey(t, y, m){ return `gestupro:${TEAM_SLUGS[t]||t.toLowerCase()}:${y}-${pad(m+1)}`; }
+function storageKey(t, y, m){ return `adl:${TEAM_SLUGS[t]||t.toLowerCase()}:${y}-${pad(m+1)}`; }
 
-const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "Dívida Ativa": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}};
+const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "DÍVIDA ATIVA": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}};
 const SEED_OCT_2026_FORCED = ["2026-10-01","2026-10-02","2026-10-07","2026-10-14","2026-10-21","2026-10-28"];
 let _seedPromise = null;
 function seedOct2026(){
   if(_seedPromise) return _seedPromise;
   _seedPromise = (async()=>{
     try{
-      if(await storageGet("gestupro:seed-oct2026-v1")) return;
+      if(await storageGet("adl:seed-oct2026-v1")) return;
       for(const t of Object.keys(SEED_OCT_2026)){
         const k = storageKey(t, 2026, 9); const raw = await storageGet(k);
         const st = raw ? JSON.parse(raw) : { members: [...(DEFAULT_MEMBERS[t]||[])], admissionDates: {}, ho:{}, forced:[] };
@@ -1595,7 +1645,7 @@ function seedOct2026(){
         st.forced = [...SEED_OCT_2026_FORCED];
         await storageSet(k, JSON.stringify(st));
       }
-      await storageSet("gestupro:seed-oct2026-v1", "1");
+      await storageSet("adl:seed-oct2026-v1", "1");
     }catch(e){}
   })();
   return _seedPromise;
@@ -1639,7 +1689,7 @@ function memberIsOnTrip(m, dStr){
 
 function memberIsOnVacation(m, dStr){
   const rec = VACATION_DATA[m]; if(!rec || !rec.solicitacao) return false;
-  const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/g);
+  const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
   for(const match of matches){
     if(dStr >= `${match[3]}-${match[2]}-${match[1]}` && dStr <= `${match[6]}-${match[5]}-${match[4]}`) return true;
   }
@@ -1648,7 +1698,7 @@ function memberIsOnVacation(m, dStr){
 
 function memberHasVacationOverlap(m, start, end){
   const rec = VACATION_DATA[m]; if(!rec || !rec.solicitacao) return false;
-  const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/g);
+  const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
   for(const match of matches){
     if(!(end < `${match[3]}-${match[2]}-${match[1]}` || start > `${match[6]}-${match[5]}-${match[4]}`)) return true;
   }
@@ -1693,7 +1743,7 @@ function membersConflictOnDate(m1, m2, dStr){
 
 async function loadState(){
   if(currentYear === 2026 && currentMonth === 9) await seedOct2026();
-  if(!RULE_CONFIGS.enableTeams) currentTeam = "Geral";
+  if(!RULE_CONFIGS.enableTeams) currentTeam = "GERAL";
   else if(!TEAM_NAMES.includes(currentTeam)) currentTeam = TEAM_NAMES[0];
 
   try{
@@ -1717,7 +1767,7 @@ async function loadState(){
 }
 
 async function saveState(){ await storageSet(storageKey(currentTeam, currentYear, currentMonth), JSON.stringify(state)); }
-function applyAccent(){ document.documentElement.style.setProperty("--team-accent", TEAM_ACCENTS[currentTeam] || "#818cf8"); }
+function applyAccent(){ document.documentElement.style.setProperty("--team-accent", TEAM_ACCENTS[currentTeam] || "#2a435c"); }
 
 window.switchTab = function(m){ viewMode = m; renderTabs(); render(); };
 
@@ -1746,20 +1796,20 @@ window.switchHoSubtab = async function(subtab){
 function renderExistingTeamsList(){
   const listEl = document.getElementById("existingTeamsList");
   if(!listEl) return;
-  listEl.innerHTML = TEAM_NAMES.map(t => `<span class="member-chip" style="font-size: 13px; padding: 6px 14px;">${TEAM_ICONS[t]||"📁"} ${t} ${TEAM_NAMES.length > 1 ? `<button onclick="removeTeam('${t}')">✕ Excluir</button>` : ''}</span>`).join("");
+  listEl.innerHTML = TEAM_NAMES.map(t => `<span class="member-chip" style="font-size: 13px; padding: 6px 14px;">${TEAM_ICONS[t]||"📁"} ${t} ${TEAM_NAMES.length > 1 ? `<button onclick="removeTeam('${t}')">✕ EXCLUIR</button>` : ''}</span>`).join("");
 }
 
 window.addNewTeam = async function(){
-  const input = document.getElementById("newTeamNameInput"); const name = input.value.trim();
+  const input = document.getElementById("newTeamNameInput"); const name = input.value.trim().toUpperCase();
   if(!name || TEAM_NAMES.includes(name)) return;
   TEAM_NAMES.push(name); TEAM_SLUGS[name] = name.toLowerCase().replace(/[^a-z0-9]+/g,"-"); TEAM_ICONS[name] = "📁";
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
-  input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`Equipe "${name}" criada!`);
+  input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`EQUIPE "${name}" CRIADA!`);
 };
 
 window.removeTeam = async function(name){
   if(TEAM_NAMES.length <= 1) return;
-  if(!confirm(`Remover equipe ${name}?`)) return;
+  if(!confirm(`REMOVER EQUIPE ${name}?`)) return;
   TEAM_NAMES = TEAM_NAMES.filter(t => t !== name); delete TEAM_ICONS[name];
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
   if(currentTeam === name) currentTeam = TEAM_NAMES[0];
@@ -1776,12 +1826,12 @@ function renderRulesUI(){
       const pairs = (RULE_CONFIGS.conflicts || {})[t] || [];
       return `
         <div class="rule-box-card">
-          <div class="rule-box-header"><span>${TEAM_ICONS[t]||"📁"} ${t}</span><span class="rule-badge">Restrições</span></div>
-          <div style="margin-bottom: 8px;">${pairs.map((p, i) => `<span class="conflict-pair-chip">${p[0]} × ${p[1]}<button onclick="removeConflictPair('${t}', ${i})">✕</button></span>`).join("") || `<div class="empty-note">Nenhum conflito.</div>`}</div>
+          <div class="rule-box-header"><span>${TEAM_ICONS[t]||"📁"} ${t}</span><span class="rule-badge">RESTRIÇÕES</span></div>
+          <div style="margin-bottom: 8px;">${pairs.map((p, i) => `<span class="conflict-pair-chip">${p[0]} × ${p[1]}<button onclick="removeConflictPair('${t}', ${i})">✕</button></span>`).join("") || `<div class="empty-note">NENHUM CONFLITO.</div>`}</div>
           <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <select id="conflictPerson1-${t}" style="flex:1; font-size:12px; padding:6px;"><option value="">Colab 1...</option>${uniqueMems.map(m=>`<option value="${m}">${m}</option>`).join("")}</select>
-            <select id="conflictPerson2-${t}" style="flex:1; font-size:12px; padding:6px;"><option value="">Colab 2...</option>${uniqueMems.map(m=>`<option value="${m}">${m}</option>`).join("")}</select>
-            <button class="secondary" style="padding:6px 10px; font-size:12px;" onclick="addConflictPair('${t}')">+ Adicionar</button>
+            <select id="conflictPerson1-${t}" style="flex:1; font-size:12px; padding:6px;"><option value="">COLAB 1...</option>${uniqueMems.map(m=>`<option value="${m}">${m}</option>`).join("")}</select>
+            <select id="conflictPerson2-${t}" style="flex:1; font-size:12px; padding:6px;"><option value="">COLAB 2...</option>${uniqueMems.map(m=>`<option value="${m}">${m}</option>`).join("")}</select>
+            <button class="secondary" style="padding:6px 10px; font-size:12px;" onclick="addConflictPair('${t}')">+ ADICIONAR</button>
           </div>
         </div>
       `;
@@ -1791,9 +1841,9 @@ function renderRulesUI(){
   const blockSelect = document.getElementById("managerBlockedMemberSelect");
   const blockListContainer = document.getElementById("managerBlockedListContainer");
   if(blockSelect && blockListContainer){
-    blockSelect.innerHTML = `<option value="">Selecione o colaborador...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
+    blockSelect.innerHTML = `<option value="">SELECIONE O COLABORADOR...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
     const blockedNames = Object.keys(RULE_CONFIGS.managerBlocked || {}).filter(m => RULE_CONFIGS.managerBlocked[m]);
-    blockListContainer.innerHTML = blockedNames.length ? blockedNames.map(m => `<span class="forced-chip"><span>⛔ ${m} (Impedido HO)</span><button onclick="removeManagerBlock('${m}')">✕</button></span>`).join("") : `<div class="empty-note">Nenhum funcionário com impedimento de HO pela coordenação.</div>`;
+    blockListContainer.innerHTML = blockedNames.length ? blockedNames.map(m => `<span class="forced-chip"><span>⛔ ${m} (IMPEDIDO HO)</span><button onclick="removeManagerBlock('${m}')">✕</button></span>`).join("") : `<div class="empty-note">NENHUM FUNCIONÁRIO COM IMPEDIMENTO DE HO PELA COORDENAÇÃO.</div>`;
   }
 }
 
@@ -1816,7 +1866,7 @@ window.toggleManagerBlockMember = async function(){
   RULE_CONFIGS.managerBlocked[m] = !RULE_CONFIGS.managerBlocked[m];
   if(!RULE_CONFIGS.managerBlocked[m]) delete RULE_CONFIGS.managerBlocked[m];
   await saveRulesData(); renderRulesUI();
-  alert(RULE_CONFIGS.managerBlocked[m] ? `${m} agora está IMPEDIDO de fazer Home Office pela coordenação.` : `${m} teve o impedimento removido.`);
+  alert(RULE_CONFIGS.managerBlocked[m] ? `${m} AGORA ESTÁ IMPEDIDO DE FAZER HOME OFFICE PELA COORDENAÇÃO.` : `${m} TEVE O IMPEDIMENTO REMOVIDO.`);
 };
 
 window.removeManagerBlock = async function(m){
@@ -1825,7 +1875,7 @@ window.removeManagerBlock = async function(m){
 };
 
 window.resetDefaultConflicts = async function(){
-  RULE_CONFIGS.conflicts = { "IPTU": [["SINDY", "DIÓGENES"]], "ISS": [["ANA VANESSA", "LUCELIA"]], "Dívida Ativa": [["JULIO", "SIDNEY"]] };
+  RULE_CONFIGS.conflicts = { "IPTU": [["SINDY", "DIÓGENES"]], "ISS": [["ANA VANESSA", "LUCELIA"]], "DÍVIDA ATIVA": [["JULIO", "SIDNEY"]] };
   RULE_CONFIGS.managerBlocked = {};
   await saveRulesData(); renderRulesUI();
 };
@@ -1862,9 +1912,9 @@ function updatePanelVisibility(){
 function renderHoSubtabs(){
   const container = document.getElementById("hoSubtabsContainer"); if(!container) return;
   if(!RULE_CONFIGS.enableTeams){
-    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('Geral')">📁 Colaboradores</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️ Regras</div>`;
+    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('GERAL')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   } else {
-    container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${t}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ Regras</div>`;
+    container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${t}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   }
 }
 
@@ -1888,7 +1938,7 @@ function setupDropdownCheckboxes(btnId, contentId, members){
   content.querySelectorAll(".cb-tech").forEach(cb => {
     cb.onchange = () => {
       const checked = Array.from(content.querySelectorAll(".cb-tech:checked")).map(i => i.value);
-      btn.textContent = checked.length > 0 ? checked.join(", ") : "Selecione ▾";
+      btn.textContent = checked.length > 0 ? checked.join(", ") : "SELECIONE ▾";
     };
   });
 }
@@ -1900,7 +1950,7 @@ async function renderTravelPanel(){
   document.getElementById("travelEndDate").value = TRAVEL_DATA.endDate || "";
   
   const banner = document.getElementById("travelTitleBanner");
-  banner.textContent = TRAVEL_DATA.startDate && TRAVEL_DATA.endDate ? `PROGRAMAÇÃO SEMANAL (${formatDatePt(TRAVEL_DATA.startDate)} a ${formatDatePt(TRAVEL_DATA.endDate)})` : "PROGRAMAÇÃO SEMANAL";
+  banner.textContent = TRAVEL_DATA.startDate && TRAVEL_DATA.endDate ? `PROGRAMAÇÃO SEMANAL (${formatDatePt(TRAVEL_DATA.startDate)} A ${formatDatePt(TRAVEL_DATA.endDate)})` : "PROGRAMAÇÃO SEMANAL";
 
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
@@ -1909,7 +1959,7 @@ async function renderTravelPanel(){
 
   document.getElementById("travelVisitsBody").innerHTML = (TRAVEL_DATA.visits || []).map((v, i)=>`
     <tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${v.saidaHora||""}</td><td>${formatDatePt(v.chegadaData)}</td><td>${v.chegadaHora||""}</td><td>${v.reservaVeiculo}</td><td>${v.reservaHotel}</td><td>${v.hotelPref||""}</td><td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelVisit(${i})">✕</button></td></tr>
-  `).join("") || `<tr><td colspan="12" class="empty-note">Nenhuma visita.</td></tr>`;
+  `).join("") || `<tr><td colspan="12" class="empty-note">NENHUMA VISITA.</td></tr>`;
 
   const credits = {};
   (TRAVEL_DATA.visits || []).forEach(v => {
@@ -1918,29 +1968,29 @@ async function renderTravelPanel(){
     if(diff > 0) v.tecnicos.split(/[\/,]/).map(t => t.trim()).forEach(tech => {
       if(!credits[tech]) credits[tech] = { count: 0, descList: [] };
       credits[tech].count += diff;
-      credits[tech].descList.push(`${diff} diária(s) em ${v.cliente}`);
+      credits[tech].descList.push(`${diff} DIÁRIA(S) EM ${v.cliente}`);
     });
   });
   document.getElementById("travelCreditsBody").innerHTML = Object.keys(credits).map(tech => {
     const info = credits[tech];
-    const periodos = (TRAVEL_DATA.visits || []).filter(v => v.tecnicos && v.tecnicos.includes(tech) && v.saidaData !== v.chegadaData).map(v => `${formatDatePt(v.saidaData)} à ${formatDatePt(v.chegadaData)}`).join(", ");
-    return `<tr><td style="font-weight:600;text-align:left;">${tech}</td><td>${periodos || "—"}</td><td>${pad(info.count)} diária(s)</td><td style="text-align:left;">${info.descList.join("; ")}</td></tr>`;
-  }).join("") || `<tr><td colspan="4" class="empty-note">Sem créditos.</td></tr>`;
+    const periodos = (TRAVEL_DATA.visits || []).filter(v => v.tecnicos && v.tecnicos.includes(tech) && v.saidaData !== v.chegadaData).map(v => `${formatDatePt(v.saidaData)} À ${formatDatePt(v.chegadaData)}`).join(", ");
+    return `<tr><td style="font-weight:600;text-align:left;">${tech}</td><td>${periodos || "—"}</td><td>${pad(info.count)} DIÁRIA(S)</td><td style="text-align:left;">${info.descList.join("; ")}</td></tr>`;
+  }).join("") || `<tr><td colspan="4" class="empty-note">SEM CRÉDITOS.</td></tr>`;
 
   document.getElementById("travelPendingBody").innerHTML = (TRAVEL_DATA.pendings || []).map((p, i)=>`
     <tr><td>${p.cliente}</td><td>${p.sistema}</td><td>${p.motivo}</td><td>${p.tecnicos}</td><td>${formatDatePt(p.saidaData)}</td><td>${formatDatePt(p.chegadaData)}</td><td>${p.veiculo}</td><td>${p.hotel}</td><td>${p.obs}</td><td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelPending(${i})">✕</button></td></tr>
-  `).join("") || `<tr><td colspan="10" class="empty-note">Nenhuma pendente.</td></tr>`;
+  `).join("") || `<tr><td colspan="10" class="empty-note">NENHUMA PENDENTE.</td></tr>`;
   renderSavedSchedulesList();
 }
 
 function renderSavedSchedulesList(){
   const container = document.getElementById("savedSchedulesList"); if(!container) return;
-  if(!SAVED_TRAVEL_SCHEDULES.length){ container.innerHTML = `<div class="empty-note">Nenhuma programação salva.</div>`; return; }
+  if(!SAVED_TRAVEL_SCHEDULES.length){ container.innerHTML = `<div class="empty-note">NENHUMA PROGRAMAÇÃO SALVA.</div>`; return; }
   
   container.innerHTML = SAVED_TRAVEL_SCHEDULES.map((item, idx) => {
     const sPt = formatDatePt(item.startDate);
     const ePt = formatDatePt(item.endDate);
-    const title = (item.startDate && item.endDate) ? `Programação: ${sPt} até ${ePt}` : `Programação #${idx+1}`;
+    const title = (item.startDate && item.endDate) ? `PROGRAMAÇÃO: ${sPt} ATÉ ${ePt}` : `PROGRAMAÇÃO #${idx+1}`;
 
     const savedCredits = {};
     (item.visits || []).forEach(v => {
@@ -1949,51 +1999,51 @@ function renderSavedSchedulesList(){
       if(diff > 0) v.tecnicos.split(/[\/,]/).map(t => t.trim()).forEach(tech => {
         if(!savedCredits[tech]) savedCredits[tech] = { count: 0, descList: [] };
         savedCredits[tech].count += diff;
-        savedCredits[tech].descList.push(`${diff} diária(s) em ${v.cliente}`);
+        savedCredits[tech].descList.push(`${diff} DIÁRIA(S) EM ${v.cliente}`);
       });
     });
 
     const savedCreditRows = Object.keys(savedCredits).map(tech => {
       const info = savedCredits[tech];
-      const periodos = (item.visits || []).filter(v => v.tecnicos && v.tecnicos.includes(tech) && v.saidaData !== v.chegadaData).map(v => `${formatDatePt(v.saidaData)} à ${formatDatePt(v.chegadaData)}`).join(", ");
-      return `<tr><td style="font-weight:600;text-align:left;">${tech}</td><td>${periodos || "—"}</td><td>${pad(info.count)} diária(s)</td><td style="text-align:left;">${info.descList.join("; ")}</td></tr>`;
-    }).join("") || `<tr><td colspan="4" class="empty-note">Nenhum crédito calculado.</td></tr>`;
+      const periodos = (item.visits || []).filter(v => v.tecnicos && v.tecnicos.includes(tech) && v.saidaData !== v.chegadaData).map(v => `${formatDatePt(v.saidaData)} À ${formatDatePt(v.chegadaData)}`).join(", ");
+      return `<tr><td style="font-weight:600;text-align:left;">${tech}</td><td>${periodos || "—"}</td><td>${pad(info.count)} DIÁRIA(S)</td><td style="text-align:left;">${info.descList.join("; ")}</td></tr>`;
+    }).join("") || `<tr><td colspan="4" class="empty-note">NENHUM CRÉDITO CALCULADO.</td></tr>`;
 
     return `
       <div class="saved-schedule-card" id="saved-card-${idx}">
         <div class="saved-schedule-header" onclick="toggleSavedSchedule(${idx})">
           <div class="saved-schedule-title">
             <span>📅 ${title}</span>
-            <span class="badge" style="font-size:11px;">${(item.visits||[]).length} realizada(s) | ${(item.pendings||[]).length} pendente(s)</span>
+            <span class="badge" style="font-size:11px;">${(item.visits||[]).length} REALIZADA(S) | ${(item.pendings||[]).length} PENDENTE(S)</span>
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
-            <button class="gold" style="padding:4px 10px; font-size:11px;" onclick="event.stopPropagation(); printSingleSavedSchedule(${idx})">🖨️ Imprimir</button>
-            <button class="secondary" style="padding:4px 10px; font-size:11px;" onclick="event.stopPropagation(); removeSavedSchedule(${idx})">Excluir</button>
+            <button class="gold" style="padding:4px 10px; font-size:11px;" onclick="event.stopPropagation(); printSingleSavedSchedule(${idx})">🖨️ IMPRIMIR</button>
+            <button class="secondary" style="padding:4px 10px; font-size:11px;" onclick="event.stopPropagation(); removeSavedSchedule(${idx})">EXCLUIR</button>
             <span id="arrow-${idx}" style="font-weight:bold; font-size:14px;">▼</span>
           </div>
         </div>
         <div class="saved-schedule-body" id="saved-body-${idx}">
-          <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:var(--primary);">Visitas Realizadas / Agendadas</div>
+          <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:var(--primary);">VISITAS REALIZADAS / AGENDADAS</div>
           <table class="travel-table">
-            <thead><tr><th>Cliente</th><th>Sistema</th><th>Motivo</th><th>Técnicos</th><th>Saída</th><th>Chegada</th></tr></thead>
+            <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th></tr></thead>
             <tbody>
-              ${(item.visits||[]).map(v=>`<tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${formatDatePt(v.chegadaData)}</td></tr>`).join("")||'<tr><td colspan="6" class="empty-note">Nenhuma visita cadastrada.</td></tr>'}
+              ${(item.visits||[]).map(v=>`<tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${formatDatePt(v.chegadaData)}</td></tr>`).join("")||'<tr><td colspan="6" class="empty-note">NENHUMA VISITA CADASTRADA.</td></tr>'}
             </tbody>
           </table>
           
-          <div style="font-size:12px; font-weight:bold; margin-top:14px; margin-bottom:6px; color:var(--accent);">Créditos de Tickets por Técnico</div>
+          <div style="font-size:12px; font-weight:bold; margin-top:14px; margin-bottom:6px; color:var(--accent);">CRÉDITOS DE TICKETS POR TÉCNICO</div>
           <table class="travel-table">
-            <thead><tr><th>Técnicos</th><th>Período(s)</th><th>Quantidade</th><th>Descrição</th></tr></thead>
+            <thead><tr><th>TÉCNICOS</th><th>PERÍODO(S)</th><th>QUANTIDADE</th><th>DESCRIÇÃO</th></tr></thead>
             <tbody>
               ${savedCreditRows}
             </tbody>
           </table>
 
-          <div style="font-size:12px; font-weight:bold; margin-top:14px; margin-bottom:6px; color:var(--accent);">Visitas Pendentes</div>
+          <div style="font-size:12px; font-weight:bold; margin-top:14px; margin-bottom:6px; color:var(--accent);">VISITAS PENDENTES</div>
           <table class="travel-table">
-            <thead><tr><th>Cliente</th><th>Sistema</th><th>Motivo</th><th>Técnicos</th><th>Saída</th><th>Chegada</th><th>Obs</th></tr></thead>
+            <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th><th>OBS</th></tr></thead>
             <tbody>
-              ${(item.pendings||[]).map(p=>`<tr><td>${p.cliente}</td><td>${p.sistema}</td><td>${p.motivo}</td><td>${p.tecnicos}</td><td>${formatDatePt(p.saidaData)}</td><td>${formatDatePt(p.chegadaData)}</td><td>${p.obs}</td></tr>`).join("")||'<tr><td colspan="7" class="empty-note">Nenhuma visita pendente cadastrada.</td></tr>'}
+              ${(item.pendings||[]).map(p=>`<tr><td>${p.cliente}</td><td>${p.sistema}</td><td>${p.motivo}</td><td>${p.tecnicos}</td><td>${formatDatePt(p.saidaData)}</td><td>${formatDatePt(p.chegadaData)}</td><td>${p.obs}</td></tr>`).join("")||'<tr><td colspan="7" class="empty-note">NENHUMA VISITA PENDENTE CADASTRADA.</td></tr>'}
             </tbody>
           </table>
         </div>
@@ -2025,8 +2075,8 @@ window.printSingleSavedSchedule = function(index){
 };
 
 document.getElementById("saveTravelScheduleBtn").onclick = async ()=>{
-  if(!TRAVEL_DATA.startDate) return alert("Informe a data inicial.");
-  SAVED_TRAVEL_SCHEDULES.unshift(JSON.parse(JSON.stringify(TRAVEL_DATA))); await saveSavedSchedulesList(); renderSavedSchedulesList(); alert("Salvo!");
+  if(!TRAVEL_DATA.startDate) return alert("INFORME A DATA INICIAL.");
+  SAVED_TRAVEL_SCHEDULES.unshift(JSON.parse(JSON.stringify(TRAVEL_DATA))); await saveSavedSchedulesList(); renderSavedSchedulesList(); alert("SALVO!");
 };
 document.getElementById("updateTravelTitleBtn").onclick = async ()=>{ TRAVEL_DATA.startDate = document.getElementById("travelStartDate").value; TRAVEL_DATA.endDate = document.getElementById("travelEndDate").value; await saveTravelData(); renderTravelPanel(); };
 document.getElementById("printTravelBtn").onclick = ()=>{
@@ -2041,20 +2091,20 @@ window.removeTravelVisit = async function(i){ TRAVEL_DATA.visits.splice(i, 1); a
 window.removeTravelPending = async function(i){ TRAVEL_DATA.pendings.splice(i, 1); await saveTravelData(); renderTravelPanel(); };
 
 document.getElementById("addTravelVisitBtn").onclick = async ()=>{
-  const cliente = document.getElementById("tCliente").value.trim(); const motivo = document.getElementById("tMotivo").value.trim();
+  const cliente = document.getElementById("tCliente").value.trim().toUpperCase(); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase();
   const techs = getSelectedTechs("tDropdownContent"); const saida = document.getElementById("tSaidaData").value; const chegada = document.getElementById("tChegadaData").value;
-  if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("Preencha os campos.");
-  for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} está de FÉRIAS neste período!`);
-  TRAVEL_DATA.visits.push({ cliente, sistema: document.getElementById("tSistemas").value, motivo, tecnicos: techs.join("/"), saidaData: saida, saidaHora: document.getElementById("tSaidaHora").value, chegadaData: chegada, chegadaHora: document.getElementById("tChegadaHora").value, reservaVeiculo: document.getElementById("tReservaVeiculo").value, reservaHotel: document.getElementById("tReservaHotel").value, hotelPref: document.getElementById("tHotelPref").value });
+  if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS.");
+  for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS NESTE PERÍODO!`);
+  TRAVEL_DATA.visits.push({ cliente, sistema: document.getElementById("tSistemas").value.toUpperCase(), motivo, tecnicos: techs.join("/"), saidaData: saida, saidaHora: document.getElementById("tSaidaHora").value, chegadaData: chegada, chegadaHora: document.getElementById("tChegadaHora").value, reservaVeiculo: document.getElementById("tReservaVeiculo").value, reservaHotel: document.getElementById("tReservaHotel").value, hotelPref: document.getElementById("tHotelPref").value.toUpperCase() });
   await saveTravelData(); renderTravelPanel();
 };
 
 document.getElementById("addTravelPendingBtn").onclick = async ()=>{
-  const cliente = document.getElementById("pCliente").value.trim(); const motivo = document.getElementById("pMotivo").value.trim();
+  const cliente = document.getElementById("pCliente").value.trim().toUpperCase(); const motivo = document.getElementById("pMotivo").value.trim().toUpperCase();
   const techs = getSelectedTechs("pDropdownContent"); const saida = document.getElementById("pSaidaData").value; const chegada = document.getElementById("pChegadaData").value;
   if(!cliente || !motivo) return;
-  if(saida && chegada) for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} está de FÉRIAS!`);
-  TRAVEL_DATA.pendings.push({ cliente, sistema: document.getElementById("pSistemas").value, motivo, tecnicos: techs.join("/")||"a definir", saidaData: saida, chegadaData: chegada, veiculo: document.getElementById("pVeiculo").value, hotel: document.getElementById("pHotel").value, obs: document.getElementById("pObs").value });
+  if(saida && chegada) for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS!`);
+  TRAVEL_DATA.pendings.push({ cliente, sistema: document.getElementById("pSistemas").value.toUpperCase(), motivo, tecnicos: techs.join("/")||"A DEFINIR", saidaData: saida, chegadaData: chegada, veiculo: document.getElementById("pVeiculo").value.toUpperCase(), hotel: document.getElementById("pHotel").value.toUpperCase(), obs: document.getElementById("pObs").value.toUpperCase() });
   await saveTravelData(); renderTravelPanel();
 };
 
@@ -2071,11 +2121,11 @@ async function renderVacationPanel(){
     
     let formattedSolicitacao = item.solicitacao || "—";
     if(item.solicitacao) {
-      formattedSolicitacao = item.solicitacao.replace(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/g, (match, d1, m1, y1, d2, m2, y2) => {
+      formattedSolicitacao = item.solicitacao.replace(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi, (match, d1, m1, y1, d2, m2, y2) => {
         const endIso = `${y2}-${m2}-${d2}`;
         const isPast = endIso < todayStr;
         const colorStyle = isPast ? 'color: #374151; text-decoration: line-through;' : 'color: #16a34a; font-weight: 600;';
-        return `<span style="${colorStyle}">${match}</span>`;
+        return `<span style="${colorStyle}">${match.toUpperCase()}</span>`;
       });
     }
 
@@ -2083,7 +2133,7 @@ async function renderVacationPanel(){
       <td style="font-weight:600;">${name}</td>
       <td><select onchange="updateVacationAdmissao('${name}', this.value)" style="padding:4px; font-size:12px;">${["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"].map(m=>`<option value="${m}" ${item.admissao===m?'selected':''}>${m}</option>`).join("")}</select></td>
       <td style="text-align:left;">${formattedSolicitacao}</td>
-      <td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="clearVacation('${name}')">Limpar</button></td>
+      <td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="clearVacation('${name}')">LIMPAR</button></td>
     </tr>`;
   }).join("");
   document.getElementById("vFuncionarioSelect").innerHTML = uniqueMems.map(n=>`<option value="${n}">${n}</option>`).join("");
@@ -2095,12 +2145,12 @@ window.clearVacation = async function(n){ VACATION_DATA[n].solicitacao = ""; awa
 document.getElementById("saveVacationBtn").onclick = async ()=>{
   const name = document.getElementById("vFuncionarioSelect").value;
   const ini = document.getElementById("vDataInicioInput").value; const fim = document.getElementById("vDataFimInput").value;
-  if(!name || !ini || !fim) return alert("Preencha tudo.");
+  if(!name || !ini || !fim) return alert("PREENCHA TUDO.");
   const diff = Math.ceil(Math.abs(new Date(fim) - new Date(ini)) / (1000*60*60*24)) + 1;
-  const text = `${formatDatePt(ini)} à ${formatDatePt(fim)} - ${pad(diff)} dias (AUTORIZADO)`;
+  const text = `${formatDatePt(ini)} À ${formatDatePt(fim)} - ${pad(diff)} DIAS (AUTORIZADO)`;
   if(!VACATION_DATA[name]) VACATION_DATA[name] = { admissao: "JANEIRO", solicitacao: "" };
   VACATION_DATA[name].solicitacao = VACATION_DATA[name].solicitacao ? VACATION_DATA[name].solicitacao + " - " + text : text;
-  await saveVacationData(); renderVacationPanel(); alert("Férias salvas!");
+  await saveVacationData(); renderVacationPanel(); alert("FÉRIAS SALVAS!");
 };
 
 document.getElementById("printVacationBtn").onclick = ()=>{
@@ -2115,7 +2165,7 @@ document.getElementById("saveRulesBtn").onclick = async ()=>{
   RULE_CONFIGS.maxHoDays = parseInt(document.getElementById("ruleMaxHoDays").value) || 2;
   RULE_CONFIGS.enableTeams = document.getElementById("ruleEnableTeams").checked;
   RULE_CONFIGS.yearsCount = parseInt(document.getElementById("ruleYearsCount").value) || 4;
-  await saveRulesData(); renderHoSubtabs(); renderMonthYearSelects(); await loadState(); alert("Salvo!");
+  await saveRulesData(); renderHoSubtabs(); renderMonthYearSelects(); await loadState(); alert("SALVO!");
 };
 
 async function render(){
@@ -2126,7 +2176,7 @@ async function render(){
   renderHoSubtabs();
   if(currentHoSubtab === "rules") return;
 
-  document.getElementById("teamPanelTitle").textContent = RULE_CONFIGS.enableTeams ? `Pessoas da equipe: ${TEAM_ICONS[currentTeam]||"📁"} ${currentTeam}` : `Colaboradores`;
+  document.getElementById("teamPanelTitle").textContent = RULE_CONFIGS.enableTeams ? `PESSOAS DA EQUIPE: ${TEAM_ICONS[currentTeam]||"📁"} ${currentTeam}` : `COLABORADORES`;
   renderMemberList(); renderForcedList(); await refreshAllStatesCache(); renderTable();
   
   const mini = document.getElementById("miniConsultPanelCard");
@@ -2145,14 +2195,14 @@ function renderMemberList(){
         <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px;">
           <strong id="member-name-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">${m}</strong>
           <div class="member-chip-actions">
-            <button class="edit-btn" onclick="startEditMember('${m}')">✏️ Editar</button>
-            <button class="delete-btn" onclick="removeMember('${m}')">✕ Excluir</button>
+            <button class="edit-btn" onclick="startEditMember('${m}')">✏️ EDITAR</button>
+            <button class="delete-btn" onclick="removeMember('${m}')">✕ EXCLUIR</button>
           </div>
         </div>
         <div class="member-meta">
-          <span id="member-admit-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">Admissão: <strong>${admitDateStr}</strong></span>
-          ${isNew ? `<span class="member-badge newbie">Recém-contratado (6M)</span>` : ''}
-          ${isManagerB ? `<span class="member-badge blocked">Impedido</span>` : ''}
+          <span id="member-admit-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">ADMISSÃO: <strong>${admitDateStr}</strong></span>
+          ${isNew ? `<span class="member-badge newbie">RECÉM-CONTRATADO (6M)</span>` : ''}
+          ${isManagerB ? `<span class="member-badge blocked">IMPEDIDO</span>` : ''}
         </div>
       </div>
     `;
@@ -2168,11 +2218,11 @@ window.startEditMember = function(oldName) {
   
   chip.innerHTML = `
     <div style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
-      <input type="text" id="edit-name-${safeId}" value="${oldName}" style="padding: 6px 10px; font-size: 13px;" placeholder="Nome do colaborador">
+      <input type="text" id="edit-name-${safeId}" value="${oldName}" style="padding: 6px 10px; font-size: 13px;" placeholder="NOME DO COLABORADOR">
       <div style="display: flex; gap: 6px;">
         <input type="date" id="edit-admit-${safeId}" value="${admitDateStr}" style="padding: 6px 8px; font-size: 12px; flex: 1;">
-        <button class="gold" style="padding: 6px 12px; font-size: 12px;" onclick="saveEditedMember('${oldName}')">Salvar</button>
-        <button class="secondary" style="padding: 6px 10px; font-size: 12px;" onclick="renderMemberList()">Cancelar</button>
+        <button class="gold" style="padding: 6px 12px; font-size: 12px;" onclick="saveEditedMember('${oldName}')">SALVAR</button>
+        <button class="secondary" style="padding: 6px 10px; font-size: 12px;" onclick="renderMemberList()">CANCELAR</button>
       </div>
     </div>
   `;
@@ -2183,11 +2233,11 @@ window.saveEditedMember = async function(oldName) {
   const newNameInput = document.getElementById(`edit-name-${safeId}`);
   const newAdmitInput = document.getElementById(`edit-admit-${safeId}`);
   
-  if(!newNameInput || !newNameInput.value.trim()) return alert("Informe um nome válido.");
+  if(!newNameInput || !newNameInput.value.trim()) return alert("INFORME UM NOME VÁLIDO.");
   const newName = newNameInput.value.trim().toUpperCase();
   const newAdmit = newAdmitInput.value || "2020-01-01";
 
-  if(newName !== oldName && state.members.includes(newName)) return alert("Já existe um colaborador com este nome na equipe.");
+  if(newName !== oldName && state.members.includes(newName)) return alert("JÁ EXISTE UM COLABORADOR COM ESTE NOME NA EQUIPE.");
 
   const idx = state.members.indexOf(oldName);
   if(idx >= 0) state.members[idx] = newName;
@@ -2214,11 +2264,11 @@ window.saveEditedMember = async function(oldName) {
   await saveState();
   await refreshAllStatesCache();
   render();
-  alert("Colaborador atualizado com sucesso!");
+  alert("COLABORADOR ATUALIZADO COM SUCESSO!");
 };
 
 window.removeMember = async function(name) {
-  if(!confirm(`Deseja realmente excluir o colaborador ${name}?`)) return;
+  if(!confirm(`DESEJA REALMENTE EXCLUIR O COLABORADOR ${name}?`)) return;
   state.members = state.members.filter(m => m !== name);
   if(state.ho[name]) delete state.ho[name];
   if(state.admissionDates && state.admissionDates[name]) delete state.admissionDates[name];
@@ -2229,7 +2279,7 @@ window.removeMember = async function(name) {
 
 function renderForcedList(){
   const holder = document.getElementById("forcedList");
-  if(!state.forced.length){ holder.innerHTML = `<span class="empty-note">Nenhum dia forçado.</span>`; return; }
+  if(!state.forced.length){ holder.innerHTML = `<span class="empty-note">NENHUM DIA FORÇADO.</span>`; return; }
   holder.innerHTML = state.forced.map(d => `<div class="forced-chip"><span>${d.slice(8,10)}/${d.slice(5,7)}</span><button onclick="removeForced('${d}')">✕</button></div>`).join("");
 }
 window.removeForced = function(d){ state.forced = state.forced.filter(x=>x!==d); saveState(); render(); };
@@ -2237,10 +2287,10 @@ window.removeForced = function(d){ state.forced = state.forced.filter(x=>x!==d);
 function renderTable(){
   const weeks = getWeekdayWeeks(currentYear, currentMonth);
   const holder = document.getElementById("tableHolder");
-  if(!state.members.length){ holder.innerHTML = `<div class="empty-note" style="padding:20px;">Sem colaboradores.</div>`; return; }
+  if(!state.members.length){ holder.innerHTML = `<div class="empty-note" style="padding:20px;">SEM COLABORADORES.</div>`; return; }
 
-  let head = `<tr><th rowspan="2" style="min-width:180px;">Colaborador(a)</th>`;
-  weeks.forEach((w, i)=> head += `<th class="week-head" colspan="${w.length}">Semana ${i+1}</th>`);
+  let head = `<tr><th rowspan="2" style="min-width:180px;">COLABORADOR(A)</th>`;
+  weeks.forEach((w, i)=> head += `<th class="week-head" colspan="${w.length}">SEMANA ${i+1}</th>`);
   head += `</tr><tr>`;
   weeks.forEach(w => w.forEach(d => head += `<th class="${state.forced.includes(d.date)?'forced-head':''}">${WEEKDAY_LABELS[d.dow]}<br>${d.date.slice(8,10)}</th>`));
   head += `</tr>`;
@@ -2294,10 +2344,10 @@ function renderStatusLine(weeks){
   line.innerHTML = state.members.map(m => {
     const isNew = memberIsNewbie(m, currentYear, currentMonth);
     const isManagerB = memberIsManagerBlocked(m);
-    if(isNew || isManagerB) return `<span class="badge" style="border-color:#cbd5e1; color:#64748b; background:#f8fafc;">${m}: Isento/Impedido HO</span>`;
+    if(isNew || isManagerB) return `<span class="badge" style="border-color:#cbd5e1; color:#64748b; background:#f8fafc;">${m}: ISENTO/IMPEDIDO HO</span>`;
     const total = (state.ho[m]||[]).length;
     let expected = 0; weeks.forEach(w => expected += Math.min(limit, w.filter(d=>!state.forced.includes(d.date)&&!memberIsOnTrip(m,d.date)&&!memberIsOnVacation(m,d.date)).length));
-    return `<span class="badge ${total===expected?'ok':'warn'}">${m}: ${total}/${expected} dias</span>`;
+    return `<span class="badge ${total===expected?'ok':'warn'}">${m}: ${total}/${expected} DIAS</span>`;
   }).join("");
 }
 
@@ -2316,12 +2366,12 @@ function renderErrorLogs(){
         const hoDays = st.ho[m] || [];
         hoDays.forEach(dStr => {
           if(memberIsOnVacation(m, dStr)){
-            logs.push(`⚠️ Conflito de Férias: ${m} está agendado em Home Office no dia ${formatDatePt(dStr)}, mas está de FÉRIAS neste período!`);
+            logs.push(`⚠️ CONFLITO DE FÉRIAS: ${m} ESTÁ AGENDADO EM HOME OFFICE NO DIA ${formatDatePt(dStr)}, MAS ESTÁ DE FÉRIAS NESTE PERÍODO!`);
           }
           if(memberIsOnTrip(m, dStr)){
             const activeTrip = (TRAVEL_DATA.visits || []).find(v => v.tecnicos && v.tecnicos.includes(m) && dStr >= v.saidaData && dStr <= v.chegadaData);
-            const destino = activeTrip ? activeTrip.cliente : "Localidade não informada";
-            logs.push(`✈️ Conflito de Viagem: ${m} está agendado em Home Office no dia ${formatDatePt(dStr)}, mas está em VIAGEM corporativa para ${destino}.`);
+            const destino = activeTrip ? activeTrip.cliente : "LOCALIDADE NÃO INFORMADA";
+            logs.push(`✈️ CONFLITO DE VIAGEM: ${m} ESTÁ AGENDADO EM HOME OFFICE NO DIA ${formatDatePt(dStr)}, MAS ESTÁ EM VIAGEM CORPORATIVA PARA ${destino}.`);
           }
         });
       });
@@ -2331,12 +2381,12 @@ function renderErrorLogs(){
   Object.keys(VACATION_DATA).forEach(m => {
     const rec = VACATION_DATA[m];
     if(rec && rec.solicitacao) {
-      const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/g);
+      const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
       for(const match of matches){
         const startIso = `${match[3]}-${match[2]}-${match[1]}`;
         const endIso = `${match[6]}-${match[5]}-${match[4]}`;
         if(!(endIso < monthStartIso || startIso > monthEndIso)) {
-          logs.push(`🏖️ Férias no mês: <strong>${m}</strong> estará de férias de ${match[1]}/${match[2]}/${match[3]} até ${match[4]}/${match[5]}/${match[6]}.`);
+          logs.push(`🏖️ FÉRIAS NO MÊS: <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
         }
       }
     }
@@ -2346,7 +2396,7 @@ function renderErrorLogs(){
     TRAVEL_DATA.visits.forEach(v => {
       if(v.saidaData && v.chegadaData) {
         if(!(v.chegadaData < monthStartIso || v.saidaData > monthEndIso)) {
-          logs.push(`✈️ Viagem agendada no mês: <strong>${v.tecnicos}</strong> para o cliente <strong>${v.cliente}</strong> de ${formatDatePt(v.saidaData)} a ${formatDatePt(v.chegadaData)}.`);
+          logs.push(`✈️ VIAGEM AGENDADA NO MÊS: <strong>${v.tecnicos}</strong> PARA O CLIENTE <strong>${v.cliente}</strong> DE ${formatDatePt(v.saidaData)} A ${formatDatePt(v.chegadaData)}.`);
         }
       }
     });
@@ -2359,10 +2409,10 @@ function renderErrorLogs(){
         const isNew = memberIsNewbie(m, currentYear, currentMonth);
         const isManB = memberIsManagerBlocked(m);
         if(isNew){
-          logs.push(`🔒 Funcionário novo (${m}): Em período de carência de 6 meses sem Home Office.`);
+          logs.push(`🔒 FUNCIONÁRIO NOVO (${m}): EM PERÍODO DE CARÊNCIA DE 6 MESES SEM HOME OFFICE.`);
         }
         if(isManB){
-          logs.push(`⛔ Gestão (${m}): Possui impedimento aplicado pela coordenação para Home Office neste mês.`);
+          logs.push(`⛔ GESTÃO (${m}): POSSUI IMPEDIMENTO APLICADO PELA COORDENAÇÃO PARA HOME OFFICE NESTE MÊS.`);
         }
 
         if(!isNew && !isManB){
@@ -2371,7 +2421,7 @@ function renderErrorLogs(){
             const countWeek = ho.filter(d => w.some(wd => wd.date === d)).length;
             const limit = RULE_CONFIGS.maxHoDays || 2;
             if(countWeek > limit){
-              logs.push(`⚠️ ${m} ultrapassou o limite máximo na Semana ${wi+1} (${countWeek}/${limit} dias).`);
+              logs.push(`⚠️ ${m} ULTRAPASSOU O LIMITE MÁXIMO NA SEMANA ${wi+1} (${countWeek}/${limit} DIAS).`);
             }
           });
         }
@@ -2379,7 +2429,7 @@ function renderErrorLogs(){
     }
   });
 
-  list.innerHTML = logs.length ? logs.map(l=>`<div class="error-log-item">${l}</div>`).join("") : `<span class="empty-note" style="color:#059669;">Nenhum alerta ou inconsistência detectada. Tudo em ordem!</span>`;
+  list.innerHTML = logs.length ? logs.map(l=>`<div class="error-log-item">${l}</div>`).join("") : `<span class="empty-note" style="color:#059669;">NENHUM ALERTA OU INCONSISTÊNCIA DETECTADA. TUDO EM ORDEM!</span>`;
 }
 
 function renderMiniConsultPanel(){
@@ -2393,7 +2443,7 @@ function renderMiniConsultPanel(){
           <table class="mini-table">
             <thead>
               <tr>
-                <th>Col</th>
+                <th>COL</th>
                 ${weeks.map(w=>w.map(d=>`<th>${d.date.slice(8,10)}</th>`).join("")).join("")}
               </tr>
             </thead>
@@ -2410,7 +2460,7 @@ function renderMiniConsultPanel(){
                     else if(isNew){ symbol='🔒'; bg='var(--border-color)'; }
                     else if(isManB){ symbol='⛔'; bg='#fee2e2'; }
                     else if(f){ symbol='★'; bg='#fef08a'; }
-                    else if(h){ symbol='HO'; bg='#ecfdf5'; }
+                    else if(h){ symbol='HO'; bg='#dcfce7'; }
                     return `<td style="background:${bg}">${symbol}</td>`;
                   }).join("")).join("")}
                 </tr>
@@ -2454,14 +2504,11 @@ document.getElementById("generateBtn").onclick = async ()=>{
 
   weeks.forEach(w => {
     if(!w.length) return;
-    // dias úteis da semana disponíveis para HO (dias com presença obrigatória ficam de fora)
     const diasDaSemana = w.filter(d => !state.forced.includes(d.date));
     if(!diasDaSemana.length) return;
 
-    // contador de ocupação por dia, usado para balancear a distribuição
     const ocupacaoPorDia = {}; diasDaSemana.forEach(d => ocupacaoPorDia[d.date] = 0);
 
-    // embaralha a ordem dos colaboradores a cada semana, para não privilegiar sempre os mesmos
     const membrosElegiveis = shuffle(state.members.filter(m =>
       !memberIsNewbie(m, currentYear, currentMonth) && !memberIsManagerBlocked(m)
     ));
@@ -2471,17 +2518,15 @@ document.getElementById("generateBtn").onclick = async ()=>{
       let faltam = limit - jaAtribuidosNaSemana;
       if(faltam <= 0) return;
 
-      // dias em que este colaborador pode entrar em HO nesta semana
       const candidatos = diasDaSemana.filter(d =>
         !memberIsOnTrip(m, d.date) && !memberIsOnVacation(m, d.date) && !temConflito(m, d.date)
       );
 
-      // embaralha e prioriza os dias menos ocupados, para espalhar bem ao longo da semana/mês
       const ordenados = shuffle(candidatos).sort((a, b) => ocupacaoPorDia[a.date] - ocupacaoPorDia[b.date]);
 
       for(const d of ordenados){
         if(faltam <= 0) break;
-        if(temConflito(m, d.date)) continue; // reconfere, pois o próprio loop pode ter mudado o cenário
+        if(temConflito(m, d.date)) continue;
         state.ho[m].push(d.date);
         ocupacaoPorDia[d.date]++;
         faltam--;
@@ -2489,7 +2534,7 @@ document.getElementById("generateBtn").onclick = async ()=>{
     });
   });
 
-  await saveState(); await refreshAllStatesCache(); render(); alert("Escala automática gerada de forma aleatória e balanceada, respeitando os parâmetros configurados!");
+  await saveState(); await refreshAllStatesCache(); render(); alert("ESCALA AUTOMÁTICA GERADA DE FORMA ALEATÓRIA E BALANCEADA, RESPEITANDO OS PARÂMETROS CONFIGURADOS!");
 };
 
 document.getElementById("duplicatePreviousBtn").onclick = async ()=>{
@@ -2503,11 +2548,11 @@ document.getElementById("duplicatePreviousBtn").onclick = async ()=>{
     });
     state.ho[m] = Array.from(new Set(list));
   });
-  await saveState(); await refreshAllStatesCache(); render(); alert("Duplicado com sucesso!");
+  await saveState(); await refreshAllStatesCache(); render(); alert("DUPLICADO COM SUCESSO!");
 };
 
-document.getElementById("saveHomeScheduleBtn").onclick = async ()=>{ await saveState(); await refreshAllStatesCache(); alert("Escala salva com sucesso!"); };
-document.getElementById("clearBtn").onclick = ()=>{ state.members.forEach(m=> state.ho[m]=[]); saveState(); render(); };
+document.getElementById("saveHomeScheduleBtn").onclick = async ()=>{ await saveState(); await refreshAllStatesCache(); alert("ESCALA SALVA COM SUCESSO!"); };
+document.getElementById("clearBtn", () => { state.members.forEach(m=> state.ho[m]=[]); saveState(); render(); });
 
 document.getElementById("exportPdfBtn").onclick = ()=>{
   appendPrintFooterAndAlerts();
@@ -2519,26 +2564,26 @@ document.getElementById("exportPdfBtn").onclick = ()=>{
 
 function appendPrintFooterAndAlerts(){
   removePrintFooterAndAlerts();
-  const userName = currentUser ? currentUser.name : "Usuário Sistema";
+  const userName = currentUser ? currentUser.name : "USUÁRIO SISTEMA";
   const now = new Date();
   const dateStr = now.toLocaleDateString("pt-BR");
   const timeStr = now.toLocaleTimeString("pt-BR");
 
   const monthStartIso = isoDate(currentYear, currentMonth, 1);
   const monthEndIso = isoDate(currentYear, currentMonth, new Date(currentYear, currentMonth + 1, 0).getDate());
-  const monthTitle = `${MONTH_NAMES[currentMonth]} de ${currentYear}`;
+  const monthTitle = `${MONTH_NAMES[currentMonth]} DE ${currentYear}`;
 
   const alertItems = [];
 
   Object.keys(VACATION_DATA).forEach(m => {
     const rec = VACATION_DATA[m];
     if(rec && rec.solicitacao) {
-      const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/g);
+      const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
       for(const match of matches){
         const startIso = `${match[3]}-${match[2]}-${match[1]}`;
         const endIso = `${match[6]}-${match[5]}-${match[4]}`;
         if(!(endIso < monthStartIso || startIso > monthEndIso)) {
-          alertItems.push(`🏖️ <strong>${m}</strong> estará de férias de ${match[1]}/${match[2]}/${match[3]} até ${match[4]}/${match[5]}/${match[6]}.`);
+          alertItems.push(`🏖️ <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
         }
       }
     }
@@ -2548,22 +2593,22 @@ function appendPrintFooterAndAlerts(){
     TRAVEL_DATA.visits.forEach(v => {
       if(v.saidaData && v.chegadaData && v.tecnicos) {
         if(!(v.chegadaData < monthStartIso || v.saidaData > monthEndIso)) {
-          alertItems.push(`✈️ <strong>${v.tecnicos}</strong> em viagem corporativa para o cliente/destino <strong>${v.cliente}</strong> de ${formatDatePt(v.saidaData)} a ${formatDatePt(v.chegadaData)}.`);
+          alertItems.push(`✈️ <strong>${v.tecnicos}</strong> EM VIAGEM CORPORATIVA PARA O CLIENTE/DESTINO <strong>${v.cliente}</strong> DE ${formatDatePt(v.saidaData)} A ${formatDatePt(v.chegadaData)}.`);
         }
       }
     });
   }
 
   const alertsHtml = alertItems.length > 0 
-    ? alertItems.map(a => `<div style="margin-bottom: 4px;">• ${a}</div>`).join("") 
-    : `<div>Nenhum colaborador de férias ou em viagem corporativa agendada para ${monthTitle}.</div>`;
+    ? alertItems.map(a => `<div style="margin-bottom: 2px;">• ${a}</div>`).join("") 
+    : `<div>NENHUM COLABORADOR DE FÉRIAS OU EM VIAGEM CORPORATIVA AGENDADA PARA ${monthTitle}.</div>`;
 
   const footerEl = document.createElement("div");
   footerEl.className = "print-footer-info";
   footerEl.id = "dynamicPrintFooter";
   footerEl.innerHTML = `
-    <span><strong>GestãoPro</strong> — Sistema Integrado de Gestão Corporativa</span>
-    <span>Gerado por: <strong>${userName}</strong> em ${dateStr} às ${timeStr}</span>
+    <span><strong>ADL GESTÃO INTELIGENTE</strong> — SISTEMA INTEGRADO DE GESTÃO CORPORATIVA</span>
+    <span>GERADO POR: <strong>${userName}</strong> EM ${dateStr} ÀS ${timeStr}</span>
   `;
   document.body.appendChild(footerEl);
 
@@ -2571,7 +2616,7 @@ function appendPrintFooterAndAlerts(){
   summaryEl.className = "print-alerts-summary";
   summaryEl.id = "dynamicPrintSummary";
   summaryEl.innerHTML = `
-    <h4>⚠️ Alertas Personalizados de Férias e Viagens (${monthTitle})</h4>
+    <h4>⚠️ ALERTAS PERSONALIZADOS DE FÉRIAS E VIAGENS (${monthTitle})</h4>
     <div>${alertsHtml}</div>
   `;
   document.body.appendChild(summaryEl);
@@ -2588,7 +2633,7 @@ document.getElementById("addMemberBtn").onclick = async ()=>{
   const inp = document.getElementById("newMemberInput"); const name = inp.value.trim().toUpperCase();
   const mSel = document.getElementById("newMemberAdmissaoMonth");
   const yInput = document.getElementById("newMemberAdmissaoYear");
-  if(!name || state.members.includes(name)) return alert("Informe um nome válido e não duplicado.");
+  if(!name || state.members.includes(name)) return alert("INFORME UM NOME VÁLIDO E NÃO DUPLICADO.");
   
   let admitDateStr = `${currentYear}-${pad(currentMonth+1)}-01`;
   if(mSel.value !== "" && yInput.value.trim() !== ""){
@@ -2604,13 +2649,13 @@ document.getElementById("addMemberBtn").onclick = async ()=>{
 
   if(!VACATION_DATA[name]){ VACATION_DATA[name] = { admissao: MONTH_NAMES[parseInt(mSel.value)||0].toUpperCase(), solicitacao: "" }; await saveVacationData(); }
   inp.value = ""; yInput.value = ""; mSel.value = "";
-  await saveState(); await refreshAllStatesCache(); render(); alert(`Colaborador ${name} adicionado!`);
+  await saveState(); await refreshAllStatesCache(); render(); alert(`COLABORADOR ${name} ADICIONADO!`);
 };
 
 document.getElementById("forceDayBtn").onclick = ()=>{
   const inp = document.getElementById("forcedDateInput"); if(!inp.value) return;
   if(!state.forced.includes(inp.value)) state.forced.push(inp.value);
-  state.members.forEach(m => state.ho[m] = (state.ho[m]||[]).filter(d=>d!==inp.value));
+  state.members.exports = state.members.forEach(m => state.ho[m] = (state.ho[m]||[]).filter(d=>d!==inp.value));
   inp.value = ""; saveState(); render();
 };
 
@@ -2623,21 +2668,21 @@ document.getElementById("forceWeekdayBtn").onclick = async ()=>{
     if(!st.forced) st.forced = []; dates.forEach(d => { if(!st.forced.includes(d)) st.forced.push(d); });
     if(t === currentTeam) await saveState(); else await storageSet(storageKey(t, currentYear, currentMonth), JSON.stringify(st));
   }
-  sel.value = ""; await loadState(); alert("Presença coletiva aplicada com sucesso!");
+  sel.value = ""; await loadState(); alert("PRESENÇA COLETIVA APLICADA COM SUCESSO!");
 };
 
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 themeToggleBtn.onclick = ()=>{
   const t = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", t);
-  themeToggleBtn.textContent = t === "dark" ? "☀️ Modo Claro" : "🌙 Modo Escuro";
-  localStorage.setItem("gestupro-theme", t);
+  themeToggleBtn.textContent = t === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
+  localStorage.setItem("adl-theme", t);
 };
 
 (async function init(){
-  const savedTheme = localStorage.getItem("gestupro-theme") || "light";
+  const savedTheme = localStorage.getItem("adl-theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
-  themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ Modo Claro" : "🌙 Modo Escuro";
+  themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
   updateSessionDisplay(); await loadTravelData(); applyAccent(); renderTabs(); renderMonthYearSelects(); viewMode = "inicio"; renderTabs(); render();
 })();
 </script>
