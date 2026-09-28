@@ -4,7 +4,2699 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
+  <link rel="icon" href="https://raw<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
   <link rel="icon" href="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
+  <meta name="theme-color" content="#1e3a8a">
+  <style>
+    :root{
+      --primary: #2563eb;
+      --primary-dark: #1e3a8a;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --team-accent: var(--primary-dark);
+    }
+    [data-theme="dark"]{
+      --primary: #38bdf8;
+      --primary-dark: #60a5fa;
+      --accent: #fbbf24;
+      --accent-light: #451a03;
+      --bg-main: #0f172a;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --danger: #f87171;
+      --danger-bg: #7f1d1d;
+      --success: #34d399;
+      --success-bg: #064e3b;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;overflow-x:hidden;}
+    body{
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      padding: 24px 16px 64px;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45vw;
+      height: 45vw;
+      max-width: 550px;
+      max-height: 550px;
+      background-image: url('https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.04;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    h1,h2,h3{font-family: 'Inter', sans-serif; margin:0;}
+    .wrap{max-width:1300px;margin:0 auto;position:relative;z-index:1;}
+
+    .brand-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      padding: 16px 24px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow);
+      border-top: 4px solid var(--primary-dark);
+    }
+    .brand-logo-area { display: flex; align-items: center; gap: 18px; }
+    .brand-logo-img { width: 96px; height: 96px; object-fit: contain; border-radius: 10px; }
+    .brand-texts h1 { font-size: 22px; font-weight: 800; color: var(--text-main); letter-spacing: 0.5px; text-transform: uppercase; }
+    .brand-texts p { font-size: 12.5px; color: var(--text-muted); font-weight: 600; margin: 3px 0 0; text-transform: uppercase; }
+    .brand-badge{ font-size: 11.5px; font-weight: 700; color: var(--primary-dark); background: #eff6ff; border: 1px solid #bfdbfe; padding: 6px 12px; border-radius: 20px; letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
+
+    .top-bar-actions{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .user-session-info { font-size: 13.5px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+
+    .auth-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 16px;
+      overflow-y: auto;
+    }
+    .auth-card {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      width: 100%; max-width: 440px; overflow: hidden; margin: auto;
+    }
+    .auth-header { background: linear-gradient(135deg, #385a7c, #1e334a); color: #fff; padding: 28px 20px; text-align: center; }
+    .auth-header img { width: 110px; height: 110px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+    .auth-header h2 { font-size: 20px; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; }
+    .auth-header p { font-size: 13px; color: #cbd5e1; margin: 0; text-transform: uppercase; }
+    .auth-tabs { display: flex; background: var(--border-color); padding: 4px; gap: 4px; }
+    .auth-tab {
+      flex: 1; text-align: center; padding: 9px 4px; font-size: 11.5px; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: all 0.2s; text-transform: uppercase; white-space: nowrap;
+    }
+    .auth-tab.active { background: var(--card-bg); color: var(--primary-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .auth-body { padding: 24px; }
+    .auth-form { display: flex; flex-direction: column; gap: 16px; }
+    .auth-group { display: flex; flex-direction: column; gap: 6px; }
+    .auth-group label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+    .auth-group input, .auth-group select {
+      padding: 10px 14px; border: 1px solid var(--border-color);
+      background: var(--card-bg); color: var(--text-main); border-radius: 8px; font-size: 14px;
+    }
+    .auth-group input:focus, .auth-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+    .auth-btn {
+      margin-top: 4px; padding: 12px; background: var(--primary-dark); color: #fff;
+      font-weight: 600; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; text-transform: uppercase; white-space: nowrap;
+    }
+    .auth-btn:hover { filter: brightness(1.1); }
+    .auth-msg { margin-top: 8px; font-size: 13px; text-align: center; font-weight: 500; }
+    .auth-msg.error { color: var(--danger); }
+    .auth-msg.success { color: var(--success); }
+
+    .card{
+      background: var(--card-bg); border-radius: 12px;
+      box-shadow: var(--shadow); border: 1px solid var(--border-color);
+      margin-bottom: 24px; transition: background 0.3s, border-color 0.3s;
+    }
+
+    .controls{
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+      padding: 14px 18px; margin-bottom: 16px; background: var(--card-bg);
+      border: 1px solid var(--border-color); border-radius: 8px;
+    }
+    select, button, input{ font-family:inherit; font-size:14px; text-transform: uppercase; }
+    select, input[type=text], input[type=date], input[type=time], input[type=number], input[type=password], input[type=email]{
+      padding: 10px 14px; border: 1px solid var(--border-color);
+      background: var(--card-bg); color: var(--text-main); border-radius: 8px; transition: all 0.2s;
+    }
+    select:focus, input:focus{outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.15);}
+    
+    button{
+      padding: 10px 18px; border: none; background: #e0f2fe; color: #0369a1;
+      border-radius: 8px; cursor: pointer; font-weight: 600; transition: filter 0.15s; text-transform: uppercase; white-space: nowrap;
+    }
+    button.secondary{background: var(--border-color); color: var(--text-main); border: 1px solid var(--border-color);}
+    button.danger{background: var(--danger-bg); color: var(--danger); border: 1px solid var(--border-color);}
+    button.gold{background: #fef08a; color: #713f12;}
+    button:hover{filter: brightness(0.95);}
+
+    .tabs{
+      display:flex; gap:8px; margin-bottom: 24px; padding: 6px;
+      background: var(--border-color); border-radius: 10px; width: fit-content; flex-wrap: nowrap; overflow-x: auto; max-width: 100%;
+    }
+    .tab{
+      padding: 10px 20px; cursor: pointer; font-size: 13.5px; color: var(--text-muted);
+      border-radius: 8px; user-select: none; font-weight: 600; transition: all 0.2s; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
+    }
+    .tab.active{ color: var(--primary-dark) !important; background: var(--card-bg) !important; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .tab.inicio-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
+    .tab.home-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
+    .tab.travel-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
+    .tab.vacation-tab{background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-color);}
+
+    .ho-subtabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); flex-wrap: nowrap; overflow-x: auto; }
+    .ho-subtab {
+      padding: 10px 18px; background: var(--card-bg); border: 1px solid var(--border-color);
+      border-bottom: none; color: var(--text-muted); border-top-left-radius: 8px; border-top-right-radius: 8px;
+      font-size: 13px; cursor: pointer; font-weight: 600; position: relative; top: 2px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
+    }
+    .ho-subtab.active {
+      background: var(--card-bg); color: var(--primary-dark); border-color: var(--border-color);
+      border-top: 3px solid var(--primary-dark); border-bottom: 2px solid var(--card-bg); z-index: 2;
+    }
+
+    .team-panel{ padding: 24px; border-top: 4px solid var(--team-accent); }
+    .team-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color); }
+    .team-panel h3{font-size: 16px; color: var(--text-main); font-weight: 700; margin: 0; text-transform: uppercase;}
+    .section-subtitle{ font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 10px; }
+    .member-list{display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:12px; margin-top:2px; margin-bottom:22px;}
+    .member-chip{
+      background: var(--card-bg); border: 1px solid var(--border-color); border-left: 3px solid var(--primary-dark);
+      border-radius: 10px; padding: 12px 14px; font-size: 13.5px; display: flex; flex-direction: column; gap: 8px; font-weight: 500;
+      transition: box-shadow 0.15s; text-transform: uppercase;
+    }
+    .member-chip:hover{ box-shadow: var(--shadow); }
+    .member-chip-actions { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+    .member-chip button{
+      background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 6px;
+      padding: 4px 8px; font-size: 11px; cursor: pointer; font-weight: 600; text-transform: uppercase; white-space: nowrap;
+    }
+    .member-chip button.edit-btn { color: var(--primary-dark); }
+    .member-chip button.delete-btn { color: var(--danger); background: var(--danger-bg); border-color: var(--danger-bg); }
+    .member-meta{ font-size: 11px; color: var(--text-muted); display:flex; gap: 8px; align-items: center; flex-wrap: wrap; text-transform: uppercase; }
+    .member-badge{ padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: 10.5px; text-transform: uppercase; white-space: nowrap; }
+    .member-badge.newbie{ background:#fef3c7; color:#b45309; }
+    .member-badge.blocked{ background:#fee2e2; color:#991b1b; }
+
+    .add-member-box{ background: var(--bg-main); border: 1px dashed var(--border-color); border-radius: 10px; padding: 16px; }
+    .add-member-title{ font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
+    .add-row{display:flex;gap:10px;flex-wrap:wrap; align-items: center;}
+    .add-row input, .add-row select{ flex: 1; min-width: 150px; }
+    .add-row button{ white-space: nowrap; }
+
+    .forced-section{ margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+    .forced-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .forced-section-header strong{ font-size: 14px; color: var(--text-main); text-transform: uppercase; }
+    .forced-section-hint{ font-size: 12px; color: var(--text-muted); margin: 0 0 14px; text-transform: uppercase; }
+    .forced-options{display:flex;flex-direction:column;gap:10px; margin-top: 12px;}
+    .forced-row{
+      display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+      background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px;
+    }
+    .forced-row .opt-label{font-size: 13px; font-weight: 600; color: var(--text-main); min-width: 130px; text-transform: uppercase;}
+    .forced-list{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+    .forced-chip{
+      background: #fef08a; border: 1px solid #fde047; color: #713f12;
+      border-radius: 20px; padding: 6px 10px 6px 14px; font-size: 13px; display: flex; align-items: center; gap: 8px; font-weight: 600; text-transform: uppercase; white-space: nowrap;
+    }
+    .forced-chip button{
+      background: var(--card-bg);border: 1px solid var(--border-color);border-radius: 50%;
+      width: 18px;height: 18px;color: var(--danger);padding:0;font-size:11px;cursor:pointer;
+    }
+
+    .rules-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media(min-width: 900px){ .rules-grid { grid-template-columns: 1fr 1fr; } }
+    .rule-quadrant { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; }
+    .rule-quadrant-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 18px; background: var(--card-bg); border-bottom: 1px solid var(--border-color);
+    }
+    .rule-quadrant-header h4 { font-size: 14.5px; color: var(--primary-dark); font-weight: 700; margin: 0; text-transform: uppercase; }
+    .rule-quadrant-body { padding: 16px; }
+    .rule-box-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+    .rule-box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 13px; text-transform: uppercase; }
+    .rule-badge { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-size: 10.5px; text-transform: uppercase; white-space: nowrap; }
+    .conflict-pair-chip {
+      background: var(--danger-bg); border: 1px solid var(--border-color); color: var(--danger);
+      border-radius: 20px; padding: 4px 10px 4px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px; text-transform: uppercase; white-space: nowrap;
+    }
+    .conflict-pair-chip button { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50%; width: 15px; height: 15px; color: var(--danger); padding: 0; font-size: 9px; cursor: pointer; }
+
+    .inicio-panel{padding: 32px; display:none;}
+    .inicio-panel.visible{display:block;}
+    
+    .inicio-hero{ 
+      text-align: left; 
+      padding: 48px 40px; 
+      background: linear-gradient(135deg, rgba(56, 90, 124, 0.85) 0%, rgba(42, 67, 92, 0.85) 50%, rgba(30, 51, 74, 0.85) 100%), 
+                  url('https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Logo%20baixo.png');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff; 
+      border-radius: 16px; 
+      margin-bottom: 30px; 
+      box-shadow: 0 10px 25px -5px rgba(30, 51, 74, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .inicio-hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .inicio-hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .inicio-hero h2{
+      font-size: 38px; 
+      margin: 0; 
+      color: #ffffff; 
+      text-transform: uppercase; 
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .inicio-hero h2 span {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+    .inicio-hero p{
+      color: #cbd5e1; 
+      font-size: 14.5px; 
+      max-width: 750px; 
+      margin: 4px 0 0 0; 
+      text-transform: uppercase; 
+      line-height: 1.6;
+    }
+    
+    .inicio-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .inicio-card{ background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px; text-transform: uppercase; }
+    .inicio-card h3{color: var(--primary-dark); font-size: 18px; text-transform: uppercase;}
+    .inicio-card p{color: var(--text-muted); font-size: 13.5px; line-height: 1.5; flex: 1; text-transform: uppercase;}
+
+    .home-panel{padding: 24px; display:none;}
+    .home-panel.visible{display:block;}
+    
+    .banner-corporativo {
+      background: linear-gradient(135deg, #385a7c 0%, #2a435c 50%, #1e334a 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 18px 20px;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(42, 67, 92, 0.25);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 3px solid #52799e;
+    }
+
+    .travel-panel{padding: 24px; display:none;}
+    .travel-panel.visible{display:block;}
+    .travel-sub-banner{ background: var(--success-bg); color: var(--success); text-align: center; padding: 10px; font-weight: 700; font-size: 14px; margin-bottom: 20px; border-radius: 6px; text-transform: uppercase; }
+    .travel-config-bar{ display: flex; gap: 12px; align-items: center; background: var(--card-bg); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; flex-wrap: wrap; border: 1px solid var(--border-color); text-transform: uppercase; }
+    .travel-section-title{ background: #fef08a; color: #713f12; padding: 10px 14px; font-weight: 700; font-size: 14px; margin-top: 24px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent); text-transform: uppercase; }
+    .travel-table{ width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); text-transform: uppercase; }
+    .travel-table th, .travel-table td{ border: 1px solid var(--border-color); padding: 10px 12px; text-align: center; color: var(--text-main); text-transform: uppercase; }
+    .travel-table th{ background: var(--bg-main); font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+    .travel-form-row{ display: flex; gap: 12px; flex-wrap: wrap; background: var(--card-bg); padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; align-items: flex-end; text-transform: uppercase; }
+    .travel-form-group{ display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; text-transform: uppercase; }
+    .travel-form-group label{ font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
+    .travel-form-group input, .travel-form-group select{ padding: 9px 12px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); border-radius: 6px; font-size: 13px; text-transform: uppercase; }
+
+    .vacation-panel{padding: 24px; display:none;}
+    .vacation-panel.visible{display:block;}
+
+    .saved-schedules-container { margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--border-color); text-transform: uppercase; }
+    .saved-schedule-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 12px; overflow: hidden; text-transform: uppercase; }
+    .saved-schedule-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--bg-main); cursor: pointer; text-transform: uppercase; }
+    .saved-schedule-body { padding: 16px; border-top: 1px solid var(--border-color); display: none; background: var(--card-bg); text-transform: uppercase; }
+    .saved-schedule-body.visible { display: block; }
+
+    .dropdown-check-container { position: relative; width: 100%; text-transform: uppercase; }
+    .dropdown-check-btn { width: 100%; padding: 9px 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
+    .dropdown-check-content { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-radius: 8px; z-index: 100; max-height: 200px; overflow-y: auto; padding: 8px; margin-top: 4px; text-transform: uppercase; }
+    .dropdown-check-content.visible { display: block; }
+    .dropdown-item-label { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 6px 8px; cursor: pointer; border-radius: 6px; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
+    .dropdown-item-label:hover { background: var(--border-color); }
+
+    .status-line{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap; text-transform: uppercase;}
+    .badge{ font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); font-weight: 500; text-transform: uppercase; white-space: nowrap; }
+    .badge.ok{border-color: #34d399; color: #065f46; background: #ecfdf5;}
+    .badge.warn{border-color: #f87171; color: #991b1b; background: #fef2f2;}
+
+    .table-card{padding: 8px;}
+    table.schedule{ width:100%; table-layout:fixed; border-collapse:collapse; font-size: 13px; text-transform: uppercase; }
+    table.schedule th:first-child, table.schedule td.name-cell{ width:180px; text-transform: uppercase; }
+    table.schedule th, table.schedule td{ border: 1px solid var(--border-color); padding:0; text-align:center; color: var(--text-main); text-transform: uppercase; }
+    table.schedule th{ background: #e2e8f0; color:#1e293b; font-weight: 600; padding: 10px 4px; font-size: 12px; text-transform: uppercase; white-space: nowrap; }
+    table.schedule th.week-head{background: #2a435c; font-size: 11px; text-transform: uppercase; color: #ffffff;}
+    table.schedule th.forced-head{background: #fef08a; color: #713f12;}
+    table.schedule td.name-cell{ text-align: left; padding: 8px 12px; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; }
+    
+    .cell-btn{ width:100%; height: 38px; display:block; cursor:pointer; background: transparent; border:none; font-size: 11.5px; color: var(--text-muted); transition: background 0.15s; text-transform: uppercase; }
+    .cell-btn:hover{background: #f1f5f9;}
+    .cell-btn.ho{background: #dcfce7; color: #166534; font-weight: 700;}
+    .cell-btn.ho::after{content:"HO";}
+    .cell-btn.forced{background: #fef08a; color: #713f12; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.forced::after{content:"★";}
+    .cell-btn.trip{background: #e0f2fe; color: #0369a1; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.trip::after{content:"✈"; font-size: 13px;}
+    .cell-btn.vacation{background: #fef3c7; color: #b45309; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.vacation::after{content:"🏖️"; font-size: 11px;}
+    .cell-btn.newbie-blocked{background: var(--border-color); color: var(--text-muted); font-weight: 700; cursor: not-allowed;}
+    .cell-btn.newbie-blocked::after{content:"🔒 6M"; font-size: 9.5px;}
+    .cell-btn.manager-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.manager-blocked::after{content:"⛔ BLOQ"; font-size: 9.5px;}
+    .cell-btn.conflict-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.conflict-blocked::after{content:"⛔"; font-size: 12px;}
+
+    .error-logs-panel { margin-top: 24px; padding: 20px; border-left: 4px solid #dc2626; background: var(--card-bg); text-transform: uppercase; }
+    .error-logs-panel h3 { font-size: 15px; color: var(--danger); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+    .error-log-list { display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto; text-transform: uppercase; }
+    .error-log-item { font-size: 13px; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 8px 12px; border-radius: 6px; font-weight: 500; text-transform: uppercase; }
+
+    .mini-consult-panel { margin-top: 24px; padding: 20px; text-transform: uppercase; }
+    .mini-consult-panel h3 { font-size: 16px; color: var(--text-main); margin-bottom: 16px; font-weight: 700; text-transform: uppercase; }
+    .mini-teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .mini-team-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; text-transform: uppercase; }
+    .mini-team-card h4 { margin: 0 0 10px 0; font-size: 14px; color: var(--primary-dark); border-bottom: 2px solid var(--border-color); padding-bottom: 6px; font-weight: 700; text-transform: uppercase; }
+    
+    .mini-table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); text-transform: uppercase; }
+    .mini-table { width: max-content; border-collapse: collapse; font-size: 11px; text-transform: uppercase; }
+    .mini-table th, .mini-table td { border: 1px solid var(--border-color); padding: 4px 6px; text-align: center; color: var(--text-main); height: 26px; min-width: 30px; text-transform: uppercase; white-space: nowrap; }
+    .mini-table th { background: var(--card-bg); position: sticky; top: 0; z-index: 2; text-transform: uppercase; white-space: nowrap; }
+    .mini-table td.m-name { text-align: left; font-weight: 600; white-space: nowrap; position: sticky; left: 0; background: var(--card-bg); z-index: 1; min-width: 140px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; border-right: 2px solid var(--border-color); text-transform: uppercase; }
+    .mini-table th:first-child { position: sticky; left: 0; z-index: 3; min-width: 140px; border-right: 2px solid var(--border-color); text-transform: uppercase; white-space: nowrap; }
+
+    .empty-note{color: var(--text-muted); font-size: 13.5px; font-style: italic; text-transform: uppercase;}
+    footer.note{ margin-top: 32px; font-size: 13px; color: var(--text-muted); text-align: center; text-transform: uppercase; }
+
+    .print-footer-info {
+      display: none;
+      margin-top: 6px;
+      padding-top: 4px;
+      border-top: 1px solid #94a3b8;
+      font-size: 9px;
+      color: #000;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+    }
+
+    .print-alerts-summary {
+      display: none;
+      margin-top: 6px;
+      padding: 6px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      background: #f8fafc;
+      font-size: 9.5px;
+      color: #000;
+      text-transform: uppercase;
+    }
+    .print-alerts-summary h4 { font-size: 10.5px; margin: 0 0 2px 0; color: #0f172a; font-weight: 700; text-transform: uppercase; }
+
+    @media print {
+      * { 
+        -webkit-print-color-adjust: exact !important; 
+        print-color-adjust: exact !important; 
+        box-shadow: none !important;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        font-size: 9.5px !important;
+      }
+      .top-bar-actions, .controls, .tabs, footer.note, 
+      .travel-config-bar, .travel-form-row, button:not(.cell-btn), .mini-consult-panel, .inicio-panel,
+      .vacation-form-row, .ho-subtabs, .auth-overlay, #adminApprovalPanel, .brand-header, #passwordModal,
+      .saved-schedules-container > .travel-section-title,
+      .saved-schedule-header button,
+      .saved-schedule-header span[id^="arrow-"],
+      .error-logs-panel,
+      .team-panel,
+      #printSummaryTableBox {
+        display: none !important;
+      }
+      body::before { display: none !important; }
+
+      @page { size: landscape; margin: 4mm; }
+      
+      .print-footer-info { display: flex !important; }
+      .print-alerts-summary { display: block !important; }
+
+      .card { border: none !important; margin-bottom: 4px !important; padding: 0 !important; }
+      table.schedule { font-size: 9.5px !important; }
+      table.schedule th { padding: 4px 1px !important; }
+      .cell-btn { height: 24px !important; font-size: 9px !important; }
+
+      .travel-table { font-size: 9.5px !important; margin-bottom: 8px !important; }
+      .travel-table th, .travel-table td { padding: 4px 6px !important; }
+      .travel-section-title { font-size: 11px !important; padding: 4px 8px !important; margin-top: 10px !important; margin-bottom: 6px !important; }
+      .travel-sub-banner { padding: 4px !important; font-size: 11px !important; margin-bottom: 8px !important; }
+
+      body.printing-home .travel-panel,
+      body.printing-home .vacation-panel,
+      body.printing-home .inicio-panel {
+        display: none !important;
+      }
+      body.printing-home .home-panel {
+        display: block !important;
+        padding: 0 !important;
+        background: #fff !important;
+      }
+      body.printing-home .home-panel .banner-corporativo {
+        background: #2a435c !important;
+        color: #ffffff !important;
+        padding: 8px !important;
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+      }
+      body.printing-home .home-panel table.schedule th {
+        background: #cbd5e1 !important;
+        color: #0f172a !important;
+      }
+      body.printing-home .home-panel table.schedule th.week-head {
+        background: #2a435c !important;
+        color: #ffffff !important;
+      }
+      body.printing-home .home-panel table.schedule th.forced-head {
+        background: #fef08a !important;
+        color: #713f12 !important;
+      }
+      body.printing-home .home-panel table.schedule td.name-cell {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-weight: 600 !important;
+      }
+      body.printing-home .home-panel .cell-btn { display: block !important; opacity: 1 !important; border: 1px solid #cbd5e1 !important; }
+      body.printing-home .home-panel .cell-btn.ho { background: #dcfce7 !important; color: #166534 !important; }
+      body.printing-home .home-panel .cell-btn.ho::after { content: "HO" !important; }
+      body.printing-home .home-panel .cell-btn.forced { background: #fef08a !important; color: #713f12 !important; }
+      body.printing-home .home-panel .cell-btn.forced::after { content: "★" !important; }
+      body.printing-home .home-panel .cell-btn.trip { background: #e0f2fe !important; color: #0369a1 !important; }
+      body.printing-home .home-panel .cell-btn.trip::after { content: "✈" !important; }
+      body.printing-home .home-panel .cell-btn.vacation { background: #fef3c7 !important; color: #b45309 !important; }
+      body.printing-home .home-panel .cell-btn.vacation::after { content: "🏖️" !important; }
+      body.printing-home .home-panel .cell-btn.newbie-blocked { background: #e2e8f0 !important; color: #64748b !important; }
+      body.printing-home .home-panel .cell-btn.newbie-blocked::after { content: "🔒 6M" !important; }
+      body.printing-home .home-panel .cell-btn.manager-blocked { background: #fee2e2 !important; color: #991b1b !important; }
+      body.printing-home .home-panel .cell-btn.manager-blocked::after { content: "⛔ BLOQ" !important; }
+      body.printing-home .home-panel .cell-btn.conflict-blocked { background: #fee2e2 !important; color: #991b1b !important; }
+      body.printing-home .home-panel .cell-btn.conflict-blocked::after { content: "⛔" !important; }
+
+      body.printing-travel .home-panel,
+      body.printing-travel .vacation-panel,
+      body.printing-travel .saved-schedules-container,
+      body.printing-travel .print-alerts-summary { display: none !important; }
+      
+      body.printing-travel .travel-panel { 
+        display: block !important; border: none !important; padding: 0 !important; background: #fff !important; 
+      }
+      body.printing-travel .travel-panel .banner-corporativo {
+        background: #2a435c !important; color: #ffffff !important; font-size: 12px !important; padding: 8px !important; margin-bottom: 6px !important;
+      }
+      body.printing-travel .travel-panel .travel-table th { background: #e2e8f0 !important; color: #000 !important; }
+
+      body.printing-vacation .home-panel,
+      body.printing-vacation .travel-panel,
+      body.printing-vacation .inicio-panel,
+      body.printing-vacation .vacation-form-row,
+      body.printing-vacation .travel-config-bar,
+      body.printing-vacation .print-alerts-summary { display: none !important; }
+
+      body.printing-vacation .vacation-panel {
+        display: block !important; border: none !important; padding: 0 !important; background: #fff !important;
+      }
+      body.printing-vacation .vacation-panel .banner-corporativo {
+        background: #2a435c !important; color: #ffffff !important; font-size: 12px !important; padding: 8px !important; margin-bottom: 6px !important;
+      }
+      body.printing-vacation .vacation-panel .travel-table th { background: #e2e8f0 !important; color: #000 !important; }
+    }
+
+    .brand-header{ border-top: 3px solid var(--primary-dark); background: linear-gradient(180deg,#ffffff,#f8fafc); }
+    .brand-texts h1{ background: linear-gradient(90deg,#2a435c,#385a7c); -webkit-background-clip: text; background-clip: text; color: transparent; text-transform: uppercase; }
+    .pub-print-head, .pub-print-foot{ display:none; }
+    @media print{
+      body.printing-public-report > *:not(#publicResultModal){ display:none !important; }
+      body.printing-public-report #publicResultModal{ display:block !important; position:static !important; background:#fff !important; padding:0 !important; }
+      body.printing-public-report #publicResultModal .auth-card{ box-shadow:none !important; max-width:100% !important; width:100% !important; border:none !important; }
+      body.printing-public-report #publicResultModal .auth-header, body.printing-public-report .pub-actions{ display:none !important; }
+      body.printing-public-report #publicResultModal .auth-body{ padding:0 !important; }
+      body.printing-public-report #publicSearchResult{ max-height:none !important; overflow:visible !important; border:none !important; background:#fff !important; padding:0 !important; font-size:11px !important; }
+      body.printing-public-report .pub-print-head{ display:flex !important; align-items:center; gap:14px; border-bottom:3px solid #2a435c; padding-bottom:8px; margin-bottom:10px; }
+      body.printing-public-report .pub-print-head h2{ font-size:16px; color:#2a435c; margin:0; text-transform: uppercase; }
+      body.printing-public-report .pub-print-head p{ font-size:10px; color:#64748b; margin:2px 0 0; text-transform: uppercase; }
+      body.printing-public-report .pub-print-foot{ display:block !important; margin-top:10px; padding-top:4px; border-top:1px solid #cbd5e1; font-size:9px; color:#64748b; text-transform: uppercase; }
+      body.printing-public-report *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-header">
+      <img src="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png" alt="Logo ADL">
+      <h2>ADL GESTÃO INTELIGENTE</h2>
+      <p>SISTEMA INTEGRADO DE GESTÃO CORPORATIVA</p>
+    </div>
+    <div class="auth-tabs" id="authTabsHeader">
+      <div class="auth-tab active" id="tabLoginBtn" onclick="switchAuthMode('login')">ENTRAR</div>
+      <div class="auth-tab" id="tabRegisterBtn" onclick="switchAuthMode('register')">CADASTRAR</div>
+      <div class="auth-tab" id="tabPublicSearchBtn" onclick="switchAuthMode('publicSearch')" style="color: var(--primary);">🔍 CONSULTA EXTERNA</div>
+    </div>
+    <div class="auth-body">
+      <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+        <div class="auth-group">
+          <label>E-MAIL CORPORATIVO</label>
+          <input type="email" id="loginEmail" placeholder="ADMIN@ADLGESTAO.COM" required>
+        </div>
+        <div class="auth-group">
+          <label>SENHA</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+          <a href="#" onclick="switchAuthMode('forgot')" style="color: var(--primary-dark); text-decoration: none; font-weight: 600; text-transform: uppercase;">ESQUECI A SENHA</a>
+        </div>
+        <button type="submit" class="auth-btn">ACESSAR SISTEMA</button>
+        <div class="auth-msg" id="loginMsg"></div>
+      </form>
+
+      <form id="forgotForm" class="auth-form" style="display: none;" onsubmit="handleForgot(event)">
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 8px 0; text-transform: uppercase;">INFORME SEU E-MAIL CADASTRADO PARA RECEBER AS INSTRUÇÕES.</p>
+        <div class="auth-group">
+          <label>E-MAIL CADASTRADO</label>
+          <input type="email" id="forgotEmail" placeholder="SEU.EMAIL@EMPRESA.COM" required>
+        </div>
+        <button type="submit" class="auth-btn" style="background: #fde047; color: #713f12;">ENVIAR E-MAIL</button>
+        <div style="text-align: center; margin-top: 8px;">
+          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
+        </div>
+        <div class="auth-msg" id="forgotMsg"></div>
+      </form>
+
+      <form id="registerForm" class="auth-form" style="display: none;" onsubmit="handleRegister(event)">
+        <div class="auth-group">
+          <label>NOME COMPLETO</label>
+          <input type="text" id="regName" placeholder="SEU NOME" required>
+        </div>
+        <div class="auth-group">
+          <label>E-MAIL CORPORATIVO</label>
+          <input type="email" id="regEmail" placeholder="SEU.EMAIL@EMPRESA.COM" required>
+        </div>
+        <div class="auth-group">
+          <label>CRIAR SENHA</label>
+          <input type="password" id="regPassword" placeholder="MÍNIMO 3 CARACTERES" required>
+        </div>
+        <button type="submit" class="auth-btn">CRIAR CONTA</button>
+        <div style="text-align: center; margin-top: 8px;">
+          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">JÁ TEM CONTA? ENTRAR</a>
+        </div>
+        <div class="auth-msg" id="regMsg"></div>
+      </form>
+
+      <div id="publicSearchForm" class="auth-form" style="display: none;">
+        <p style="font-size: 13.5px; color: var(--text-muted); margin: 0 0 10px 0; text-transform: uppercase;">CONSULTE OS SEUS DIAS DE HOME OFFICE, VIAGENS E FÉRIAS SEM PRECISAR FAZER LOGIN NO SISTEMA.</p>
+        <div class="auth-group">
+          <label>SELECIONE SEU NOME</label>
+          <select id="publicSearchMemberSelect" style="padding: 10px;">
+            <option value="">CARREGANDO COLABORADORES...</option>
+          </select>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <div class="auth-group" style="flex: 1;">
+            <label>MÊS</label>
+            <select id="publicSearchMonth" style="padding: 10px;"></select>
+          </div>
+          <div class="auth-group" style="flex: 1;">
+            <label>ANO</label>
+            <select id="publicSearchYear" style="padding: 10px;"></select>
+          </div>
+        </div>
+        <button type="button" class="auth-btn" style="background: #fde047; color: #713f12;" onclick="handlePublicSearch()">🔍 CONSULTAR ESCALA</button>
+        <div style="text-align: center; margin-top: 4px;">
+          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="auth-overlay" id="publicResultModal" style="display: none; z-index: 10000;">
+  <div class="auth-card" style="max-width: 600px;">
+    <div class="pub-print-head">
+      <img src="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png" alt="Logo ADL" style="width:48px;height:48px;object-fit:contain;">
+      <div><h2>COMPROVANTE DE ESCALA INDIVIDUAL</h2><p>ADL GESTÃO INTELIGENTE — SISTEMA INTEGRADO</p></div>
+    </div>
+    <div class="auth-header">
+      <h2>RELATÓRIO DE ESCALA INDIVIDUAL</h2>
+      <p>ADL GESTÃO INTELIGENTE — COMPROVANTE CORPORATIVO</p>
+    </div>
+    <div class="auth-body">
+      <div id="publicSearchResult" style="font-size: 13.5px; background: var(--bg-main); padding: 16px; border-radius: 10px; border: 1px solid var(--border-color); max-height: 380px; overflow-y: auto; text-transform: uppercase;"></div>
+      <div class="pub-actions" style="display: flex; gap: 10px; margin-top: 16px;">
+        <button type="button" class="auth-btn" style="flex: 1; margin: 0;" onclick="printPublicReport()">📥 BAIXAR PDF / IMPRIMIR</button>
+        <button type="button" class="secondary" style="flex: 1;" onclick="closePublicResultModal()">FECHAR JANELA</button>
+      </div>
+      <div class="pub-print-foot">DOCUMENTO GERADO EM <span id="pubPrintDate"></span> · ADL GESTÃO INTELIGENTE. INFORMAÇÕES SUJEITAS A ALTERAÇÃO PELA COORDENAÇÃO.</div>
+    </div>
+  </div>
+</div>
+
+<div class="auth-overlay" id="passwordModal" style="display: none;">
+  <div class="auth-card">
+    <div class="auth-header" style="background: #fde047; color: #713f12;">
+      <h2>ALTERAR SENHA</h2>
+      <p>ATUALIZE SUA SENHA DE ACESSO</p>
+    </div>
+    <div class="auth-body">
+      <form class="auth-form" onsubmit="handleChangePassword(event)">
+        <div class="auth-group">
+          <label>SENHA ATUAL</label>
+          <input type="password" id="currentPassInput" required>
+        </div>
+        <div class="auth-group">
+          <label>NOVA SENHA</label>
+          <input type="password" id="newPassInput" required placeholder="MÍNIMO 3 CARACTERES">
+        </div>
+        <div class="auth-group">
+          <label>CONFIRMAR NOVA SENHA</label>
+          <input type="password" id="confirmPassInput" required>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 8px;">
+          <button type="button" class="secondary" style="flex: 1;" onclick="closePasswordModal()">CANCELAR</button>
+          <button type="submit" class="auth-btn" style="flex: 1; margin: 0; background: #fde047; color: #713f12;">SALVAR SENHA</button>
+        </div>
+        <div class="auth-msg" id="passModalMsg"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="brand-header">
+    <div class="brand-logo-area">
+      <img src="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png" alt="ADL Logo" class="brand-logo-img" style="width: 96px; height: 96px;">
+      <div class="brand-texts">
+        <h1>ADL GESTÃO INTELIGENTE</h1>
+        <p>CONECTANDO EQUIPES, OTIMIZANDO RESULTADOS.</p>
+      </div>
+    </div>
+    <div class="brand-badge">SOLUÇÃO CORPORATIVA INTEGRADA</div>
+  </div>
+
+  <div class="top-bar-actions">
+    <div class="user-session-info" id="userSessionInfo">
+      <span>👤 <strong id="loggedUserName">USUÁRIO</strong></span>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <button class="secondary" style="padding: 6px 14px; font-size: 12px;" onclick="openPasswordModal()">🔒 ALTERAR SENHA</button>
+      <button id="themeToggleBtn" class="secondary" style="padding: 6px 14px; font-size: 12px;">🌙 MODO ESCURO</button>
+      <button id="logoutBtn" class="danger secondary" style="padding: 6px 14px; font-size: 12px;" onclick="handleLogout()">SAIR</button>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="inicio-panel card" id="inicioPanel">
+    <div class="inicio-hero">
+      <div class="inicio-hero-content">
+        <h2>ADL <span>Gestão Inteligente</span></h2>
+        <p>Plataforma integrada: controle dinâmico de escalas em home office, coordenação de equipes, agendamento de viagens e monitoramento completo de férias</p>
+      </div>
+    </div>
+    <div class="inicio-grid">
+      <div class="inicio-card">
+        <h3>🏠 PAINEL CENTRAL DE HOME OFFICE</h3>
+        <p>ACESSE O PAINEL CENTRAL PARA GERIR AS EQUIPES, CONFIGURAR REGRAS DE ESCALA E RESTRIÇÕES.</p>
+        <button onclick="switchTab('home')" class="gold">ACESSAR HOME OFFICE</button>
+      </div>
+      <div class="inicio-card">
+        <h3>✈️ CONTROLE DE VIAGENS E VISITAS</h3>
+        <p>PLANEJE VISITAS CORPORATIVAS, CALCULE DIÁRIAS AUTOMATICAMENTE E MANTENHA O HISTÓRICO IMPRESSO.</p>
+        <button onclick="switchTab('travel')">ACESSAR VIAGENS</button>
+      </div>
+      <div class="inicio-card">
+        <h3>🏖️ CONTROLE DE FÉRIAS</h3>
+        <p>ACOMPANHE OS PERÍODOS DE FÉRIAS E O MÊS DE ADMISSÃO DE CADA COLABORADOR INTEGRADO.</p>
+        <button onclick="switchTab('vacation')" class="secondary">ACESSAR FÉRIAS</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-panel card" id="homePanel">
+    <div class="banner-corporativo">PAINEL CENTRAL DE HOME OFFICE</div>
+    
+    <div class="controls" id="topControls">
+      <select id="monthSelect"></select>
+      <select id="yearSelect"></select>
+      <button id="generateBtn">✨ GERAR ESCALA AUTOMÁTICA</button>
+      <button id="duplicatePreviousBtn" class="secondary">📋 DUPLICAR MÊS ANTERIOR</button>
+      <button id="saveHomeScheduleBtn" class="gold">💾 SALVAR ESCALA</button>
+      <button id="clearBtn" class="secondary">🗑️ LIMPAR EQUIPE</button>
+      <button id="exportPdfBtn" class="secondary">🖨️ IMPRIMIR ESCALA</button>
+    </div>
+
+    <div class="ho-subtabs" id="hoSubtabs">
+      <div id="hoSubtabsContainer" style="display:flex; gap:4px; flex-wrap:nowrap; align-items:center; width:100%; overflow-x:auto;"></div>
+    </div>
+
+    <div id="hoTeamContentContainer">
+      <div class="team-panel card">
+        <div class="team-panel-header">
+          <h3 id="teamPanelTitle">PESSOAS DA EQUIPE</h3>
+          <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleCardSection('teamMemberListBody', this)">➕ MAXIMIZAR</button>
+        </div>
+        <div id="teamMemberListBody" style="display: none;">
+          <div class="section-subtitle">COLABORADORES CADASTRADOS</div>
+          <div class="member-list" id="memberList"></div>
+          <div class="add-member-box">
+            <div class="add-member-title">➕ ADICIONAR NOVO COLABORADOR</div>
+            <div class="add-row">
+              <input type="text" id="newMemberInput" placeholder="NOME DO COLABORADOR">
+              <select id="newMemberAdmissaoMonth" style="padding: 8px;">
+                <option value="">MÊS ADMISSÃO (ATUAL)</option>
+                <option value="0">JANEIRO</option><option value="1">FEVEREIRO</option><option value="2">MARÇO</option><option value="3">ABRIL</option><option value="4">MAIO</option><option value="5">JUNHO</option><option value="6">JULHO</option><option value="7">AGOSTO</option><option value="8">SETEMBRO</option><option value="9">OUTUBRO</option><option value="10">NOVEMBRO</option><option value="11">DEZEMBRO</option>
+              </select>
+              <input type="number" id="newMemberAdmissaoYear" placeholder="ANO (EX: 2026)" style="width: 110px; padding: 8px;">
+              <button id="addMemberBtn" class="secondary">+ ADICIONAR COLABORADOR</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="forced-section">
+          <div class="forced-section-header">
+            <strong>📌 DIAS DE PRESENÇA OBRIGATÓRIA / PRESENÇA COLETIVA</strong>
+            <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleCardSection('forcedSectionBody', this)">➕ MAXIMIZAR</button>
+          </div>
+          <div id="forcedSectionBody" style="display: none;">
+            <p class="forced-section-hint">DEFINA DATAS OU DIAS FIXOS DA SEMANA EM QUE TODA A EQUIPE DEVE COMPARECER PRESENCIALMENTE.</p>
+            <div class="forced-options">
+              <div class="forced-row">
+                <span class="opt-label">📅 DATA ESPECÍFICA:</span>
+                <input type="date" id="forcedDateInput">
+                <button id="forceDayBtn" class="gold">MARCAR ESTE DIA</button>
+              </div>
+              <div class="forced-row">
+                <span class="opt-label">🔁 DIA DA SEMANA:</span>
+                <select id="forcedWeekdaySelect">
+                  <option value="">ESCOLHA…</option>
+                  <option value="1">SEGUNDA-FEIRA</option>
+                  <option value="2">TERÇA-FEIRA</option>
+                  <option value="3">QUARTA-FEIRA</option>
+                  <option value="4">QUINTA-FEIRA</option>
+                  <option value="5">SEXTA-FEIRA</option>
+                </select>
+                <button id="forceWeekdayBtn" class="gold">PREENCHER O MÊS</button>
+              </div>
+            </div>
+            <div class="forced-list" id="forcedList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-line" id="statusLine"></div>
+      <div class="card table-card" id="tableHolder"></div>
+
+      <div class="card" style="padding: 16px; margin-top: 16px; font-size: 13px; text-transform: uppercase;" id="printSummaryTableBox">
+        <div style="font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">📋 INFORMAÇÕES IMPORTANTES & LEGENDA DA ESCALA</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; color: var(--text-muted);">
+          <div><strong>HO:</strong> HOME OFFICE AUTORIZADO</div>
+          <div><strong>★:</strong> PRESENÇA COLETIVA OBRIGATÓRIA</div>
+          <div><strong>✈:</strong> VIAGEM CORPORATIVA ATIVA</div>
+          <div><strong>🏖️:</strong> PERÍODO DE FÉRIAS</div>
+          <div><strong>🔒 6M:</strong> CARÊNCIA RECÉM-CONTRATADO</div>
+          <div><strong>⛔ BLOQ:</strong> IMPEDIMENTO DA COORDENAÇÃO</div>
+        </div>
+      </div>
+
+      <div class="card error-logs-panel">
+        <h3>⚠️ ALERTAS, FÉRIAS, VIAGENS E CONSISTÊNCIAS DE REGRAS</h3>
+        <div class="error-log-list" id="errorLogList"></div>
+      </div>
+
+      <div class="card mini-consult-panel" id="miniConsultPanelCard">
+        <h3>📊 CONSULTA RÁPIDA — ESCALAS DO MÊS</h3>
+        <div class="mini-teams-grid" id="miniTeamsGrid"></div>
+      </div>
+    </div>
+
+    <div id="hoRulesContentContainer" style="display:none; padding: 24px; text-transform: uppercase;">
+      <h3 style="margin-bottom: 8px; color: var(--primary-dark);">⚙️ CONFIGURAÇÕES E PARÂMETROS DE REGRAS</h3>
+      <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">GERENCIE PARÂMETROS, RESTRIÇÕES DE CONFLITOS E IMPEDIMENTOS DO COORDENADOR.</p>
+      
+      <div class="rules-grid">
+        <div class="rule-quadrant">
+          <div class="rule-quadrant-header">
+            <h4>🛠️ PARÂMETROS GERAIS</h4>
+            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody1', this)">➕ MAXIMIZAR</button>
+          </div>
+          <div class="rule-quadrant-body" id="quadBody1" style="display: none;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 10px; background: var(--card-bg); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border-color);">
+                <input type="checkbox" id="ruleEnableTeams" style="width: 18px; height: 18px; cursor: pointer;">
+                <label for="ruleEnableTeams" style="font-weight: 600; font-size: 13px; cursor: pointer;">ATIVAR DIVISÃO POR EQUIPES</label>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-weight: 600; font-size: 13px;">MÁXIMO DE DIAS DE HO POR SEMANA:</label>
+                <input type="number" id="ruleMaxHoDays" value="2" min="1" max="5">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <label style="font-weight: 600; font-size: 13px;">ANOS NO SELETOR:</label>
+                <input type="number" id="ruleYearsCount" value="4" min="1" max="20">
+              </div>
+              <div><button id="saveRulesBtn" class="gold" style="width: 100%;">💾 SALVAR PARÂMETROS</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-quadrant">
+          <div class="rule-quadrant-header">
+            <h4>📁 GESTÃO DE EQUIPES / SISTEMAS</h4>
+            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody2', this)">➕ MAXIMIZAR</button>
+          </div>
+          <div class="rule-quadrant-body" id="quadBody2" style="display: none;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <label style="font-weight: 600; font-size: 13px;">ADICIONAR NOVA EQUIPE:</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="newTeamNameInput" placeholder="EX: SETOR X..." style="flex: 1;">
+                <button class="gold" onclick="addNewTeam()" style="padding: 8px 14px;">+ CRIAR</button>
+              </div>
+              <div id="existingTeamsList" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-quadrant" style="grid-column: 1 / -1;">
+          <div class="rule-quadrant-header">
+            <h4>🔒 RESTRIÇÕES, CONFLITOS E IMPEDIMENTOS DO COORDENADOR</h4>
+            <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody3', this)">➕ MAXIMIZAR</button>
+          </div>
+          <div class="rule-quadrant-body" id="quadBody3" style="display: none;">
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">GERENCIE PARES CONFLITANTES E COLABORADORES IMPEDIDOS PELA COORDENAÇÃO DE REALIZAR HOME OFFICE.</p>
+            
+            <div style="margin-bottom: 20px; background: var(--card-bg); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
+              <label style="font-weight: 700; font-size: 13px; display: block; margin-bottom: 8px;">🚫 IMPEDIMENTO DE HOME OFFICE POR AVALIAÇÃO DA COORDENAÇÃO:</label>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <select id="managerBlockedMemberSelect" style="flex: 1; font-size: 13px; padding: 8px;"><option value="">SELECIONE O COLABORADOR...</option></select>
+                <button class="danger secondary" onclick="toggleManagerBlockMember()" style="padding: 8px 14px; font-size: 13px;">ALTERNAR IMPEDIMENTO</button>
+              </div>
+              <div id="managerBlockedListContainer" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div>
+            </div>
+
+            <div id="conflictBoxesContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px; margin-top:24px; justify-content: flex-end;">
+        <button class="danger secondary" onclick="resetDefaultConflicts()">RESTAURAR REGRAS PADRÃO</button>
+        <button class="secondary" onclick="switchHoSubtab(TEAM_NAMES[0])">VOLTAR À ESCALA</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="travel-panel card" id="travelPanel">
+    <div class="banner-corporativo">CONTROLE DE VIAGENS E VISITAS</div>
+    
+    <div class="travel-config-bar">
+      <div style="display:flex; gap:8px; align-items:center;">
+        <label style="font-size:12px; font-weight:600;">DATA INICIAL:</label>
+        <input type="date" id="travelStartDate">
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <label style="font-size:12px; font-weight:600;">DATA FINAL:</label>
+        <input type="date" id="travelEndDate">
+      </div>
+      <button id="updateTravelTitleBtn" class="secondary" style="font-size:12px;">ATUALIZAR TÍTULO</button>
+      <button id="saveTravelScheduleBtn" class="gold" style="font-size:12px;">💾 SALVAR</button>
+      <button id="printTravelBtn" class="secondary" style="font-size:12px;">🖨️ IMPRIMIR PROGRAMAÇÃO ATUAL</button>
+      <div style="margin-left:auto;"><button id="clearTravelDataBtn" class="danger secondary" style="font-size:12px;">🗑️ LIMPAR</button></div>
+    </div>
+
+    <div class="travel-sub-banner" id="travelTitleBanner">PROGRAMAÇÃO SEMANAL</div>
+    <div style="font-size:13.5px; font-weight:600; margin-bottom:14px; color:var(--text-main); text-transform: uppercase;">VISITAS TÉCNICAS - ATENDIMENTO CORPORATIVO</div>
+
+    <div class="travel-section-title">VISITAS REALIZADAS / AGENDADAS</div>
+    <div style="overflow-x:auto;">
+      <table class="travel-table" id="travelVisitsTable">
+        <thead>
+          <tr>
+            <th rowspan="2">CLIENTE</th><th rowspan="2">SISTEMA(S)</th><th rowspan="2">MOTIVO(S)</th><th rowspan="2">TÉCNICOS</th>
+            <th colspan="2">SAÍDA</th><th colspan="2">CHEGADA</th>
+            <th rowspan="2">VEÍCULO</th><th rowspan="2">HOTEL</th><th rowspan="2">HOTEL PREF.</th><th rowspan="2">AÇÕES</th>
+          </tr>
+          <tr><th>DATA</th><th>HORÁRIO</th><th>DATA</th><th>HORÁRIO</th></tr>
+        </thead>
+        <tbody id="travelVisitsBody"></tbody>
+      </table>
+    </div>
+
+    <div class="travel-form-row">
+      <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="tCliente" placeholder="EMPRESA"></div>
+      <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="tSistemas" value="SISTEMA INTEGRADO"></div>
+      <div class="travel-form-group" style="flex:2;"><label>MOTIVO(S)</label><input type="text" id="tMotivo" placeholder="MOTIVO"></div>
+      <div class="travel-form-group">
+        <label>TÉCNICOS</label>
+        <div class="dropdown-check-container" id="tDropdownContainer">
+          <button type="button" class="dropdown-check-btn" id="tDropdownBtn">SELECIONE ▾</button>
+          <div class="dropdown-check-content" id="tDropdownContent"></div>
+        </div>
+      </div>
+      <div class="travel-form-group"><label>SAÍDA DATA</label><input type="date" id="tSaidaData"></div>
+      <div class="travel-form-group"><label>SAÍDA HORA</label><input type="time" id="tSaidaHora" value="09:00"></div>
+      <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="tChegadaData"></div>
+      <div class="travel-form-group"><label>CHEGADA HORA</label><input type="time" id="tChegadaHora" value="18:00"></div>
+      <div class="travel-form-group"><label>VEÍCULO</label><select id="tReservaVeiculo"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
+      <div class="travel-form-group"><label>HOTEL</label><select id="tReservaHotel"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
+      <div class="travel-form-group"><label>HOTEL PREF.</label><input type="text" id="tHotelPref" placeholder="HOTEL"></div>
+      <button id="addTravelVisitBtn" class="gold" style="height:38px;align-self:flex-end;">+ ADICIONAR</button>
+    </div>
+
+    <div class="travel-section-title">CRÉDITOS DE TICKETS POR TÉCNICO</div>
+    <div style="overflow-x:auto;">
+      <table class="travel-table" id="travelCreditsTable">
+        <thead><tr><th>TÉCNICOS</th><th>PERÍODO(S)</th><th>QUANTIDADE</th><th>DESCRIÇÃO</th></tr></thead>
+        <tbody id="travelCreditsBody"></tbody>
+      </table>
+    </div>
+
+    <div class="travel-section-title">VISITAS PENDENTES</div>
+    <div style="overflow-x:auto;">
+      <table class="travel-table" id="travelPendingTable">
+        <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th><th>VEÍCULO</th><th>HOTEL</th><th>OBS</th><th>AÇÕES</th></tr></thead>
+        <tbody id="travelPendingBody"></tbody>
+      </table>
+    </div>
+
+    <div class="travel-form-row">
+      <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="pCliente" placeholder="CLIENTE"></div>
+      <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="pSistemas" value="SISTEMA INTEGRADO"></div>
+      <div class="travel-form-group" style="flex:2;"><label>MOTIVO</label><input type="text" id="pMotivo" placeholder="MOTIVO"></div>
+      <div class="travel-form-group">
+        <label>TÉCNICOS</label>
+        <div class="dropdown-check-container" id="pDropdownContainer">
+          <button type="button" class="dropdown-check-btn" id="pDropdownBtn">SELECIONE ▾</button>
+          <div class="dropdown-check-content" id="pDropdownContent"></div>
+        </div>
+      </div>
+      <div class="travel-form-group"><label>SAÍDA DATA</label><input type="date" id="pSaidaData"></div>
+      <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="pChegadaData"></div>
+      <div class="travel-form-group"><label>VEÍCULO</label><input type="text" id="pVeiculo" value="NO CLIENTE"></div>
+      <div class="travel-form-group"><label>HOTEL</label><input type="text" id="pHotel" value="NO CLIENTE"></div>
+      <div class="travel-form-group" style="flex:2;"><label>OBSERVAÇÃO</label><input type="text" id="pObs" placeholder="OBS"></div>
+      <button id="addTravelPendingBtn" class="gold" style="height:38px;align-self:flex-end;">+ ADICIONAR PENDENTE</button>
+    </div>
+
+    <div class="saved-schedules-container">
+      <div class="travel-section-title" style="background:var(--border-color); color:var(--text-main);">HISTÓRICO DE PROGRAMAÇÕES SALVAS</div>
+      <div id="savedSchedulesList"></div>
+    </div>
+  </div>
+
+  <div class="vacation-panel card" id="vacationPanel">
+    <div class="banner-corporativo">CONTROLE DE FÉRIAS</div>
+    
+    <div class="travel-config-bar">
+      <div style="display:flex; gap:12px; align-items:center;">
+        <label style="font-weight:600; color:var(--text-main);">ANO DE REFERÊNCIA:</label>
+        <select id="vacationYearSelect" style="padding:6px 12px; font-size:13px;"></select>
+      </div>
+      <div style="margin-left:auto;"><button id="printVacationBtn" class="secondary" style="font-size:12px;">🖨️ IMPRIMIR FÉRIAS</button></div>
+    </div>
+
+    <div class="travel-form-row vacation-form-row" style="margin-bottom: 24px; border-left: 4px solid var(--accent);">
+      <div style="width: 100%; font-weight: 700; font-size: 14px; color: #b45309; margin-bottom: 4px; text-transform: uppercase;">➕ NOVA SOLICITAÇÃO DE FÉRIAS</div>
+      <div class="travel-form-group"><label>FUNCIONÁRIO</label><select id="vFuncionarioSelect"></select></div>
+      <div class="travel-form-group"><label>DATA INICIAL</label><input type="date" id="vDataInicioInput"></div>
+      <div class="travel-form-group"><label>DATA FINAL</label><input type="date" id="vDataFimInput"></div>
+      <button id="saveVacationBtn" class="gold" style="height:38px;align-self:flex-end;">💾 SALVAR</button>
+    </div>
+
+    <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); text-transform: uppercase;">📋 RELAÇÃO DE FÉRIAS CADASTRADAS</div>
+    <div style="overflow-x:auto;">
+      <table class="travel-table" id="vacationTable">
+        <thead>
+          <tr>
+            <th style="width: 200px; text-align: left;">FUNCIONÁRIO</th>
+            <th style="width: 130px;">ADMISSÃO</th>
+            <th style="text-align: left;">SOLICITAÇÃO</th>
+            <th style="width: 70px;" class="vacation-action-col">AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody id="vacationTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="note">ADL GESTÃO INTELIGENTE — SISTEMA INTEGRADO DE GESTÃO CORPORATIVA.</footer>
+</div>
+
+<script>
+let registeredUsers = JSON.parse(localStorage.getItem("adl-users")) || [];
+const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@adlgestao.com");
+if (adminIndex === -1) {
+  registeredUsers.unshift({ name: "ADMINISTRADOR", email: "admin@adlgestao.com", password: "adm4685", status: "ativo", role: "admin" });
+} else {
+  registeredUsers[adminIndex].password = "adm4685";
+  registeredUsers[adminIndex].status = "ativo";
+  registeredUsers[adminIndex].role = "admin";
+}
+localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+
+let currentUser = JSON.parse(sessionStorage.getItem("adl-current-user")) || null;
+
+function switchAuthMode(mode) {
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const forgotForm = document.getElementById("forgotForm");
+  const publicSearchForm = document.getElementById("publicSearchForm");
+  const tabLogin = document.getElementById("tabLoginBtn");
+  const tabReg = document.getElementById("tabRegisterBtn");
+  const tabPub = document.getElementById("tabPublicSearchBtn");
+  const authTabsHeader = document.getElementById("authTabsHeader");
+  
+  if(mode === 'login'){
+    loginForm.style.display = "flex"; registerForm.style.display = "none"; forgotForm.style.display = "none"; publicSearchForm.style.display = "none";
+    tabLogin.classList.add("active"); tabReg.classList.remove("active"); tabPub.classList.remove("active"); authTabsHeader.style.display = "flex";
+  } else if(mode === 'register') {
+    loginForm.style.display = "none"; registerForm.style.display = "flex"; forgotForm.style.display = "none"; publicSearchForm.style.display = "none";
+    tabReg.classList.add("active"); tabLogin.classList.remove("active"); tabPub.classList.remove("active"); authTabsHeader.style.display = "flex";
+  } else if(mode === 'forgot') {
+    loginForm.style.display = "none"; registerForm.style.display = "none"; forgotForm.style.display = "flex"; publicSearchForm.style.display = "none";
+    authTabsHeader.style.display = "none";
+  } else if(mode === 'publicSearch') {
+    loginForm.style.display = "none"; registerForm.style.display = "none"; forgotForm.style.display = "none"; publicSearchForm.style.display = "flex";
+    tabPub.classList.add("active"); tabLogin.classList.remove("active"); tabReg.classList.remove("active"); authTabsHeader.style.display = "flex";
+    populatePublicSearchDropdowns();
+  }
+}
+
+async function populatePublicSearchDropdowns() {
+  await refreshAllStatesCache();
+  const allMems = [];
+  
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith("adl:")) {
+      try {
+        const val = JSON.parse(localStorage.getItem(key));
+        if (val && Array.isArray(val.members)) {
+          allMems.push(...val.members);
+        }
+      } catch (err) {}
+    }
+  }
+
+  for(const t of TEAM_NAMES) {
+    const st = allStatesCache[t];
+    if(st && st.members) allMems.push(...st.members);
+    if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
+  }
+
+  const uniqueMems = Array.from(new Set([...allMems, ...Object.keys(VACATION_DATA).filter(k => !k.startsWith("__"))])).sort((a,b)=>a.localeCompare(b,"pt-BR"));
+  
+  const sel = document.getElementById("publicSearchMemberSelect");
+  if(sel) sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
+  
+  const mSel = document.getElementById("publicSearchMonth");
+  if(mSel) mSel.innerHTML = MONTH_NAMES.map((n, i) => `<option value="${i}" ${i===new Date().getMonth()?'selected':''}>${n}</option>`).join("");
+  
+  const ySel = document.getElementById("publicSearchYear");
+  if(ySel) {
+    const thisYear = new Date().getFullYear(); let opts = "";
+    for(let y = thisYear - 1; y < thisYear + (RULE_CONFIGS.yearsCount||4); y++) opts += `<option value="${y}" ${y===thisYear?'selected':''}>${y}</option>`;
+    ySel.innerHTML = opts;
+  }
+}
+
+async function handlePublicSearch() {
+  const memberName = document.getElementById("publicSearchMemberSelect").value;
+  const month = parseInt(document.getElementById("publicSearchMonth").value);
+  const year = parseInt(document.getElementById("publicSearchYear").value);
+  const resultDiv = document.getElementById("publicSearchResult");
+  
+  if(!memberName) {
+    alert("POR FAVOR, SELECIONE UM COLABORADOR.");
+    return;
+  }
+
+  let targetTeam = TEAM_NAMES[0];
+  for(const t of TEAM_NAMES) {
+    const st = allStatesCache[t] || await loadTeamStateForMonth(t, year, month);
+    if(st.members && st.members.includes(memberName)) {
+      targetTeam = t;
+      break;
+    }
+  }
+
+  const teamState = await loadTeamStateForMonth(targetTeam, year, month);
+  const hoDays = (teamState.ho && teamState.ho[memberName]) || [];
+  const hoFormatted = hoDays.map(dStr => formatDatePt(dStr)).sort();
+
+  const memberTrips = [];
+  if(TRAVEL_DATA && TRAVEL_DATA.visits) {
+    TRAVEL_DATA.visits.forEach(v => {
+      if(v.tecnicos && v.tecnicos.includes(memberName)) {
+        memberTrips.push(`<tr><td>${formatDatePt(v.saidaData)} À ${formatDatePt(v.chegadaData)}</td><td>${v.cliente}</td></tr>`);
+      }
+    });
+  }
+
+  const vacationRec = VACATION_DATA[memberName];
+  let vacationInfo = "<tr><td colspan='2' style='text-align:center; color:var(--text-muted);'>NENHUMA FÉRIAS REGISTRADA PARA ESTE PERÍODO.</td></tr>";
+  if(vacationRec && vacationRec.solicitacao) {
+    vacationInfo = `<tr><td colspan='2'>${vacationRec.solicitacao}</td></tr>`;
+  }
+
+  resultDiv.innerHTML = `
+    <div style="border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px;">
+      <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">COMPROVANTE INDIVIDUAL</span>
+      <h3 style="color: var(--primary-dark); font-size: 16px; margin: 2px 0 0 0; text-transform: uppercase;">${memberName}</h3>
+    </div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 12px; text-transform: uppercase;">
+      <tr>
+        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main); width: 30%;"><strong>PERÍODO:</strong></td>
+        <td style="padding: 6px; border: 1px solid var(--border-color);">${MONTH_NAMES[month]} / ${year}</td>
+      </tr>
+      <tr>
+        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main);"><strong>EQUIPE / SETOR:</strong></td>
+        <td style="padding: 6px; border: 1px solid var(--border-color);">${targetTeam}</td>
+      </tr>
+      <tr>
+        <td style="padding: 6px; border: 1px solid var(--border-color); background: var(--bg-main);"><strong>TOTAL DIAS HO:</strong></td>
+        <td style="padding: 6px; border: 1px solid var(--border-color);">${hoFormatted.length} DIA(S) AUTORIZADO(S)</td>
+      </tr>
+    </table>
+
+    <div style="font-weight: 700; font-size: 12.5px; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase;">📅 DIAS DE HOME OFFICE AGENDADOS:</div>
+    <div style="background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 12px; max-height: 80px; overflow-y: auto; text-transform: uppercase;">
+      ${hoFormatted.length ? hoFormatted.join(" • ") : "NENHUM DIA DE HOME OFFICE AGENDADO NESTE MÊS."}
+    </div>
+
+    <div style="font-weight: 700; font-size: 12.5px; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase;">✈️ VIAGENS CORPORATIVAS:</div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px; text-transform: uppercase;">
+      <thead>
+        <tr style="background: var(--bg-main);">
+          <th style="border: 1px solid var(--border-color); padding: 6px; text-align: left;">PERÍODO DA VIAGEM</th>
+          <th style="border: 1px solid var(--border-color); padding: 6px; text-align: left;">DESTINO / CLIENTE</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${memberTrips.length ? memberTrips.join("") : '<tr><td colspan="2" style="border: 1px solid var(--border-color); padding: 6px; text-align: center; color: var(--text-muted);">NENHUMA VIAGEM CADASTRADA.</td></tr>'}
+      </tbody>
+    </table>
+
+    <div style="font-weight: 700; font-size: 12.5px; margin-bottom: 6px; color: var(--text-main); text-transform: uppercase;">🏖️ PERÍODO DE FÉRIAS:</div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-transform: uppercase;">
+      <tbody>
+        ${vacationInfo}
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById("publicResultModal").style.display = "flex";
+}
+
+function closePublicResultModal() {
+  document.getElementById("publicResultModal").style.display = "none";
+}
+
+function printPublicReport() {
+  const pd=document.getElementById("pubPrintDate"); if(pd) pd.textContent=new Date().toLocaleString("pt-BR").toUpperCase();
+  document.body.classList.add("printing-public-report");
+  window.print();
+  document.body.classList.remove("printing-public-report");
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+  const pass = document.getElementById("loginPassword").value;
+  const msg = document.getElementById("loginMsg");
+
+  const found = registeredUsers.find(u => u.email.toLowerCase() === email && u.password === pass);
+  if(found) {
+    if(found.status === "pendente") {
+      msg.textContent = "A SUA CONTA AGUARDA APROVAÇÃO DO ADMINISTRADOR.";
+      msg.className = "auth-msg error";
+      return;
+    }
+    currentUser = found;
+    sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
+    msg.textContent = "LOGIN REALIZADO COM SUCESSO!";
+    msg.className = "auth-msg success";
+    setTimeout(() => { document.getElementById("authOverlay").style.display = "none"; updateSessionDisplay(); }, 600);
+  } else {
+    msg.textContent = "E-MAIL OU SENHA INVÁLIDOS.";
+    msg.className = "auth-msg error";
+  }
+}
+
+function handleForgot(e) {
+  e.preventDefault();
+  const email = document.getElementById("forgotEmail").value.trim().toLowerCase();
+  const msg = document.getElementById("forgotMsg");
+  const found = registeredUsers.find(u => u.email.toLowerCase() === email);
+  if(found) {
+    const tempNewPass = "temp" + Math.floor(1000 + Math.random() * 9000);
+    found.password = tempNewPass;
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    msg.innerHTML = `ENVIADO PARA <strong>${email.toUpperCase()}</strong>.<br>SENHA TEMPORÁRIA: <code style="background:var(--card-bg); padding:2px 6px; border-radius:4px;">${tempNewPass}</code>`;
+    msg.className = "auth-msg success";
+  } else {
+    msg.textContent = "E-MAIL NÃO ENCONTRADO.";
+    msg.className = "auth-msg error";
+  }
+}
+
+function handleRegister(e) {
+  e.preventDefault();
+  const name = document.getElementById("regName").value.trim().toUpperCase();
+  const email = document.getElementById("regEmail").value.trim().toLowerCase();
+  const pass = document.getElementById("regPassword").value;
+  const msg = document.getElementById("regMsg");
+
+  if(pass.length < 3) {
+    msg.textContent = "A SENHA DEVE TER PELO MENOS 3 CARACTERES.";
+    msg.className = "auth-msg error";
+    return;
+  }
+  const exists = registeredUsers.some(u => u.email.toLowerCase() === email);
+  if(exists) {
+    msg.textContent = "ESTE E-MAIL JÁ ESTÁ CADASTRADO.";
+    msg.className = "auth-msg error";
+    return;
+  }
+
+  const newUser = { name, email, password: pass, status: "pendente", role: "user" };
+  registeredUsers.push(newUser);
+  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+
+  msg.textContent = "CADASTRO REALIZADO! CONTA AGUARDANDO APROVAÇÃO DO ADMINISTRADOR.";
+  msg.className = "auth-msg success";
+
+  setTimeout(() => {
+    switchAuthMode('login');
+    document.getElementById("loginEmail").value = email;
+    document.getElementById("regMsg").textContent = "";
+  }, 2000);
+}
+
+function handleLogout() {
+  currentUser = null;
+  sessionStorage.removeItem("adl-current-user");
+  const existingPanel = document.getElementById("adminApprovalPanel");
+  if(existingPanel) existingPanel.remove();
+  document.getElementById("authOverlay").style.display = "flex";
+  document.getElementById("loginEmail").value = "";
+  document.getElementById("loginPassword").value = "";
+  document.getElementById("loginMsg").textContent = "";
+  switchAuthMode('login');
+}
+
+function updateSessionDisplay() {
+  if(currentUser) {
+    const latestUser = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+    if(latestUser) currentUser = latestUser;
+
+    document.getElementById("loggedUserName").textContent = (currentUser.name || "").toUpperCase() + (currentUser.role === 'admin' ? ' (ADMIN)' : '');
+    document.getElementById("authOverlay").style.display = "none";
+    if(currentUser.email.toLowerCase() === "admin@adlgestao.com" || currentUser.role === "admin") {
+      criarPainelAprovacaoAdmin();
+    }
+  } else {
+    document.getElementById("authOverlay").style.display = "flex";
+  }
+}
+
+function toggleAdminPanel(btnEl) {
+  const content = document.getElementById("adminPanelContent");
+  if(!content) return;
+  if(content.style.display === "none"){ content.style.display = "block"; btnEl.textContent = "➖ MINIMIZAR"; }
+  else { content.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
+}
+
+function criarPainelAprovacaoAdmin() {
+  let adminPanel = document.getElementById("adminApprovalPanel");
+  if(!adminPanel) {
+    adminPanel = document.createElement("div");
+    adminPanel.id = "adminApprovalPanel";
+    adminPanel.className = "card";
+    adminPanel.style.cssText = "margin-bottom: 24px; padding: 20px; border-left: 4px solid var(--accent); text-transform: uppercase;";
+    const wrap = document.querySelector(".wrap");
+    wrap.insertBefore(adminPanel, wrap.children[2]);
+  }
+
+  const pendentes = registeredUsers.filter(u => u.status === "pendente");
+  const todosUsuarios = registeredUsers;
+  
+  adminPanel.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <h3 style="color: var(--accent); font-size: 16px; margin: 0; text-transform: uppercase;">🛡️ PAINEL DE APROVAÇÃO E GESTÃO DE USUÁRIOS</h3>
+      <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleAdminPanel(this)">➕ MAXIMIZAR</button>
+    </div>
+    
+    <div id="adminPanelContent" style="display: none;">
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">CADASTROS PENDENTES:</h4>
+        ${
+          pendentes.length === 0 
+          ? `<div class="empty-note">NENHUM USUÁRIO AGUARDANDO APROVAÇÃO NO MOMENTO.</div>`
+          : `<div style="display: flex; flex-direction: column; gap: 8px;">
+              ${pendentes.map(p => `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;">
+                  <div>
+                    <strong>${(p.name||"").toUpperCase()}</strong> <span style="font-size: 12px; color: var(--text-muted);">(${p.email})</span> — CARGO ATUAL: <span style="font-weight:600; color:var(--primary-dark);">${p.role === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO COMUM'}</span>
+                  </div>
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <select id="role-select-${p.email.replace(/[@.]/g, '_')}" style="padding: 4px 8px; font-size: 12px;">
+                      <option value="user" ${p.role==='user'?'selected':''}>USUÁRIO COMUM</option>
+                      <option value="admin" ${p.role==='admin'?'selected':''}>ADMINISTRADOR</option>
+                    </select>
+                    <button class="gold" style="padding: 4px 10px; font-size: 12px;" onclick="aprovarUsuario('${p.email}')">APROVAR</button>
+                    <button class="danger secondary" style="padding: 4px 10px; font-size: 12px;" onclick="rejeitarUsuario('${p.email}')">RECUSAR</button>
+                  </div>
+                </div>
+              `).join("")}
+             </div>`
+        }
+      </div>
+
+      <div style="border-top: 1px dashed var(--border-color); padding-top: 16px;">
+        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">USUÁRIOS DO SISTEMA (ALTERAR NÍVEL E EXCLUIR):</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto;">
+          ${todosUsuarios.map(u => `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 13px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <strong>${(u.name||"").toUpperCase()}</strong> <span style="color: var(--text-muted);">(${u.email})</span> ${u.status === 'pendente' ? '<span style="color: var(--danger); font-size:11px;">[PENDENTE]</span>' : ''}
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <select onchange="alterarCargoUsuario('${u.email}', this.value)" style="padding: 3px 8px; font-size: 11.5px;" ${u.email.toLowerCase() === 'admin@adlgestao.com' ? 'disabled' : ''}>
+                  <option value="user" ${u.role==='user'?'selected':''}>USUÁRIO COMUM</option>
+                  <option value="admin" ${u.role==='admin'?'selected':''}>ADMINISTRADOR</option>
+                </select>
+                ${u.email.toLowerCase() !== 'admin@adlgestao.com' ? `
+                  <button class="danger secondary" style="padding: 3px 8px; font-size: 11px;" onclick="excluirUsuarioSistema('${u.email}')">EXCLUIR</button>
+                ` : `<span style="font-size: 11px; font-style: italic; color: var(--text-muted);">MASTER</span>`}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+window.aprovarUsuario = function(email) {
+  const user = registeredUsers.find(u => u.email === email);
+  if(user) {
+    const safeId = email.replace(/[@.]/g, '_');
+    const selectEl = document.getElementById(`role-select-${safeId}`);
+    if(selectEl) {
+      user.role = selectEl.value;
+    }
+    user.status = "ativo";
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    criarPainelAprovacaoAdmin();
+    alert(`USUÁRIO ${(user.name||"").toUpperCase()} APROVADO COM SUCESSO!`);
+  }
+};
+
+window.alterarCargoUsuario = function(email, novoCargo) {
+  const user = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+  if(user) {
+    user.role = novoCargo;
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    alert(`CARGO DE ${(user.name||"").toUpperCase()} ALTERADO PARA ${novoCargo === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO COMUM'}.`);
+  }
+};
+
+window.rejeitarUsuario = function(email) {
+  if(!confirm("DESEJA REJEITAR E REMOVER ESTE CADASTRO PENDENTE?")) return;
+  registeredUsers = registeredUsers.filter(u => u.email !== email);
+  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+  criarPainelAprovacaoAdmin();
+};
+
+window.excluirUsuarioSistema = function(email) {
+  if(email.toLowerCase() === 'admin@adlgestao.com'){ alert("NÃO É PERMITIDO EXCLUIR O ADMIN PRINCIPAL."); return; }
+  if(!confirm(`DESEJA REALMENTE EXCLUIR O USUÁRIO ${email} DO SISTEMA?`)) return;
+  registeredUsers = registeredUsers.filter(u => u.email.toLowerCase() !== email.toLowerCase());
+  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+  
+  if(currentUser && currentUser.email.toLowerCase() === email.toLowerCase()) {
+    handleLogout();
+  } else {
+    criarPainelAprovacaoAdmin();
+    alert("USUÁRIO EXCLUÍDO COM SUCESSO!");
+  }
+};
+
+function openPasswordModal() {
+  document.getElementById("passwordModal").style.display = "flex";
+  document.getElementById("currentPassInput").value = "";
+  document.getElementById("newPassInput").value = "";
+  document.getElementById("confirmPassInput").value = "";
+  document.getElementById("passModalMsg").textContent = "";
+}
+function closePasswordModal() { document.getElementById("passwordModal").style.display = "none"; }
+
+function handleChangePassword(e) {
+  e.preventDefault();
+  const currentPass = document.getElementById("currentPassInput").value;
+  const newPass = document.getElementById("newPassInput").value;
+  const confirmPass = document.getElementById("confirmPassInput").value;
+  const msg = document.getElementById("passModalMsg");
+
+  if(currentPass !== currentUser.password) { msg.textContent = "SENHA ATUAL INCORRETA."; msg.className = "auth-msg error"; return; }
+  if(newPass.length < 3) { msg.textContent = "MÍNIMO 3 CARACTERES."; msg.className = "auth-msg error"; return; }
+  if(newPass !== confirmPass) { msg.textContent = "AS SENHAS NÃO COINCIDEM."; msg.className = "auth-msg error"; return; }
+
+  const userRef = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+  if(userRef) {
+    userRef.password = newPass; currentUser.password = newPass;
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
+  }
+  msg.textContent = "SENHA ALTERADA COM SUCESSO!"; msg.className = "auth-msg success";
+  setTimeout(() => { closePasswordModal(); }, 1200);
+}
+
+function toggleCardSection(bodyId, btnEl) {
+  const body = document.getElementById(bodyId);
+  if(!body) return;
+  if(body.style.display === "none"){ body.style.display = "block"; btnEl.textContent = "➖ MINIMIZAR"; }
+  else { body.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
+}
+
+function toggleQuadrant(bodyId, btnEl) {
+  const body = document.getElementById(bodyId);
+  if(!body) return;
+  if(body.style.display === "none"){ body.style.display = "block"; btnEl.textContent = "➖ MINIMIZAR"; }
+  else { body.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
+}
+
+let TEAM_NAMES = ["IPTU", "ISS", "DÍVIDA ATIVA"];
+let TEAM_SLUGS = {"IPTU": "iptu", "ISS": "iss", "DÍVIDA ATIVA": "divida-ativa"};
+const TEAM_ACCENTS = {"IPTU": "#2a435c", "ISS": "#dc2626", "DÍVIDA ATIVA": "#16a34a"};
+const DEFAULT_MEMBERS = {
+  "IPTU": ["ADILSON", "MURILO", "EMERSON", "DIÓGENES", "SINDY"],
+  "ISS": ["ANA VANESSA", "BRAULIO", "LUCELIA"],
+  "DÍVIDA ATIVA": ["ROSEANE", "KARINA", "MAIRA", "SIDNEY", "GISELLE", "JULIO"]
+};
+let TEAM_ICONS = {"IPTU": "🏠", "ISS": "🧾", "DÍVIDA ATIVA": "⚖️"};
+const DEFAULT_VACATION_DATA = {
+  "ADILSON": { admissao: "MARÇO", solicitacao: "" },
+  "ANA VANESSA": { admissao: "AGOSTO", solicitacao: "21/12/2026 À 03/01/2027 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "BRAULIO": { admissao: "NOVEMBRO", solicitacao: "23/11/2026 À 06/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)" },
+  "DIÓGENES": { admissao: "JULHO", solicitacao: "05/10/2026 À 13/10/2026 - 09 DIAS (AUTORIZADO NO PORTALRH) - 23/11/2026 À 06/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "EMERSON": { admissao: "ABRIL", solicitacao: "26/10/2026 À 08/11/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "GISELLE": { admissao: "JUNHO", solicitacao: "30/11/2026 À 13/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)" },
+  "JULIO": { admissao: "JANEIRO", solicitacao: "" },
+  "KARINA": { admissao: "MARÇO", solicitacao: "30/07/2026 À 23/08/2026 - 24 DIAS (AUTORIZADO NO PORTALRH)." },
+  "LUCELIA": { admissao: "ABRIL", solicitacao: "05/10/2026 À 13/10/2026 - 09 DIAS (AUTORIZADO NO PORTALRH) - 23/11/2026 À 06/12/2026 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
+  "MAIRA": { admissao: "AGOSTO", solicitacao: "27/07/2026 À 02/08/2026 - 07 DIAS (AUTORIZADO NO PORTALRH)." },
+  "MURILO": { admissao: "JUNHO", solicitacao: "" },
+  "ROSEANE": { admissao: "FEVEREIRO", solicitacao: "" },
+  "SIDNEY": { admissao: "JULHO", solicitacao: "" },
+  "SINDY": { admissao: "ABRIL", solicitacao: "" },
+  "VLADIMIR": { admissao: "JANEIRO", solicitacao: "" }
+};
+
+let TRAVEL_DATA = { startDate: "", endDate: "", visits: [], pendings: [] };
+let SAVED_TRAVEL_SCHEDULES = [];
+let VACATION_DATA = {};
+let currentVacationYear = new Date().getFullYear();
+let RULE_CONFIGS = {
+  maxHoDays: 2, enableTeams: true, yearsCount: 4,
+  teamsList: ["IPTU", "ISS", "DÍVIDA ATIVA"], teamIcons: TEAM_ICONS,
+  conflicts: { "IPTU": [["SINDY", "DIÓGENES"]], "ISS": [["ANA VANESSA", "LUCELIA"]], "DÍVIDA ATIVA": [["JULIO", "SIDNEY"]] },
+  managerBlocked: {}
+};
+
+const TRAVEL_STORAGE_KEY = "adl:travel-data";
+const SAVED_TRAVEL_LIST_KEY = "adl:saved-travel-list";
+const VACATION_STORAGE_KEY = "adl:vacation-data";
+const RULES_STORAGE_KEY = "adl:rules-config";
+let memoryStore = {};
+
+function hasSharedStorage(){ return typeof window.storage === "object" && window.storage !== null && typeof window.storage.get === "function"; }
+async function storageGet(k){
+  if(hasSharedStorage()){ try{ const r = await window.storage.get(k, true); return (r && r.value != null) ? r.value : null; }catch(e){return null;} }
+  return memoryStore[k] || null;
+}
+async function storageSet(k, v){
+  if(hasSharedStorage()){ await window.storage.set(k, v, true); return; }
+  memoryStore[k] = v;
+}
+
+async function loadTravelData(){
+  try{
+    const raw = await storageGet(TRAVEL_STORAGE_KEY); if(raw) TRAVEL_DATA = JSON.parse(raw);
+    const rawSaved = await storageGet(SAVED_TRAVEL_LIST_KEY); if(rawSaved) SAVED_TRAVEL_SCHEDULES = JSON.parse(rawSaved);
+    const rawVac = await storageGet(VACATION_STORAGE_KEY); VACATION_DATA = rawVac ? JSON.parse(rawVac) : {};
+    const _def = JSON.parse(JSON.stringify(DEFAULT_VACATION_DATA));
+    if(VACATION_DATA.__seed !== "2026-09-28"){ Object.keys(_def).forEach(k => { VACATION_DATA[k] = _def[k]; }); VACATION_DATA.__seed = "2026-09-28"; await storageSet(VACATION_STORAGE_KEY, JSON.stringify(VACATION_DATA)); }
+    else Object.keys(_def).forEach(k => { if(!VACATION_DATA[k]) VACATION_DATA[k] = _def[k]; });
+    const rawRules = await storageGet(RULES_STORAGE_KEY);
+    if(rawRules){
+      RULE_CONFIGS = JSON.parse(rawRules);
+      if(!RULE_CONFIGS.managerBlocked) RULE_CONFIGS.managerBlocked = {};
+      if(RULE_CONFIGS.teamsList){ TEAM_NAMES = RULE_CONFIGS.teamsList; TEAM_SLUGS = {}; TEAM_NAMES.forEach(t=> TEAM_SLUGS[t] = t.toLowerCase().replace(/[^a-z0-9]+/g,"-")); }
+      if(RULE_CONFIGS.teamIcons) TEAM_ICONS = RULE_CONFIGS.teamIcons;
+    }
+  }catch(e){ VACATION_DATA = JSON.parse(JSON.stringify(DEFAULT_VACATION_DATA)); }
+}
+async function saveTravelData(){ await storageSet(TRAVEL_STORAGE_KEY, JSON.stringify(TRAVEL_DATA)); }
+async function saveSavedSchedulesList(){ await storageSet(SAVED_TRAVEL_LIST_KEY, JSON.stringify(SAVED_TRAVEL_SCHEDULES)); }
+async function saveVacationData(){ await storageSet(VACATION_STORAGE_KEY, JSON.stringify(VACATION_DATA)); }
+async function saveRulesData(){ RULE_CONFIGS.teamIcons = TEAM_ICONS; await storageSet(RULES_STORAGE_KEY, JSON.stringify(RULE_CONFIGS)); }
+
+const WEEKDAY_LABELS = ["SEG","TER","QUA","QUI","SEX"];
+const MONTH_NAMES = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"];
+
+let currentTeam = TEAM_NAMES[0];
+let currentHoSubtab = TEAM_NAMES[0];
+let currentYear = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
+let state = { members: [], admissionDates: {}, ho: {}, forced: [] };
+let viewMode = "inicio";
+let allStatesCache = {};
+
+function pad(n){ return n<10 ? "0"+n : ""+n; }
+function isoDate(y,m,d){ return `${y}-${pad(m+1)}-${pad(d)}`; }
+function formatDatePt(s){ return (!s || s.length < 10) ? s : `${s.slice(8,10)}/${s.slice(5,7)}/${s.slice(0,4)}`; }
+
+function getWeekdayWeeks(year, month){
+  const days = new Date(year, month+1, 0).getDate();
+  const weeks = []; let current = []; let lastWeek = null;
+  for(let d=1; d<=days; d++){
+    const date = new Date(year, month, d); const dow = date.getDay();
+    if(dow===0 || dow===6) continue;
+    const wKey = getMondayKey(date);
+    if(lastWeek !== null && wKey !== lastWeek){ weeks.push(current); current = []; }
+    current.push({ date: isoDate(year,month,d), dow: dow-1 });
+    lastWeek = wKey;
+  }
+  if(current.length) weeks.push(current);
+  return weeks;
+}
+
+function getMondayKey(date){
+  const d = new Date(date); const day = d.getDay();
+  d.setDate(d.getDate() + ((day===0? -6 : 1) - day));
+  return d.toISOString().slice(0,10);
+}
+
+function storageKey(t, y, m){ return `adl:${TEAM_SLUGS[t]||t.toLowerCase()}:${y}-${pad(m+1)}`; }
+
+const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "DÍVIDA ATIVA": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}};
+const SEED_OCT_2026_FORCED = ["2026-10-01","2026-10-02","2026-10-07","2026-10-14","2026-10-21","2026-10-28"];
+let _seedPromise = null;
+function seedOct2026(){
+  if(_seedPromise) return _seedPromise;
+  _seedPromise = (async()=>{
+    try{
+      if(await storageGet("adl:seed-oct2026-v1")) return;
+      for(const t of Object.keys(SEED_OCT_2026)){
+        const k = storageKey(t, 2026, 9); const raw = await storageGet(k);
+        const st = raw ? JSON.parse(raw) : { members: [...(DEFAULT_MEMBERS[t]||[])], admissionDates: {}, ho:{}, forced:[] };
+        st.members = Array.from(new Set([...(st.members||[]), ...Object.keys(SEED_OCT_2026[t])]));
+        st.admissionDates = st.admissionDates || {}; st.members.forEach(m => { if(!st.admissionDates[m]) st.admissionDates[m] = "2020-01-01"; });
+        st.ho = {}; st.members.forEach(m => st.ho[m] = SEED_OCT_2026[t][m] ? [...SEED_OCT_2026[t][m]] : []);
+        st.forced = [...SEED_OCT_2026_FORCED];
+        await storageSet(k, JSON.stringify(st));
+      }
+      await storageSet("adl:seed-oct2026-v1", "1");
+    }catch(e){}
+  })();
+  return _seedPromise;
+}
+
+async function loadTeamStateForMonth(t, y, m){
+  if(y === 2026 && m === 9) await seedOct2026();
+  try{
+    const raw = await storageGet(storageKey(t, y, m));
+    if(raw){
+      const s = JSON.parse(raw);
+      if(!s.members) s.members = [...(DEFAULT_MEMBERS[t] || ["COLABORADOR 1"])];
+      if(!s.admissionDates) s.admissionDates = {};
+      if(!s.ho) s.ho = {}; if(!s.forced) s.forced = [];
+      s.members.forEach(m=>{ if(!s.ho[m]) s.ho[m]=[]; });
+      return s;
+    }
+  }catch(e){}
+  const defaultMems = [...(DEFAULT_MEMBERS[t] || ["COLABORADOR 1"])];
+  const defaultAdmit = {};
+  defaultMems.forEach(m => defaultAdmit[m] = "2020-01-01");
+  return { members: defaultMems, admissionDates: defaultAdmit, ho:{}, forced:[] };
+}
+
+async function loadAllStates(){
+  const result = {};
+  for(const t of TEAM_NAMES){ result[t] = (t===currentTeam && currentHoSubtab===t) ? state : await loadTeamStateForMonth(t, currentYear, currentMonth); }
+  return result;
+}
+
+async function refreshAllStatesCache(){ allStatesCache = await loadAllStates(); }
+
+function memberIsOnTrip(m, dStr){
+  if(!TRAVEL_DATA.visits) return false;
+  return TRAVEL_DATA.visits.some(v => {
+    if(!v.tecnicos || !v.saidaData || !v.chegadaData) return false;
+    const techs = v.tecnicos.split(/[\/,]/).map(t => t.trim());
+    return techs.includes(m) && dStr >= v.saidaData && dStr <= v.chegadaData;
+  });
+}
+
+function memberIsOnVacation(m, dStr){
+  const rec = VACATION_DATA[m]; if(!rec || !rec.solicitacao) return false;
+  const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
+  for(const match of matches){
+    if(dStr >= `${match[3]}-${match[2]}-${match[1]}` && dStr <= `${match[6]}-${match[5]}-${match[4]}`) return true;
+  }
+  return false;
+}
+
+function memberHasVacationOverlap(m, start, end){
+  const rec = VACATION_DATA[m]; if(!rec || !rec.solicitacao) return false;
+  const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
+  for(const match of matches){
+    if(!(end < `${match[3]}-${match[2]}-${match[1]}` || start > `${match[6]}-${match[5]}-${match[4]}`)) return true;
+  }
+  return false;
+}
+
+function memberIsNewbie(m, year, month){
+  const st = allStatesCache[currentTeam] || state;
+  const admitStr = (st.admissionDates && st.admissionDates[m]) || "2020-01-01";
+  const admitDate = new Date(admitStr + "T00:00:00");
+  const refDate = new Date(year, month, 15);
+  const diffTime = refDate - admitDate;
+  const diffDays = diffTime / (1000 * 60 * 60 * 24);
+  const diffMonths = diffDays / 30.436875;
+  return diffMonths < 6;
+}
+
+function memberIsManagerBlocked(m){
+  return RULE_CONFIGS.managerBlocked && RULE_CONFIGS.managerBlocked[m] === true;
+}
+
+function membersConflictOnDate(m1, m2, dStr){
+  const conflicts = RULE_CONFIGS.conflicts || {};
+  for(const t of TEAM_NAMES){
+    const list = conflicts[t] || [];
+    for(const p of list){
+      if((p[0] === m1 && p[1] === m2) || (p[0] === m2 && p[1] === m1)){
+        let h1=false, h2=false;
+        TEAM_NAMES.forEach(teamName => {
+          const st = allStatesCache[teamName];
+          if(st && st.ho){
+            if((st.ho[m1]||[]).includes(dStr)) h1 = true;
+            if((st.ho[m2]||[]).includes(dStr)) h2 = true;
+          }
+        });
+        return h1 && h2;
+      }
+    }
+  }
+  return false;
+}
+
+async function loadState(){
+  if(currentYear === 2026 && currentMonth === 9) await seedOct2026();
+  if(!RULE_CONFIGS.enableTeams) currentTeam = "GERAL";
+  else if(!TEAM_NAMES.includes(currentTeam)) currentTeam = TEAM_NAMES[0];
+
+  try{
+    const raw = await storageGet(storageKey(currentTeam, currentYear, currentMonth));
+    state = raw ? JSON.parse(raw) : null;
+  }catch(e){ state = null; }
+  
+  if(!state){
+    const defMems = [...(DEFAULT_MEMBERS[currentTeam] || ["COLABORADOR 1"])];
+    const defAdmit = {}; defMems.forEach(m => defAdmit[m] = "2020-01-01");
+    state = { members: defMems, admissionDates: defAdmit, ho: {}, forced: [] };
+  }
+  if(!state.members) state.members = [...(DEFAULT_MEMBERS[currentTeam] || ["COLABORADOR 1"])];
+  if(!state.admissionDates) {
+    state.admissionDates = {};
+    state.members.forEach(m => state.admissionDates[m] = "2020-01-01");
+  }
+  if(!state.ho) state.ho = {}; if(!state.forced) state.forced = [];
+  state.members.forEach(m=>{ if(!state.ho[m]) state.ho[m]=[]; if(!state.admissionDates[m]) state.admissionDates[m]="2020-01-01"; });
+  render();
+}
+
+async function saveState(){ await storageSet(storageKey(currentTeam, currentYear, currentMonth), JSON.stringify(state)); }
+function applyAccent(){ document.documentElement.style.setProperty("--team-accent", TEAM_ACCENTS[currentTeam] || "#2a435c"); }
+
+window.switchTab = function(m){ viewMode = m; renderTabs(); render(); };
+
+window.switchHoSubtab = async function(subtab){
+  currentHoSubtab = subtab;
+  document.querySelectorAll(".ho-subtab").forEach(el => el.classList.remove("active"));
+  if(subtab === "rules"){
+    document.getElementById("hoTeamContentContainer").style.display = "none";
+    document.getElementById("hoRulesContentContainer").style.display = "block";
+    event.target.classList.add("active");
+    document.getElementById("ruleMaxHoDays").value = RULE_CONFIGS.maxHoDays || 2;
+    document.getElementById("ruleEnableTeams").checked = RULE_CONFIGS.enableTeams !== false;
+    document.getElementById("ruleYearsCount").value = RULE_CONFIGS.yearsCount || 4;
+    await refreshAllStatesCache();
+    renderExistingTeamsList();
+    renderRulesUI();
+  } else {
+    currentTeam = subtab; applyAccent();
+    document.getElementById("hoTeamContentContainer").style.display = "block";
+    document.getElementById("hoRulesContentContainer").style.display = "none";
+    event.target.classList.add("active");
+    await loadState();
+  }
+};
+
+function renderExistingTeamsList(){
+  const listEl = document.getElementById("existingTeamsList");
+  if(!listEl) return;
+  listEl.innerHTML = TEAM_NAMES.map(t => `<span class="member-chip" style="font-size: 13px; padding: 6px 14px;">${TEAM_ICONS[t]||"📁"} ${t} ${TEAM_NAMES.length > 1 ? `<button onclick="removeTeam('${t}')">✕ EXCLUIR</button>` : ''}</span>`).join("");
+}
+
+window.addNewTeam = async function(){
+  const input = document.getElementById("newTeamNameInput"); const name = input.value.trim().toUpperCase();
+  if(!name || TEAM_NAMES.includes(name)) return;
+  TEAM_NAMES.push(name); TEAM_SLUGS[name] = name.toLowerCase().replace(/[^a-z0-9]+/g,"-"); TEAM_ICONS[name] = "📁";
+  RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
+  input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`EQUIPE "${name}" CRIADA!`);
+};
+
+window.removeTeam = async function(name){
+  if(TEAM_NAMES.length <= 1) return;
+  if(!confirm(`REMOVER EQUIPE ${name}?`)) return;
+  TEAM_NAMES = TEAM_NAMES.filter(t => t !== name); delete TEAM_ICONS[name];
+  RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
+  if(currentTeam === name) currentTeam = TEAM_NAMES[0];
+  await saveRulesData(); renderExistingTeamsList(); renderRulesUI();
+};
+
+function renderRulesUI(){
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  
+  const container = document.getElementById("conflictBoxesContainer");
+  if(container){
+    container.innerHTML = TEAM_NAMES.map(t => {
+      const pairs = (RULE_CONFIGS.conflicts || {})[t] || [];
+      return `
+        <div class="rule-box-card">
+          <div class="rule-box-header"><span>${TEAM_ICONS[t]||"📁"} ${t}</span><span class="rule-badge">RESTRIÇÕES</span></div>
+          <div style="margin-bottom: 8px;">${pairs.map((p, i) => `<span class="conflict-pair-chip">${p[0]} × ${p[1]}<button onclick="removeConflictPair('${t}', ${i})">✕</button></span>`).join("") || `<div class="empty-note">NENHUM CONFLITO.</div>`}</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <select id="conflictPerson1-${t}" style="flex:1; font-size:12px; padding:6px;"><option value="">COLAB 1...</option>${uniqueMems.map(m=>`<option value="${m}">${m}</option>`).join("")}</select>
+            <select id="conflictPerson2-${t}" style="flex:1; font-size:12px; padding:6px;"><option value="">COLAB 2...</option>${uniqueMems.map(m=>`<option value="${m}">${m}</option>`).join("")}</select>
+            <button class="secondary" style="padding:6px 10px; font-size:12px;" onclick="addConflictPair('${t}')">+ ADICIONAR</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  const blockSelect = document.getElementById("managerBlockedMemberSelect");
+  const blockListContainer = document.getElementById("managerBlockedListContainer");
+  if(blockSelect && blockListContainer){
+    blockSelect.innerHTML = `<option value="">SELECIONE O COLABORADOR...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
+    const blockedNames = Object.keys(RULE_CONFIGS.managerBlocked || {}).filter(m => RULE_CONFIGS.managerBlocked[m]);
+    blockListContainer.innerHTML = blockedNames.length ? blockedNames.map(m => `<span class="forced-chip"><span>⛔ ${m} (IMPEDIDO HO)</span><button onclick="removeManagerBlock('${m}')">✕</button></span>`).join("") : `<div class="empty-note">NENHUM FUNCIONÁRIO COM IMPEDIMENTO DE HO PELA COORDENAÇÃO.</div>`;
+  }
+}
+
+window.addConflictPair = async function(t){
+  const s1 = document.getElementById(`conflictPerson1-${t}`).value; const s2 = document.getElementById(`conflictPerson2-${t}`).value;
+  if(!s1 || !s2 || s1===s2) return;
+  if(!RULE_CONFIGS.conflicts) RULE_CONFIGS.conflicts = {};
+  if(!RULE_CONFIGS.conflicts[t]) RULE_CONFIGS.conflicts[t] = [];
+  RULE_CONFIGS.conflicts[t].push([s1, s2]); await saveRulesData(); renderRulesUI();
+};
+
+window.removeConflictPair = async function(t, i){
+  RULE_CONFIGS.conflicts[t].splice(i, 1); await saveRulesData(); renderRulesUI();
+};
+
+window.toggleManagerBlockMember = async function(){
+  const sel = document.getElementById("managerBlockedMemberSelect");
+  const m = sel.value; if(!m) return;
+  if(!RULE_CONFIGS.managerBlocked) RULE_CONFIGS.managerBlocked = {};
+  RULE_CONFIGS.managerBlocked[m] = !RULE_CONFIGS.managerBlocked[m];
+  if(!RULE_CONFIGS.managerBlocked[m]) delete RULE_CONFIGS.managerBlocked[m];
+  await saveRulesData(); renderRulesUI();
+  alert(RULE_CONFIGS.managerBlocked[m] ? `${m} AGORA ESTÁ IMPEDIDO DE FAZER HOME OFFICE PELA COORDENAÇÃO.` : `${m} TEVE O IMPEDIMENTO REMOVIDO.`);
+};
+
+window.removeManagerBlock = async function(m){
+  if(RULE_CONFIGS.managerBlocked) delete RULE_CONFIGS.managerBlocked[m];
+  await saveRulesData(); renderRulesUI();
+};
+
+window.resetDefaultConflicts = async function(){
+  RULE_CONFIGS.conflicts = { "IPTU": [["SINDY", "DIÓGENES"]], "ISS": [["ANA VANESSA", "LUCELIA"]], "DÍVIDA ATIVA": [["JULIO", "SIDNEY"]] };
+  RULE_CONFIGS.managerBlocked = {};
+  await saveRulesData(); renderRulesUI();
+};
+
+function renderTabs(){
+  const tabsEl = document.getElementById("tabs"); tabsEl.innerHTML = "";
+  [
+    { id: "inicio", label: "🌐 INÍCIO" },
+    { id: "home", label: "🏠 HOME OFFICE" },
+    { id: "travel", label: "✈️ VIAGENS" },
+    { id: "vacation", label: "🏖️ FÉRIAS" }
+  ].forEach(tab => {
+    const el = document.createElement("div");
+    el.className = `tab ${tab.id}-tab` + (viewMode === tab.id ? " active" : "");
+    el.textContent = tab.label;
+    el.onclick = async () => {
+      viewMode = tab.id; renderTabs();
+      if(viewMode === "home") await loadState();
+      else render();
+    };
+    tabsEl.appendChild(el);
+  });
+}
+
+function updatePanelVisibility(){
+  document.getElementById("inicioPanel").classList.toggle("visible", viewMode === "inicio");
+  document.getElementById("homePanel").classList.toggle("visible", viewMode === "home");
+  document.getElementById("travelPanel").classList.toggle("visible", viewMode === "travel");
+  document.getElementById("vacationPanel").classList.toggle("visible", viewMode === "vacation");
+
+  document.getElementById("topControls").style.display = (viewMode === "home") ? "flex" : "none";
+}
+
+function renderHoSubtabs(){
+  const container = document.getElementById("hoSubtabsContainer"); if(!container) return;
+  if(!RULE_CONFIGS.enableTeams){
+    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('GERAL')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
+  } else {
+    container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${t}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
+  }
+}
+
+function renderMonthYearSelects(){
+  const mSel = document.getElementById("monthSelect"); const ySel = document.getElementById("yearSelect");
+  mSel.innerHTML = MONTH_NAMES.map((n,i)=>`<option value="${i}" ${i===currentMonth?"selected":""}>${n}</option>`).join("");
+  const thisYear = new Date().getFullYear(); let opts = "";
+  for(let y = thisYear - 1; y < thisYear + (RULE_CONFIGS.yearsCount||4); y++) opts += `<option value="${y}" ${y===thisYear?'selected':''}>${y}</option>`;
+  ySel.innerHTML = opts;
+  mSel.onchange = ()=>{ currentMonth = parseInt(mSel.value); if(viewMode==="home" && currentHoSubtab!=="rules") loadState(); };
+  ySel.onchange = ()=>{ currentYear = parseInt(ySel.value); if(viewMode==="home" && currentHoSubtab!=="rules") loadState(); };
+  const vYear = document.getElementById("vacationYearSelect"); if(vYear){ vYear.innerHTML = opts; vYear.value = currentVacationYear; }
+}
+
+function setupDropdownCheckboxes(btnId, contentId, members){
+  const btn = document.getElementById(btnId); const content = document.getElementById(contentId);
+  if(!btn || !content) return;
+  content.innerHTML = members.map(m => `<label class="dropdown-item-label"><input type="checkbox" value="${m}" class="cb-tech"> ${m}</label>`).join("");
+  btn.onclick = (e) => { e.stopPropagation(); content.classList.toggle("visible"); };
+  document.addEventListener("click", () => content.classList.remove("visible"));
+  content.querySelectorAll(".cb-tech").forEach(cb => {
+    cb.onchange = () => {
+      const checked = Array.from(content.querySelectorAll(".cb-tech:checked")).map(i => i.value);
+      btn.textContent = checked.length > 0 ? checked.join(", ") : "SELECIONE ▾";
+    };
+  });
+}
+function getSelectedTechs(contentId){ return Array.from(document.querySelectorAll(`#${contentId} .cb-tech:checked`)).map(cb => cb.value); }
+
+async function renderTravelPanel(){
+  updatePanelVisibility(); await refreshAllStatesCache();
+  document.getElementById("travelStartDate").value = TRAVEL_DATA.startDate || "";
+  document.getElementById("travelEndDate").value = TRAVEL_DATA.endDate || "";
+  
+  const banner = document.getElementById("travelTitleBanner");
+  banner.textContent = TRAVEL_DATA.startDate && TRAVEL_DATA.endDate ? `PROGRAMAÇÃO SEMANAL (${formatDatePt(TRAVEL_DATA.startDate)} A ${formatDatePt(TRAVEL_DATA.endDate)})` : "PROGRAMAÇÃO SEMANAL";
+
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  setupDropdownCheckboxes("tDropdownBtn", "tDropdownContent", uniqueMems);
+  setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems);
+
+  document.getElementById("travelVisitsBody").innerHTML = (TRAVEL_DATA.visits || []).map((v, i)=>`
+    <tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${v.saidaHora||""}</td><td>${formatDatePt(v.chegadaData)}</td><td>${v.chegadaHora||""}</td><td>${v.reservaVeiculo}</td><td>${v.reservaHotel}</td><td>${v.hotelPref||""}</td><td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelVisit(${i})">✕</button></td></tr>
+  `).join("") || `<tr><td colspan="12" class="empty-note">NENHUMA VISITA.</td></tr>`;
+
+  const credits = {};
+  (TRAVEL_DATA.visits || []).forEach(v => {
+    if(!v.tecnicos || !v.saidaData || !v.chegadaData || v.saidaData === v.chegadaData) return;
+    const diff = Math.round((new Date(v.chegadaData) - new Date(v.saidaData)) / (1000 * 60 * 60 * 24));
+    if(diff > 0) v.tecnicos.split(/[\/,]/).map(t => t.trim()).forEach(tech => {
+      if(!credits[tech]) credits[tech] = { count: 0, descList: [] };
+      credits[tech].count += diff;
+      credits[tech].descList.push(`${diff} DIÁRIA(S) EM ${v.cliente}`);
+    });
+  });
+  document.getElementById("travelCreditsBody").innerHTML = Object.keys(credits).map(tech => {
+    const info = credits[tech];
+    const periodos = (TRAVEL_DATA.visits || []).filter(v => v.tecnicos && v.tecnicos.includes(tech) && v.saidaData !== v.chegadaData).map(v => `${formatDatePt(v.saidaData)} À ${formatDatePt(v.chegadaData)}`).join(", ");
+    return `<tr><td style="font-weight:600;text-align:left;">${tech}</td><td>${periodos || "—"}</td><td>${pad(info.count)} DIÁRIA(S)</td><td style="text-align:left;">${info.descList.join("; ")}</td></tr>`;
+  }).join("") || `<tr><td colspan="4" class="empty-note">SEM CRÉDITOS.</td></tr>`;
+
+  document.getElementById("travelPendingBody").innerHTML = (TRAVEL_DATA.pendings || []).map((p, i)=>`
+    <tr><td>${p.cliente}</td><td>${p.sistema}</td><td>${p.motivo}</td><td>${p.tecnicos}</td><td>${formatDatePt(p.saidaData)}</td><td>${formatDatePt(p.chegadaData)}</td><td>${p.veiculo}</td><td>${p.hotel}</td><td>${p.obs}</td><td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelPending(${i})">✕</button></td></tr>
+  `).join("") || `<tr><td colspan="10" class="empty-note">NENHUMA PENDENTE.</td></tr>`;
+  renderSavedSchedulesList();
+}
+
+function renderSavedSchedulesList(){
+  const container = document.getElementById("savedSchedulesList"); if(!container) return;
+  if(!SAVED_TRAVEL_SCHEDULES.length){ container.innerHTML = `<div class="empty-note">NENHUMA PROGRAMAÇÃO SALVA.</div>`; return; }
+  
+  container.innerHTML = SAVED_TRAVEL_SCHEDULES.map((item, idx) => {
+    const sPt = formatDatePt(item.startDate);
+    const ePt = formatDatePt(item.endDate);
+    const title = (item.startDate && item.endDate) ? `PROGRAMAÇÃO: ${sPt} ATÉ ${ePt}` : `PROGRAMAÇÃO #${idx+1}`;
+
+    const savedCredits = {};
+    (item.visits || []).forEach(v => {
+      if(!v.tecnicos || !v.saidaData || !v.chegadaData || v.saidaData === v.chegadaData) return;
+      const diff = Math.round((new Date(v.chegadaData) - new Date(v.saidaData)) / (1000 * 60 * 60 * 24));
+      if(diff > 0) v.tecnicos.split(/[\/,]/).map(t => t.trim()).forEach(tech => {
+        if(!savedCredits[tech]) savedCredits[tech] = { count: 0, descList: [] };
+        savedCredits[tech].count += diff;
+        savedCredits[tech].descList.push(`${diff} DIÁRIA(S) EM ${v.cliente}`);
+      });
+    });
+
+    const savedCreditRows = Object.keys(savedCredits).map(tech => {
+      const info = savedCredits[tech];
+      const periodos = (item.visits || []).filter(v => v.tecnicos && v.tecnicos.includes(tech) && v.saidaData !== v.chegadaData).map(v => `${formatDatePt(v.saidaData)} À ${formatDatePt(v.chegadaData)}`).join(", ");
+      return `<tr><td style="font-weight:600;text-align:left;">${tech}</td><td>${periodos || "—"}</td><td>${pad(info.count)} DIÁRIA(S)</td><td style="text-align:left;">${info.descList.join("; ")}</td></tr>`;
+    }).join("") || `<tr><td colspan="4" class="empty-note">NENHUM CRÉDITO CALCULADO.</td></tr>`;
+
+    return `
+      <div class="saved-schedule-card" id="saved-card-${idx}">
+        <div class="saved-schedule-header" onclick="toggleSavedSchedule(${idx})">
+          <div class="saved-schedule-title">
+            <span>📅 ${title}</span>
+            <span class="badge" style="font-size:11px;">${(item.visits||[]).length} REALIZADA(S) | ${(item.pendings||[]).length} PENDENTE(S)</span>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="gold" style="padding:4px 10px; font-size:11px;" onclick="event.stopPropagation(); printSingleSavedSchedule(${idx})">🖨️ IMPRIMIR</button>
+            <button class="secondary" style="padding:4px 10px; font-size:11px;" onclick="event.stopPropagation(); removeSavedSchedule(${idx})">EXCLUIR</button>
+            <span id="arrow-${idx}" style="font-weight:bold; font-size:14px;">▼</span>
+          </div>
+        </div>
+        <div class="saved-schedule-body" id="saved-body-${idx}">
+          <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:var(--primary);">VISITAS REALIZADAS / AGENDADAS</div>
+          <table class="travel-table">
+            <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th></tr></thead>
+            <tbody>
+              ${(item.visits||[]).map(v=>`<tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${formatDatePt(v.chegadaData)}</td></tr>`).join("")||'<tr><td colspan="6" class="empty-note">NENHUMA VISITA CADASTRADA.</td></tr>'}
+            </tbody>
+          </table>
+          
+          <div style="font-size:12px; font-weight:bold; margin-top:14px; margin-bottom:6px; color:var(--accent);">CRÉDITOS DE TICKETS POR TÉCNICO</div>
+          <table class="travel-table">
+            <thead><tr><th>TÉCNICOS</th><th>PERÍODO(S)</th><th>QUANTIDADE</th><th>DESCRIÇÃO</th></tr></thead>
+            <tbody>
+              ${savedCreditRows}
+            </tbody>
+          </table>
+
+          <div style="font-size:12px; font-weight:bold; margin-top:14px; margin-bottom:6px; color:var(--accent);">VISITAS PENDENTES</div>
+          <table class="travel-table">
+            <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th><th>OBS</th></tr></thead>
+            <tbody>
+              ${(item.pendings||[]).map(p=>`<tr><td>${p.cliente}</td><td>${p.sistema}</td><td>${p.motivo}</td><td>${p.tecnicos}</td><td>${formatDatePt(p.saidaData)}</td><td>${formatDatePt(p.chegadaData)}</td><td>${p.obs}</td></tr>`).join("")||'<tr><td colspan="7" class="empty-note">NENHUMA VISITA PENDENTE CADASTRADA.</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+window.toggleSavedSchedule = function(i){ const b = document.getElementById(`saved-body-${i}`); const arrow = document.getElementById(`arrow-${i}`); if(b.classList.contains("visible")){ b.classList.remove("visible"); arrow.textContent = "▼"; } else { b.classList.add("visible"); arrow.textContent = "▲"; } };
+window.removeSavedSchedule = async function(i){ SAVED_TRAVEL_SCHEDULES.splice(i, 1); await saveSavedSchedulesList(); renderSavedSchedulesList(); };
+
+window.printSingleSavedSchedule = function(index){
+  const body = document.getElementById(`saved-body-${index}`);
+  if(body) body.classList.add("visible");
+  
+  document.querySelectorAll('.saved-schedule-card').forEach((card, idx) => {
+    if(idx !== index) card.style.display = 'none';
+  });
+
+  appendPrintFooterAndAlerts();
+  document.body.classList.add("printing-single-saved");
+  window.print();
+  document.body.classList.remove("printing-single-saved");
+  removePrintFooterAndAlerts();
+
+  document.querySelectorAll('.saved-schedule-card').forEach(card => {
+    card.style.display = 'block';
+  });
+};
+
+document.getElementById("saveTravelScheduleBtn").onclick = async ()=>{
+  if(!TRAVEL_DATA.startDate) return alert("INFORME A DATA INICIAL.");
+  SAVED_TRAVEL_SCHEDULES.unshift(JSON.parse(JSON.stringify(TRAVEL_DATA))); await saveSavedSchedulesList(); renderSavedSchedulesList(); alert("SALVO!");
+};
+document.getElementById("updateTravelTitleBtn").onclick = async ()=>{ TRAVEL_DATA.startDate = document.getElementById("travelStartDate").value; TRAVEL_DATA.endDate = document.getElementById("travelEndDate").value; await saveTravelData(); renderTravelPanel(); };
+document.getElementById("printTravelBtn").onclick = ()=>{
+  appendPrintFooterAndAlerts();
+  document.body.classList.add("printing-travel");
+  window.print();
+  document.body.classList.remove("printing-travel");
+  removePrintFooterAndAlerts();
+};
+document.getElementById("clearTravelDataBtn").onclick = async ()=>{ TRAVEL_DATA = { startDate: "", endDate: "", visits: [], pendings: [] }; await saveTravelData(); renderTravelPanel(); };
+window.removeTravelVisit = async function(i){ TRAVEL_DATA.visits.splice(i, 1); await saveTravelData(); renderTravelPanel(); };
+window.removeTravelPending = async function(i){ TRAVEL_DATA.pendings.splice(i, 1); await saveTravelData(); renderTravelPanel(); };
+
+document.getElementById("addTravelVisitBtn").onclick = async ()=>{
+  const cliente = document.getElementById("tCliente").value.trim().toUpperCase(); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase();
+  const techs = getSelectedTechs("tDropdownContent"); const saida = document.getElementById("tSaidaData").value; const chegada = document.getElementById("tChegadaData").value;
+  if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS.");
+  for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS NESTE PERÍODO!`);
+  TRAVEL_DATA.visits.push({ cliente, sistema: document.getElementById("tSistemas").value.toUpperCase(), motivo, tecnicos: techs.join("/"), saidaData: saida, saidaHora: document.getElementById("tSaidaHora").value, chegadaData: chegada, chegadaHora: document.getElementById("tChegadaHora").value, reservaVeiculo: document.getElementById("tReservaVeiculo").value, reservaHotel: document.getElementById("tReservaHotel").value, hotelPref: document.getElementById("tHotelPref").value.toUpperCase() });
+  await saveTravelData(); renderTravelPanel();
+};
+
+document.getElementById("addTravelPendingBtn").onclick = async ()=>{
+  const cliente = document.getElementById("pCliente").value.trim().toUpperCase(); const motivo = document.getElementById("pMotivo").value.trim().toUpperCase();
+  const techs = getSelectedTechs("pDropdownContent"); const saida = document.getElementById("pSaidaData").value; const chegada = document.getElementById("pChegadaData").value;
+  if(!cliente || !motivo) return;
+  if(saida && chegada) for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS!`);
+  TRAVEL_DATA.pendings.push({ cliente, sistema: document.getElementById("pSistemas").value.toUpperCase(), motivo, tecnicos: techs.join("/")||"A DEFINIR", saidaData: saida, chegadaData: chegada, veiculo: document.getElementById("pVeiculo").value.toUpperCase(), hotel: document.getElementById("pHotel").value.toUpperCase(), obs: document.getElementById("pObs").value.toUpperCase() });
+  await saveTravelData(); renderTravelPanel();
+};
+
+async function renderVacationPanel(){
+  updatePanelVisibility(); await refreshAllStatesCache();
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  uniqueMems.forEach(m => { if(!VACATION_DATA[m]) VACATION_DATA[m] = { admissao: "JANEIRO", solicitacao: "" }; });
+  
+  const todayStr = new Date().toISOString().slice(0, 10);
+
+  document.getElementById("vacationTableBody").innerHTML = uniqueMems.map(name => {
+    const item = VACATION_DATA[name] || { admissao: "JANEIRO", solicitacao: "" };
+    
+    let formattedSolicitacao = item.solicitacao || "—";
+    if(item.solicitacao) {
+      formattedSolicitacao = item.solicitacao.replace(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi, (match, d1, m1, y1, d2, m2, y2) => {
+        const endIso = `${y2}-${m2}-${d2}`;
+        const isPast = endIso < todayStr;
+        const colorStyle = isPast ? 'color: #374151; text-decoration: line-through;' : 'color: #16a34a; font-weight: 600;';
+        return `<span style="${colorStyle}">${match.toUpperCase()}</span>`;
+      });
+    }
+
+    return `<tr>
+      <td style="font-weight:600;">${name}</td>
+      <td><select onchange="updateVacationAdmissao('${name}', this.value)" style="padding:4px; font-size:12px;">${["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"].map(m=>`<option value="${m}" ${item.admissao===m?'selected':''}>${m}</option>`).join("")}</select></td>
+      <td style="text-align:left;">${formattedSolicitacao}</td>
+      <td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="clearVacation('${name}')">LIMPAR</button></td>
+    </tr>`;
+  }).join("");
+  document.getElementById("vFuncionarioSelect").innerHTML = uniqueMems.map(n=>`<option value="${n}">${n}</option>`).join("");
+}
+
+window.updateVacationAdmissao = async function(n, v){ VACATION_DATA[n].admissao = v; await saveVacationData(); };
+window.clearVacation = async function(n){ VACATION_DATA[n].solicitacao = ""; await saveVacationData(); renderVacationPanel(); };
+
+document.getElementById("saveVacationBtn").onclick = async ()=>{
+  const name = document.getElementById("vFuncionarioSelect").value;
+  const ini = document.getElementById("vDataInicioInput").value; const fim = document.getElementById("vDataFimInput").value;
+  if(!name || !ini || !fim) return alert("PREENCHA TUDO.");
+  const diff = Math.ceil(Math.abs(new Date(fim) - new Date(ini)) / (1000*60*60*24)) + 1;
+  const text = `${formatDatePt(ini)} À ${formatDatePt(fim)} - ${pad(diff)} DIAS (AUTORIZADO)`;
+  if(!VACATION_DATA[name]) VACATION_DATA[name] = { admissao: "JANEIRO", solicitacao: "" };
+  VACATION_DATA[name].solicitacao = VACATION_DATA[name].solicitacao ? VACATION_DATA[name].solicitacao + " - " + text : text;
+  await saveVacationData(); renderVacationPanel(); alert("FÉRIAS SALVAS!");
+};
+
+document.getElementById("printVacationBtn").onclick = ()=>{
+  appendPrintFooterAndAlerts();
+  document.body.classList.add("printing-vacation");
+  window.print();
+  document.body.classList.remove("printing-vacation");
+  removePrintFooterAndAlerts();
+};
+
+document.getElementById("saveRulesBtn").onclick = async ()=>{
+  RULE_CONFIGS.maxHoDays = parseInt(document.getElementById("ruleMaxHoDays").value) || 2;
+  RULE_CONFIGS.enableTeams = document.getElementById("ruleEnableTeams").checked;
+  RULE_CONFIGS.yearsCount = parseInt(document.getElementById("ruleYearsCount").value) || 4;
+  await saveRulesData(); renderHoSubtabs(); renderMonthYearSelects(); await loadState(); alert("SALVO!");
+};
+
+async function render(){
+  updatePanelVisibility();
+  if(viewMode === "inicio") return;
+  if(viewMode === "travel") { await renderTravelPanel(); return; }
+  if(viewMode === "vacation") { await renderVacationPanel(); return; }
+  renderHoSubtabs();
+  if(currentHoSubtab === "rules") return;
+
+  document.getElementById("teamPanelTitle").textContent = RULE_CONFIGS.enableTeams ? `PESSOAS DA EQUIPE: ${TEAM_ICONS[currentTeam]||"📁"} ${currentTeam}` : `COLABORADORES`;
+  renderMemberList(); renderForcedList(); await refreshAllStatesCache(); renderTable();
+  
+  const mini = document.getElementById("miniConsultPanelCard");
+  mini.style.display = RULE_CONFIGS.enableTeams ? "block" : "none";
+  if(RULE_CONFIGS.enableTeams) renderMiniConsultPanel();
+  renderErrorLogs();
+}
+
+function renderMemberList(){
+  document.getElementById("memberList").innerHTML = state.members.map(m => {
+    const isNew = memberIsNewbie(m, currentYear, currentMonth);
+    const admitDateStr = (state.admissionDates && state.admissionDates[m]) || "2020-01-01";
+    const isManagerB = memberIsManagerBlocked(m);
+    return `
+      <div class="member-chip" id="member-chip-${m.replace(/[^a-zA-Z0-9]/g, '_')}">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px;">
+          <strong id="member-name-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">${m}</strong>
+          <div class="member-chip-actions">
+            <button class="edit-btn" onclick="startEditMember('${m}')">✏️ EDITAR</button>
+            <button class="delete-btn" onclick="removeMember('${m}')">✕ EXCLUIR</button>
+          </div>
+        </div>
+        <div class="member-meta">
+          <span id="member-admit-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">ADMISSÃO: <strong>${admitDateStr}</strong></span>
+          ${isNew ? `<span class="member-badge newbie">RECÉM-CONTRATADO (6M)</span>` : ''}
+          ${isManagerB ? `<span class="member-badge blocked">IMPEDIDO</span>` : ''}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+window.startEditMember = function(oldName) {
+  const safeId = oldName.replace(/[^a-zA-Z0-9]/g, '_');
+  const chip = document.getElementById(`member-chip-${safeId}`);
+  if(!chip) return;
+
+  const admitDateStr = (state.admissionDates && state.admissionDates[oldName]) || "2020-01-01";
+  
+  chip.innerHTML = `
+    <div style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+      <input type="text" id="edit-name-${safeId}" value="${oldName}" style="padding: 6px 10px; font-size: 13px;" placeholder="NOME DO COLABORADOR">
+      <div style="display: flex; gap: 6px;">
+        <input type="date" id="edit-admit-${safeId}" value="${admitDateStr}" style="padding: 6px 8px; font-size: 12px; flex: 1;">
+        <button class="gold" style="padding: 6px 12px; font-size: 12px;" onclick="saveEditedMember('${oldName}')">SALVAR</button>
+        <button class="secondary" style="padding: 6px 10px; font-size: 12px;" onclick="renderMemberList()">CANCELAR</button>
+      </div>
+    </div>
+  `;
+};
+
+window.saveEditedMember = async function(oldName) {
+  const safeId = oldName.replace(/[^a-zA-Z0-9]/g, '_');
+  const newNameInput = document.getElementById(`edit-name-${safeId}`);
+  const newAdmitInput = document.getElementById(`edit-admit-${safeId}`);
+  
+  if(!newNameInput || !newNameInput.value.trim()) return alert("INFORME UM NOME VÁLIDO.");
+  const newName = newNameInput.value.trim().toUpperCase();
+  const newAdmit = newAdmitInput.value || "2020-01-01";
+
+  if(newName !== oldName && state.members.includes(newName)) return alert("JÁ EXISTE UM COLABORADOR COM ESTE NOME NA EQUIPE.");
+
+  const idx = state.members.indexOf(oldName);
+  if(idx >= 0) state.members[idx] = newName;
+
+  if(!state.admissionDates) state.admissionDates = {};
+  if(oldName !== newName) {
+    state.admissionDates[newName] = newAdmit;
+    delete state.admissionDates[oldName];
+  } else {
+    state.admissionDates[oldName] = newAdmit;
+  }
+
+  if(oldName !== newName && state.ho[oldName]) {
+    state.ho[newName] = state.ho[oldName];
+    delete state.ho[oldName];
+  }
+
+  if(oldName !== newName && VACATION_DATA[oldName]) {
+    VACATION_DATA[newName] = VACATION_DATA[oldName];
+    delete VACATION_DATA[oldName];
+    await saveVacationData();
+  }
+
+  await saveState();
+  await refreshAllStatesCache();
+  render();
+  alert("COLABORADOR ATUALIZADO COM SUCESSO!");
+};
+
+window.removeMember = async function(name) {
+  if(!confirm(`DESEJA REALMENTE EXCLUIR O COLABORADOR ${name}?`)) return;
+  state.members = state.members.filter(m => m !== name);
+  if(state.ho[name]) delete state.ho[name];
+  if(state.admissionDates && state.admissionDates[name]) delete state.admissionDates[name];
+  await saveState();
+  await refreshAllStatesCache();
+  render();
+};
+
+function renderForcedList(){
+  const holder = document.getElementById("forcedList");
+  if(!state.forced.length){ holder.innerHTML = `<span class="empty-note">NENHUM DIA FORÇADO.</span>`; return; }
+  holder.innerHTML = state.forced.map(d => `<div class="forced-chip"><span>${d.slice(8,10)}/${d.slice(5,7)}</span><button onclick="removeForced('${d}')">✕</button></div>`).join("");
+}
+window.removeForced = function(d){ state.forced = state.forced.filter(x=>x!==d); saveState(); render(); };
+
+function renderTable(){
+  const weeks = getWeekdayWeeks(currentYear, currentMonth);
+  const holder = document.getElementById("tableHolder");
+  if(!state.members.length){ holder.innerHTML = `<div class="empty-note" style="padding:20px;">SEM COLABORADORES.</div>`; return; }
+
+  let head = `<tr><th rowspan="2" style="min-width:180px;">COLABORADOR(A)</th>`;
+  weeks.forEach((w, i)=> head += `<th class="week-head" colspan="${w.length}">SEMANA ${i+1}</th>`);
+  head += `</tr><tr>`;
+  weeks.forEach(w => w.forEach(d => head += `<th class="${state.forced.includes(d.date)?'forced-head':''}">${WEEKDAY_LABELS[d.dow]}<br>${d.date.slice(8,10)}</th>`));
+  head += `</tr>`;
+
+  let body = "";
+  state.members.forEach(m => {
+    const isNew = memberIsNewbie(m, currentYear, currentMonth);
+    const isManagerB = memberIsManagerBlocked(m);
+    body += `<tr><td class="name-cell" title="${m}">${m} ${isNew?'<span style="font-size:10px; color:#b45309;">[6M]</span>':''} ${isManagerB?'<span style="font-size:10px; color:#991b1b;">[BLOQ]</span>':''}</td>`;
+    weeks.forEach(w => w.forEach(d => {
+      const trip = memberIsOnTrip(m, d.date), vac = memberIsOnVacation(m, d.date);
+      const forced = !trip && !vac && state.forced.includes(d.date);
+      const ho = !trip && !vac && !forced && !isNew && !isManagerB && (state.ho[m]||[]).includes(d.date);
+      let blocked = false;
+      if(!trip && !vac && !forced && !isNew && !isManagerB && !ho && RULE_CONFIGS.enableTeams){
+        TEAM_NAMES.forEach(tn => ((RULE_CONFIGS.conflicts||{})[tn]||[]).forEach(p => {
+          if((p[0]===m || p[1]===m) && membersConflictOnDate(m, p[0]===m?p[1]:p[0], d.date)) blocked = true;
+        }));
+      }
+      
+      let cssClass = '';
+      if(vac) cssClass = 'vacation';
+      else if(trip) cssClass = 'trip';
+      else if(isNew) cssClass = 'newbie-blocked';
+      else if(isManagerB) cssClass = 'manager-blocked';
+      else if(forced) cssClass = 'forced';
+      else if(ho) cssClass = 'ho';
+      else if(blocked) cssClass = 'conflict-blocked';
+
+      body += `<td><button class="cell-btn ${cssClass}" data-m="${m}" data-d="${d.date}" ${vac||trip||isNew||isManagerB||forced||blocked?'disabled':''}></button></td>`;
+    }));
+    body += `</tr>`;
+  });
+  holder.innerHTML = `<table class="schedule"><thead>${head}</thead><tbody>${body}</tbody></table>`;
+  holder.querySelectorAll(".cell-btn:not([disabled])").forEach(b => b.onclick = () => toggleDay(b.dataset.m, b.dataset.d));
+  renderStatusLine(weeks);
+}
+
+function toggleDay(m, d){
+  const arr = state.ho[m] || (state.ho[m]=[]);
+  const idx = arr.indexOf(d);
+  if(idx >= 0) arr.splice(idx, 1);
+  else {
+    arr.push(d);
+  }
+  saveState(); render();
+}
+
+function renderStatusLine(weeks){
+  const line = document.getElementById("statusLine"); const limit = RULE_CONFIGS.maxHoDays || 2;
+  line.innerHTML = state.members.map(m => {
+    const isNew = memberIsNewbie(m, currentYear, currentMonth);
+    const isManagerB = memberIsManagerBlocked(m);
+    if(isNew || isManagerB) return `<span class="badge" style="border-color:#cbd5e1; color:#64748b; background:#f8fafc;">${m}: ISENTO/IMPEDIDO HO</span>`;
+    const total = (state.ho[m]||[]).length;
+    let expected = 0; weeks.forEach(w => expected += Math.min(limit, w.filter(d=>!state.forced.includes(d.date)&&!memberIsOnTrip(m,d.date)&&!memberIsOnVacation(m,d.date)).length));
+    return `<span class="badge ${total===expected?'ok':'warn'}">${m}: ${total}/${expected} DIAS</span>`;
+  }).join("");
+}
+
+function renderErrorLogs(){
+  const list = document.getElementById("errorLogList");
+  const weeks = getWeekdayWeeks(currentYear, currentMonth);
+  const logs = [];
+
+  const monthStartIso = isoDate(currentYear, currentMonth, 1);
+  const monthEndIso = isoDate(currentYear, currentMonth, new Date(currentYear, currentMonth + 1, 0).getDate());
+
+  TEAM_NAMES.forEach(t => {
+    const st = allStatesCache[t];
+    if(st && st.members){
+      st.members.forEach(m => {
+        const hoDays = st.ho[m] || [];
+        hoDays.forEach(dStr => {
+          if(memberIsOnVacation(m, dStr)){
+            logs.push(`⚠️ CONFLITO DE FÉRIAS: ${m} ESTÁ AGENDADO EM HOME OFFICE NO DIA ${formatDatePt(dStr)}, MAS ESTÁ DE FÉRIAS NESTE PERÍODO!`);
+          }
+          if(memberIsOnTrip(m, dStr)){
+            const activeTrip = (TRAVEL_DATA.visits || []).find(v => v.tecnicos && v.tecnicos.includes(m) && dStr >= v.saidaData && dStr <= v.chegadaData);
+            const destino = activeTrip ? activeTrip.cliente : "LOCALIDADE NÃO INFORMADA";
+            logs.push(`✈️ CONFLITO DE VIAGEM: ${m} ESTÁ AGENDADO EM HOME OFFICE NO DIA ${formatDatePt(dStr)}, MAS ESTÁ EM VIAGEM CORPORATIVA PARA ${destino}.`);
+          }
+        });
+      });
+    }
+  });
+
+  Object.keys(VACATION_DATA).forEach(m => {
+    const rec = VACATION_DATA[m];
+    if(rec && rec.solicitacao) {
+      const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
+      for(const match of matches){
+        const startIso = `${match[3]}-${match[2]}-${match[1]}`;
+        const endIso = `${match[6]}-${match[5]}-${match[4]}`;
+        if(!(endIso < monthStartIso || startIso > monthEndIso)) {
+          logs.push(`🏖️ FÉRIAS NO MÊS: <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
+        }
+      }
+    }
+  });
+
+  if(TRAVEL_DATA && TRAVEL_DATA.visits) {
+    TRAVEL_DATA.visits.forEach(v => {
+      if(v.saidaData && v.chegadaData) {
+        if(!(v.chegadaData < monthStartIso || v.saidaData > monthEndIso)) {
+          logs.push(`✈️ VIAGEM AGENDADA NO MÊS: <strong>${v.tecnicos}</strong> PARA O CLIENTE <strong>${v.cliente}</strong> DE ${formatDatePt(v.saidaData)} A ${formatDatePt(v.chegadaData)}.`);
+        }
+      }
+    });
+  }
+
+  TEAM_NAMES.forEach(t => {
+    const st = allStatesCache[t];
+    if(st && st.members){
+      st.members.forEach(m => {
+        const isNew = memberIsNewbie(m, currentYear, currentMonth);
+        const isManB = memberIsManagerBlocked(m);
+        if(isNew){
+          logs.push(`🔒 FUNCIONÁRIO NOVO (${m}): EM PERÍODO DE CARÊNCIA DE 6 MESES SEM HOME OFFICE.`);
+        }
+        if(isManB){
+          logs.push(`⛔ GESTÃO (${m}): POSSUI IMPEDIMENTO APLICADO PELA COORDENAÇÃO PARA HOME OFFICE NESTE MÊS.`);
+        }
+
+        if(!isNew && !isManB){
+          const ho = (st.ho[m] || []);
+          weeks.forEach((w, wi) => {
+            const countWeek = ho.filter(d => w.some(wd => wd.date === d)).length;
+            const limit = RULE_CONFIGS.maxHoDays || 2;
+            if(countWeek > limit){
+              logs.push(`⚠️ ${m} ULTRAPASSOU O LIMITE MÁXIMO NA SEMANA ${wi+1} (${countWeek}/${limit} DIAS).`);
+            }
+          });
+        }
+      });
+    }
+  });
+
+  list.innerHTML = logs.length ? logs.map(l=>`<div class="error-log-item">${l}</div>`).join("") : `<span class="empty-note" style="color:#059669;">NENHUM ALERTA OU INCONSISTÊNCIA DETECTADA. TUDO EM ORDEM!</span>`;
+}
+
+function renderMiniConsultPanel(){
+  const grid = document.getElementById("miniTeamsGrid"); const weeks = getWeekdayWeeks(currentYear, currentMonth);
+  grid.innerHTML = TEAM_NAMES.map(t => {
+    const st = allStatesCache[t] || { members: [], ho: {}, forced: [] };
+    return `
+      <div class="mini-team-card">
+        <h4>${TEAM_ICONS[t]||"📁"} ${t}</h4>
+        <div class="mini-table-wrapper">
+          <table class="mini-table">
+            <thead>
+              <tr>
+                <th>COL</th>
+                ${weeks.map(w=>w.map(d=>`<th>${d.date.slice(8,10)}</th>`).join("")).join("")}
+              </tr>
+            </thead>
+            <tbody>
+              ${(st.members||[]).map(m=>`
+                <tr>
+                  <td class="m-name" title="${m}">${m}</td>${weeks.map(w=>w.map(d=>{
+                    const trip = memberIsOnTrip(m,d.date), vac = memberIsOnVacation(m,d.date), f = (st.forced||[]).includes(d.date), h = ((st.ho||{})[m]||[]).includes(d.date);
+                    const isNew = memberIsNewbie(m, currentYear, currentMonth), isManB = memberIsManagerBlocked(m);
+                    let symbol = '';
+                    let bg = 'transparent';
+                    if(vac){ symbol='🏖️'; bg='#fef3c7'; }
+                    else if(trip){ symbol='✈'; bg='#e0f2fe'; }
+                    else if(isNew){ symbol='🔒'; bg='var(--border-color)'; }
+                    else if(isManB){ symbol='⛔'; bg='#fee2e2'; }
+                    else if(f){ symbol='★'; bg='#fef08a'; }
+                    else if(h){ symbol='HO'; bg='#dcfce7'; }
+                    return `<td style="background:${bg}">${symbol}</td>`;
+                  }).join("")).join("")}
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+document.getElementById("generateBtn").onclick = async ()=>{
+  const weeks = getWeekdayWeeks(currentYear, currentMonth); const limit = RULE_CONFIGS.maxHoDays || 2;
+  state.members.forEach(m => state.ho[m] = []);
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function temConflito(m, dateStr){
+    let conflito = false;
+    TEAM_NAMES.forEach(tn => {
+      ((RULE_CONFIGS.conflicts||{})[tn]||[]).forEach(pair => {
+        if(pair[0] === m || pair[1] === m){
+          const outro = pair[0] === m ? pair[1] : pair[0];
+          TEAM_NAMES.forEach(tn2 => {
+            const st2 = tn2 === currentTeam ? state : allStatesCache[tn2];
+            if(st2 && (st2.ho[outro]||[]).includes(dateStr)) conflito = true;
+          });
+        }
+      });
+    });
+    return conflito;
+  }
+
+  weeks.forEach(w => {
+    if(!w.length) return;
+    const diasDaSemana = w.filter(d => !state.forced.includes(d.date));
+    if(!diasDaSemana.length) return;
+
+    const ocupacaoPorDia = {}; diasDaSemana.forEach(d => ocupacaoPorDia[d.date] = 0);
+
+    const membrosElegiveis = shuffle(state.members.filter(m =>
+      !memberIsNewbie(m, currentYear, currentMonth) && !memberIsManagerBlocked(m)
+    ));
+
+    membrosElegiveis.forEach(m => {
+      const jaAtribuidosNaSemana = (state.ho[m]||[]).filter(d => w.some(wd => wd.date === d)).length;
+      let faltam = limit - jaAtribuidosNaSemana;
+      if(faltam <= 0) return;
+
+      const candidatos = diasDaSemana.filter(d =>
+        !memberIsOnTrip(m, d.date) && !memberIsOnVacation(m, d.date) && !temConflito(m, d.date)
+      );
+
+      const ordenados = shuffle(candidatos).sort((a, b) => ocupacaoPorDia[a.date] - ocupacaoPorDia[b.date]);
+
+      for(const d of ordenados){
+        if(faltam <= 0) break;
+        if(temConflito(m, d.date)) continue;
+        state.ho[m].push(d.date);
+        ocupacaoPorDia[d.date]++;
+        faltam--;
+      }
+    });
+  });
+
+  await saveState(); await refreshAllStatesCache(); render(); alert("ESCALA AUTOMÁTICA GERADA DE FORMA ALEATÓRIA E BALANCEADA, RESPEITANDO OS PARÂMETROS CONFIGURADOS!");
+};
+
+document.getElementById("duplicatePreviousBtn").onclick = async ()=>{
+  let py = currentYear, pm = currentMonth - 1; if(pm < 0){ pm = 11; py--; }
+  const prevW = getWeekdayWeeks(py, pm), currW = getWeekdayWeeks(currentYear, currentMonth);
+  const prevState = await loadTeamStateForMonth(currentTeam, py, pm);
+  state.ho = {}; state.members.forEach(m => state.ho[m] = []); state.forced = [...(prevState.forced||[])];
+  state.members.forEach(m => {
+    const list = []; (prevState.ho[m]||[]).forEach(pd => {
+      prevW.forEach((w, wi) => { if(w.some(d => d.date === pd) && currW[wi]){ const match = currW[wi].find(d => d.dow === w.find(x=>x.date===pd).dow); if(match) list.push(match.date); } });
+    });
+    state.ho[m] = Array.from(new Set(list));
+  });
+  await saveState(); await refreshAllStatesCache(); render(); alert("DUPLICADO COM SUCESSO!");
+};
+
+document.getElementById("saveHomeScheduleBtn").onclick = async ()=>{ await saveState(); await refreshAllStatesCache(); alert("ESCALA SALVA COM SUCESSO!"); };
+document.getElementById("clearBtn", () => { state.members.forEach(m=> state.ho[m]=[]); saveState(); render(); });
+
+document.getElementById("exportPdfBtn").onclick = ()=>{
+  appendPrintFooterAndAlerts();
+  document.body.classList.add("printing-home");
+  window.print();
+  document.body.classList.remove("printing-home");
+  removePrintFooterAndAlerts();
+};
+
+function appendPrintFooterAndAlerts(){
+  removePrintFooterAndAlerts();
+  const userName = currentUser ? currentUser.name : "USUÁRIO SISTEMA";
+  const now = new Date();
+  const dateStr = now.toLocaleDateString("pt-BR");
+  const timeStr = now.toLocaleTimeString("pt-BR");
+
+  const monthStartIso = isoDate(currentYear, currentMonth, 1);
+  const monthEndIso = isoDate(currentYear, currentMonth, new Date(currentYear, currentMonth + 1, 0).getDate());
+  const monthTitle = `${MONTH_NAMES[currentMonth]} DE ${currentYear}`;
+
+  const alertItems = [];
+
+  Object.keys(VACATION_DATA).forEach(m => {
+    const rec = VACATION_DATA[m];
+    if(rec && rec.solicitacao) {
+      const matches = rec.solicitacao.matchAll(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/gi);
+      for(const match of matches){
+        const startIso = `${match[3]}-${match[2]}-${match[1]}`;
+        const endIso = `${match[6]}-${match[5]}-${match[4]}`;
+        if(!(endIso < monthStartIso || startIso > monthEndIso)) {
+          alertItems.push(`🏖️ <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
+        }
+      }
+    }
+  });
+
+  if(TRAVEL_DATA && TRAVEL_DATA.visits) {
+    TRAVEL_DATA.visits.forEach(v => {
+      if(v.saidaData && v.chegadaData && v.tecnicos) {
+        if(!(v.chegadaData < monthStartIso || v.saidaData > monthEndIso)) {
+          alertItems.push(`✈️ <strong>${v.tecnicos}</strong> EM VIAGEM CORPORATIVA PARA O CLIENTE/DESTINO <strong>${v.cliente}</strong> DE ${formatDatePt(v.saidaData)} A ${formatDatePt(v.chegadaData)}.`);
+        }
+      }
+    });
+  }
+
+  const alertsHtml = alertItems.length > 0 
+    ? alertItems.map(a => `<div style="margin-bottom: 2px;">• ${a}</div>`).join("") 
+    : `<div>NENHUM COLABORADOR DE FÉRIAS OU EM VIAGEM CORPORATIVA AGENDADA PARA ${monthTitle}.</div>`;
+
+  const footerEl = document.createElement("div");
+  footerEl.className = "print-footer-info";
+  footerEl.id = "dynamicPrintFooter";
+  footerEl.innerHTML = `
+    <span><strong>ADL GESTÃO INTELIGENTE</strong> — SISTEMA INTEGRADO DE GESTÃO CORPORATIVA</span>
+    <span>GERADO POR: <strong>${userName}</strong> EM ${dateStr} ÀS ${timeStr}</span>
+  `;
+  document.body.appendChild(footerEl);
+
+  const summaryEl = document.createElement("div");
+  summaryEl.className = "print-alerts-summary";
+  summaryEl.id = "dynamicPrintSummary";
+  summaryEl.innerHTML = `
+    <h4>⚠️ ALERTAS PERSONALIZADOS DE FÉRIAS E VIAGENS (${monthTitle})</h4>
+    <div>${alertsHtml}</div>
+  `;
+  document.body.appendChild(summaryEl);
+}
+
+function removePrintFooterAndAlerts(){
+  const existingFooter = document.getElementById("dynamicPrintFooter");
+  if(existingFooter) existingFooter.remove();
+  const existingSummary = document.getElementById("dynamicPrintSummary");
+  if(existingSummary) existingSummary.remove();
+}
+
+document.getElementById("addMemberBtn").onclick = async ()=>{
+  const inp = document.getElementById("newMemberInput"); const name = inp.value.trim().toUpperCase();
+  const mSel = document.getElementById("newMemberAdmissaoMonth");
+  const yInput = document.getElementById("newMemberAdmissaoYear");
+  if(!name || state.members.includes(name)) return alert("INFORME UM NOME VÁLIDO E NÃO DUPLICADO.");
+  
+  let admitDateStr = `${currentYear}-${pad(currentMonth+1)}-01`;
+  if(mSel.value !== "" && yInput.value.trim() !== ""){
+    const mNum = parseInt(mSel.value) + 1;
+    const yNum = parseInt(yInput.value);
+    admitDateStr = `${yNum}-${pad(mNum)}-01`;
+  }
+
+  state.members.push(name); 
+  state.ho[name] = [];
+  if(!state.admissionDates) state.admissionDates = {};
+  state.admissionDates[name] = admitDateStr;
+
+  if(!VACATION_DATA[name]){ VACATION_DATA[name] = { admissao: MONTH_NAMES[parseInt(mSel.value)||0].toUpperCase(), solicitacao: "" }; await saveVacationData(); }
+  inp.value = ""; yInput.value = ""; mSel.value = "";
+  await saveState(); await refreshAllStatesCache(); render(); alert(`COLABORADOR ${name} ADICIONADO!`);
+};
+
+document.getElementById("forceDayBtn").onclick = ()=>{
+  const inp = document.getElementById("forcedDateInput"); if(!inp.value) return;
+  if(!state.forced.includes(inp.value)) state.forced.push(inp.value);
+  state.members.exports = state.members.forEach(m => state.ho[m] = (state.ho[m]||[]).filter(d=>d!==inp.value));
+  inp.value = ""; saveState(); render();
+};
+
+document.getElementById("forceWeekdayBtn").onclick = async ()=>{
+  const sel = document.getElementById("forcedWeekdaySelect"); if(!sel.value) return;
+  const dow = parseInt(sel.value, 10); const days = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const dates = []; for(let d=1; d<=days; d++) if(new Date(currentYear, currentMonth, d).getDay() === dow) dates.push(isoDate(currentYear, currentMonth, d));
+  for(const t of TEAM_NAMES){
+    const st = t === currentTeam ? state : await loadTeamStateForMonth(t, currentYear, currentMonth);
+    if(!st.forced) st.forced = []; dates.forEach(d => { if(!st.forced.includes(d)) st.forced.push(d); });
+    if(t === currentTeam) await saveState(); else await storageSet(storageKey(t, currentYear, currentMonth), JSON.stringify(st));
+  }
+  sel.value = ""; await loadState(); alert("PRESENÇA COLETIVA APLICADA COM SUCESSO!");
+};
+
+const themeToggleBtn = document.getElementById("themeToggleBtn");
+themeToggleBtn.onclick = ()=>{
+  const t = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", t);
+  themeToggleBtn.textContent = t === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
+  localStorage.setItem("adl-theme", t);
+};
+
+(async function init(){
+  const savedTheme = localStorage.getItem("adl-theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
+  updateSessionDisplay(); await loadTravelData(); applyAccent(); renderTabs(); renderMonthYearSelects(); viewMode = "inicio"; renderTabs(); render();
+})();
+</script>
+</body>
+</html>.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
   <meta name="theme-color" content="#1e3a8a">
   <style>
     :root{
