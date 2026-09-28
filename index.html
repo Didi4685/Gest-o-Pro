@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GestãoPro - Sistema Integrado de Gestão Corporativa</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%236366f1%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238b5cf6%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22url%28%23g%29%22/%3E%3Crect%20x%3D%2213%22%20y%3D%2217%22%20width%3D%2238%22%20height%3D%2233%22%20rx%3D%226%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M13%2023a6%206%200%200%201%206-6h26a6%206%200%200%201%206%206v4H13z%22%20fill%3D%22%23312e81%22/%3E%3Cpath%20d%3D%22M22%2039l7%207%2013-14%22%20stroke%3D%22%236366f1%22%20stroke-width%3D%225%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#4f46e5">
   <style>
     :root{
       --primary: #818cf8;
@@ -502,13 +504,33 @@
         display: block !important; border: none !important; box-shadow: none !important; padding: 0 !important; background: #fff !important;
       }
     }
+    .brand-header{ border-top: 3px solid #6366f1; background: linear-gradient(180deg,#fff,#f8fafc); }
+    .brand-texts h1{ background: linear-gradient(90deg,#4338ca,#7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .brand-badge{ font-size: 11.5px; font-weight: 700; color: #4338ca; background: #eef2ff; border: 1px solid #c7d2fe; padding: 6px 12px; border-radius: 20px; letter-spacing: .3px; }
+    .auth-header{ background: linear-gradient(135deg,#4f46e5,#7c3aed) !important; }
+    .pub-print-head, .pub-print-foot{ display:none; }
+    @media print{
+      body.printing-public-report > *:not(#publicResultModal){ display:none !important; }
+      body.printing-public-report #publicResultModal{ display:block !important; position:static !important; background:#fff !important; padding:0 !important; }
+      body.printing-public-report #publicResultModal .auth-card{ box-shadow:none !important; max-width:100% !important; width:100% !important; border:none !important; }
+      body.printing-public-report #publicResultModal .auth-header, body.printing-public-report .pub-actions{ display:none !important; }
+      body.printing-public-report #publicResultModal .auth-body{ padding:0 !important; }
+      body.printing-public-report #publicSearchResult{ max-height:none !important; overflow:visible !important; border:none !important; background:#fff !important; padding:0 !important; font-size:13px !important; }
+      body.printing-public-report .pub-print-head{ display:flex !important; align-items:center; gap:14px; border-bottom:3px solid #4f46e5; padding-bottom:12px; margin-bottom:18px; }
+      body.printing-public-report .pub-print-head h2{ font-size:20px; color:#312e81; margin:0; }
+      body.printing-public-report .pub-print-head p{ font-size:12px; color:#64748b; margin:2px 0 0; }
+      body.printing-public-report .pub-print-foot{ display:block !important; margin-top:28px; padding-top:10px; border-top:1px solid #cbd5e1; font-size:11px; color:#64748b; }
+      body.printing-public-report *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
   </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gpg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><symbol id="gp-logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="url(#gpg)"/><rect x="13" y="17" width="38" height="33" rx="6" fill="#fff"/><path d="M13 23a6 6 0 0 1 6-6h26a6 6 0 0 1 6 6v4H13z" fill="#312e81"/><circle cx="23" cy="14" r="3" fill="#fff"/><circle cx="41" cy="14" r="3" fill="#fff"/><path d="M22 39l7 7 13-14" stroke="#6366f1" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
 
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-card">
     <div class="auth-header">
+      <svg width="56" height="56" style="margin-bottom:8px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25))"><use href="#gp-logo"/></svg>
       <h2>GestãoPro</h2>
       <p>Sistema Integrado de Gestão Corporativa</p>
     </div>
@@ -596,16 +618,18 @@
 
 <div class="auth-overlay" id="publicResultModal" style="display: none; z-index: 10000;">
   <div class="auth-card" style="max-width: 600px;">
+    <div class="pub-print-head"><svg width="52" height="52"><use href="#gp-logo"/></svg><div><h2>Comprovante de Escala Individual</h2><p>GestãoPro — Sistema Integrado de Gestão Corporativa</p></div></div>
     <div class="auth-header" style="background: linear-gradient(135deg, #a5b4fc, #818cf8);">
       <h2>Relatório de Escala Individual</h2>
       <p>GestãoPro — Comprovante Corporativo</p>
     </div>
     <div class="auth-body">
       <div id="publicSearchResult" style="font-size: 14px; background: var(--bg-main); padding: 16px; border-radius: 10px; border: 1px solid var(--border-color); max-height: 380px; overflow-y: auto;"></div>
-      <div style="display: flex; gap: 10px; margin-top: 16px;">
+      <div class="pub-actions" style="display: flex; gap: 10px; margin-top: 16px;">
         <button type="button" class="auth-btn" style="background: #34d399; color: #065f46; flex: 1; margin: 0;" onclick="printPublicReport()">📥 Baixar PDF / Imprimir</button>
         <button type="button" class="secondary" style="flex: 1;" onclick="closePublicResultModal()">Fechar Janela</button>
       </div>
+      <div class="pub-print-foot">Documento gerado em <span id="pubPrintDate"></span> · GestãoPro. Informações sujeitas a alteração pela coordenação.</div>
     </div>
   </div>
 </div>
@@ -643,13 +667,13 @@
 <div class="wrap">
   <div class="brand-header">
     <div class="brand-logo-area">
-      <div class="brand-logo-icon">GP</div>
+      <svg class="brand-logo-svg" width="48" height="48" role="img" aria-label="GestãoPro"><use href="#gp-logo"/></svg>
       <div class="brand-texts">
         <h1>GestãoPro</h1>
         <p>Conectando equipes, otimizando resultados.</p>
       </div>
     </div>
-    <div style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Solução Corporativa Integrada</div>
+    <div class="brand-badge">Solução Corporativa Integrada</div>
   </div>
 
   <div class="top-bar-actions">
@@ -1060,7 +1084,7 @@ async function populatePublicSearchDropdowns() {
     if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
   }
 
-  const uniqueMems = Array.from(new Set(allMems)).sort();
+  const uniqueMems = Array.from(new Set([...allMems, ...Object.keys(VACATION_DATA).filter(k => !k.startsWith("__"))])).sort((a,b)=>a.localeCompare(b,"pt-BR"));
   
   const sel = document.getElementById("publicSearchMemberSelect");
   if(sel) sel.innerHTML = `<option value="">Selecione seu nome...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
@@ -1169,6 +1193,7 @@ function closePublicResultModal() {
 }
 
 function printPublicReport() {
+  const pd=document.getElementById("pubPrintDate"); if(pd) pd.textContent=new Date().toLocaleString("pt-BR");
   document.body.classList.add("printing-public-report");
   window.print();
   document.body.classList.remove("printing-public-report");
@@ -1450,19 +1475,20 @@ const DEFAULT_MEMBERS = {
 let TEAM_ICONS = {"IPTU": "🏠", "ISS": "🧾", "Dívida Ativa": "⚖️"};
 const DEFAULT_VACATION_DATA = {
   "ADILSON": { admissao: "MARÇO", solicitacao: "" },
-  "ANA VANESSA": { admissao: "AGOSTO", solicitacao: "" },
-  "BRAULIO": { admissao: "NOVEMBRO", solicitacao: "23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO)" },
-  "DIÓGENES": { admissao: "JULHO", solicitacao: "05/10/2026 à 13/10/2026 - 09 dias (AUTORIZADO) - 23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO)." },
-  "EMERSON": { admissao: "ABRIL", solicitacao: "24/08/2026 à 30/08/2026 - 07 dias (AUTORIZADO)." },
-  "GISELLE": { admissao: "JUNHO", solicitacao: "30/11/2026 à 13/12/2026 - 14 dias (AUTORIZADO)" },
+  "ANA VANESSA": { admissao: "AGOSTO", solicitacao: "21/12/2026 à 03/01/2027 - 14 dias (AUTORIZADO no PORTALRH)." },
+  "BRAULIO": { admissao: "NOVEMBRO", solicitacao: "23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO no PORTALRH)" },
+  "DIÓGENES": { admissao: "JULHO", solicitacao: "05/10/2026 à 13/10/2026 - 09 dias (AUTORIZADO no PORTALRH) - 23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO no PORTALRH)." },
+  "EMERSON": { admissao: "ABRIL", solicitacao: "26/10/2026 à 08/11/2026 - 14 dias (AUTORIZADO no PORTALRH)." },
+  "GISELLE": { admissao: "JUNHO", solicitacao: "30/11/2026 à 13/12/2026 - 14 dias (AUTORIZADO no PORTALRH)" },
   "JULIO": { admissao: "JANEIRO", solicitacao: "" },
-  "KARINA": { admissao: "MARÇO", solicitacao: "30/07/2026 à 23/08/2026 - 24 dias (AUTORIZADO)." },
-  "LUCELIA": { admissao: "ABRIL", solicitacao: "05/10/2026 à 13/10/2026 - 09 dias (AUTORIZADO) - 23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO)." },
-  "MAIRA": { admissao: "AGOSTO", solicitacao: "27/07/2026 à 02/08/2026 - 07 dias (AUTORIZADO)." },
+  "KARINA": { admissao: "MARÇO", solicitacao: "30/07/2026 à 23/08/2026 - 24 dias (AUTORIZADO no PORTALRH)." },
+  "LUCELIA": { admissao: "ABRIL", solicitacao: "05/10/2026 à 13/10/2026 - 09 dias (AUTORIZADO no PORTALRH) - 23/11/2026 à 06/12/2026 - 14 dias (AUTORIZADO no PORTALRH)." },
+  "MAIRA": { admissao: "AGOSTO", solicitacao: "27/07/2026 à 02/08/2026 - 07 dias (AUTORIZADO no PORTALRH)." },
   "MURILO": { admissao: "JUNHO", solicitacao: "" },
   "ROSEANE": { admissao: "FEVEREIRO", solicitacao: "" },
   "SIDNEY": { admissao: "JULHO", solicitacao: "" },
-  "SINDY": { admissao: "ABRIL", solicitacao: "" }
+  "SINDY": { admissao: "ABRIL", solicitacao: "" },
+  "VLADIMIR": { admissao: "JANEIRO", solicitacao: "" }
 };
 
 let TRAVEL_DATA = { startDate: "", endDate: "", visits: [], pendings: [] };
@@ -1496,7 +1522,10 @@ async function loadTravelData(){
   try{
     const raw = await storageGet(TRAVEL_STORAGE_KEY); if(raw) TRAVEL_DATA = JSON.parse(raw);
     const rawSaved = await storageGet(SAVED_TRAVEL_LIST_KEY); if(rawSaved) SAVED_TRAVEL_SCHEDULES = JSON.parse(rawSaved);
-    const rawVac = await storageGet(VACATION_STORAGE_KEY); VACATION_DATA = rawVac ? JSON.parse(rawVac) : JSON.parse(JSON.stringify(DEFAULT_VACATION_DATA));
+    const rawVac = await storageGet(VACATION_STORAGE_KEY); VACATION_DATA = rawVac ? JSON.parse(rawVac) : {};
+    const _def = JSON.parse(JSON.stringify(DEFAULT_VACATION_DATA));
+    if(VACATION_DATA.__seed !== "2026-09-28"){ Object.keys(_def).forEach(k => { VACATION_DATA[k] = _def[k]; }); VACATION_DATA.__seed = "2026-09-28"; await storageSet(VACATION_STORAGE_KEY, JSON.stringify(VACATION_DATA)); }
+    else Object.keys(_def).forEach(k => { if(!VACATION_DATA[k]) VACATION_DATA[k] = _def[k]; });
     const rawRules = await storageGet(RULES_STORAGE_KEY);
     if(rawRules){
       RULE_CONFIGS = JSON.parse(rawRules);
@@ -1549,7 +1578,31 @@ function getMondayKey(date){
 
 function storageKey(t, y, m){ return `gestupro:${TEAM_SLUGS[t]||t.toLowerCase()}:${y}-${pad(m+1)}`; }
 
+const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "Dívida Ativa": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}};
+const SEED_OCT_2026_FORCED = ["2026-10-01","2026-10-02","2026-10-07","2026-10-14","2026-10-21","2026-10-28"];
+let _seedPromise = null;
+function seedOct2026(){
+  if(_seedPromise) return _seedPromise;
+  _seedPromise = (async()=>{
+    try{
+      if(await storageGet("gestupro:seed-oct2026-v1")) return;
+      for(const t of Object.keys(SEED_OCT_2026)){
+        const k = storageKey(t, 2026, 9); const raw = await storageGet(k);
+        const st = raw ? JSON.parse(raw) : { members: [...(DEFAULT_MEMBERS[t]||[])], admissionDates: {}, ho:{}, forced:[] };
+        st.members = Array.from(new Set([...(st.members||[]), ...Object.keys(SEED_OCT_2026[t])]));
+        st.admissionDates = st.admissionDates || {}; st.members.forEach(m => { if(!st.admissionDates[m]) st.admissionDates[m] = "2020-01-01"; });
+        st.ho = {}; st.members.forEach(m => st.ho[m] = SEED_OCT_2026[t][m] ? [...SEED_OCT_2026[t][m]] : []);
+        st.forced = [...SEED_OCT_2026_FORCED];
+        await storageSet(k, JSON.stringify(st));
+      }
+      await storageSet("gestupro:seed-oct2026-v1", "1");
+    }catch(e){}
+  })();
+  return _seedPromise;
+}
+
 async function loadTeamStateForMonth(t, y, m){
+  if(y === 2026 && m === 9) await seedOct2026();
   try{
     const raw = await storageGet(storageKey(t, y, m));
     if(raw){
@@ -1639,6 +1692,7 @@ function membersConflictOnDate(m1, m2, dStr){
 }
 
 async function loadState(){
+  if(currentYear === 2026 && currentMonth === 9) await seedOct2026();
   if(!RULE_CONFIGS.enableTeams) currentTeam = "Geral";
   else if(!TEAM_NAMES.includes(currentTeam)) currentTeam = TEAM_NAMES[0];
 
@@ -2020,8 +2074,8 @@ async function renderVacationPanel(){
       formattedSolicitacao = item.solicitacao.replace(/(\d{2})\/(\d{2})\/(\d{4})\s*à\s*(\d{2})\/(\d{2})\/(\d{4})/g, (match, d1, m1, y1, d2, m2, y2) => {
         const endIso = `${y2}-${m2}-${d2}`;
         const isPast = endIso < todayStr;
-        const colorStyle = isPast ? 'color: #991b1b; font-weight: 600;' : 'color: #059669; font-weight: 600;';
-        return `<span style="${colorStyle}">${match} ${isPast ? '(Passou)' : '(Dentro do Prazo)'}</span>`;
+        const colorStyle = isPast ? 'color: #374151; text-decoration: line-through;' : 'color: #16a34a; font-weight: 600;';
+        return `<span style="${colorStyle}">${match}</span>`;
       });
     }
 
