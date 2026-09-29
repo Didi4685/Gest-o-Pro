@@ -6,6 +6,8 @@
   <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
   <link rel="icon" href="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
   <meta name="theme-color" content="#1e3a8a">
+  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root{
       --primary: #2563eb;
@@ -335,7 +337,6 @@
     .travel-config-bar{ display: flex; gap: 12px; align-items: center; background: var(--card-bg); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; flex-wrap: wrap; border: 1px solid var(--border-color); text-transform: uppercase; }
     .travel-section-title{ background: #fef08a; color: #713f12; padding: 10px 14px; font-weight: 700; font-size: 14px; margin-top: 24px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent); text-transform: uppercase; }
     
-    /* Contêiner com rolagem horizontal para uniformizar e impedir quebra de layout */
     .table-responsive-wrapper { width: 100%; overflow-x: auto; border-radius: 8px; }
     
     .travel-table{ width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); text-transform: uppercase; min-width: 900px; }
@@ -1106,6 +1107,39 @@
 </div>
 
 <script>
+// ==========================================
+// CONFIGURAÇÃO DO SUPABASE (BANCO CENTRALIZADO)
+// ==========================================
+const SUPABASE_URL = 'https://zysbpxivykubbesjrasa.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_cUswdwrNWzvC792A6kBDgw_0lcpcU6j';
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function storageGet(k){
+  try {
+    const { data, error } = await supabaseClient
+      .from('adl_storage')
+      .select('data')
+      .eq('id', k)
+      .single();
+    if (error || !data) return null;
+    return JSON.stringify(data.data);
+  } catch(e) {
+    return null;
+  }
+}
+
+async function storageSet(k, v){
+  try {
+    const jsonData = typeof v === 'string' ? JSON.parse(v) : v;
+    await supabaseClient
+      .from('adl_storage')
+      .upsert({ id: k, data: jsonData, updated_at: new Date() });
+  } catch(e) {
+    console.error("Erro ao salvar no Supabase:", e);
+  }
+}
+
 let registeredUsers = JSON.parse(localStorage.getItem("adl-users")) || [];
 const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@adlgestao.com");
 if (adminIndex === -1) {
@@ -1754,17 +1788,6 @@ const TRAVEL_STORAGE_KEY = "adl:travel-data";
 const SAVED_TRAVEL_LIST_KEY = "adl:saved-travel-list";
 const VACATION_STORAGE_KEY = "adl:vacation-data";
 const RULES_STORAGE_KEY = "adl:rules-config";
-let memoryStore = {};
-
-function hasSharedStorage(){ return typeof window.storage === "object" && window.storage !== null && typeof window.storage.get === "function"; }
-async function storageGet(k){
-  if(hasSharedStorage()){ try{ const r = await window.storage.get(k, true); return (r && r.value != null) ? r.value : null; }catch(e){return null;} }
-  return memoryStore[k] || null;
-}
-async function storageSet(k, v){
-  if(hasSharedStorage()){ await window.storage.set(k, v, true); return; }
-  memoryStore[k] = v;
-}
 
 async function loadTravelData(){
   try{
