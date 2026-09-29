@@ -1430,6 +1430,7 @@ window.switchActivePlatform = function(platName) {
   loadState();
 };
 
+let lastPlatformCtx = null;
 function initPlatformContext() {
   if(currentUser && currentUser.role !== 'admin') {
     activePlatform = currentUser.plataforma || Object.keys(PLATAFORMAS)[0];
@@ -1437,8 +1438,12 @@ function initPlatformContext() {
   TEAM_NAMES = PLATAFORMAS[activePlatform] || Object.values(PLATAFORMAS)[0] || ["GERAL"];
   TEAM_SLUGS = {};
   TEAM_NAMES.forEach(t => TEAM_SLUGS[t] = t.toLowerCase().replace(/[^a-z0-9]+/g,"-"));
-  currentTeam = TEAM_NAMES[0];
-  currentHoSubtab = TEAM_NAMES[0];
+  // só volta para a primeira equipe se a plataforma mudou ou a equipe atual não existe mais
+  if(lastPlatformCtx !== activePlatform || !TEAM_NAMES.includes(currentTeam)){
+    currentTeam = TEAM_NAMES[0];
+    currentHoSubtab = TEAM_NAMES[0];
+  }
+  lastPlatformCtx = activePlatform;
 
   const badge = document.getElementById("brandPlatformBadge");
   if(badge) badge.textContent = `PLATAFORMA: ${activePlatform}`;
@@ -1953,7 +1958,7 @@ window.switchHoSubtab = async function(subtab){
   if(subtab === "rules"){
     document.getElementById("hoTeamContentContainer").style.display = "none";
     document.getElementById("hoRulesContentContainer").style.display = "block";
-    event.target.classList.add("active");
+    if(window.event && window.event.target && window.event.target.classList) window.event.target.classList.add("active");
     document.getElementById("ruleMaxHoDays").value = RULE_CONFIGS.maxHoDays || 2;
     document.getElementById("ruleEnableTeams").checked = RULE_CONFIGS.enableTeams !== false;
     document.getElementById("ruleYearsCount").value = RULE_CONFIGS.yearsCount || 4;
@@ -1964,7 +1969,7 @@ window.switchHoSubtab = async function(subtab){
     currentTeam = subtab; applyAccent();
     document.getElementById("hoTeamContentContainer").style.display = "block";
     document.getElementById("hoRulesContentContainer").style.display = "none";
-    event.target.classList.add("active");
+    if(window.event && window.event.target && window.event.target.classList) window.event.target.classList.add("active");
     await loadState();
   }
 };
