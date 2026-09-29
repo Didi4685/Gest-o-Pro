@@ -395,7 +395,7 @@
     .cell-btn.newbie-blocked::after{content:"🔒 6M";}
     .cell-btn.manager-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; font-size: 9.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.manager-blocked::after{content:"⛔ BLOQ";}
-    .cell-btn.conflict-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
+    .cell-btn.conflict-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; font-size: 9.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.conflict-blocked::after{content:"⛔"; font-size: 12px;}
 
     .error-logs-panel { margin-top: 24px; padding: 20px; border-left: 4px solid #dc2626; background: var(--card-bg); text-transform: uppercase; }
@@ -1141,29 +1141,51 @@ async function storageSet(k, v){
   }
 }
 
-let registeredUsers = JSON.parse(localStorage.getItem("adl-users")) || [];
-const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@adlgestao.com");
-if (adminIndex === -1) {
-  registeredUsers.unshift({ name: "ADMINISTRADOR", email: "admin@adlgestao.com", password: "adm4685", status: "ativo", role: "admin", plataforma: "TRIBUTOS" });
-} else {
-  registeredUsers[adminIndex].password = "adm4685";
-  registeredUsers[adminIndex].status = "ativo";
-  registeredUsers[adminIndex].role = "admin";
-  if(!registeredUsers[adminIndex].plataforma) registeredUsers[adminIndex].plataforma = "TRIBUTOS";
-}
-localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
-
+let registeredUsers = [];
 let currentUser = JSON.parse(sessionStorage.getItem("adl-current-user")) || null;
 
-let PLATAFORMAS = JSON.parse(localStorage.getItem("adl-plataformas")) || {
+let PLATAFORMAS = {
   "TRIBUTOS": ["IPTU", "ISS", "DÍVIDA ATIVA"],
   "CONTABILIDADE": ["BALANCETE", "ORÇAMENTO", "TESOURARIA"]
 };
 
 let activePlatform = currentUser ? (currentUser.role === 'admin' ? (localStorage.getItem("adl-active-admin-platform") || Object.keys(PLATAFORMAS)[0]) : (currentUser.plataforma || Object.keys(PLATAFORMAS)[0])) : Object.keys(PLATAFORMAS)[0];
 
-function savePlataformas(){
-  localStorage.setItem("adl-plataformas", JSON.stringify(PLATAFORMAS));
+async function savePlataformas(){
+  await storageSet("adl-plataformas", JSON.stringify(PLATAFORMAS));
+}
+
+async function saveRegisteredUsers(){
+  await storageSet("adl-users", JSON.stringify(registeredUsers));
+}
+
+async function loadSystemUsersAndPlatforms() {
+  try {
+    const rawPlat = await storageGet("adl-plataformas");
+    if(rawPlat) {
+      const parsedPlat = JSON.parse(rawPlat);
+      if(parsedPlat && typeof parsedPlat === 'object' && Object.keys(parsedPlat).length > 0) {
+        PLATAFORMAS = parsedPlat;
+      }
+    }
+
+    const rawUsers = await storageGet("adl-users");
+    if(rawUsers) {
+      registeredUsers = JSON.parse(rawUsers);
+    }
+  } catch(e) {}
+
+  const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@adlgestao.com");
+  if (adminIndex === -1) {
+    registeredUsers.unshift({ name: "ADMINISTRADOR", email: "admin@adlgestao.com", password: "adm4685", status: "ativo", role: "admin", plataforma: "TRIBUTOS" });
+    await saveRegisteredUsers();
+  } else {
+    registeredUsers[adminIndex].password = "adm4685";
+    registeredUsers[adminIndex].status = "ativo";
+    registeredUsers[adminIndex].role = "admin";
+    if(!registeredUsers[adminIndex].plataforma) registeredUsers[adminIndex].plataforma = "TRIBUTOS";
+    await saveRegisteredUsers();
+  }
 }
 
 function switchAuthMode(mode) {
@@ -1203,7 +1225,6 @@ function populateLoginPlataformaDropdown() {
     if(atual && keys.includes(atual)) sel.value = atual;
   }
 }
-populateLoginPlataformaDropdown();
 
 function populateRegisterPlataformaDropdown() {
   const sel = document.getElementById("regPlataforma");
@@ -1214,6 +1235,7 @@ function populateRegisterPlataformaDropdown() {
 }
 
 async function populatePublicSearchDropdowns() {
+  await loadSystemUsersAndPlatforms();
   await refreshAllStatesCache();
   const allMems = [];
   
@@ -1354,8 +1376,9 @@ function printPublicReport() {
   document.body.classList.remove("printing-public-report");
 }
 
-function handleLogin(e) {
+async function handleLogin(e) {
   e.preventDefault();
+  await loadSystemUsersAndPlatforms();
   const email = document.getElementById("loginEmail").value.trim().toLowerCase();
   const pass = document.getElementById("loginPassword").value;
   const loginPlat = document.getElementById("loginPlataforma").value;
@@ -1385,15 +1408,16 @@ function handleLogin(e) {
   }
 }
 
-function handleForgot(e) {
+async function handleForgot(e) {
   e.preventDefault();
+  await loadSystemUsersAndPlatforms();
   const email = document.getElementById("forgotEmail").value.trim().toLowerCase();
   const msg = document.getElementById("forgotMsg");
   const found = registeredUsers.find(u => u.email.toLowerCase() === email);
   if(found) {
     const tempNewPass = "temp" + Math.floor(1000 + Math.random() * 9000);
     found.password = tempNewPass;
-    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    await saveRegisteredUsers();
     msg.innerHTML = `ENVIADO PARA <strong>${email.toUpperCase()}</strong>.<br>SENHA TEMPORÁRIA: <code style="background:var(--card-bg); padding:2px 6px; border-radius:4px;">${tempNewPass}</code>`;
     msg.className = "auth-msg success";
   } else {
@@ -1402,8 +1426,9 @@ function handleForgot(e) {
   }
 }
 
-function handleRegister(e) {
+async function handleRegister(e) {
   e.preventDefault();
+  await loadSystemUsersAndPlatforms();
   const name = document.getElementById("regName").value.trim().toUpperCase();
   const email = document.getElementById("regEmail").value.trim().toLowerCase();
   const pass = document.getElementById("regPassword").value;
@@ -1424,7 +1449,7 @@ function handleRegister(e) {
 
   const newUser = { name, email, password: pass, status: "pendente", role: "user", plataforma };
   registeredUsers.push(newUser);
-  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+  await saveRegisteredUsers();
 
   msg.textContent = "CADASTRO REALIZADO! CONTA AGUARDANDO APROVAÇÃO DO ADMINISTRADOR.";
   msg.className = "auth-msg success";
@@ -1448,7 +1473,8 @@ function handleLogout() {
   switchAuthMode('login');
 }
 
-function updateSessionDisplay() {
+async function updateSessionDisplay() {
+  await loadSystemUsersAndPlatforms();
   if(currentUser) {
     const latestUser = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
     if(latestUser) currentUser = latestUser;
@@ -1511,7 +1537,8 @@ function toggleAdminPanel(btnEl) {
   else { content.style.display = "none"; btnEl.textContent = "➕ MAXIMIZAR"; }
 }
 
-function criarPainelAprovacaoAdmin() {
+async function criarPainelAprovacaoAdmin() {
+  await loadSystemUsersAndPlatforms();
   let adminPanel = document.getElementById("adminApprovalPanel");
   if(!adminPanel) {
     adminPanel = document.createElement("div");
@@ -1610,7 +1637,7 @@ function criarPainelAprovacaoAdmin() {
   `;
 }
 
-window.criarNovaPlataforma = function(){
+window.criarNovaPlataforma = async function(){
   const nomeInput = document.getElementById("newPlatformNameInput");
   const gruposInput = document.getElementById("newPlatformGroupsInput");
   const nome = nomeInput.value.trim().toUpperCase();
@@ -1623,7 +1650,7 @@ window.criarNovaPlataforma = function(){
   if(!gruposArr.length) return alert("INFORME AO MENOS UM GRUPO VÁLIDO.");
 
   PLATAFORMAS[nome] = gruposArr;
-  savePlataformas();
+  await savePlataformas();
   nomeInput.value = "";
   gruposInput.value = "";
   populateAdminPlatformSelect();
@@ -1632,11 +1659,11 @@ window.criarNovaPlataforma = function(){
   alert(`PLATAFORMA "${nome}" CRIADA COM SUCESSO!`);
 };
 
-window.excluirPlataforma = function(nome){
+window.excluirPlataforma = async function(nome){
   if(Object.keys(PLATAFORMAS).length <= 1) return alert("É NECESSÁRIO MANTER AO MENOS UMA PLATAFORMA.");
   if(!confirm(`DESEJA EXCLUIR A PLATAFORMA "${nome}"?`)) return;
   delete PLATAFORMAS[nome];
-  savePlataformas();
+  await savePlataformas();
   if(activePlatform === nome) activePlatform = Object.keys(PLATAFORMAS)[0];
   populateAdminPlatformSelect();
   populateLoginPlataformaDropdown();
@@ -1646,7 +1673,8 @@ window.excluirPlataforma = function(nome){
   alert("PLATAFORMA EXCLUÍDA!");
 };
 
-window.aprovarUsuario = function(email) {
+window.aprovarUsuario = async function(email) {
+  await loadSystemUsersAndPlatforms();
   const user = registeredUsers.find(u => u.email === email);
   if(user) {
     const safeId = email.replace(/[@.]/g, '_');
@@ -1655,42 +1683,46 @@ window.aprovarUsuario = function(email) {
     if(selectEl) user.role = selectEl.value;
     if(platSel) user.plataforma = platSel.value;
     user.status = "ativo";
-    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    await saveRegisteredUsers();
     criarPainelAprovacaoAdmin();
     alert(`USUÁRIO ${(user.name||"").toUpperCase()} APROVADO COM SUCESSO!`);
   }
 };
 
-window.alterarCargoUsuario = function(email, novoCargo) {
+window.alterarCargoUsuario = async function(email, novoCargo) {
+  await loadSystemUsersAndPlatforms();
   const user = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
   if(user) {
     user.role = novoCargo;
-    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    await saveRegisteredUsers();
     alert(`CARGO DE ${(user.name||"").toUpperCase()} ALTERADO PARA ${novoCargo === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO'}.`);
   }
 };
 
-window.alterarPlataformaUsuario = function(email, novaPlat) {
+window.alterarPlataformaUsuario = async function(email, novaPlat) {
+  await loadSystemUsersAndPlatforms();
   const user = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
   if(user) {
     user.plataforma = novaPlat;
-    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    await saveRegisteredUsers();
     alert(`PLATAFORMA DE ${(user.name||"").toUpperCase()} ALTERADA PARA ${novaPlat}.`);
   }
 };
 
-window.rejeitarUsuario = function(email) {
+window.rejeitarUsuario = async function(email) {
   if(!confirm("DESEJA REJEITAR E REMOVER ESTE CADASTRO PENDENTE?")) return;
+  await loadSystemUsersAndPlatforms();
   registeredUsers = registeredUsers.filter(u => u.email !== email);
-  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+  await saveRegisteredUsers();
   criarPainelAprovacaoAdmin();
 };
 
-window.excluirUsuarioSistema = function(email) {
+window.excluirUsuarioSistema = async function(email) {
   if(email.toLowerCase() === 'admin@adlgestao.com'){ alert("NÃO É PERMITIDO EXCLUIR O ADMIN PRINCIPAL."); return; }
   if(!confirm(`DESEJA REALMENTE EXCLUIR O USUÁRIO ${email} DO SISTEMA?`)) return;
+  await loadSystemUsersAndPlatforms();
   registeredUsers = registeredUsers.filter(u => u.email.toLowerCase() !== email.toLowerCase());
-  localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+  await saveRegisteredUsers();
   
   if(currentUser && currentUser.email.toLowerCase() === email.toLowerCase()) {
     handleLogout();
@@ -1709,8 +1741,9 @@ function openPasswordModal() {
 }
 function closePasswordModal() { document.getElementById("passwordModal").style.display = "none"; }
 
-function handleChangePassword(e) {
+async function handleChangePassword(e) {
   e.preventDefault();
+  await loadSystemUsersAndPlatforms();
   const currentPass = document.getElementById("currentPassInput").value;
   const newPass = document.getElementById("newPassInput").value;
   const confirmPass = document.getElementById("confirmPassInput").value;
@@ -1723,7 +1756,7 @@ function handleChangePassword(e) {
   const userRef = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
   if(userRef) {
     userRef.password = newPass; currentUser.password = newPass;
-    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    await saveRegisteredUsers();
     sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
   }
   msg.textContent = "SENHA ALTERADA COM SUCESSO!"; msg.className = "auth-msg success";
@@ -2071,7 +2104,7 @@ window.addNewTeam = async function(){
   if(!name || TEAM_NAMES.includes(name)) return;
   TEAM_NAMES.push(name); TEAM_SLUGS[name] = name.toLowerCase().replace(/[^a-z0-9]+/g,"-"); TEAM_ICONS[name] = "📁";
   PLATAFORMAS[activePlatform] = [...TEAM_NAMES];
-  savePlataformas();
+  await savePlataformas();
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
   input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`EQUIPE "${name}" CRIADA NA PLATAFORMA ${activePlatform}!`);
 };
@@ -2081,7 +2114,7 @@ window.removeTeam = async function(name){
   if(!confirm(`REMOVER EQUIPE ${name}?`)) return;
   TEAM_NAMES = TEAM_NAMES.filter(t => t !== name); delete TEAM_ICONS[name];
   PLATAFORMAS[activePlatform] = [...TEAM_NAMES];
-  savePlataformas();
+  await savePlataformas();
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
   if(currentTeam === name) currentTeam = TEAM_NAMES[0];
   await saveRulesData(); renderExistingTeamsList(); renderRulesUI();
@@ -2581,7 +2614,7 @@ document.getElementById("saveVacationBtn").onclick = async ()=>{
   if(!name || !ini || !fim) return alert("PREENCHA TUDO.");
   const diff = Math.ceil(Math.abs(new Date(fim) - new Date(ini)) / (1000*60*60*24)) + 1;
   const text = `${formatDatePt(ini)} À ${formatDatePt(fim)} - ${pad(diff)} DIAS (AUTORIZADO)`;
-  if(!VACATION_DATA[name]) VACATION_DATA[name] = { admissao: "JANEIRO", solicitacao: "" };
+  if(!VACATION_DATA[name]) VACATION_DATA[name] = { admissao: MONTH_NAMES[parseInt(v.value)||0].toUpperCase(), solicitacao: "" };
   VACATION_DATA[name].solicitacao = VACATION_DATA[name].solicitacao ? VACATION_DATA[name].solicitacao + " - " + text : text;
   await saveVacationData(); renderVacationPanel(); alert("FÉRIAS SALVAS!");
 };
@@ -2866,7 +2899,7 @@ function renderErrorLogs(){
             const countWeek = ho.filter(d => w.some(wd => wd.date === d)).length;
             const limit = RULE_CONFIGS.maxHoDays || 2;
             if(countWeek > limit){
-              logs.push(`⚠️️ ${m} ULTRAPASSOU O LIMITE MÁXIMO NA SEMANA ${wi+1} (${countWeek}/${limit} DIAS).`);
+              logs.push(`⚠ ${m} ULTRAPASSOU O LIMITE MÁXIMO NA SEMANA ${wi+1} (${countWeek}/${limit} DIAS).`);
             }
           });
         }
@@ -3034,7 +3067,7 @@ function appendPrintFooterAndAlerts(){
         const startIso = `${match[3]}-${match[2]}-${match[1]}`;
         const endIso = `${match[6]}-${match[5]}-${match[4]}`;
         if(!(endIso < monthStartIso || startIso > monthEndIso)) {
-          alertItems.push(`🏖️️ <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
+          alertItems.push(`🏖 <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
         }
       }
     }
@@ -3134,7 +3167,17 @@ themeToggleBtn.onclick = ()=>{
   const savedTheme = localStorage.getItem("adl-theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
   themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
-  updateSessionDisplay(); await loadTravelData(); applyAccent(); renderTabs(); renderMonthYearSelects(); viewMode = "inicio"; initPlatformContext(); renderTabs(); render();
+  
+  await loadSystemUsersAndPlatforms();
+  updateSessionDisplay(); 
+  await loadTravelData(); 
+  applyAccent(); 
+  renderTabs(); 
+  renderMonthYearSelects(); 
+  viewMode = "inicio"; 
+  initPlatformContext(); 
+  renderTabs(); 
+  render();
 })();
 </script>
 </body>
