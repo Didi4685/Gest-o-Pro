@@ -334,9 +334,14 @@
     .travel-sub-banner{ background: var(--success-bg); color: var(--success); text-align: center; padding: 10px; font-weight: 700; font-size: 14px; margin-bottom: 20px; border-radius: 6px; text-transform: uppercase; }
     .travel-config-bar{ display: flex; gap: 12px; align-items: center; background: var(--card-bg); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; flex-wrap: wrap; border: 1px solid var(--border-color); text-transform: uppercase; }
     .travel-section-title{ background: #fef08a; color: #713f12; padding: 10px 14px; font-weight: 700; font-size: 14px; margin-top: 24px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent); text-transform: uppercase; }
-    .travel-table{ width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); text-transform: uppercase; }
+    
+    /* Contêiner com rolagem horizontal para uniformizar e impedir quebra de layout */
+    .table-responsive-wrapper { width: 100%; overflow-x: auto; border-radius: 8px; }
+    
+    .travel-table{ width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 24px; background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); text-transform: uppercase; min-width: 900px; }
     .travel-table th, .travel-table td{ border: 1px solid var(--border-color); padding: 10px 12px; text-align: center; color: var(--text-main); text-transform: uppercase; }
     .travel-table th{ background: var(--bg-main); font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+    
     .travel-form-row{ display: flex; gap: 12px; flex-wrap: wrap; background: var(--card-bg); padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; align-items: flex-end; text-transform: uppercase; }
     .travel-form-group{ display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; text-transform: uppercase; }
     .travel-form-group label{ font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
@@ -363,30 +368,33 @@
     .badge.ok{border-color: #34d399; color: #065f46; background: #ecfdf5;}
     .badge.warn{border-color: #f87171; color: #991b1b; background: #fef2f2;}
 
-    .table-card{padding: 8px;}
-    table.schedule{ width:100%; table-layout:fixed; border-collapse:collapse; font-size: 13px; text-transform: uppercase; }
+    .table-card{padding: 8px; overflow-x: auto;}
+    table.schedule{ width:100%; min-width: 950px; table-layout: fixed; border-collapse:collapse; font-size: 13px; text-transform: uppercase; }
     table.schedule th:first-child, table.schedule td.name-cell{ width:180px; text-transform: uppercase; }
     table.schedule th, table.schedule td{ border: 1px solid var(--border-color); padding:0; text-align:center; color: var(--text-main); text-transform: uppercase; }
     table.schedule th{ background: #e2e8f0; color:#1e293b; font-weight: 600; padding: 10px 4px; font-size: 12px; text-transform: uppercase; white-space: nowrap; }
     table.schedule th.week-head{background: #2a435c; font-size: 11px; text-transform: uppercase; color: #ffffff;}
     table.schedule th.forced-head{background: #fef08a; color: #713f12;}
+    table.schedule th.holiday-head{background: #fecaca; color: #991b1b;}
     table.schedule td.name-cell{ text-align: left; padding: 8px 12px; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; }
     
     .cell-btn{ width:100%; height: 38px; display:block; cursor:pointer; background: transparent; border:none; font-size: 11.5px; color: var(--text-muted); transition: background 0.15s; text-transform: uppercase; }
     .cell-btn:hover{background: #f1f5f9;}
-    .cell-btn.ho{background: #dcfce7; color: #166534; font-weight: 700;}
+    .cell-btn.ho{background: #dcfce7; color: #166534; font-weight: 700; display: flex; align-items: center; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.ho::after{content:"HO";}
-    .cell-btn.forced{background: #fef08a; color: #713f12; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.forced{background: #fef08a; color: #713f12; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.forced::after{content:"★";}
-    .cell-btn.trip{background: #e0f2fe; color: #0369a1; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.holiday{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; font-size: 7.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
+    .cell-btn.holiday::after{content:"FERIADO";}
+    .cell-btn.trip{background: #e0f2fe; color: #0369a1; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.trip::after{content:"✈"; font-size: 13px;}
-    .cell-btn.vacation{background: #fef3c7; color: #b45309; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.vacation{background: #fef3c7; color: #b45309; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.vacation::after{content:"🏖️"; font-size: 11px;}
-    .cell-btn.newbie-blocked{background: var(--border-color); color: var(--text-muted); font-weight: 700; cursor: not-allowed;}
-    .cell-btn.newbie-blocked::after{content:"🔒 6M"; font-size: 9.5px;}
-    .cell-btn.manager-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed;}
-    .cell-btn.manager-blocked::after{content:"⛔ BLOQ"; font-size: 9.5px;}
-    .cell-btn.conflict-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed;}
+    .cell-btn.newbie-blocked{background: var(--border-color); color: var(--text-muted); font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; font-size: 9.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
+    .cell-btn.newbie-blocked::after{content:"🔒 6M";}
+    .cell-btn.manager-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; font-size: 9.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
+    .cell-btn.manager-blocked::after{content:"⛔ BLOQ";}
+    .cell-btn.conflict-blocked{background: #fee2e2; color: #991b1b; font-weight: 700; cursor: not-allowed; display: flex; align-items: center; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 1px;}
     .cell-btn.conflict-blocked::after{content:"⛔"; font-size: 12px;}
 
     .error-logs-panel { margin-top: 24px; padding: 20px; border-left: 4px solid #dc2626; background: var(--card-bg); text-transform: uppercase; }
@@ -509,18 +517,20 @@
         color: #000000 !important;
         font-weight: 600 !important;
       }
-      body.printing-home .home-panel .cell-btn { display: block !important; opacity: 1 !important; border: 1px solid #cbd5e1 !important; }
+      body.printing-home .home-panel .cell-btn { display: flex !important; align-items: center !important; justify-content: center !important; opacity: 1 !important; border: 1px solid #cbd5e1 !important; }
       body.printing-home .home-panel .cell-btn.ho { background: #dcfce7 !important; color: #166534 !important; }
       body.printing-home .home-panel .cell-btn.ho::after { content: "HO" !important; }
       body.printing-home .home-panel .cell-btn.forced { background: #fef08a !important; color: #713f12 !important; }
       body.printing-home .home-panel .cell-btn.forced::after { content: "★" !important; }
+      body.printing-home .home-panel .cell-btn.holiday { background: #fee2e2 !important; color: #991b1b !important; font-size: 7.5px !important; }
+      body.printing-home .home-panel .cell-btn.holiday::after { content: "FERIADO" !important; }
       body.printing-home .home-panel .cell-btn.trip { background: #e0f2fe !important; color: #0369a1 !important; }
       body.printing-home .home-panel .cell-btn.trip::after { content: "✈" !important; }
       body.printing-home .home-panel .cell-btn.vacation { background: #fef3c7 !important; color: #b45309 !important; }
       body.printing-home .home-panel .cell-btn.vacation::after { content: "🏖️" !important; }
-      body.printing-home .home-panel .cell-btn.newbie-blocked { background: #e2e8f0 !important; color: #64748b !important; }
+      body.printing-home .home-panel .cell-btn.newbie-blocked { background: #e2e8f0 !important; color: #64748b !important; font-size: 9.5px !important; }
       body.printing-home .home-panel .cell-btn.newbie-blocked::after { content: "🔒 6M" !important; }
-      body.printing-home .home-panel .cell-btn.manager-blocked { background: #fee2e2 !important; color: #991b1b !important; }
+      body.printing-home .home-panel .cell-btn.manager-blocked { background: #fee2e2 !important; color: #991b1b !important; font-size: 9.5px !important; }
       body.printing-home .home-panel .cell-btn.manager-blocked::after { content: "⛔ BLOQ" !important; }
       body.printing-home .home-panel .cell-btn.conflict-blocked { background: #fee2e2 !important; color: #991b1b !important; }
       body.printing-home .home-panel .cell-btn.conflict-blocked::after { content: "⛔" !important; }
@@ -787,7 +797,7 @@
       <button id="generateBtn">✨ GERAR ESCALA AUTOMÁTICA</button>
       <button id="duplicatePreviousBtn" class="secondary">📋 DUPLICAR MÊS ANTERIOR</button>
       <button id="saveHomeScheduleBtn" class="gold">💾 SALVAR ESCALA</button>
-      <button id="clearBtn" class="secondary">🗑️ LIMPAR EQUIPE</button>
+      <button id="clearBtn" class="secondary">🗑 LIMPAR EQUIPE</button>
       <button id="exportPdfBtn" class="secondary">🖨️ IMPRIMIR ESCALA</button>
     </div>
 
@@ -857,8 +867,9 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; color: var(--text-muted);">
           <div><strong>HO:</strong> HOME OFFICE AUTORIZADO</div>
           <div><strong>★:</strong> PRESENÇA COLETIVA OBRIGATÓRIA</div>
+          <div><strong>FERIADO:</strong> FERIADO NACIONAL</div>
           <div><strong>✈:</strong> VIAGEM CORPORATIVA ATIVA</div>
-          <div><strong>🏖️:</strong> PERÍODO DE FÉRIAS</div>
+          <div><strong>🏖:</strong> PERÍODO DE FÉRIAS</div>
           <div><strong>🔒 6M:</strong> CARÊNCIA RECÉM-CONTRATADO</div>
           <div><strong>⛔ BLOQ:</strong> IMPEDIMENTO DA COORDENAÇÃO</div>
         </div>
@@ -972,7 +983,7 @@
     <div style="font-size:13.5px; font-weight:600; margin-bottom:14px; color:var(--text-main); text-transform: uppercase;">VISITAS TÉCNICAS - ATENDIMENTO CORPORATIVO</div>
 
     <div class="travel-section-title">VISITAS REALIZADAS / AGENDADAS</div>
-    <div style="overflow-x:auto;">
+    <div class="table-responsive-wrapper">
       <table class="travel-table" id="travelVisitsTable">
         <thead>
           <tr>
@@ -987,6 +998,7 @@
     </div>
 
     <div class="travel-form-row">
+      <input type="hidden" id="tEditingIndex" value="">
       <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="tCliente" placeholder="EMPRESA"></div>
       <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="tSistemas" value="SISTEMA INTEGRADO"></div>
       <div class="travel-form-group" style="flex:2;"><label>MOTIVO(S)</label><input type="text" id="tMotivo" placeholder="MOTIVO"></div>
@@ -1004,11 +1016,14 @@
       <div class="travel-form-group"><label>VEÍCULO</label><select id="tReservaVeiculo"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
       <div class="travel-form-group"><label>HOTEL</label><select id="tReservaHotel"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
       <div class="travel-form-group"><label>HOTEL PREF.</label><input type="text" id="tHotelPref" placeholder="HOTEL"></div>
-      <button id="addTravelVisitBtn" class="gold" style="height:38px;align-self:flex-end;">+ ADICIONAR</button>
+      <div style="display: flex; gap: 6px; align-self: flex-end;">
+        <button id="cancelTravelVisitBtn" class="secondary" style="height:38px; display:none;" onclick="cancelEditTravelVisit()">CANCELAR</button>
+        <button id="addTravelVisitBtn" class="gold" style="height:38px;">+ ADICIONAR</button>
+      </div>
     </div>
 
     <div class="travel-section-title">CRÉDITOS DE TICKETS POR TÉCNICO</div>
-    <div style="overflow-x:auto;">
+    <div class="table-responsive-wrapper">
       <table class="travel-table" id="travelCreditsTable">
         <thead><tr><th>TÉCNICOS</th><th>PERÍODO(S)</th><th>QUANTIDADE</th><th>DESCRIÇÃO</th></tr></thead>
         <tbody id="travelCreditsBody"></tbody>
@@ -1016,7 +1031,7 @@
     </div>
 
     <div class="travel-section-title">VISITAS PENDENTES</div>
-    <div style="overflow-x:auto;">
+    <div class="table-responsive-wrapper">
       <table class="travel-table" id="travelPendingTable">
         <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th><th>VEÍCULO</th><th>HOTEL</th><th>OBS</th><th>AÇÕES</th></tr></thead>
         <tbody id="travelPendingBody"></tbody>
@@ -1024,6 +1039,7 @@
     </div>
 
     <div class="travel-form-row">
+      <input type="hidden" id="pEditingIndex" value="">
       <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="pCliente" placeholder="CLIENTE"></div>
       <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="pSistemas" value="SISTEMA INTEGRADO"></div>
       <div class="travel-form-group" style="flex:2;"><label>MOTIVO</label><input type="text" id="pMotivo" placeholder="MOTIVO"></div>
@@ -1039,7 +1055,10 @@
       <div class="travel-form-group"><label>VEÍCULO</label><input type="text" id="pVeiculo" value="NO CLIENTE"></div>
       <div class="travel-form-group"><label>HOTEL</label><input type="text" id="pHotel" value="NO CLIENTE"></div>
       <div class="travel-form-group" style="flex:2;"><label>OBSERVAÇÃO</label><input type="text" id="pObs" placeholder="OBS"></div>
-      <button id="addTravelPendingBtn" class="gold" style="height:38px;align-self:flex-end;">+ ADICIONAR PENDENTE</button>
+      <div style="display: flex; gap: 6px; align-self: flex-end;">
+        <button id="cancelTravelPendingBtn" class="secondary" style="height:38px; display:none;" onclick="cancelEditTravelPending()">CANCELAR</button>
+        <button id="addTravelPendingBtn" class="gold" style="height:38px;">+ ADICIONAR PENDENTE</button>
+      </div>
     </div>
 
     <div class="saved-schedules-container">
@@ -1068,7 +1087,7 @@
     </div>
 
     <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); text-transform: uppercase;">📋 RELAÇÃO DE FÉRIAS CADASTRADAS</div>
-    <div style="overflow-x:auto;">
+    <div class="table-responsive-wrapper">
       <table class="travel-table" id="vacationTable">
         <thead>
           <tr>
@@ -1438,7 +1457,6 @@ function initPlatformContext() {
   TEAM_NAMES = PLATAFORMAS[activePlatform] || Object.values(PLATAFORMAS)[0] || ["GERAL"];
   TEAM_SLUGS = {};
   TEAM_NAMES.forEach(t => TEAM_SLUGS[t] = t.toLowerCase().replace(/[^a-z0-9]+/g,"-"));
-  // só volta para a primeira equipe se a plataforma mudou ou a equipe atual não existe mais
   if(lastPlatformCtx !== activePlatform || !TEAM_NAMES.includes(currentTeam)){
     currentTeam = TEAM_NAMES[0];
     currentHoSubtab = TEAM_NAMES[0];
@@ -1772,6 +1790,50 @@ async function saveRulesData(){ RULE_CONFIGS.teamIcons = TEAM_ICONS; await stora
 
 const WEEKDAY_LABELS = ["SEG","TER","QUA","QUI","SEX"];
 const MONTH_NAMES = ["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"];
+
+function getNationalHolidays(year) {
+  const a = year % 19, b = Math.floor(year / 100), c = year % 100;
+  const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  const easter = new Date(year, month, day);
+
+  const addDays = (date, days) => {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  };
+
+  const goodFriday = addDays(easter, -2);
+  const corpusChristi = addDays(easter, 60);
+  const carnival = addDays(easter, -47);
+
+  const holidays = [
+    `${year}-01-01`,
+    `${year}-04-21`,
+    `${year}-05-01`,
+    `${year}-09-07`,
+    `${year}-10-12`,
+    `${year}-11-02`,
+    `${year}-11-15`,
+    `${year}-11-20`,
+    `${year}-12-25`,
+    isoDate(goodFriday.getFullYear(), goodFriday.getMonth(), goodFriday.getDate()),
+    isoDate(corpusChristi.getFullYear(), corpusChristi.getMonth(), corpusChristi.getDate()),
+    isoDate(carnival.getFullYear(), carnival.getMonth(), carnival.getDate())
+  ];
+
+  return holidays;
+}
+
+function isNationalHoliday(dateStr) {
+  const year = parseInt(dateStr.slice(0, 4));
+  const holidays = getNationalHolidays(year);
+  return holidays.includes(dateStr);
+}
 
 let currentTeam = TEAM_NAMES[0];
 let currentHoSubtab = TEAM_NAMES[0];
@@ -2114,17 +2176,21 @@ function renderMonthYearSelects(){
   const vYear = document.getElementById("vacationYearSelect"); if(vYear){ vYear.innerHTML = opts; vYear.value = currentVacationYear; }
 }
 
-function setupDropdownCheckboxes(btnId, contentId, members){
+function setupDropdownCheckboxes(btnId, contentId, members, selectedValues = []){
   const btn = document.getElementById(btnId); const content = document.getElementById(contentId);
   if(!btn || !content) return;
-  content.innerHTML = members.map(m => `<label class="dropdown-item-label"><input type="checkbox" value="${m}" class="cb-tech"> ${m}</label>`).join("");
+  content.innerHTML = members.map(m => `<label class="dropdown-item-label"><input type="checkbox" value="${m}" class="cb-tech" ${selectedValues.includes(m)?'checked':''}> ${m}</label>`).join("");
   btn.onclick = (e) => { e.stopPropagation(); content.classList.toggle("visible"); };
   document.addEventListener("click", () => content.classList.remove("visible"));
+  
+  const updateBtnText = () => {
+    const checked = Array.from(content.querySelectorAll(".cb-tech:checked")).map(i => i.value);
+    btn.textContent = checked.length > 0 ? checked.join(", ") : "SELECIONE ▾";
+  };
+  updateBtnText();
+
   content.querySelectorAll(".cb-tech").forEach(cb => {
-    cb.onchange = () => {
-      const checked = Array.from(content.querySelectorAll(".cb-tech:checked")).map(i => i.value);
-      btn.textContent = checked.length > 0 ? checked.join(", ") : "SELECIONE ▾";
-    };
+    cb.onchange = updateBtnText;
   });
 }
 function getSelectedTechs(contentId){ return Array.from(document.querySelectorAll(`#${contentId} .cb-tech:checked`)).map(cb => cb.value); }
@@ -2143,7 +2209,25 @@ async function renderTravelPanel(){
   setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems);
 
   document.getElementById("travelVisitsBody").innerHTML = (TRAVEL_DATA.visits || []).map((v, i)=>`
-    <tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${v.saidaHora||""}</td><td>${formatDatePt(v.chegadaData)}</td><td>${v.chegadaHora||""}</td><td>${v.reservaVeiculo}</td><td>${v.reservaHotel}</td><td>${v.hotelPref||""}</td><td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelVisit(${i})">✕</button></td></tr>
+    <tr>
+      <td>${v.cliente}</td>
+      <td>${v.sistema}</td>
+      <td>${v.motivo}</td>
+      <td>${v.tecnicos}</td>
+      <td>${formatDatePt(v.saidaData)}</td>
+      <td>${v.saidaHora||""}</td>
+      <td>${formatDatePt(v.chegadaData)}</td>
+      <td>${v.chegadaHora||""}</td>
+      <td>${v.reservaVeiculo}</td>
+      <td>${v.reservaHotel}</td>
+      <td>${v.hotelPref||""}</td>
+      <td>
+        <div style="display:flex; gap:4px; justify-content:center;">
+          <button class="secondary" style="padding:2px 6px;font-size:11px; color:var(--primary-dark);" onclick="editTravelVisit(${i})">✏</button>
+          <button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelVisit(${i})">✕</button>
+        </div>
+      </td>
+    </tr>
   `).join("") || `<tr><td colspan="12" class="empty-note">NENHUMA VISITA.</td></tr>`;
 
   const credits = {};
@@ -2163,7 +2247,23 @@ async function renderTravelPanel(){
   }).join("") || `<tr><td colspan="4" class="empty-note">SEM CRÉDITOS.</td></tr>`;
 
   document.getElementById("travelPendingBody").innerHTML = (TRAVEL_DATA.pendings || []).map((p, i)=>`
-    <tr><td>${p.cliente}</td><td>${p.sistema}</td><td>${p.motivo}</td><td>${p.tecnicos}</td><td>${formatDatePt(p.saidaData)}</td><td>${formatDatePt(p.chegadaData)}</td><td>${p.veiculo}</td><td>${p.hotel}</td><td>${p.obs}</td><td><button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelPending(${i})">✕</button></td></tr>
+    <tr>
+      <td>${p.cliente}</td>
+      <td>${p.sistema}</td>
+      <td>${p.motivo}</td>
+      <td>${p.tecnicos}</td>
+      <td>${formatDatePt(p.saidaData)}</td>
+      <td>${formatDatePt(p.chegadaData)}</td>
+      <td>${p.veiculo}</td>
+      <td>${p.hotel}</td>
+      <td>${p.obs}</td>
+      <td>
+        <div style="display:flex; gap:4px; justify-content:center;">
+          <button class="secondary" style="padding:2px 6px;font-size:11px; color:var(--primary-dark);" onclick="editTravelPending(${i})">✏️</button>
+          <button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelPending(${i})">✕</button>
+        </div>
+      </td>
+    </tr>
   `).join("") || `<tr><td colspan="10" class="empty-note">NENHUMA PENDENTE.</td></tr>`;
   renderSavedSchedulesList();
 }
@@ -2275,12 +2375,116 @@ document.getElementById("clearTravelDataBtn").onclick = async ()=>{ TRAVEL_DATA 
 window.removeTravelVisit = async function(i){ TRAVEL_DATA.visits.splice(i, 1); await saveTravelData(); renderTravelPanel(); };
 window.removeTravelPending = async function(i){ TRAVEL_DATA.pendings.splice(i, 1); await saveTravelData(); renderTravelPanel(); };
 
+window.editTravelVisit = function(i) {
+  const v = TRAVEL_DATA.visits[i];
+  if(!v) return;
+  document.getElementById("tEditingIndex").value = i;
+  document.getElementById("tCliente").value = v.cliente || "";
+  document.getElementById("tSistemas").value = v.sistema || "SISTEMA INTEGRADO";
+  document.getElementById("tMotivo").value = v.motivo || "";
+  
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  const assignedTechs = v.tecnicos ? v.tecnicos.split(/[\/,]/).map(t => t.trim()) : [];
+  setupDropdownCheckboxes("tDropdownBtn", "tDropdownContent", uniqueMems, assignedTechs);
+
+  document.getElementById("tSaidaData").value = v.saidaData || "";
+  document.getElementById("tSaidaHora").value = v.saidaHora || "09:00";
+  document.getElementById("tChegadaData").value = v.chegadaData || "";
+  document.getElementById("tChegadaHora").value = v.chegadaHora || "18:00";
+  document.getElementById("tReservaVeiculo").value = v.reservaVeiculo || "SIM";
+  document.getElementById("tReservaHotel").value = v.reservaHotel || "SIM";
+  document.getElementById("tHotelPref").value = v.hotelPref || "";
+
+  document.getElementById("addTravelVisitBtn").textContent = "💾 SALVAR ALTERAÇÃO";
+  document.getElementById("cancelTravelVisitBtn").style.display = "block";
+  window.scrollTo({ top: document.getElementById("tCliente").offsetTop - 100, behavior: 'smooth' });
+};
+
+window.cancelEditTravelVisit = function() {
+  document.getElementById("tEditingIndex").value = "";
+  document.getElementById("tCliente").value = "";
+  document.getElementById("tMotivo").value = "";
+  document.getElementById("tSaidaData").value = "";
+  document.getElementById("tChegadaData").value = "";
+  document.getElementById("tHotelPref").value = "";
+  
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  setupDropdownCheckboxes("tDropdownBtn", "tDropdownContent", uniqueMems);
+
+  document.getElementById("addTravelVisitBtn").textContent = "+ ADICIONAR";
+  document.getElementById("cancelTravelVisitBtn").style.display = "none";
+};
+
+window.editTravelPending = function(i) {
+  const p = TRAVEL_DATA.pendings[i];
+  if(!p) return;
+  document.getElementById("pEditingIndex").value = i;
+  document.getElementById("pCliente").value = p.cliente || "";
+  document.getElementById("pSistemas").value = p.sistema || "SISTEMA INTEGRADO";
+  document.getElementById("pMotivo").value = p.motivo || "";
+
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  const assignedTechs = p.tecnicos && p.tecnicos !== "A DEFINIR" ? p.tecnicos.split(/[\/,]/).map(t => t.trim()) : [];
+  setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems, assignedTechs);
+
+  document.getElementById("pSaidaData").value = p.saidaData || "";
+  document.getElementById("pChegadaData").value = p.chegadaData || "";
+  document.getElementById("pVeiculo").value = p.veiculo || "NO CLIENTE";
+  document.getElementById("pHotel").value = p.hotel || "NO CLIENTE";
+  document.getElementById("pObs").value = p.obs || "";
+
+  document.getElementById("addTravelPendingBtn").textContent = "💾 SALVAR ALTERAÇÃO";
+  document.getElementById("cancelTravelPendingBtn").style.display = "block";
+  window.scrollTo({ top: document.getElementById("pCliente").offsetTop - 100, behavior: 'smooth' });
+};
+
+window.cancelEditTravelPending = function() {
+  document.getElementById("pEditingIndex").value = "";
+  document.getElementById("pCliente").value = "";
+  document.getElementById("pMotivo").value = "";
+  document.getElementById("pSaidaData").value = "";
+  document.getElementById("pChegadaData").value = "";
+  document.getElementById("pObs").value = "";
+
+  const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
+  const uniqueMems = Array.from(new Set(allMems)).sort();
+  setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems);
+
+  document.getElementById("addTravelPendingBtn").textContent = "+ ADICIONAR PENDENTE";
+  document.getElementById("cancelTravelPendingBtn").style.display = "none";
+};
+
 document.getElementById("addTravelVisitBtn").onclick = async ()=>{
   const cliente = document.getElementById("tCliente").value.trim().toUpperCase(); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase();
   const techs = getSelectedTechs("tDropdownContent"); const saida = document.getElementById("tSaidaData").value; const chegada = document.getElementById("tChegadaData").value;
   if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS.");
   for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS NESTE PERÍODO!`);
-  TRAVEL_DATA.visits.push({ cliente, sistema: document.getElementById("tSistemas").value.toUpperCase(), motivo, tecnicos: techs.join("/"), saidaData: saida, saidaHora: document.getElementById("tSaidaHora").value, chegadaData: chegada, chegadaHora: document.getElementById("tChegadaHora").value, reservaVeiculo: document.getElementById("tReservaVeiculo").value, reservaHotel: document.getElementById("tReservaHotel").value, hotelPref: document.getElementById("tHotelPref").value.toUpperCase() });
+  
+  const visitObj = { 
+    cliente, 
+    sistema: document.getElementById("tSistemas").value.toUpperCase(), 
+    motivo, 
+    tecnicos: techs.join("/"), 
+    saidaData: saida, 
+    saidaHora: document.getElementById("tSaidaHora").value, 
+    chegadaData: chegada, 
+    chegadaHora: document.getElementById("tChegadaHora").value, 
+    reservaVeiculo: document.getElementById("tReservaVeiculo").value, 
+    reservaHotel: document.getElementById("tReservaHotel").value, 
+    hotelPref: document.getElementById("tHotelPref").value.toUpperCase() 
+  };
+
+  const editingIndex = document.getElementById("tEditingIndex").value;
+  if(editingIndex !== "") {
+    TRAVEL_DATA.visits[parseInt(editingIndex)] = visitObj;
+    cancelEditTravelVisit();
+  } else {
+    TRAVEL_DATA.visits.push(visitObj);
+  }
+
   await saveTravelData(); renderTravelPanel();
 };
 
@@ -2289,7 +2493,27 @@ document.getElementById("addTravelPendingBtn").onclick = async ()=>{
   const techs = getSelectedTechs("pDropdownContent"); const saida = document.getElementById("pSaidaData").value; const chegada = document.getElementById("pChegadaData").value;
   if(!cliente || !motivo) return;
   if(saida && chegada) for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS!`);
-  TRAVEL_DATA.pendings.push({ cliente, sistema: document.getElementById("pSistemas").value.toUpperCase(), motivo, tecnicos: techs.join("/")||"A DEFINIR", saidaData: saida, chegadaData: chegada, veiculo: document.getElementById("pVeiculo").value.toUpperCase(), hotel: document.getElementById("pHotel").value.toUpperCase(), obs: document.getElementById("pObs").value.toUpperCase() });
+  
+  const pendingObj = { 
+    cliente, 
+    sistema: document.getElementById("pSistemas").value.toUpperCase(), 
+    motivo, 
+    tecnicos: techs.join("/")||"A DEFINIR", 
+    saidaData: saida, 
+    chegadaData: chegada, 
+    veiculo: document.getElementById("pVeiculo").value.toUpperCase(), 
+    hotel: document.getElementById("pHotel").value.toUpperCase(), 
+    obs: document.getElementById("pObs").value.toUpperCase() 
+  };
+
+  const editingIndex = document.getElementById("pEditingIndex").value;
+  if(editingIndex !== "") {
+    TRAVEL_DATA.pendings[parseInt(editingIndex)] = pendingObj;
+    cancelEditTravelPending();
+  } else {
+    TRAVEL_DATA.pendings.push(pendingObj);
+  }
+
   await saveTravelData(); renderTravelPanel();
 };
 
@@ -2380,7 +2604,7 @@ function renderMemberList(){
         <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px;">
           <strong id="member-name-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">${m}</strong>
           <div class="member-chip-actions">
-            <button class="edit-btn" onclick="startEditMember('${m}')">✏️ EDITAR</button>
+            <button class="edit-btn" onclick="startEditMember('${m}')">✏ EDITAR</button>
             <button class="delete-btn" onclick="removeMember('${m}')">✕ EXCLUIR</button>
           </div>
         </div>
@@ -2477,7 +2701,14 @@ function renderTable(){
   let head = `<tr><th rowspan="2" style="min-width:180px;">COLABORADOR(A)</th>`;
   weeks.forEach((w, i)=> head += `<th class="week-head" colspan="${w.length}">SEMANA ${i+1}</th>`);
   head += `</tr><tr>`;
-  weeks.forEach(w => w.forEach(d => head += `<th class="${state.forced.includes(d.date)?'forced-head':''}">${WEEKDAY_LABELS[d.dow]}<br>${d.date.slice(8,10)}</th>`));
+  weeks.forEach(w => w.forEach(d => {
+    const isHoliday = isNationalHoliday(d.date);
+    const isForced = state.forced.includes(d.date);
+    let headClass = '';
+    if(isHoliday) headClass = 'holiday-head';
+    else if(isForced) headClass = 'forced-head';
+    head += `<th class="${headClass}">${WEEKDAY_LABELS[d.dow]}<br>${d.date.slice(8,10)}</th>`;
+  }));
   head += `</tr>`;
 
   let body = "";
@@ -2486,18 +2717,20 @@ function renderTable(){
     const isManagerB = memberIsManagerBlocked(m);
     body += `<tr><td class="name-cell" title="${m}">${m} ${isNew?'<span style="font-size:10px; color:#b45309;">[6M]</span>':''} ${isManagerB?'<span style="font-size:10px; color:#991b1b;">[BLOQ]</span>':''}</td>`;
     weeks.forEach(w => w.forEach(d => {
+      const holiday = isNationalHoliday(d.date);
       const trip = memberIsOnTrip(m, d.date), vac = memberIsOnVacation(m, d.date);
-      const forced = !trip && !vac && state.forced.includes(d.date);
-      const ho = !trip && !vac && !forced && !isNew && !isManagerB && (state.ho[m]||[]).includes(d.date);
+      const forced = !holiday && !trip && !vac && state.forced.includes(d.date);
+      const ho = !holiday && !trip && !vac && !forced && !isNew && !isManagerB && (state.ho[m]||[]).includes(d.date);
       let blocked = false;
-      if(!trip && !vac && !forced && !isNew && !isManagerB && !ho && RULE_CONFIGS.enableTeams){
+      if(!holiday && !trip && !vac && !forced && !isNew && !isManagerB && !ho && RULE_CONFIGS.enableTeams){
         TEAM_NAMES.forEach(tn => ((RULE_CONFIGS.conflicts||{})[tn]||[]).forEach(p => {
           if((p[0]===m || p[1]===m) && membersConflictOnDate(m, p[0]===m?p[1]:p[0], d.date)) blocked = true;
         }));
       }
       
       let cssClass = '';
-      if(vac) cssClass = 'vacation';
+      if(holiday) cssClass = 'holiday';
+      else if(vac) cssClass = 'vacation';
       else if(trip) cssClass = 'trip';
       else if(isNew) cssClass = 'newbie-blocked';
       else if(isManagerB) cssClass = 'manager-blocked';
@@ -2505,7 +2738,7 @@ function renderTable(){
       else if(ho) cssClass = 'ho';
       else if(blocked) cssClass = 'conflict-blocked';
 
-      body += `<td><button class="cell-btn ${cssClass}" data-m="${m}" data-d="${d.date}" ${vac||trip||isNew||isManagerB||forced||blocked?'disabled':''}></button></td>`;
+      body += `<td><button class="cell-btn ${cssClass}" data-m="${m}" data-d="${d.date}" ${holiday||vac||trip||isNew||isManagerB||forced||blocked?'disabled':''}></button></td>`;
     }));
     body += `</tr>`;
   });
@@ -2531,7 +2764,7 @@ function renderStatusLine(weeks){
     const isManagerB = memberIsManagerBlocked(m);
     if(isNew || isManagerB) return `<span class="badge" style="border-color:#cbd5e1; color:#64748b; background:#f8fafc;">${m}: ISENTO/IMPEDIDO HO</span>`;
     const total = (state.ho[m]||[]).length;
-    let expected = 0; weeks.forEach(w => expected += Math.min(limit, w.filter(d=>!state.forced.includes(d.date)&&!memberIsOnTrip(m,d.date)&&!memberIsOnVacation(m,d.date)).length));
+    let expected = 0; weeks.forEach(w => expected += Math.min(limit, w.filter(d=>!isNationalHoliday(d.date)&&!state.forced.includes(d.date)&&!memberIsOnTrip(m,d.date)&&!memberIsOnVacation(m,d.date)).length));
     return `<span class="badge ${total===expected?'ok':'warn'}">${m}: ${total}/${expected} DIAS</span>`;
   }).join("");
 }
@@ -2550,6 +2783,9 @@ function renderErrorLogs(){
       st.members.forEach(m => {
         const hoDays = st.ho[m] || [];
         hoDays.forEach(dStr => {
+          if(isNationalHoliday(dStr)){
+            logs.push(`⚠️ FERIADO NACIONAL: ${m} ESTÁ AGENDADO EM HOME OFFICE NO FERIADO DE ${formatDatePt(dStr)}.`);
+          }
           if(memberIsOnVacation(m, dStr)){
             logs.push(`⚠️ CONFLITO DE FÉRIAS: ${m} ESTÁ AGENDADO EM HOME OFFICE NO DIA ${formatDatePt(dStr)}, MAS ESTÁ DE FÉRIAS NESTE PERÍODO!`);
           }
@@ -2636,11 +2872,13 @@ function renderMiniConsultPanel(){
               ${(st.members||[]).map(m=>`
                 <tr>
                   <td class="m-name" title="${m}">${m}</td>${weeks.map(w=>w.map(d=>{
+                    const holiday = isNationalHoliday(d.date);
                     const trip = memberIsOnTrip(m,d.date), vac = memberIsOnVacation(m,d.date), f = (st.forced||[]).includes(d.date), h = ((st.ho||{})[m]||[]).includes(d.date);
                     const isNew = memberIsNewbie(m, currentYear, currentMonth), isManB = memberIsManagerBlocked(m);
                     let symbol = '';
                     let bg = 'transparent';
-                    if(vac){ symbol='🏖️'; bg='#fef3c7'; }
+                    if(holiday){ symbol='F'; bg='#fee2e2'; }
+                    else if(vac){ symbol='🏖️'; bg='#fef3c7'; }
                     else if(trip){ symbol='✈'; bg='#e0f2fe'; }
                     else if(isNew){ symbol='🔒'; bg='var(--border-color)'; }
                     else if(isManB){ symbol='⛔'; bg='#fee2e2'; }
@@ -2689,7 +2927,7 @@ document.getElementById("generateBtn").onclick = async ()=>{
 
   weeks.forEach(w => {
     if(!w.length) return;
-    const diasDaSemana = w.filter(d => !state.forced.includes(d.date));
+    const diasDaSemana = w.filter(d => !isNationalHoliday(d.date) && !state.forced.includes(d.date));
     if(!diasDaSemana.length) return;
 
     const ocupacaoPorDia = {}; diasDaSemana.forEach(d => ocupacaoPorDia[d.date] = 0);
@@ -2729,7 +2967,7 @@ document.getElementById("duplicatePreviousBtn").onclick = async ()=>{
   state.ho = {}; state.members.forEach(m => state.ho[m] = []); state.forced = [...(prevState.forced||[])];
   state.members.forEach(m => {
     const list = []; (prevState.ho[m]||[]).forEach(pd => {
-      prevW.forEach((w, wi) => { if(w.some(d => d.date === pd) && currW[wi]){ const match = currW[wi].find(d => d.dow === w.find(x=>x.date===pd).dow); if(match) list.push(match.date); } });
+      prevW.forEach((w, wi) => { if(w.some(d => d.date === pd) && currW[wi]){ const match = currW[wi].find(d => d.dow === w.find(x=>x.date===pd).dow); if(match && !isNationalHoliday(match.date)) list.push(match.date); } });
     });
     state.ho[m] = Array.from(new Set(list));
   });
