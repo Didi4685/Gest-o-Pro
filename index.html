@@ -6,7 +6,7 @@
   <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
   <link rel="icon" href="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
   <meta name="theme-color" content="#1e3a8a">
-  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado -->
+  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado[cite: 3] -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root{
@@ -1121,7 +1121,8 @@ async function storageGet(k){
       .from('adl_storage')
       .select('data')
       .eq('id', k)
-      .single();
+      .maybeSingle(); // Evita o erro 406 caso o registo ainda não exista[cite: 6]
+      
     if (error || !data) return null;
     return JSON.stringify(data.data);
   } catch(e) {
@@ -2865,7 +2866,7 @@ function renderErrorLogs(){
             const countWeek = ho.filter(d => w.some(wd => wd.date === d)).length;
             const limit = RULE_CONFIGS.maxHoDays || 2;
             if(countWeek > limit){
-              logs.push(`⚠️ ${m} ULTRAPASSOU O LIMITE MÁXIMO NA SEMANA ${wi+1} (${countWeek}/${limit} DIAS).`);
+              logs.push(`⚠️️ ${m} ULTRAPASSOU O LIMITE MÁXIMO NA SEMANA ${wi+1} (${countWeek}/${limit} DIAS).`);
             }
           });
         }
@@ -3033,7 +3034,7 @@ function appendPrintFooterAndAlerts(){
         const startIso = `${match[3]}-${match[2]}-${match[1]}`;
         const endIso = `${match[6]}-${match[5]}-${match[4]}`;
         if(!(endIso < monthStartIso || startIso > monthEndIso)) {
-          alertItems.push(`🏖️ <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
+          alertItems.push(`🏖️️ <strong>${m}</strong> ESTARÁ DE FÉRIAS DE ${match[1]}/${match[2]}/${match[3]} ATÉ ${match[4]}/${match[5]}/${match[6]}.`);
         }
       }
     }
