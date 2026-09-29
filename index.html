@@ -6,7 +6,7 @@
   <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
   <link rel="icon" href="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
   <meta name="theme-color" content="#1e3a8a">
-  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado[cite: 3] -->
+  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado[cite: 10] -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root{
@@ -799,7 +799,7 @@
         <button onclick="switchTab('travel')">ACESSAR VIAGENS</button>
       </div>
       <div class="inicio-card">
-        <h3>🏖️ CONTROLE DE FÉRIAS</h3>
+        <h3>🏖️️ CONTROLE DE FÉRIAS</h3>
         <p>ACOMPANHE OS PERÍODOS DE FÉRIAS E O MÊS DE ADMISSÃO DE CADA COLABORADOR INTEGRADO.</p>
         <button onclick="switchTab('vacation')" class="secondary">ACESSAR FÉRIAS</button>
       </div>
@@ -911,7 +911,7 @@
       <div class="rules-grid">
         <div class="rule-quadrant">
           <div class="rule-quadrant-header">
-            <h4>🛠️ PARÂMETROS GERAIS</h4>
+            <h4>🛠️️ PARÂMETROS GERAIS</h4>
             <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="toggleQuadrant('quadBody1', this)">➕ MAXIMIZAR</button>
           </div>
           <div class="rule-quadrant-body" id="quadBody1" style="display: none;">
@@ -2235,7 +2235,7 @@ function renderTabs(){
   [
     { id: "inicio", label: "🌐 INÍCIO" },
     { id: "home", label: "🏠 HOME OFFICE" },
-    { id: "travel", label: "✈️ VIAGENS" },
+    { id: "travel", label: "✈️️ VIAGENS" },
     { id: "vacation", label: "🏖️ FÉRIAS" }
   ].forEach(tab => {
     const el = document.createElement("div");
@@ -2262,7 +2262,7 @@ function updatePanelVisibility(){
 function renderHoSubtabs(){
   const container = document.getElementById("hoSubtabsContainer"); if(!container) return;
   if(!RULE_CONFIGS.enableTeams){
-    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('${TEAM_NAMES[0]}')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️️ REGRAS</div>`;
+    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('${TEAM_NAMES[0]}')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙ REGRAS</div>`;
   } else {
     container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${t}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   }
@@ -2406,7 +2406,7 @@ async function renderTravelPanel(){
       <td>${p.obs}</td>
       <td>
         <div style="display:flex; gap:4px; justify-content:center;">
-          <button class="secondary" style="padding:2px 6px;font-size:11px; color:var(--primary-dark);" onclick="editTravelPending(${i})">✏️</button>
+          <button class="secondary" style="padding:2px 6px;font-size:11px; color:var(--primary-dark);" onclick="editTravelPending(${i})">✏️️</button>
           <button class="danger secondary" style="padding:2px 6px;font-size:11px;" onclick="removeTravelPending(${i})">✕</button>
         </div>
       </td>
