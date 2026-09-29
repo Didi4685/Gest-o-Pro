@@ -120,6 +120,10 @@
       background: var(--card-bg); color: var(--text-main); border-radius: 8px; font-size: 14px;
     }
     .auth-group input:focus, .auth-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+    .pw-wrap { position: relative; display: flex; }
+    .pw-wrap input { width: 100%; padding-right: 44px; }
+    .pw-toggle { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none !important; border: none !important; box-shadow: none !important; cursor: pointer; font-size: 17px; padding: 4px 8px; color: var(--text-muted); line-height: 1; width: auto; margin: 0; }
+    .pw-toggle:hover { color: var(--primary); filter: none; }
     .auth-btn {
       margin-top: 4px; padding: 12px; background: var(--primary-dark); color: #fff;
       font-weight: 600; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; text-transform: uppercase; white-space: nowrap;
@@ -357,12 +361,16 @@
     .saved-schedule-body { padding: 16px; border-top: 1px solid var(--border-color); display: none; background: var(--card-bg); text-transform: uppercase; }
     .saved-schedule-body.visible { display: block; }
 
+    /* Estilos atualizados para o multiselect fluído por checkboxes */
     .dropdown-check-container { position: relative; width: 100%; text-transform: uppercase; }
-    .dropdown-check-btn { width: 100%; padding: 9px 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
-    .dropdown-check-content { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-radius: 8px; z-index: 100; max-height: 200px; overflow-y: auto; padding: 8px; margin-top: 4px; text-transform: uppercase; }
+    .dropdown-check-btn { width: 100%; padding: 9px 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dropdown-check-btn::after { content: ' ▼'; font-size: 10px; color: var(--text-muted); margin-left: 8px; }
+    .dropdown-check-content { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-radius: 8px; z-index: 100; max-height: 220px; overflow-y: auto; padding: 8px; margin-top: 4px; text-transform: uppercase; }
     .dropdown-check-content.visible { display: block; }
-    .dropdown-item-label { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 6px 8px; cursor: pointer; border-radius: 6px; color: var(--text-main); text-transform: uppercase; white-space: nowrap; }
+    .dropdown-search-box { width: 100%; padding: 6px 8px; margin-bottom: 6px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 12px; background: var(--card-bg); color: var(--text-main); }
+    .dropdown-item-label { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 6px 8px; cursor: pointer; border-radius: 6px; color: var(--text-main); text-transform: uppercase; white-space: nowrap; user-select: none; }
     .dropdown-item-label:hover { background: var(--border-color); }
+    .dropdown-item-label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
 
     .status-line{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap; text-transform: uppercase;}
     .badge{ font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); font-weight: 500; text-transform: uppercase; white-space: nowrap; }
@@ -600,15 +608,18 @@
       <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
         <div class="auth-group">
           <label>E-MAIL CORPORATIVO</label>
-          <input type="email" id="loginEmail" placeholder="ADMIN@ADLGESTAO.COM" required>
+          <input type="email" id="loginEmail" placeholder="seu.email@email.com.br" required>
         </div>
         <div class="auth-group">
           <label>SENHA</label>
-          <input type="password" id="loginPassword" placeholder="••••••••" required>
+          <div class="pw-wrap"><input type="password" id="loginPassword" placeholder="••••••••" required><button type="button" class="pw-toggle" onclick="togglePassword('loginPassword', this)" title="Mostrar/ocultar senha" aria-label="Mostrar senha">👁️</button></div>
         </div>
         <div class="auth-group">
           <label>PLATAFORMA DE ACESSO</label>
-          <select id="loginPlataforma" style="padding: 10px;" required></select>
+          <select id="loginPlataforma" style="padding: 10px;" required>
+            <option value="TRIBUTOS">TRIBUTOS</option>
+            <option value="CONTABILIDADE">CONTABILIDADE</option>
+          </select>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
           <a href="#" onclick="switchAuthMode('forgot')" style="color: var(--primary-dark); text-decoration: none; font-weight: 600; text-transform: uppercase;">ESQUECI A SENHA</a>
@@ -621,7 +632,7 @@
         <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 8px 0; text-transform: uppercase;">INFORME SEU E-MAIL CADASTRADO PARA RECEBER AS INSTRUÇÕES.</p>
         <div class="auth-group">
           <label>E-MAIL CADASTRADO</label>
-          <input type="email" id="forgotEmail" placeholder="SEU.EMAIL@EMPRESA.COM" required>
+          <input type="email" id="forgotEmail" placeholder="seu.email@email.com.br" required>
         </div>
         <button type="submit" class="auth-btn" style="background: #fde047; color: #713f12;">ENVIAR E-MAIL</button>
         <div style="text-align: center; margin-top: 8px;">
@@ -637,11 +648,11 @@
         </div>
         <div class="auth-group">
           <label>E-MAIL CORPORATIVO</label>
-          <input type="email" id="regEmail" placeholder="SEU.EMAIL@EMPRESA.COM" required>
+          <input type="email" id="regEmail" placeholder="seu.email@email.com.br" required>
         </div>
         <div class="auth-group">
           <label>CRIAR SENHA</label>
-          <input type="password" id="regPassword" placeholder="MÍNIMO 3 CARACTERES" required>
+          <div class="pw-wrap"><input type="password" id="regPassword" placeholder="MÍNIMO 3 CARACTERES" required><button type="button" class="pw-toggle" onclick="togglePassword('regPassword', this)" title="Mostrar/ocultar senha" aria-label="Mostrar senha">👁️</button></div>
         </div>
         <div class="auth-group">
           <label>SELECIONAR PLATAFORMA DE ACESSO</label>
@@ -659,9 +670,15 @@
       <div id="publicSearchForm" class="auth-form" style="display: none;">
         <p style="font-size: 13.5px; color: var(--text-muted); margin: 0 0 10px 0; text-transform: uppercase;">CONSULTE OS SEUS DIAS DE HOME OFFICE, VIAGENS E FÉRIAS SEM PRECISAR FAZER LOGIN NO SISTEMA.</p>
         <div class="auth-group">
+          <label>SELECIONE A PLATAFORMA DE ACESSO</label>
+          <select id="publicSearchPlataforma" style="padding: 10px;" onchange="populatePublicMembersForPlatform()">
+            <option value="">SELECIONE A PLATAFORMA...</option>
+          </select>
+        </div>
+        <div class="auth-group">
           <label>SELECIONE SEU NOME</label>
           <select id="publicSearchMemberSelect" style="padding: 10px;">
-            <option value="">CARREGANDO COLABORADORES...</option>
+            <option value="">SELECIONE A PLATAFORMA PRIMEIRO...</option>
           </select>
         </div>
         <div style="display: flex; gap: 8px;">
@@ -714,15 +731,15 @@
       <form class="auth-form" onsubmit="handleChangePassword(event)">
         <div class="auth-group">
           <label>SENHA ATUAL</label>
-          <input type="password" id="currentPassInput" required>
+          <div class="pw-wrap"><input type="password" id="currentPassInput" required><button type="button" class="pw-toggle" onclick="togglePassword('currentPassInput', this)" title="Mostrar/ocultar senha" aria-label="Mostrar senha">👁️</button></div>
         </div>
         <div class="auth-group">
           <label>NOVA SENHA</label>
-          <input type="password" id="newPassInput" required placeholder="MÍNIMO 3 CARACTERES">
+          <div class="pw-wrap"><input type="password" id="newPassInput" required placeholder="MÍNIMO 3 CARACTERES"><button type="button" class="pw-toggle" onclick="togglePassword('newPassInput', this)" title="Mostrar/ocultar senha" aria-label="Mostrar senha">👁️</button></div>
         </div>
         <div class="auth-group">
           <label>CONFIRMAR NOVA SENHA</label>
-          <input type="password" id="confirmPassInput" required>
+          <div class="pw-wrap"><input type="password" id="confirmPassInput" required><button type="button" class="pw-toggle" onclick="togglePassword('confirmPassInput', this)" title="Mostrar/ocultar senha" aria-label="Mostrar senha">👁️</button></div>
         </div>
         <div style="display: flex; gap: 10px; margin-top: 8px;">
           <button type="button" class="secondary" style="flex: 1;" onclick="closePasswordModal()">CANCELAR</button>
@@ -1003,13 +1020,16 @@
       <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="tCliente" placeholder="EMPRESA"></div>
       <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="tSistemas" value="SISTEMA INTEGRADO"></div>
       <div class="travel-form-group" style="flex:2;"><label>MOTIVO(S)</label><input type="text" id="tMotivo" placeholder="MOTIVO"></div>
+      
+      <!-- Componente de Múltipla Seleção com Checkboxes Ajustado -->
       <div class="travel-form-group">
         <label>TÉCNICOS</label>
         <div class="dropdown-check-container" id="tDropdownContainer">
-          <button type="button" class="dropdown-check-btn" id="tDropdownBtn">SELECIONE ▾</button>
+          <button type="button" class="dropdown-check-btn" id="tDropdownBtn">SELECIONE OS TÉCNICOS...</button>
           <div class="dropdown-check-content" id="tDropdownContent"></div>
         </div>
       </div>
+
       <div class="travel-form-group"><label>SAÍDA DATA</label><input type="date" id="tSaidaData"></div>
       <div class="travel-form-group"><label>SAÍDA HORA</label><input type="time" id="tSaidaHora" value="09:00"></div>
       <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="tChegadaData"></div>
@@ -1044,13 +1064,16 @@
       <div class="travel-form-group"><label>CLIENTE</label><input type="text" id="pCliente" placeholder="CLIENTE"></div>
       <div class="travel-form-group"><label>SISTEMA(S)</label><input type="text" id="pSistemas" value="SISTEMA INTEGRADO"></div>
       <div class="travel-form-group" style="flex:2;"><label>MOTIVO</label><input type="text" id="pMotivo" placeholder="MOTIVO"></div>
+      
+      <!-- Componente de Múltipla Seleção com Checkboxes Ajustado para Pendentes -->
       <div class="travel-form-group">
         <label>TÉCNICOS</label>
         <div class="dropdown-check-container" id="pDropdownContainer">
-          <button type="button" class="dropdown-check-btn" id="pDropdownBtn">SELECIONE ▾</button>
+          <button type="button" class="dropdown-check-btn" id="pDropdownBtn">SELECIONE OS TÉCNICOS...</button>
           <div class="dropdown-check-content" id="pDropdownContent"></div>
         </div>
       </div>
+
       <div class="travel-form-group"><label>SAÍDA DATA</label><input type="date" id="pSaidaData"></div>
       <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="pChegadaData"></div>
       <div class="travel-form-group"><label>VEÍCULO</label><input type="text" id="pVeiculo" value="NO CLIENTE"></div>
@@ -1121,7 +1144,7 @@ async function storageGet(k){
       .from('adl_storage')
       .select('data')
       .eq('id', k)
-      .maybeSingle(); // Evita o erro 406 caso o registo ainda não exista[cite: 6]
+      .maybeSingle(); 
       
     if (error || !data) return null;
     return JSON.stringify(data.data);
@@ -1234,36 +1257,56 @@ function populateRegisterPlataformaDropdown() {
   }
 }
 
+function togglePassword(inputId, btn) {
+  const inp = document.getElementById(inputId);
+  if(!inp) return;
+  const show = inp.type === "password";
+  inp.type = show ? "text" : "password";
+  if(btn) { btn.textContent = show ? "🙈" : "👁️"; btn.setAttribute("aria-label", show ? "Ocultar senha" : "Mostrar senha"); }
+}
+
+function populatePublicMembersForPlatform() {
+  const plat = (document.getElementById("publicSearchPlataforma") || {}).value;
+  const sel = document.getElementById("publicSearchMemberSelect");
+  if(!sel) return;
+  if(!plat || !PLATAFORMAS[plat]) {
+    sel.innerHTML = `<option value="">SELECIONE A PLATAFORMA PRIMEIRO...</option>`;
+    return;
+  }
+  const allMems = [];
+  for(const t of (PLATAFORMAS[plat] || [])) {
+    const slug = (typeof TEAM_SLUGS !== "undefined" && TEAM_SLUGS[t]) || t.toLowerCase();
+    const prefix = `adl:${slug}:`;
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(prefix)) {
+        try {
+          const val = JSON.parse(localStorage.getItem(key));
+          if (val && Array.isArray(val.members)) allMems.push(...val.members);
+        } catch (err) {}
+      }
+    }
+    const st = allStatesCache[t];
+    if(st && st.members) allMems.push(...st.members);
+    if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
+  }
+  const uniqueMems = Array.from(new Set(allMems)).sort((a,b)=>a.localeCompare(b,"pt-BR"));
+  sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
+}
+
 async function populatePublicSearchDropdowns() {
   await loadSystemUsersAndPlatforms();
   await refreshAllStatesCache();
-  const allMems = [];
-  
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith("adl:")) {
-      try {
-        const val = JSON.parse(localStorage.getItem(key));
-        if (val && Array.isArray(val.members)) {
-          allMems.push(...val.members);
-        }
-      } catch (err) {}
-    }
-  }
 
-  for(const plat of Object.keys(PLATAFORMAS)) {
-    for(const t of (PLATAFORMAS[plat]||[])) {
-      const st = allStatesCache[t];
-      if(st && st.members) allMems.push(...st.members);
-      if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
-    }
+  const pSel = document.getElementById("publicSearchPlataforma");
+  if(pSel) {
+    const atual = pSel.value;
+    const keys = Object.keys(PLATAFORMAS);
+    pSel.innerHTML = `<option value="">SELECIONE A PLATAFORMA...</option>` + keys.map(k => `<option value="${k}">${k}</option>`).join("");
+    if(atual && keys.includes(atual)) pSel.value = atual;
   }
+  populatePublicMembersForPlatform();
 
-  const uniqueMems = Array.from(new Set([...allMems, ...Object.keys(VACATION_DATA).filter(k => !k.startsWith("__"))])).sort((a,b)=>a.localeCompare(b,"pt-BR"));
-  
-  const sel = document.getElementById("publicSearchMemberSelect");
-  if(sel) sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
-  
   const mSel = document.getElementById("publicSearchMonth");
   if(mSel) mSel.innerHTML = MONTH_NAMES.map((n, i) => `<option value="${i}" ${i===new Date().getMonth()?'selected':''}>${n}</option>`).join("");
   
@@ -1276,24 +1319,27 @@ async function populatePublicSearchDropdowns() {
 }
 
 async function handlePublicSearch() {
+  const platSel = document.getElementById("publicSearchPlataforma").value;
   const memberName = document.getElementById("publicSearchMemberSelect").value;
   const month = parseInt(document.getElementById("publicSearchMonth").value);
   const year = parseInt(document.getElementById("publicSearchYear").value);
   const resultDiv = document.getElementById("publicSearchResult");
   
+  if(!platSel) {
+    alert("POR FAVOR, SELECIONE A PLATAFORMA DE ACESSO.");
+    return;
+  }
   if(!memberName) {
     alert("POR FAVOR, SELECIONE UM COLABORADOR.");
     return;
   }
 
-  let targetTeam = TEAM_NAMES[0];
-  for(const plat of Object.keys(PLATAFORMAS)) {
-    for(const t of (PLATAFORMAS[plat]||[])) {
-      const st = allStatesCache[t] || await loadTeamStateForMonth(t, year, month);
-      if(st.members && st.members.includes(memberName)) {
-        targetTeam = t;
-        break;
-      }
+  let targetTeam = (PLATAFORMAS[platSel] || [])[0] || TEAM_NAMES[0];
+  for(const t of (PLATAFORMAS[platSel] || [])) {
+    const st = await loadTeamStateForMonth(t, year, month);
+    if(st && st.members && st.members.includes(memberName)) {
+      targetTeam = t;
+      break;
     }
   }
 
@@ -2216,7 +2262,7 @@ function updatePanelVisibility(){
 function renderHoSubtabs(){
   const container = document.getElementById("hoSubtabsContainer"); if(!container) return;
   if(!RULE_CONFIGS.enableTeams){
-    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('${TEAM_NAMES[0]}')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
+    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('${TEAM_NAMES[0]}')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️️ REGRAS</div>`;
   } else {
     container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${t}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   }
@@ -2233,24 +2279,67 @@ function renderMonthYearSelects(){
   const vYear = document.getElementById("vacationYearSelect"); if(vYear){ vYear.innerHTML = opts; vYear.value = currentVacationYear; }
 }
 
-function setupDropdownCheckboxes(btnId, contentId, members, selectedValues = []){
-  const btn = document.getElementById(btnId); const content = document.getElementById(contentId);
-  if(!btn || !content) return;
-  content.innerHTML = members.map(m => `<label class="dropdown-item-label"><input type="checkbox" value="${m}" class="cb-tech" ${selectedValues.includes(m)?'checked':''}> ${m}</label>`).join("");
-  btn.onclick = (e) => { e.stopPropagation(); content.classList.toggle("visible"); };
-  document.addEventListener("click", () => content.classList.remove("visible"));
+// Configuração atualizada do componente de seleção múltipla com checkboxes e pesquisa fluída
+function setupDropdownCheckboxes(containerId, members, selectedValues = []){
+  const container = document.getElementById(containerId);
+  if(!container) return;
   
+  const btn = container.querySelector(".dropdown-check-btn");
+  const content = container.querySelector(".dropdown-check-content");
+  if(!btn || !content) return;
+
   const updateBtnText = () => {
     const checked = Array.from(content.querySelectorAll(".cb-tech:checked")).map(i => i.value);
-    btn.textContent = checked.length > 0 ? checked.join(", ") : "SELECIONE ▾";
+    btn.textContent = checked.length > 0 ? checked.join(", ") : "SELECIONE OS TÉCNICOS...";
   };
-  updateBtnText();
+
+  content.innerHTML = `
+    <input type="text" class="dropdown-search-box" placeholder="Pesquisar técnico..." onkeyup="filterDropdownList(event, this)">
+    <div class="dropdown-items-scroll">
+      ${members.map(m => `
+        <label class="dropdown-item-label" onclick="event.stopPropagation()">
+          <input type="checkbox" value="${m}" class="cb-tech" ${selectedValues.includes(m)?'checked':''}> ${m}
+        </label>
+      `).join("")}
+    </div>
+  `;
+
+  btn.onclick = (e) => { 
+    e.stopPropagation(); 
+    // Fecha outros dropdowns abertos antes
+    document.querySelectorAll(".dropdown-check-content").forEach(c => { if(c !== content) c.classList.remove("visible"); });
+    content.classList.toggle("visible"); 
+  };
+
+  content.onclick = (e) => { e.stopPropagation(); };
 
   content.querySelectorAll(".cb-tech").forEach(cb => {
     cb.onchange = updateBtnText;
   });
+
+  updateBtnText();
 }
-function getSelectedTechs(contentId){ return Array.from(document.querySelectorAll(`#${contentId} .cb-tech:checked`)).map(cb => cb.value); }
+
+window.filterDropdownList = function(e, inputEl) {
+  const term = inputEl.value.toLowerCase();
+  const scrollContainer = inputEl.nextElementSibling;
+  if(!scrollContainer) return;
+  scrollContainer.querySelectorAll(".dropdown-item-label").forEach(label => {
+    const text = label.textContent.toLowerCase();
+    label.style.display = text.includes(term) ? "flex" : "none";
+  });
+};
+
+// Fecha todos os dropdowns de seleção ao clicar fora
+window.addEventListener("click", () => {
+  document.querySelectorAll(".dropdown-check-content").forEach(c => c.classList.remove("visible"));
+});
+
+function getSelectedTechs(contentId){ 
+  const content = document.getElementById(contentId);
+  if(!content) return [];
+  return Array.from(content.querySelectorAll(".cb-tech:checked")).map(cb => cb.value); 
+}
 
 async function renderTravelPanel(){
   updatePanelVisibility(); await refreshAllStatesCache();
@@ -2262,8 +2351,9 @@ async function renderTravelPanel(){
 
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
-  setupDropdownCheckboxes("tDropdownBtn", "tDropdownContent", uniqueMems);
-  setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems);
+  
+  setupDropdownCheckboxes("tDropdownContainer", uniqueMems);
+  setupDropdownCheckboxes("pDropdownContainer", uniqueMems);
 
   document.getElementById("travelVisitsBody").innerHTML = (TRAVEL_DATA.visits || []).map((v, i)=>`
     <tr>
@@ -2443,7 +2533,7 @@ window.editTravelVisit = function(i) {
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
   const assignedTechs = v.tecnicos ? v.tecnicos.split(/[\/,]/).map(t => t.trim()) : [];
-  setupDropdownCheckboxes("tDropdownBtn", "tDropdownContent", uniqueMems, assignedTechs);
+  setupDropdownCheckboxes("tDropdownContainer", uniqueMems, assignedTechs);
 
   document.getElementById("tSaidaData").value = v.saidaData || "";
   document.getElementById("tSaidaHora").value = v.saidaHora || "09:00";
@@ -2468,7 +2558,7 @@ window.cancelEditTravelVisit = function() {
   
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
-  setupDropdownCheckboxes("tDropdownBtn", "tDropdownContent", uniqueMems);
+  setupDropdownCheckboxes("tDropdownContainer", uniqueMems);
 
   document.getElementById("addTravelVisitBtn").textContent = "+ ADICIONAR";
   document.getElementById("cancelTravelVisitBtn").style.display = "none";
@@ -2485,7 +2575,7 @@ window.editTravelPending = function(i) {
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
   const assignedTechs = p.tecnicos && p.tecnicos !== "A DEFINIR" ? p.tecnicos.split(/[\/,]/).map(t => t.trim()) : [];
-  setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems, assignedTechs);
+  setupDropdownCheckboxes("pDropdownContainer", uniqueMems, assignedTechs);
 
   document.getElementById("pSaidaData").value = p.saidaData || "";
   document.getElementById("pChegadaData").value = p.chegadaData || "";
@@ -2508,7 +2598,7 @@ window.cancelEditTravelPending = function() {
 
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
-  setupDropdownCheckboxes("pDropdownBtn", "pDropdownContent", uniqueMems);
+  setupDropdownCheckboxes("pDropdownContainer", uniqueMems);
 
   document.getElementById("addTravelPendingBtn").textContent = "+ ADICIONAR PENDENTE";
   document.getElementById("cancelTravelPendingBtn").style.display = "none";
@@ -2517,7 +2607,7 @@ window.cancelEditTravelPending = function() {
 document.getElementById("addTravelVisitBtn").onclick = async ()=>{
   const cliente = document.getElementById("tCliente").value.trim().toUpperCase(); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase();
   const techs = getSelectedTechs("tDropdownContent"); const saida = document.getElementById("tSaidaData").value; const chegada = document.getElementById("tChegadaData").value;
-  if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS.");
+  if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS E SELECIONE AO MENOS UM TÉCNICO.");
   for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS NESTE PERÍODO!`);
   
   const visitObj = { 
@@ -3169,6 +3259,8 @@ themeToggleBtn.onclick = ()=>{
   themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
   
   await loadSystemUsersAndPlatforms();
+  populateLoginPlataformaDropdown();
+  populateRegisterPlataformaDropdown();
   updateSessionDisplay(); 
   await loadTravelData(); 
   applyAccent(); 
