@@ -85,7 +85,7 @@
     .brand-texts p { font-size: 12.5px; color: var(--text-muted); font-weight: 600; margin: 3px 0 0; text-transform: uppercase; }
     .brand-badge{ font-size: 11.5px; font-weight: 700; color: var(--primary-dark); background: #eff6ff; border: 1px solid #bfdbfe; padding: 6px 12px; border-radius: 20px; letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
 
-    .top-bar-actions{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .top-bar-actions{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
     .user-session-info { font-size: 13.5px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
     .auth-overlay {
@@ -595,6 +595,10 @@
           <label>SENHA</label>
           <input type="password" id="loginPassword" placeholder="••••••••" required>
         </div>
+        <div class="auth-group">
+          <label>PLATAFORMA DE ACESSO</label>
+          <select id="loginPlataforma" style="padding: 10px;" required></select>
+        </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
           <a href="#" onclick="switchAuthMode('forgot')" style="color: var(--primary-dark); text-decoration: none; font-weight: 600; text-transform: uppercase;">ESQUECI A SENHA</a>
         </div>
@@ -627,6 +631,12 @@
         <div class="auth-group">
           <label>CRIAR SENHA</label>
           <input type="password" id="regPassword" placeholder="MÍNIMO 3 CARACTERES" required>
+        </div>
+        <div class="auth-group">
+          <label>SELECIONAR PLATAFORMA DE ACESSO</label>
+          <select id="regPlataforma" style="padding: 10px;" required>
+            <option value="">CARREGANDO PLATAFORMAS...</option>
+          </select>
         </div>
         <button type="submit" class="auth-btn">CRIAR CONTA</button>
         <div style="text-align: center; margin-top: 8px;">
@@ -722,14 +732,18 @@
         <p>CONECTANDO EQUIPES, OTIMIZANDO RESULTADOS.</p>
       </div>
     </div>
-    <div class="brand-badge">SOLUÇÃO CORPORATIVA INTEGRADA</div>
+    <div class="brand-badge" id="brandPlatformBadge">PLATAFORMA: GERAL</div>
   </div>
 
   <div class="top-bar-actions">
     <div class="user-session-info" id="userSessionInfo">
       <span>👤 <strong id="loggedUserName">USUÁRIO</strong></span>
     </div>
-    <div style="display: flex; gap: 10px; align-items: center;">
+    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+      <div id="adminPlatformSelectorContainer" style="display:none; align-items:center; gap:6px;">
+        <label style="font-size:11.5px; font-weight:700; color:var(--text-muted);">PLATAFORMA ATIVA:</label>
+        <select id="activePlatformSelect" onchange="switchActivePlatform(this.value)" style="padding:5px 10px; font-size:12px; font-weight:700;"></select>
+      </div>
       <button class="secondary" style="padding: 6px 14px; font-size: 12px;" onclick="openPasswordModal()">🔒 ALTERAR SENHA</button>
       <button id="themeToggleBtn" class="secondary" style="padding: 6px 14px; font-size: 12px;">🌙 MODO ESCURO</button>
       <button id="logoutBtn" class="danger secondary" style="padding: 6px 14px; font-size: 12px;" onclick="handleLogout()">SAIR</button>
@@ -765,7 +779,7 @@
   </div>
 
   <div class="home-panel card" id="homePanel">
-    <div class="banner-corporativo">PAINEL CENTRAL DE HOME OFFICE</div>
+    <div class="banner-corporativo" id="homeBannerTitle">PAINEL CENTRAL DE HOME OFFICE</div>
     
     <div class="controls" id="topControls">
       <select id="monthSelect"></select>
@@ -1076,15 +1090,27 @@
 let registeredUsers = JSON.parse(localStorage.getItem("adl-users")) || [];
 const adminIndex = registeredUsers.findIndex(u => u.email.toLowerCase() === "admin@adlgestao.com");
 if (adminIndex === -1) {
-  registeredUsers.unshift({ name: "ADMINISTRADOR", email: "admin@adlgestao.com", password: "adm4685", status: "ativo", role: "admin" });
+  registeredUsers.unshift({ name: "ADMINISTRADOR", email: "admin@adlgestao.com", password: "adm4685", status: "ativo", role: "admin", plataforma: "TRIBUTOS" });
 } else {
   registeredUsers[adminIndex].password = "adm4685";
   registeredUsers[adminIndex].status = "ativo";
   registeredUsers[adminIndex].role = "admin";
+  if(!registeredUsers[adminIndex].plataforma) registeredUsers[adminIndex].plataforma = "TRIBUTOS";
 }
 localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
 
 let currentUser = JSON.parse(sessionStorage.getItem("adl-current-user")) || null;
+
+let PLATAFORMAS = JSON.parse(localStorage.getItem("adl-plataformas")) || {
+  "TRIBUTOS": ["IPTU", "ISS", "DÍVIDA ATIVA"],
+  "CONTABILIDADE": ["BALANCETE", "ORÇAMENTO", "TESOURARIA"]
+};
+
+let activePlatform = currentUser ? (currentUser.role === 'admin' ? (localStorage.getItem("adl-active-admin-platform") || Object.keys(PLATAFORMAS)[0]) : (currentUser.plataforma || Object.keys(PLATAFORMAS)[0])) : Object.keys(PLATAFORMAS)[0];
+
+function savePlataformas(){
+  localStorage.setItem("adl-plataformas", JSON.stringify(PLATAFORMAS));
+}
 
 function switchAuthMode(mode) {
   const loginForm = document.getElementById("loginForm");
@@ -1099,9 +1125,11 @@ function switchAuthMode(mode) {
   if(mode === 'login'){
     loginForm.style.display = "flex"; registerForm.style.display = "none"; forgotForm.style.display = "none"; publicSearchForm.style.display = "none";
     tabLogin.classList.add("active"); tabReg.classList.remove("active"); tabPub.classList.remove("active"); authTabsHeader.style.display = "flex";
+    populateLoginPlataformaDropdown();
   } else if(mode === 'register') {
     loginForm.style.display = "none"; registerForm.style.display = "flex"; forgotForm.style.display = "none"; publicSearchForm.style.display = "none";
     tabReg.classList.add("active"); tabLogin.classList.remove("active"); tabPub.classList.remove("active"); authTabsHeader.style.display = "flex";
+    populateRegisterPlataformaDropdown();
   } else if(mode === 'forgot') {
     loginForm.style.display = "none"; registerForm.style.display = "none"; forgotForm.style.display = "flex"; publicSearchForm.style.display = "none";
     authTabsHeader.style.display = "none";
@@ -1109,6 +1137,25 @@ function switchAuthMode(mode) {
     loginForm.style.display = "none"; registerForm.style.display = "none"; forgotForm.style.display = "none"; publicSearchForm.style.display = "flex";
     tabPub.classList.add("active"); tabLogin.classList.remove("active"); tabReg.classList.remove("active"); authTabsHeader.style.display = "flex";
     populatePublicSearchDropdowns();
+  }
+}
+
+function populateLoginPlataformaDropdown() {
+  const sel = document.getElementById("loginPlataforma");
+  if(sel) {
+    const keys = Object.keys(PLATAFORMAS);
+    const atual = sel.value;
+    sel.innerHTML = keys.map(k => `<option value="${k}">${k}</option>`).join("");
+    if(atual && keys.includes(atual)) sel.value = atual;
+  }
+}
+populateLoginPlataformaDropdown();
+
+function populateRegisterPlataformaDropdown() {
+  const sel = document.getElementById("regPlataforma");
+  if(sel) {
+    const keys = Object.keys(PLATAFORMAS);
+    sel.innerHTML = keys.map(k => `<option value="${k}">${k}</option>`).join("");
   }
 }
 
@@ -1128,10 +1175,12 @@ async function populatePublicSearchDropdowns() {
     }
   }
 
-  for(const t of TEAM_NAMES) {
-    const st = allStatesCache[t];
-    if(st && st.members) allMems.push(...st.members);
-    if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
+  for(const plat of Object.keys(PLATAFORMAS)) {
+    for(const t of (PLATAFORMAS[plat]||[])) {
+      const st = allStatesCache[t];
+      if(st && st.members) allMems.push(...st.members);
+      if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
+    }
   }
 
   const uniqueMems = Array.from(new Set([...allMems, ...Object.keys(VACATION_DATA).filter(k => !k.startsWith("__"))])).sort((a,b)=>a.localeCompare(b,"pt-BR"));
@@ -1162,11 +1211,13 @@ async function handlePublicSearch() {
   }
 
   let targetTeam = TEAM_NAMES[0];
-  for(const t of TEAM_NAMES) {
-    const st = allStatesCache[t] || await loadTeamStateForMonth(t, year, month);
-    if(st.members && st.members.includes(memberName)) {
-      targetTeam = t;
-      break;
+  for(const plat of Object.keys(PLATAFORMAS)) {
+    for(const t of (PLATAFORMAS[plat]||[])) {
+      const st = allStatesCache[t] || await loadTeamStateForMonth(t, year, month);
+      if(st.members && st.members.includes(memberName)) {
+        targetTeam = t;
+        break;
+      }
     }
   }
 
@@ -1253,6 +1304,7 @@ function handleLogin(e) {
   e.preventDefault();
   const email = document.getElementById("loginEmail").value.trim().toLowerCase();
   const pass = document.getElementById("loginPassword").value;
+  const loginPlat = document.getElementById("loginPlataforma").value;
   const msg = document.getElementById("loginMsg");
 
   const found = registeredUsers.find(u => u.email.toLowerCase() === email && u.password === pass);
@@ -1263,10 +1315,16 @@ function handleLogin(e) {
       return;
     }
     currentUser = found;
+    if(currentUser.role === 'admin') {
+      activePlatform = loginPlat || Object.keys(PLATAFORMAS)[0];
+      localStorage.setItem("adl-active-admin-platform", activePlatform);
+    } else {
+      activePlatform = currentUser.plataforma || loginPlat || Object.keys(PLATAFORMAS)[0];
+    }
     sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
     msg.textContent = "LOGIN REALIZADO COM SUCESSO!";
     msg.className = "auth-msg success";
-    setTimeout(() => { document.getElementById("authOverlay").style.display = "none"; updateSessionDisplay(); }, 600);
+    setTimeout(() => { document.getElementById("authOverlay").style.display = "none"; updateSessionDisplay(); initPlatformContext(); loadState(); }, 600);
   } else {
     msg.textContent = "E-MAIL OU SENHA INVÁLIDOS.";
     msg.className = "auth-msg error";
@@ -1295,6 +1353,7 @@ function handleRegister(e) {
   const name = document.getElementById("regName").value.trim().toUpperCase();
   const email = document.getElementById("regEmail").value.trim().toLowerCase();
   const pass = document.getElementById("regPassword").value;
+  const plataforma = document.getElementById("regPlataforma").value;
   const msg = document.getElementById("regMsg");
 
   if(pass.length < 3) {
@@ -1309,7 +1368,7 @@ function handleRegister(e) {
     return;
   }
 
-  const newUser = { name, email, password: pass, status: "pendente", role: "user" };
+  const newUser = { name, email, password: pass, status: "pendente", role: "user", plataforma };
   registeredUsers.push(newUser);
   localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
 
@@ -1342,12 +1401,49 @@ function updateSessionDisplay() {
 
     document.getElementById("loggedUserName").textContent = (currentUser.name || "").toUpperCase() + (currentUser.role === 'admin' ? ' (ADMIN)' : '');
     document.getElementById("authOverlay").style.display = "none";
+    
+    const adminSelectorContainer = document.getElementById("adminPlatformSelectorContainer");
     if(currentUser.email.toLowerCase() === "admin@adlgestao.com" || currentUser.role === "admin") {
+      if(adminSelectorContainer) adminSelectorContainer.style.display = "flex";
+      populateAdminPlatformSelect();
       criarPainelAprovacaoAdmin();
+    } else {
+      if(adminSelectorContainer) adminSelectorContainer.style.display = "none";
     }
   } else {
     document.getElementById("authOverlay").style.display = "flex";
   }
+}
+
+function populateAdminPlatformSelect() {
+  const sel = document.getElementById("activePlatformSelect");
+  if(!sel) return;
+  const keys = Object.keys(PLATAFORMAS);
+  if(!keys.includes(activePlatform)) activePlatform = keys[0];
+  sel.innerHTML = keys.map(k => `<option value="${k}" ${k===activePlatform?'selected':''}>PLATAFORMA: ${k}</option>`).join("");
+}
+
+window.switchActivePlatform = function(platName) {
+  activePlatform = platName;
+  localStorage.setItem("adl-active-admin-platform", activePlatform);
+  initPlatformContext();
+  loadState();
+};
+
+function initPlatformContext() {
+  if(currentUser && currentUser.role !== 'admin') {
+    activePlatform = currentUser.plataforma || Object.keys(PLATAFORMAS)[0];
+  }
+  TEAM_NAMES = PLATAFORMAS[activePlatform] || Object.values(PLATAFORMAS)[0] || ["GERAL"];
+  TEAM_SLUGS = {};
+  TEAM_NAMES.forEach(t => TEAM_SLUGS[t] = t.toLowerCase().replace(/[^a-z0-9]+/g,"-"));
+  currentTeam = TEAM_NAMES[0];
+  currentHoSubtab = TEAM_NAMES[0];
+
+  const badge = document.getElementById("brandPlatformBadge");
+  if(badge) badge.textContent = `PLATAFORMA: ${activePlatform}`;
+  const banner = document.getElementById("homeBannerTitle");
+  if(banner) banner.textContent = `PAINEL CENTRAL DE HOME OFFICE — PLATAFORMA: ${activePlatform}`;
 }
 
 function toggleAdminPanel(btnEl) {
@@ -1370,14 +1466,36 @@ function criarPainelAprovacaoAdmin() {
 
   const pendentes = registeredUsers.filter(u => u.status === "pendente");
   const todosUsuarios = registeredUsers;
+  const platafKeys = Object.keys(PLATAFORMAS);
   
   adminPanel.innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-      <h3 style="color: var(--accent); font-size: 16px; margin: 0; text-transform: uppercase;">🛡️ PAINEL DE APROVAÇÃO E GESTÃO DE USUÁRIOS</h3>
+      <h3 style="color: var(--accent); font-size: 16px; margin: 0; text-transform: uppercase;">🛡️ PAINEL DE GESTÃO DE PLATAFORMAS E USUÁRIOS (ADMIN)</h3>
       <button class="secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="toggleAdminPanel(this)">➕ MAXIMIZAR</button>
     </div>
     
     <div id="adminPanelContent" style="display: none;">
+      
+      <div style="margin-bottom: 24px; background: var(--bg-main); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--primary-dark); text-transform: uppercase;">🏢 CRIAR E GERENCIAR PLATAFORMAS</h4>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">CRIE NOVAS PLATAFORMAS CORPORATIVAS E DEFINA OS GRUPOS / EQUIPES QUE ACOMPANHAM CADA UMA (SEPARADOS POR VÍRGULA).</p>
+        
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+          <input type="text" id="newPlatformNameInput" placeholder="NOME DA PLATAFORMA (EX: CONTABILIDADE)" style="flex: 2; min-width: 200px; padding: 8px;">
+          <input type="text" id="newPlatformGroupsInput" placeholder="GRUPOS (EX: BALANCETE, ORÇAMENTO, TESOURARIA)" style="flex: 3; min-width: 250px; padding: 8px;">
+          <button class="gold" onclick="criarNovaPlataforma()" style="padding: 8px 14px;">+ CRIAR PLATAFORMA</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          ${platafKeys.map(pk => `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 13px;">
+              <div><strong>${pk}</strong> <span style="font-size: 11.5px; color: var(--text-muted);">[GRUPOS: ${(PLATAFORMAS[pk]||[]).join(", ")}]</span></div>
+              ${platafKeys.length > 1 ? `<button class="danger secondary" style="padding: 3px 8px; font-size: 11px;" onclick="excluirPlataforma('${pk}')">EXCLUIR</button>` : `<span style="font-size: 11px; font-style: italic;">PADRÃO</span>`}
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
       <div style="margin-bottom: 20px;">
         <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">CADASTROS PENDENTES:</h4>
         ${
@@ -1387,12 +1505,15 @@ function criarPainelAprovacaoAdmin() {
               ${pendentes.map(p => `
                 <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;">
                   <div>
-                    <strong>${(p.name||"").toUpperCase()}</strong> <span style="font-size: 12px; color: var(--text-muted);">(${p.email})</span> — CARGO ATUAL: <span style="font-weight:600; color:var(--primary-dark);">${p.role === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO COMUM'}</span>
+                    <strong>${(p.name||"").toUpperCase()}</strong> <span style="font-size: 12px; color: var(--text-muted);">(${p.email})</span>
                   </div>
-                  <div style="display: flex; gap: 8px; align-items: center;">
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                     <select id="role-select-${p.email.replace(/[@.]/g, '_')}" style="padding: 4px 8px; font-size: 12px;">
-                      <option value="user" ${p.role==='user'?'selected':''}>USUÁRIO COMUM</option>
-                      <option value="admin" ${p.role==='admin'?'selected':''}>ADMINISTRADOR</option>
+                      <option value="user" ${p.role==='user'?'selected':''}>USUÁRIO</option>
+                      <option value="admin" ${p.role==='admin'?'selected':''}>ADMIN</option>
+                    </select>
+                    <select id="plat-select-${p.email.replace(/[@.]/g, '_')}" style="padding: 4px 8px; font-size: 12px;">
+                      ${platafKeys.map(pk => `<option value="${pk}" ${p.plataforma===pk?'selected':''}>${pk}</option>`).join("")}
                     </select>
                     <button class="gold" style="padding: 4px 10px; font-size: 12px;" onclick="aprovarUsuario('${p.email}')">APROVAR</button>
                     <button class="danger secondary" style="padding: 4px 10px; font-size: 12px;" onclick="rejeitarUsuario('${p.email}')">RECUSAR</button>
@@ -1404,17 +1525,20 @@ function criarPainelAprovacaoAdmin() {
       </div>
 
       <div style="border-top: 1px dashed var(--border-color); padding-top: 16px;">
-        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">USUÁRIOS DO SISTEMA (ALTERAR NÍVEL E EXCLUIR):</h4>
+        <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--text-main); text-transform: uppercase;">USUÁRIOS DO SISTEMA (GERENCIAR PLATAFORMA, NÍVEL E EXCLUSÃO):</h4>
         <div style="display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto;">
           ${todosUsuarios.map(u => `
             <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 13px; flex-wrap: wrap; gap: 8px;">
               <div>
                 <strong>${(u.name||"").toUpperCase()}</strong> <span style="color: var(--text-muted);">(${u.email})</span> ${u.status === 'pendente' ? '<span style="color: var(--danger); font-size:11px;">[PENDENTE]</span>' : ''}
               </div>
-              <div style="display: flex; gap: 8px; align-items: center;">
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                 <select onchange="alterarCargoUsuario('${u.email}', this.value)" style="padding: 3px 8px; font-size: 11.5px;" ${u.email.toLowerCase() === 'admin@adlgestao.com' ? 'disabled' : ''}>
-                  <option value="user" ${u.role==='user'?'selected':''}>USUÁRIO COMUM</option>
-                  <option value="admin" ${u.role==='admin'?'selected':''}>ADMINISTRADOR</option>
+                  <option value="user" ${u.role==='user'?'selected':''}>USUÁRIO</option>
+                  <option value="admin" ${u.role==='admin'?'selected':''}>ADMIN</option>
+                </select>
+                <select onchange="alterarPlataformaUsuario('${u.email}', this.value)" style="padding: 3px 8px; font-size: 11.5px;">
+                  ${platafKeys.map(pk => `<option value="${pk}" ${u.plataforma===pk?'selected':''}>${pk}</option>`).join("")}
                 </select>
                 ${u.email.toLowerCase() !== 'admin@adlgestao.com' ? `
                   <button class="danger secondary" style="padding: 3px 8px; font-size: 11px;" onclick="excluirUsuarioSistema('${u.email}')">EXCLUIR</button>
@@ -1428,14 +1552,50 @@ function criarPainelAprovacaoAdmin() {
   `;
 }
 
+window.criarNovaPlataforma = function(){
+  const nomeInput = document.getElementById("newPlatformNameInput");
+  const gruposInput = document.getElementById("newPlatformGroupsInput");
+  const nome = nomeInput.value.trim().toUpperCase();
+  const gruposStr = gruposInput.value.trim().toUpperCase();
+
+  if(!nome || !gruposStr) return alert("INFORME O NOME DA PLATAFORMA E OS GRUPOS / EQUIPES SEPARADOS POR VÍRGULA.");
+  if(PLATAFORMAS[nome]) return alert("ESTA PLATAFORMA JÁ EXISTE.");
+
+  const gruposArr = gruposStr.split(",").map(g => g.trim()).filter(Boolean);
+  if(!gruposArr.length) return alert("INFORME AO MENOS UM GRUPO VÁLIDO.");
+
+  PLATAFORMAS[nome] = gruposArr;
+  savePlataformas();
+  nomeInput.value = "";
+  gruposInput.value = "";
+  populateAdminPlatformSelect();
+  populateLoginPlataformaDropdown();
+  criarPainelAprovacaoAdmin();
+  alert(`PLATAFORMA "${nome}" CRIADA COM SUCESSO!`);
+};
+
+window.excluirPlataforma = function(nome){
+  if(Object.keys(PLATAFORMAS).length <= 1) return alert("É NECESSÁRIO MANTER AO MENOS UMA PLATAFORMA.");
+  if(!confirm(`DESEJA EXCLUIR A PLATAFORMA "${nome}"?`)) return;
+  delete PLATAFORMAS[nome];
+  savePlataformas();
+  if(activePlatform === nome) activePlatform = Object.keys(PLATAFORMAS)[0];
+  populateAdminPlatformSelect();
+  populateLoginPlataformaDropdown();
+  initPlatformContext();
+  criarPainelAprovacaoAdmin();
+  loadState();
+  alert("PLATAFORMA EXCLUÍDA!");
+};
+
 window.aprovarUsuario = function(email) {
   const user = registeredUsers.find(u => u.email === email);
   if(user) {
     const safeId = email.replace(/[@.]/g, '_');
     const selectEl = document.getElementById(`role-select-${safeId}`);
-    if(selectEl) {
-      user.role = selectEl.value;
-    }
+    const platSel = document.getElementById(`plat-select-${safeId}`);
+    if(selectEl) user.role = selectEl.value;
+    if(platSel) user.plataforma = platSel.value;
     user.status = "ativo";
     localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
     criarPainelAprovacaoAdmin();
@@ -1448,7 +1608,16 @@ window.alterarCargoUsuario = function(email, novoCargo) {
   if(user) {
     user.role = novoCargo;
     localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
-    alert(`CARGO DE ${(user.name||"").toUpperCase()} ALTERADO PARA ${novoCargo === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO COMUM'}.`);
+    alert(`CARGO DE ${(user.name||"").toUpperCase()} ALTERADO PARA ${novoCargo === 'admin' ? 'ADMINISTRADOR' : 'USUÁRIO'}.`);
+  }
+};
+
+window.alterarPlataformaUsuario = function(email, novaPlat) {
+  const user = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+  if(user) {
+    user.plataforma = novaPlat;
+    localStorage.setItem("adl-users", JSON.stringify(registeredUsers));
+    alert(`PLATAFORMA DE ${(user.name||"").toUpperCase()} ALTERADA PARA ${novaPlat}.`);
   }
 };
 
@@ -1519,13 +1688,16 @@ function toggleQuadrant(bodyId, btnEl) {
 
 let TEAM_NAMES = ["IPTU", "ISS", "DÍVIDA ATIVA"];
 let TEAM_SLUGS = {"IPTU": "iptu", "ISS": "iss", "DÍVIDA ATIVA": "divida-ativa"};
-const TEAM_ACCENTS = {"IPTU": "#2a435c", "ISS": "#dc2626", "DÍVIDA ATIVA": "#16a34a"};
+const TEAM_ACCENTS = {"IPTU": "#2a435c", "ISS": "#dc2626", "DÍVIDA ATIVA": "#16a34a", "BALANCETE": "#2563eb", "ORÇAMENTO": "#d97706", "TESOURARIA": "#16a34a"};
 const DEFAULT_MEMBERS = {
   "IPTU": ["ADILSON", "MURILO", "EMERSON", "DIÓGENES", "SINDY"],
   "ISS": ["ANA VANESSA", "BRAULIO", "LUCELIA"],
-  "DÍVIDA ATIVA": ["ROSEANE", "KARINA", "MAIRA", "SIDNEY", "GISELLE", "JULIO"]
+  "DÍVIDA ATIVA": ["ROSEANE", "KARINA", "MAIRA", "SIDNEY", "GISELLE", "JULIO"],
+  "BALANCETE": ["CARLOS", "MARIA"],
+  "ORÇAMENTO": ["JOÃO", "BEATRIZ"],
+  "TESOURARIA": ["PAULO", "FERNANDA"]
 };
-let TEAM_ICONS = {"IPTU": "🏠", "ISS": "🧾", "DÍVIDA ATIVA": "⚖️"};
+let TEAM_ICONS = {"IPTU": "🏠", "ISS": "🧾", "DÍVIDA ATIVA": "⚖️", "BALANCETE": "📊", "ORÇAMENTO": "💰", "TESOURARIA": "🏦"};
 const DEFAULT_VACATION_DATA = {
   "ADILSON": { admissao: "MARÇO", solicitacao: "" },
   "ANA VANESSA": { admissao: "AGOSTO", solicitacao: "21/12/2026 À 03/01/2027 - 14 DIAS (AUTORIZADO NO PORTALRH)." },
@@ -1631,7 +1803,7 @@ function getMondayKey(date){
 
 function storageKey(t, y, m){ return `adl:${TEAM_SLUGS[t]||t.toLowerCase()}:${y}-${pad(m+1)}`; }
 
-const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "DÍVIDA ATIVA": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}};
+const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "DÍVIDA ATIVA": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}};
 const SEED_OCT_2026_FORCED = ["2026-10-01","2026-10-02","2026-10-07","2026-10-14","2026-10-21","2026-10-28"];
 let _seedPromise = null;
 function seedOct2026(){
@@ -1746,7 +1918,8 @@ function membersConflictOnDate(m1, m2, dStr){
 
 async function loadState(){
   if(currentYear === 2026 && currentMonth === 9) await seedOct2026();
-  if(!RULE_CONFIGS.enableTeams) currentTeam = "GERAL";
+  initPlatformContext();
+  if(!RULE_CONFIGS.enableTeams) currentTeam = TEAM_NAMES[0];
   else if(!TEAM_NAMES.includes(currentTeam)) currentTeam = TEAM_NAMES[0];
 
   try{
@@ -1806,14 +1979,18 @@ window.addNewTeam = async function(){
   const input = document.getElementById("newTeamNameInput"); const name = input.value.trim().toUpperCase();
   if(!name || TEAM_NAMES.includes(name)) return;
   TEAM_NAMES.push(name); TEAM_SLUGS[name] = name.toLowerCase().replace(/[^a-z0-9]+/g,"-"); TEAM_ICONS[name] = "📁";
+  PLATAFORMAS[activePlatform] = [...TEAM_NAMES];
+  savePlataformas();
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
-  input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`EQUIPE "${name}" CRIADA!`);
+  input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`EQUIPE "${name}" CRIADA NA PLATAFORMA ${activePlatform}!`);
 };
 
 window.removeTeam = async function(name){
   if(TEAM_NAMES.length <= 1) return;
   if(!confirm(`REMOVER EQUIPE ${name}?`)) return;
   TEAM_NAMES = TEAM_NAMES.filter(t => t !== name); delete TEAM_ICONS[name];
+  PLATAFORMAS[activePlatform] = [...TEAM_NAMES];
+  savePlataformas();
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
   if(currentTeam === name) currentTeam = TEAM_NAMES[0];
   await saveRulesData(); renderExistingTeamsList(); renderRulesUI();
@@ -1915,7 +2092,7 @@ function updatePanelVisibility(){
 function renderHoSubtabs(){
   const container = document.getElementById("hoSubtabsContainer"); if(!container) return;
   if(!RULE_CONFIGS.enableTeams){
-    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('GERAL')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
+    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('${TEAM_NAMES[0]}')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   } else {
     container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${t}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   }
@@ -2555,7 +2732,11 @@ document.getElementById("duplicatePreviousBtn").onclick = async ()=>{
 };
 
 document.getElementById("saveHomeScheduleBtn").onclick = async ()=>{ await saveState(); await refreshAllStatesCache(); alert("ESCALA SALVA COM SUCESSO!"); };
-document.getElementById("clearBtn", () => { state.members.forEach(m=> state.ho[m]=[]); saveState(); render(); });
+document.getElementById("clearBtn").onclick = async () => {
+  if(!confirm("DESEJA LIMPAR TODA A ESCALA DE HOME OFFICE DESTE MÊS?")) return;
+  state.members.forEach(m => state.ho[m] = []);
+  await saveState(); await refreshAllStatesCache(); render();
+};
 
 document.getElementById("exportPdfBtn").onclick = ()=>{
   appendPrintFooterAndAlerts();
@@ -2658,7 +2839,7 @@ document.getElementById("addMemberBtn").onclick = async ()=>{
 document.getElementById("forceDayBtn").onclick = ()=>{
   const inp = document.getElementById("forcedDateInput"); if(!inp.value) return;
   if(!state.forced.includes(inp.value)) state.forced.push(inp.value);
-  state.members.exports = state.members.forEach(m => state.ho[m] = (state.ho[m]||[]).filter(d=>d!==inp.value));
+  state.members.forEach(m => state.ho[m] = (state.ho[m]||[]).filter(d => d !== inp.value));
   inp.value = ""; saveState(); render();
 };
 
@@ -2686,7 +2867,7 @@ themeToggleBtn.onclick = ()=>{
   const savedTheme = localStorage.getItem("adl-theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
   themeToggleBtn.textContent = savedTheme === "dark" ? "☀️ MODO CLARO" : "🌙 MODO ESCURO";
-  updateSessionDisplay(); await loadTravelData(); applyAccent(); renderTabs(); renderMonthYearSelects(); viewMode = "inicio"; renderTabs(); render();
+  updateSessionDisplay(); await loadTravelData(); applyAccent(); renderTabs(); renderMonthYearSelects(); viewMode = "inicio"; initPlatformContext(); renderTabs(); render();
 })();
 </script>
 </body>
