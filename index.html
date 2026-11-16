@@ -6,7 +6,7 @@
   <title>ADL GESTÃO INTELIGENTE - Sistema Integrado de Gestão Corporativa</title>
   <link rel="icon" href="https://raw.githubusercontent.com/Didi4685/Gest-o-Pro/main/Captura%20de%20tela%202026-09-28%20124544.png">
   <meta name="theme-color" content="#1d3a5c">
-  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado[cite: 10] -->
+  <!-- Biblioteca Oficial do Supabase para Banco de Dados Centralizado -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1083,6 +1083,86 @@
         --danger:#d33a3a; --success:#13865a; --primary:#2f6fd6; --viz-1:#2a78d6; --viz-1-strong:#1d5fb0;
       }
     }
+
+    /* =====================================================================
+       PROTEÇÃO CONTRA QUEBRAS DE LAYOUT NO ZOOM IN / ZOOM OUT
+       ===================================================================== */
+    .wrap{ width: 100%; max-width: 1380px; margin: 0 auto; position: relative; z-index: 1; }
+    .card, .home-panel, .travel-panel, .vacation-panel, .bi-panel, .inicio-panel,
+    .team-panel, .rule-quadrant, .mini-team-card, .saved-schedule-card{ min-width: 0; max-width: 100%; }
+
+    /* Cabeçalho flexível sem sobreposição ou corte em zoom alto (125% - 200%) */
+    .brand-header{ display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .brand-logo-area{ display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1 1 300px; }
+    .brand-texts{ min-width: 0; flex: 1; }
+    .brand-texts h1, .brand-texts p{ overflow-wrap: break-word; word-break: break-word; }
+    .header-right{ display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex: 1 1 auto; min-width: 0; max-width: 100%; }
+    .header-row{ display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; max-width: 100%; }
+    .header-select{ max-width: 100%; }
+
+    /* Abas principais e subabas sem estourar a largura da viewport */
+    .tabs{ display: flex; flex-wrap: wrap; width: auto; max-width: 100%; border-radius: 14px; gap: 4px; }
+    .tab{ flex: 0 1 auto; white-space: nowrap; }
+    .ho-subtabs{ display: flex; flex-wrap: wrap; gap: 4px; overflow-x: visible; }
+    .ho-subtab{ white-space: nowrap; }
+
+    /* Controles e barras de ferramentas responsivos ao zoom */
+    .controls, .travel-config-bar{ display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+    .ctrl-group{ display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
+    .ctrl-right{ margin-left: auto; }
+    .controls button, .controls select, .controls input{ max-width: 100%; }
+
+    /* Formulários de viagem, férias e regras sem campos espremidos ou vazando */
+    .travel-form-row{ display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+    .travel-form-group{ flex: 1 1 180px; min-width: 150px; max-width: 100%; }
+    .travel-form-group input, .travel-form-group select, .dropdown-check-btn{ width: 100%; min-width: 0; }
+    .add-row{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .add-row input, .add-row select{ flex: 1 1 160px; min-width: 0; width: auto !important; }
+    .forced-row{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .forced-row .opt-label{ min-width: 0; flex: 1 1 140px; }
+    .forced-row input, .forced-row select{ flex: 1 1 160px; min-width: 0; }
+
+    /* Grids de cards e KPIs adaptáveis ao zoom out (telas largas) e zoom in (telas estreitas) */
+    .inicio-grid{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+    .member-list{ grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+    .mini-teams-grid{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+    .kpi-row{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 155px), 1fr)); }
+    #conflictBoxesContainer{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)) !important; }
+
+    /* Tabelas com rolagem horizontal isolada para nunca quebrar a página no zoom */
+    .table-card{ width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.schedule{ width: 100%; min-width: 820px; table-layout: fixed; }
+    table.schedule th:first-child, table.schedule td.name-cell{ width: 165px; min-width: 140px; max-width: 185px; }
+    .table-responsive-wrapper{ width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .travel-table{ width: 100%; min-width: 760px; }
+
+    /* Accordions e cabeçalhos internos com quebra segura */
+    details.fold > summary{ flex-wrap: wrap; gap: 8px; }
+    .fold-title{ min-width: 0; overflow-wrap: break-word; }
+    .saved-schedule-header{ flex-wrap: wrap; gap: 10px; }
+    .saved-schedule-title{ min-width: 0; flex: 1 1 220px; }
+    .banner-corporativo{ flex-wrap: wrap; font-size: clamp(15px, 1.4vw, 19px); }
+    .inicio-hero{ padding: clamp(24px, 4vw, 52px) clamp(20px, 3.5vw, 44px); }
+    .inicio-hero h2{ font-size: clamp(24px, 3vw, 40px); }
+    .inicio-hero h2 span{ font-size: clamp(14px, 1.6vw, 18px); }
+
+    /* Modais sempre visíveis e roláveis mesmo com zoom de 175% - 200% */
+    .auth-overlay{ align-items: flex-start; padding: 16px; overflow-y: auto; }
+    .auth-card{ margin: auto; max-width: min(440px, 100%); }
+    .admin-card{ max-width: min(920px, 100%) !important; }
+    #adminModalBody, #publicSearchResult{ max-height: 72vh; overflow-y: auto; }
+
+    @media (max-width: 960px){
+      .header-right{ align-items: flex-start; width: 100%; }
+      .header-row{ justify-content: flex-start; }
+      .ctrl-right{ margin-left: 0; }
+    }
+    @media (max-width: 600px){
+      body{ padding: 12px 10px 48px; }
+      .inicio-panel, .home-panel, .travel-panel, .vacation-panel, .bi-panel{ padding: 14px; }
+      .controls button, .travel-config-bar button{ flex: 1 1 auto; justify-content: center; }
+    }
+
   </style>
 </head>
 <body>
@@ -1765,22 +1845,26 @@ function withTimeout(promise, ms){
   ]);
 }
 
+const _readFailed = new Set();
 async function storageGet(k){
   try {
     const { data, error } = await withTimeout(
       supabaseClient.from('adl_storage').select('data').eq('id', k).maybeSingle(),
       12000
     );
-    if (error || !data) return null;
+    if (error){ _readFailed.add(k); return null; }
+    _readFailed.delete(k);
+    if (!data) return null;
     return JSON.stringify(data.data);
   } catch(e) {
-    console.warn("Falha ao ler do Supabase:", k, e && e.message);
+    console.warn("Falha ao ler do Supabase:", k, e && e.message); _readFailed.add(k);
     return null;
   }
 }
 
 async function storageSet(k, v){
   try {
+    if(_readFailed.has(k)){ toast("NÃO FOI POSSÍVEL LER ESTES DADOS DO SERVIDOR. RECARREGUE A PÁGINA ANTES DE SALVAR.", "error"); return false; }
     const jsonData = typeof v === 'string' ? JSON.parse(v) : v;
     const { error } = await withTimeout(
       supabaseClient.from('adl_storage').upsert({ id: k, data: jsonData, updated_at: new Date() }),
@@ -2128,7 +2212,7 @@ async function handleLogin(e) {
     } else {
       activePlatform = currentUser.plataforma || loginPlat || Object.keys(PLATAFORMAS)[0];
     }
-    sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
+    sessionStorage.setItem("adl-current-user", JSON.stringify({ ...currentUser, password: undefined }));
     msg.textContent = "LOGIN REALIZADO COM SUCESSO!";
     msg.className = "auth-msg success";
     setTimeout(() => { document.getElementById("authOverlay").style.display = "none"; updateSessionDisplay(); initPlatformContext(); loadState(); }, 600);
@@ -2146,9 +2230,9 @@ async function handleForgot(e) {
   const found = registeredUsers.find(u => u.email.toLowerCase() === email);
   if(found) {
     const tempNewPass = "temp" + Math.floor(1000 + Math.random() * 9000);
-    found.password = tempNewPass;
+    // SEGURANÇA: somente o administrador redefine senhas
     await saveRegisteredUsers();
-    msg.innerHTML = `ENVIADO PARA <strong>${email.toUpperCase()}</strong>.<br>SENHA TEMPORÁRIA: <code style="background:var(--card-bg); padding:2px 6px; border-radius:4px;">${tempNewPass}</code>`;
+    msg.textContent = "SOLICITE AO ADMINISTRADOR A REDEFINIÇÃO DA SUA SENHA.";
     msg.className = "auth-msg success";
   } else {
     msg.textContent = "E-MAIL NÃO ENCONTRADO.";
@@ -2159,7 +2243,7 @@ async function handleForgot(e) {
 async function handleRegister(e) {
   e.preventDefault();
   await loadSystemUsersAndPlatforms();
-  const name = document.getElementById("regName").value.trim().toUpperCase();
+  const name = document.getElementById("regName").value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
   const email = document.getElementById("regEmail").value.trim().toLowerCase();
   const pass = document.getElementById("regPassword").value;
   const plataforma = document.getElementById("regPlataforma").value;
@@ -2209,7 +2293,7 @@ async function updateSessionDisplay() {
   await loadSystemUsersAndPlatforms();
   if(currentUser) {
     const latestUser = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
-    if(latestUser) currentUser = latestUser;
+    if(latestUser) currentUser = latestUser; else if(usersLoadedFromServer){ handleLogout(); return; }
 
     document.getElementById("loggedUserName").textContent = (currentUser.name || "").toUpperCase();
     const av = document.getElementById("userAvatar"); if(av) av.textContent = ((currentUser.name || "U").trim()[0] || "U").toUpperCase();
@@ -2252,6 +2336,7 @@ function initPlatformContext() {
   if(currentUser && currentUser.role !== 'admin') {
     activePlatform = currentUser.plataforma || Object.keys(PLATAFORMAS)[0];
   }
+  if(!PLATAFORMAS[activePlatform]) activePlatform = Object.keys(PLATAFORMAS)[0];
   TEAM_NAMES = PLATAFORMAS[activePlatform] || Object.values(PLATAFORMAS)[0] || ["GERAL"];
   TEAM_SLUGS = {};
   TEAM_NAMES.forEach(t => TEAM_SLUGS[t] = t.toLowerCase().replace(/[^a-z0-9]+/g,"-"));
@@ -2360,6 +2445,7 @@ async function criarPainelAprovacaoAdmin() {
                   ${platafKeys.map(pk => `<option value="${pk}" ${u.plataforma===pk?'selected':''}>${pk}</option>`).join("")}
                 </select>
                 ${u.email.toLowerCase() !== 'admin@adlgestao.com' ? `
+                  <button class="gold" style="padding: 3px 8px; font-size: 11px;" onclick="redefinirSenhaUsuario('${escAttr(u.email)}')">REDEFINIR SENHA</button>
                   <button class="danger secondary" style="padding: 3px 8px; font-size: 11px;" onclick="excluirUsuarioSistema('${escAttr(u.email)}')">EXCLUIR</button>
                 ` : `<span style="font-size: 11px; font-style: italic; color: var(--text-muted);">MASTER</span>`}
               </div>
@@ -2374,8 +2460,8 @@ async function criarPainelAprovacaoAdmin() {
 window.criarNovaPlataforma = async function(){
   const nomeInput = document.getElementById("newPlatformNameInput");
   const gruposInput = document.getElementById("newPlatformGroupsInput");
-  const nome = nomeInput.value.trim().toUpperCase();
-  const gruposStr = gruposInput.value.trim().toUpperCase();
+  const nome = nomeInput.value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
+  const gruposStr = gruposInput.value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
 
   if(!nome || !gruposStr) return alert("INFORME O NOME DA PLATAFORMA E OS GRUPOS / EQUIPES SEPARADOS POR VÍRGULA.");
   if(PLATAFORMAS[nome]) return alert("ESTA PLATAFORMA JÁ EXISTE.");
@@ -2443,6 +2529,15 @@ window.alterarPlataformaUsuario = async function(email, novaPlat) {
   }
 };
 
+window.redefinirSenhaUsuario = async function(email){
+  if(!confirm("GERAR UMA SENHA TEMPORÁRIA PARA ESTE USUÁRIO?")) return;
+  await loadSystemUsersAndPlatforms();
+  const u = registeredUsers.find(x => x.email.toLowerCase() === email.toLowerCase());
+  if(!u) return;
+  const tmp = "temp" + Math.floor(1000 + Math.random() * 9000);
+  u.password = tmp; await saveRegisteredUsers();
+  alert("SENHA TEMPORÁRIA DE " + (u.name || "") + ": " + tmp + "\nINFORME AO USUÁRIO E PEÇA PARA ALTERAR NO PRIMEIRO ACESSO.");
+};
 window.rejeitarUsuario = async function(email) {
   if(!confirm("DESEJA REJEITAR E REMOVER ESTE CADASTRO PENDENTE?")) return;
   await loadSystemUsersAndPlatforms();
@@ -2483,7 +2578,7 @@ async function handleChangePassword(e) {
   const confirmPass = document.getElementById("confirmPassInput").value;
   const msg = document.getElementById("passModalMsg");
 
-  if(currentPass !== currentUser.password) { msg.textContent = "SENHA ATUAL INCORRETA."; msg.className = "auth-msg error"; return; }
+  const _ref = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase()); if(!_ref || currentPass !== _ref.password) { msg.textContent = "SENHA ATUAL INCORRETA."; msg.className = "auth-msg error"; return; }
   if(newPass.length < 3) { msg.textContent = "MÍNIMO 3 CARACTERES."; msg.className = "auth-msg error"; return; }
   if(newPass !== confirmPass) { msg.textContent = "AS SENHAS NÃO COINCIDEM."; msg.className = "auth-msg error"; return; }
 
@@ -2491,7 +2586,7 @@ async function handleChangePassword(e) {
   if(userRef) {
     userRef.password = newPass; currentUser.password = newPass;
     await saveRegisteredUsers();
-    sessionStorage.setItem("adl-current-user", JSON.stringify(currentUser));
+    sessionStorage.setItem("adl-current-user", JSON.stringify({ ...currentUser, password: undefined }));
   }
   msg.textContent = "SENHA ALTERADA COM SUCESSO!"; msg.className = "auth-msg success";
   setTimeout(() => { closePasswordModal(); }, 1200);
@@ -2635,6 +2730,7 @@ let currentMonth = new Date().getMonth();
 let state = { members: [], admissionDates: {}, ho: {}, forced: [] };
 let viewMode = "inicio";
 let allStatesCache = {};
+let stateKeyLoaded = "";
 
 function pad(n){ return n<10 ? "0"+n : ""+n; }
 function isoDate(y,m,d){ return `${y}-${pad(m+1)}-${pad(d)}`; }
@@ -2658,10 +2754,10 @@ function getWeekdayWeeks(year, month){
 function getMondayKey(date){
   const d = new Date(date); const day = d.getDay();
   d.setDate(d.getDate() + ((day===0? -6 : 1) - day));
-  return d.toISOString().slice(0,10);
+  return isoDate(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
-function storageKey(t, y, m){ return `adl:${TEAM_SLUGS[t]||t.toLowerCase()}:${y}-${pad(m+1)}`; }
+function storageKey(t, y, m){ return `adl:${t.toLowerCase().replace(/[^a-z0-9]+/g,"-")}:${y}-${pad(m+1)}`; }
 
 const SEED_OCT_2026 = {"IPTU": {"SINDY": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "MURILO": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "EMERSON": ["2026-10-05", "2026-10-08", "2026-10-12", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "DIÓGENES": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ADILSON": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-29"]}, "ISS": {"ANA VANESSA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "BRAULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "LUCELIA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}, "DÍVIDA ATIVA": {"JULIO": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "GISELLE": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "SIDNEY": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-29"], "ROSEANE": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"], "KARINA": ["2026-10-06", "2026-10-09", "2026-10-12", "2026-10-15", "2026-10-20", "2026-10-23", "2026-10-26", "2026-10-30"], "MAIRA": ["2026-10-05", "2026-10-08", "2026-10-13", "2026-10-16", "2026-10-19", "2026-10-22", "2026-10-27", "2026-10-30"]}};
 const SEED_OCT_2026_FORCED = ["2026-10-01","2026-10-02","2026-10-07","2026-10-14","2026-10-21","2026-10-28"];
@@ -2670,7 +2766,7 @@ function seedOct2026(){
   if(_seedPromise) return _seedPromise;
   _seedPromise = (async()=>{
     try{
-      if(await storageGet("adl:seed-oct2026-v1")) return;
+      if(await storageGet("adl:seed-oct2026-v1") || _readFailed.has("adl:seed-oct2026-v1")) return;
       for(const t of Object.keys(SEED_OCT_2026)){
         const k = storageKey(t, 2026, 9); const raw = await storageGet(k);
         const st = raw ? JSON.parse(raw) : { members: [...(DEFAULT_MEMBERS[t]||[])], admissionDates: {}, ho:{}, forced:[] };
@@ -2686,6 +2782,23 @@ function seedOct2026(){
   return _seedPromise;
 }
 
+async function inheritedState(t, y, m){
+  for(let i = 1; i <= 6; i++){
+    let py = y, pm = m - i; while(pm < 0){ pm += 12; py--; }
+    try{
+      const raw = await storageGet(storageKey(t, py, pm));
+      if(raw){
+        const s = JSON.parse(raw);
+        if(s && Array.isArray(s.members) && s.members.length){
+          const adm = {}, ho = {};
+          s.members.forEach(x => { adm[x] = (s.admissionDates || {})[x] || "2020-01-01"; ho[x] = []; });
+          return { members: [...s.members], admissionDates: adm, ho, forced: [] };
+        }
+      }
+    }catch(e){}
+  }
+  return null;
+}
 async function loadTeamStateForMonth(t, y, m){
   if(y === 2026 && m === 9) await seedOct2026();
   try{
@@ -2699,6 +2812,7 @@ async function loadTeamStateForMonth(t, y, m){
       return s;
     }
   }catch(e){}
+  const inh = await inheritedState(t, y, m); if(inh) return inh;
   const defaultMems = [...(DEFAULT_MEMBERS[t] || ["COLABORADOR 1"])];
   const defaultAdmit = {};
   defaultMems.forEach(m => defaultAdmit[m] = "2020-01-01");
@@ -2707,7 +2821,7 @@ async function loadTeamStateForMonth(t, y, m){
 
 async function loadAllStates(){
   const result = {};
-  for(const t of TEAM_NAMES){ result[t] = (t===currentTeam && currentHoSubtab===t) ? state : await loadTeamStateForMonth(t, currentYear, currentMonth); }
+  for(const t of TEAM_NAMES){ result[t] = (t===currentTeam && currentHoSubtab===t && stateKeyLoaded===storageKey(t, currentYear, currentMonth)) ? state : await loadTeamStateForMonth(t, currentYear, currentMonth); }
   return result;
 }
 
@@ -2820,7 +2934,7 @@ async function loadState(){
 
   try{
     const raw = await storageGet(storageKey(currentTeam, currentYear, currentMonth));
-    state = raw ? JSON.parse(raw) : null;
+    state = raw ? JSON.parse(raw) : await inheritedState(currentTeam, currentYear, currentMonth);
   }catch(e){ state = null; }
   
   if(!state){
@@ -2835,6 +2949,7 @@ async function loadState(){
   }
   if(!state.ho) state.ho = {}; if(!state.forced) state.forced = [];
   state.members.forEach(m=>{ if(!state.ho[m]) state.ho[m]=[]; if(!state.admissionDates[m]) state.admissionDates[m]="2020-01-01"; });
+  stateKeyLoaded = storageKey(currentTeam, currentYear, currentMonth);
   render();
 }
 
@@ -2849,7 +2964,7 @@ window.switchHoSubtab = async function(subtab){
   if(subtab === "rules"){
     document.getElementById("hoTeamContentContainer").style.display = "none";
     document.getElementById("hoRulesContentContainer").style.display = "block";
-    if(window.event && window.event.target && window.event.target.classList) window.event.target.classList.add("active");
+    renderHoSubtabs();
     document.getElementById("ruleMaxHoDays").value = RULE_CONFIGS.maxHoDays || 2;
     document.getElementById("ruleEnableTeams").checked = RULE_CONFIGS.enableTeams !== false;
     document.getElementById("ruleYearsCount").value = RULE_CONFIGS.yearsCount || 4;
@@ -2860,7 +2975,7 @@ window.switchHoSubtab = async function(subtab){
     currentTeam = subtab; applyAccent();
     document.getElementById("hoTeamContentContainer").style.display = "block";
     document.getElementById("hoRulesContentContainer").style.display = "none";
-    if(window.event && window.event.target && window.event.target.classList) window.event.target.classList.add("active");
+    renderHoSubtabs();
     await loadState();
   }
 };
@@ -2872,7 +2987,7 @@ function renderExistingTeamsList(){
 }
 
 window.addNewTeam = async function(){
-  const input = document.getElementById("newTeamNameInput"); const name = input.value.trim().toUpperCase();
+  const input = document.getElementById("newTeamNameInput"); const name = input.value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
   if(!name || TEAM_NAMES.includes(name)) return;
   TEAM_NAMES.push(name); TEAM_SLUGS[name] = name.toLowerCase().replace(/[^a-z0-9]+/g,"-"); TEAM_ICONS[name] = "📁";
   PLATAFORMAS[activePlatform] = [...TEAM_NAMES];
@@ -3002,7 +3117,7 @@ function renderMonthYearSelects(){
   const thisYear = new Date().getFullYear(); let opts = "";
   for(let y = thisYear - 1; y < thisYear + (RULE_CONFIGS.yearsCount||4); y++) opts += `<option value="${y}" ${y===thisYear?'selected':''}>${y}</option>`;
   ySel.innerHTML = opts;
-  mSel.onchange = ()=>{ currentMonth = parseInt(mSel.value); if(viewMode==="home" && currentHoSubtab!=="rules") loadState(); };
+  ySel.value = currentYear; mSel.onchange = ()=>{ currentMonth = parseInt(mSel.value); if(viewMode==="home" && currentHoSubtab!=="rules") loadState(); };
   ySel.onchange = ()=>{ currentYear = parseInt(ySel.value); if(viewMode==="home" && currentHoSubtab!=="rules") loadState(); };
   const vYear = document.getElementById("vacationYearSelect"); if(vYear){ vYear.innerHTML = opts; vYear.value = currentVacationYear; vYear.onchange = () => { currentVacationYear = parseInt(vYear.value); renderVacationPanel(); }; }
 }
@@ -3369,7 +3484,7 @@ window.cancelEditTravelPending = function() {
 };
 
 document.getElementById("addTravelVisitBtn").onclick = async ()=>{
-  const cliente = document.getElementById("tCliente").value.trim().toUpperCase(); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase();
+  const cliente = document.getElementById("tCliente").value.trim().toUpperCase().replace(/[<>&"\\`]/g, ""); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
   const techs = getSelectedTechs("tDropdownContent"); const saida = document.getElementById("tSaidaData").value; const chegada = document.getElementById("tChegadaData").value;
   if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS E SELECIONE AO MENOS UM TÉCNICO.");
   if(chegada < saida) return alert("A DATA DE CHEGADA NÃO PODE SER ANTERIOR À DATA DE SAÍDA.");
@@ -3413,7 +3528,7 @@ document.getElementById("addTravelVisitBtn").onclick = async ()=>{
 };
 
 document.getElementById("addTravelPendingBtn").onclick = async ()=>{
-  const cliente = document.getElementById("pCliente").value.trim().toUpperCase(); const motivo = document.getElementById("pMotivo").value.trim().toUpperCase();
+  const cliente = document.getElementById("pCliente").value.trim().toUpperCase().replace(/[<>&"\\`]/g, ""); const motivo = document.getElementById("pMotivo").value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
   const techs = getSelectedTechs("pDropdownContent"); const saida = document.getElementById("pSaidaData").value; const chegada = document.getElementById("pChegadaData").value;
   if(!cliente || !motivo) return alert("INFORME AO MENOS O CLIENTE E O MOTIVO.");
   if(saida && chegada && chegada < saida) return alert("A DATA DE CHEGADA NÃO PODE SER ANTERIOR À DATA DE SAÍDA.");
@@ -3449,7 +3564,7 @@ async function renderVacationPanel(){
   const uniqueMems = Array.from(new Set(allMems)).sort();
   uniqueMems.forEach(m => { if(!VACATION_DATA[m]) VACATION_DATA[m] = { admissao: "JANEIRO", solicitacao: "" }; });
   
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const _n = new Date(); const todayStr = isoDate(_n.getFullYear(), _n.getMonth(), _n.getDate());
 
   document.getElementById("vacationTableBody").innerHTML = uniqueMems.map(name => {
     const item = VACATION_DATA[name] || { admissao: "JANEIRO", solicitacao: "" };
@@ -3464,7 +3579,7 @@ async function renderVacationPanel(){
       });
     }
 
-    return `<tr data-name="${escAttr(name)}">
+    return `<tr data-name="${biEsc(name)}">
       <td style="font-weight:600;">${name}</td>
       <td><select onchange="updateVacationAdmissao('${escAttr(name)}', this.value)" style="padding:4px; font-size:12px;">${["JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO"].map(m=>`<option value="${m}" ${item.admissao===m?'selected':''}>${m}</option>`).join("")}</select></td>
       <td style="text-align:left;">${formattedSolicitacao}</td>
@@ -3563,7 +3678,7 @@ function renderMemberList(){
           </div>
         </div>
         <div class="member-meta">
-          <span id="member-admit-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">ADMISSÃO: <strong>${admitDateStr}</strong></span>
+          <span id="member-admit-text-${m.replace(/[^a-zA-Z0-9]/g, '_')}">ADMISSÃO: <strong>${formatDatePt(admitDateStr)}</strong></span>
           ${isNew ? `<span class="member-badge newbie">RECÉM-CONTRATADO (6M)</span>` : ''}
           ${isManagerB ? `<span class="member-badge blocked">IMPEDIDO</span>` : ''}
         </div>
@@ -3597,7 +3712,7 @@ window.saveEditedMember = async function(oldName) {
   const newAdmitInput = document.getElementById(`edit-admit-${safeId}`);
   
   if(!newNameInput || !newNameInput.value.trim()) return alert("INFORME UM NOME VÁLIDO.");
-  const newName = newNameInput.value.trim().toUpperCase();
+  const newName = newNameInput.value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
   const newAdmit = newAdmitInput.value || "2020-01-01";
 
   if(newName !== oldName && state.members.includes(newName)) return alert("JÁ EXISTE UM COLABORADOR COM ESTE NOME NA EQUIPE.");
@@ -4103,7 +4218,7 @@ function removePrintFooterAndAlerts(){
 }
 
 document.getElementById("addMemberBtn").onclick = async ()=>{
-  const inp = document.getElementById("newMemberInput"); const name = inp.value.trim().toUpperCase();
+  const inp = document.getElementById("newMemberInput"); const name = inp.value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
   const mSel = document.getElementById("newMemberAdmissaoMonth");
   const yInput = document.getElementById("newMemberAdmissaoYear");
   if(!name || state.members.includes(name)) return alert("INFORME UM NOME VÁLIDO E NÃO DUPLICADO.");
@@ -4120,7 +4235,7 @@ document.getElementById("addMemberBtn").onclick = async ()=>{
   if(!state.admissionDates) state.admissionDates = {};
   state.admissionDates[name] = admitDateStr;
 
-  if(!VACATION_DATA[name]){ VACATION_DATA[name] = { admissao: MONTH_NAMES[parseInt(mSel.value)||0].toUpperCase(), solicitacao: "" }; await saveVacationData(); }
+  if(!VACATION_DATA[name]){ VACATION_DATA[name] = { admissao: MONTH_NAMES[mSel.value !== '' ? parseInt(mSel.value) : currentMonth].toUpperCase(), solicitacao: "" }; await saveVacationData(); }
   inp.value = ""; yInput.value = ""; mSel.value = "";
   await saveState(); await refreshAllStatesCache(); render(); alert(`COLABORADOR ${name} ADICIONADO!`);
 };
@@ -4413,6 +4528,21 @@ window.printBi = function(){
     tip.style.left = x + "px"; tip.style.top = (e.clientY + 16) + "px"; tip.style.opacity = 1;
   });
 })();
+
+window.populatePublicMembersForPlatform = async function(){
+  const plat = (document.getElementById("publicSearchPlataforma") || {}).value;
+  const sel = document.getElementById("publicSearchMemberSelect");
+  if(!sel) return;
+  if(!plat || !PLATAFORMAS[plat]){ sel.innerHTML = `<option value="">SELECIONE A PLATAFORMA PRIMEIRO...</option>`; return; }
+  sel.innerHTML = `<option value="">CARREGANDO...</option>`;
+  const y = parseInt((document.getElementById("publicSearchYear") || {}).value) || new Date().getFullYear();
+  const mv = parseInt((document.getElementById("publicSearchMonth") || {}).value);
+  const mo = isNaN(mv) ? new Date().getMonth() : mv;
+  const all = new Set();
+  for(const t of PLATAFORMAS[plat]){ const st = await loadTeamStateForMonth(t, y, mo); (st.members || []).forEach(x => all.add(x)); }
+  const list = [...all].sort((a, b) => a.localeCompare(b, "pt-BR"));
+  sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + list.map(x => `<option value="${biEsc(x)}">${biEsc(x)}</option>`).join("");
+};
 
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 themeToggleBtn.onclick = ()=>{
