@@ -959,6 +959,10 @@
     .form-fold.editing{ border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
     .form-fold .fold-title{ color: var(--primary); }
     .form-fold .travel-form-row{ margin: 0; background: transparent; border: none; padding: 0; }
+    .diaria-umdia-group{ background: var(--accent-light); border: 1px solid var(--accent); border-radius: var(--radius-sm); padding: 6px 8px; }
+    .diaria-umdia-group label{ color: #8a5a00 !important; white-space: normal !important; line-height: 1.25; }
+    [data-theme="dark"] .diaria-umdia-group label{ color: var(--accent) !important; }
+    .diaria-umdia-group.missing{ box-shadow: 0 0 0 3px rgba(211,58,58,.35); border-color: var(--danger); }
 
     /* Tabela + legenda */
     .schedule-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin: 18px 0 10px; }
@@ -1196,7 +1200,7 @@
           </select>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-          <a href="#" onclick="switchAuthMode('forgot')" style="color: var(--primary-dark); text-decoration: none; font-weight: 600; text-transform: uppercase;">ESQUECI A SENHA</a>
+          <a href="#" onclick="switchAuthMode(\'forgot\'); return false;" style="color: var(--primary-dark); text-decoration: none; font-weight: 600; text-transform: uppercase;">ESQUECI A SENHA</a>
         </div>
         <button type="submit" class="auth-btn">ACESSAR SISTEMA</button>
         <div class="auth-msg" id="loginMsg"></div>
@@ -1210,7 +1214,7 @@
         </div>
         <button type="submit" class="auth-btn" style="background: #fde047; color: #713f12;">ENVIAR E-MAIL</button>
         <div style="text-align: center; margin-top: 8px;">
-          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
+          <a href="#" onclick="switchAuthMode(\'login\'); return false;" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
         </div>
         <div class="auth-msg" id="forgotMsg"></div>
       </form>
@@ -1236,7 +1240,7 @@
         </div>
         <button type="submit" class="auth-btn">CRIAR CONTA</button>
         <div style="text-align: center; margin-top: 8px;">
-          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">JÁ TEM CONTA? ENTRAR</a>
+          <a href="#" onclick="switchAuthMode(\'login\'); return false;" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">JÁ TEM CONTA? ENTRAR</a>
         </div>
         <div class="auth-msg" id="regMsg"></div>
       </form>
@@ -1267,7 +1271,7 @@
         </div>
         <button type="button" class="auth-btn" style="background: #fde047; color: #713f12;" onclick="handlePublicSearch()">🔍 CONSULTAR ESCALA</button>
         <div style="text-align: center; margin-top: 4px;">
-          <a href="#" onclick="switchAuthMode('login')" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
+          <a href="#" onclick="switchAuthMode(\'login\'); return false;" style="font-size: 12px; color: var(--text-muted); text-decoration: underline; text-transform: uppercase;">VOLTAR AO LOGIN</a>
         </div>
       </div>
     </div>
@@ -1624,7 +1628,7 @@
           <tr>
             <th rowspan="2">CLIENTE</th><th rowspan="2">SISTEMA(S)</th><th rowspan="2">MOTIVO(S)</th><th rowspan="2">TÉCNICOS</th>
             <th colspan="2">SAÍDA</th><th colspan="2">CHEGADA</th>
-            <th rowspan="2">VEÍCULO</th><th rowspan="2">HOTEL</th><th rowspan="2">HOTEL PREF.</th><th rowspan="2">AÇÕES</th>
+            <th rowspan="2">DIÁRIAS</th><th rowspan="2">VEÍCULO</th><th rowspan="2">HOTEL</th><th rowspan="2">HOTEL PREF.</th><th rowspan="2">AÇÕES</th>
           </tr>
           <tr><th>DATA</th><th>HORÁRIO</th><th>DATA</th><th>HORÁRIO</th></tr>
         </thead>
@@ -1655,6 +1659,14 @@
       <div class="travel-form-group"><label>SAÍDA HORA</label><input type="time" id="tSaidaHora" value="09:00"></div>
       <div class="travel-form-group"><label>CHEGADA DATA</label><input type="date" id="tChegadaData"></div>
       <div class="travel-form-group"><label>CHEGADA HORA</label><input type="time" id="tChegadaHora" value="18:00"></div>
+      <div class="travel-form-group diaria-umdia-group" id="tDiariaUmDiaGroup" style="display:none;">
+        <label>VIAGEM DE 1 DIA — TERÁ DIÁRIA?</label>
+        <select id="tDiariaUmDia">
+          <option value="">SELECIONE...</option>
+          <option value="SIM">SIM — CONTAR 1 DIÁRIA</option>
+          <option value="NÃO">NÃO — SEM DIÁRIA</option>
+        </select>
+      </div>
       <div class="travel-form-group"><label>VEÍCULO</label><select id="tReservaVeiculo"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
       <div class="travel-form-group"><label>HOTEL</label><select id="tReservaHotel"><option value="SIM">SIM</option><option value="NÃO">NÃO</option></select></div>
       <div class="travel-form-group"><label>HOTEL PREF.</label><input type="text" id="tHotelPref" placeholder="HOTEL"></div>
@@ -1897,6 +1909,16 @@ function calcDiarias(saida, chegada){
   if(!saida || !chegada || chegada < saida) return 0;
   return Math.round((parseIsoLocal(chegada) - parseIsoLocal(saida)) / 86400000) + 1;
 }
+// Viagem de 1 dia (saída = chegada): só conta diária se foi informado "SIM".
+// Visitas antigas, sem a informação, continuam contando 1 diária (comportamento anterior).
+function visitIsOneDay(v){ return !!(v && v.saidaData && v.chegadaData && v.saidaData === v.chegadaData); }
+function visitHasNoDiaria(v){ return visitIsOneDay(v) && v.diariaUmDia === "NÃO"; }
+function visitDiarias(v, ini, fim){
+  if(!v) return 0;
+  if(visitHasNoDiaria(v)) return 0;
+  return calcDiarias(ini || v.saidaData, fim || v.chegadaData);
+}
+function cleanText(s){ return String(s == null ? "" : s).trim().toUpperCase().replace(/[<>&"\\`]/g, ""); }
 
 let registeredUsers = [];
 let currentUser = JSON.parse(sessionStorage.getItem("adl-current-user")) || null;
@@ -2026,34 +2048,7 @@ function togglePassword(inputId, btn) {
   if(btn) { btn.textContent = show ? "🙈" : "👁️"; btn.setAttribute("aria-label", show ? "Ocultar senha" : "Mostrar senha"); }
 }
 
-function populatePublicMembersForPlatform() {
-  const plat = (document.getElementById("publicSearchPlataforma") || {}).value;
-  const sel = document.getElementById("publicSearchMemberSelect");
-  if(!sel) return;
-  if(!plat || !PLATAFORMAS[plat]) {
-    sel.innerHTML = `<option value="">SELECIONE A PLATAFORMA PRIMEIRO...</option>`;
-    return;
-  }
-  const allMems = [];
-  for(const t of (PLATAFORMAS[plat] || [])) {
-    const slug = (typeof TEAM_SLUGS !== "undefined" && TEAM_SLUGS[t]) || t.toLowerCase();
-    const prefix = `adl:${slug}:`;
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && key.startsWith(prefix)) {
-        try {
-          const val = JSON.parse(localStorage.getItem(key));
-          if (val && Array.isArray(val.members)) allMems.push(...val.members);
-        } catch (err) {}
-      }
-    }
-    const st = allStatesCache[t];
-    if(st && st.members) allMems.push(...st.members);
-    if(DEFAULT_MEMBERS[t]) allMems.push(...DEFAULT_MEMBERS[t]);
-  }
-  const uniqueMems = Array.from(new Set(allMems)).sort((a,b)=>a.localeCompare(b,"pt-BR"));
-  sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + uniqueMems.map(m => `<option value="${m}">${m}</option>`).join("");
-}
+// (Versão antiga e duplicada de populatePublicMembersForPlatform removida — a versão válida fica no fim do script.)
 
 async function populatePublicSearchDropdowns() {
   await loadSystemUsersAndPlatforms();
@@ -2066,17 +2061,26 @@ async function populatePublicSearchDropdowns() {
     pSel.innerHTML = `<option value="">SELECIONE A PLATAFORMA...</option>` + keys.map(k => `<option value="${k}">${k}</option>`).join("");
     if(atual && keys.includes(atual)) pSel.value = atual;
   }
-  populatePublicMembersForPlatform();
 
+  // Mês/ano primeiro: a lista de nomes depende deles.
   const mSel = document.getElementById("publicSearchMonth");
-  if(mSel) mSel.innerHTML = MONTH_NAMES.map((n, i) => `<option value="${i}" ${i===new Date().getMonth()?'selected':''}>${n}</option>`).join("");
-  
+  if(mSel){
+    const mAtual = mSel.value;
+    mSel.innerHTML = MONTH_NAMES.map((n, i) => `<option value="${i}" ${i===new Date().getMonth()?'selected':''}>${n}</option>`).join("");
+    if(mAtual !== "") mSel.value = mAtual;
+    mSel.onchange = () => populatePublicMembersForPlatform();
+  }
+
   const ySel = document.getElementById("publicSearchYear");
   if(ySel) {
+    const yAtual = ySel.value;
     const thisYear = new Date().getFullYear(); let opts = "";
     for(let y = thisYear - 1; y < thisYear + (RULE_CONFIGS.yearsCount||4); y++) opts += `<option value="${y}" ${y===thisYear?'selected':''}>${y}</option>`;
     ySel.innerHTML = opts;
+    if(yAtual) ySel.value = yAtual;
+    ySel.onchange = () => populatePublicMembersForPlatform();
   }
+  await populatePublicMembersForPlatform();
 }
 
 async function handlePublicSearch() {
@@ -2105,8 +2109,10 @@ async function handlePublicSearch() {
   }
 
   const teamState = await loadTeamStateForMonth(targetTeam, year, month);
-  const hoDays = (teamState.ho && teamState.ho[memberName]) || [];
-  const hoFormatted = hoDays.map(dStr => formatDatePt(dStr)).sort();
+  // Só mostra no comprovante os dias de HO válidos (não feriado, não presença obrigatória, não férias/viagem).
+  const hoDays = ((teamState.ho && teamState.ho[memberName]) || []).filter(d =>
+    !isNationalHoliday(d) && !(teamState.forced || []).includes(d) && !memberIsOnVacation(memberName, d) && !memberIsOnTrip(memberName, d));
+  const hoFormatted = hoDays.slice().sort().map(dStr => formatDatePt(dStr));
 
   const mIni = isoDate(year, month, 1), mFim = isoDate(year, month, new Date(year, month + 1, 0).getDate());
   const memberTrips = [];
@@ -2229,9 +2235,7 @@ async function handleForgot(e) {
   const msg = document.getElementById("forgotMsg");
   const found = registeredUsers.find(u => u.email.toLowerCase() === email);
   if(found) {
-    const tempNewPass = "temp" + Math.floor(1000 + Math.random() * 9000);
-    // SEGURANÇA: somente o administrador redefine senhas
-    await saveRegisteredUsers();
+    // SEGURANÇA: somente o administrador redefine senhas (antes regravava a lista de usuários sem necessidade).
     msg.textContent = "SOLICITE AO ADMINISTRADOR A REDEFINIÇÃO DA SUA SENHA.";
     msg.className = "auth-msg success";
   } else {
@@ -2278,6 +2282,8 @@ async function handleRegister(e) {
 function handleLogout() {
   currentUser = null;
   sessionStorage.removeItem("adl-current-user");
+  viewMode = "inicio"; currentHoSubtab = TEAM_NAMES[0];
+  try { renderTabs(); updatePanelVisibility(); } catch(e) {}
   const existingPanel = document.getElementById("adminApprovalPanel");
   if(existingPanel) existingPanel.remove();
   closeAdminModal();
@@ -2655,7 +2661,11 @@ const RULES_STORAGE_KEY = "adl:rules-config";
 async function loadTravelData(){
   try{
     const raw = await storageGet(TRAVEL_STORAGE_KEY); if(raw) TRAVEL_DATA = JSON.parse(raw);
-    const rawSaved = await storageGet(SAVED_TRAVEL_LIST_KEY); if(rawSaved) SAVED_TRAVEL_SCHEDULES = JSON.parse(rawSaved);
+    // Garante a estrutura mesmo se o banco devolver null ou um objeto incompleto (evitava erro ao adicionar visita).
+    if(!TRAVEL_DATA || typeof TRAVEL_DATA !== "object") TRAVEL_DATA = { startDate: "", endDate: "", visits: [], pendings: [] };
+    if(!Array.isArray(TRAVEL_DATA.visits)) TRAVEL_DATA.visits = [];
+    if(!Array.isArray(TRAVEL_DATA.pendings)) TRAVEL_DATA.pendings = [];
+    const rawSaved = await storageGet(SAVED_TRAVEL_LIST_KEY); if(rawSaved){ const sv = JSON.parse(rawSaved); SAVED_TRAVEL_SCHEDULES = Array.isArray(sv) ? sv : []; }
     const rawVac = await storageGet(VACATION_STORAGE_KEY); VACATION_DATA = rawVac ? JSON.parse(rawVac) : {};
     const _def = JSON.parse(JSON.stringify(DEFAULT_VACATION_DATA));
     if(VACATION_DATA.__seed !== "2026-09-28"){ Object.keys(_def).forEach(k => { VACATION_DATA[k] = _def[k]; }); VACATION_DATA.__seed = "2026-09-28"; await storageSet(VACATION_STORAGE_KEY, JSON.stringify(VACATION_DATA)); }
@@ -2956,7 +2966,11 @@ async function loadState(){
 async function saveState(){ await storageSet(storageKey(currentTeam, currentYear, currentMonth), JSON.stringify(state)); }
 function applyAccent(){ document.documentElement.style.setProperty("--team-accent", TEAM_ACCENTS[currentTeam] || "#2a435c"); }
 
-window.switchTab = function(m){ viewMode = m; renderTabs(); render(); };
+// Corrigido: pelos cartões do INÍCIO a escala de HO abria vazia, porque o estado da equipe não era carregado.
+window.switchTab = async function(m){
+  viewMode = m; renderTabs();
+  if(m === "home") await loadState(); else await render();
+};
 
 window.switchHoSubtab = async function(subtab){
   currentHoSubtab = subtab;
@@ -2993,7 +3007,7 @@ window.addNewTeam = async function(){
   PLATAFORMAS[activePlatform] = [...TEAM_NAMES];
   await savePlataformas();
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
-  input.value = ""; await saveRulesData(); renderExistingTeamsList(); renderRulesUI(); alert(`EQUIPE "${name}" CRIADA NA PLATAFORMA ${activePlatform}!`);
+  input.value = ""; await saveRulesData(); await refreshAllStatesCache(); renderExistingTeamsList(); renderRulesUI(); renderHoSubtabs(); alert(`EQUIPE "${name}" CRIADA NA PLATAFORMA ${activePlatform}!`);
 };
 
 window.removeTeam = async function(name){
@@ -3004,7 +3018,8 @@ window.removeTeam = async function(name){
   await savePlataformas();
   RULE_CONFIGS.teamsList = [...TEAM_NAMES]; RULE_CONFIGS.teamIcons = TEAM_ICONS;
   if(currentTeam === name) currentTeam = TEAM_NAMES[0];
-  await saveRulesData(); renderExistingTeamsList(); renderRulesUI();
+  if(RULE_CONFIGS.conflicts) delete RULE_CONFIGS.conflicts[name];
+  await saveRulesData(); await refreshAllStatesCache(); renderExistingTeamsList(); renderRulesUI(); renderHoSubtabs();
 };
 
 function renderRulesUI(){
@@ -3105,7 +3120,7 @@ function updatePanelVisibility(){
 function renderHoSubtabs(){
   const container = document.getElementById("hoSubtabsContainer"); if(!container) return;
   if(!RULE_CONFIGS.enableTeams){
-    container.innerHTML = `<div class="ho-subtab active" onclick="switchHoSubtab('${TEAM_NAMES[0]}')">📁 COLABORADORES</div><div class="ho-subtab" onclick="switchHoSubtab('rules')">⚙ REGRAS</div>`;
+    container.innerHTML = `<div class="ho-subtab ${currentHoSubtab!=='rules'?'active':''}" onclick="switchHoSubtab('${escAttr(TEAM_NAMES[0])}')">📁 COLABORADORES</div><div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   } else {
     container.innerHTML = TEAM_NAMES.map(t => `<div class="ho-subtab ${currentHoSubtab===t?'active':''}" onclick="switchHoSubtab('${escAttr(t)}')">${TEAM_ICONS[t]||"📁"} ${t}</div>`).join("") + `<div class="ho-subtab ${currentHoSubtab==='rules'?'active':''}" onclick="switchHoSubtab('rules')">⚙️ REGRAS</div>`;
   }
@@ -3227,6 +3242,7 @@ async function renderTravelPanel(){
       <td>${v.saidaHora||""}</td>
       <td>${formatDatePt(v.chegadaData)}</td>
       <td>${v.chegadaHora||""}</td>
+      <td>${visitHasNoDiaria(v) ? '<span class="badge">SEM DIÁRIA</span>' : `<strong>${pad(visitDiarias(v))}</strong>`}</td>
       <td>${v.reservaVeiculo}</td>
       <td>${v.reservaHotel}</td>
       <td>${v.hotelPref||""}</td>
@@ -3237,12 +3253,12 @@ async function renderTravelPanel(){
         </div>
       </td>
     </tr>
-  `).join("") || `<tr><td colspan="12" class="empty-note">NENHUMA VISITA.</td></tr>`;
+  `).join("") || `<tr><td colspan="13" class="empty-note">NENHUMA VISITA.</td></tr>`;
 
   document.getElementById("travelCreditsBody").innerHTML = buildCreditRows(TRAVEL_DATA.visits, "SEM CRÉDITOS.");
   const vs = TRAVEL_DATA.visits || [], ps = TRAVEL_DATA.pendings || [];
   const techSet = new Set(); let totalDiarias = 0;
-  vs.forEach(v => { const t = splitTechs(v.tecnicos); t.forEach(x => techSet.add(x)); totalDiarias += calcDiarias(v.saidaData, v.chegadaData) * t.length; });
+  vs.forEach(v => { const t = splitTechs(v.tecnicos); t.forEach(x => techSet.add(x)); totalDiarias += visitDiarias(v) * t.length; });
   document.getElementById("travelKpis").innerHTML =
     kpi("VISITAS", vs.length) + kpi("TÉCNICOS EM VIAGEM", techSet.size) + kpi("DIÁRIAS NO TOTAL", totalDiarias, "accent") + kpi("PENDENTES", ps.length, ps.length ? "warn" : "");
   document.getElementById("pendCountPill").textContent = ps.length;
@@ -3271,11 +3287,11 @@ async function renderTravelPanel(){
 }
 
 // Créditos de diárias por técnico. Regra: conta o dia de saída E o dia de chegada
-// (ex.: saída 10/11, chegada 12/11 = 3 diárias; viagem no mesmo dia = 1 diária).
+// (ex.: saída 10/11, chegada 12/11 = 3 diárias; viagem no mesmo dia = 1 diária, SE marcado "SIM").
 function buildCreditRows(visits, emptyMsg){
   const credits = {};
   (visits || []).forEach(v => {
-    const qtd = calcDiarias(v.saidaData, v.chegadaData);
+    const qtd = visitDiarias(v);
     if(!v.tecnicos || qtd <= 0) return;
     splitTechs(v.tecnicos).forEach(tech => {
       if(!credits[tech]) credits[tech] = { count: 0, descList: [], periodos: [] };
@@ -3320,9 +3336,9 @@ function renderSavedSchedulesList(){
         <div class="saved-schedule-body" id="saved-body-${idx}">
           <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:var(--primary);">VISITAS REALIZADAS / AGENDADAS</div>
           <table class="travel-table">
-            <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th></tr></thead>
+            <thead><tr><th>CLIENTE</th><th>SISTEMA</th><th>MOTIVO</th><th>TÉCNICOS</th><th>SAÍDA</th><th>CHEGADA</th><th>DIÁRIAS</th></tr></thead>
             <tbody>
-              ${(item.visits||[]).map(v=>`<tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${formatDatePt(v.chegadaData)}</td></tr>`).join("")||'<tr><td colspan="6" class="empty-note">NENHUMA VISITA CADASTRADA.</td></tr>'}
+              ${(item.visits||[]).map(v=>`<tr><td>${v.cliente}</td><td>${v.sistema}</td><td>${v.motivo}</td><td>${v.tecnicos}</td><td>${formatDatePt(v.saidaData)}</td><td>${formatDatePt(v.chegadaData)}</td><td>${visitHasNoDiaria(v) ? "SEM DIÁRIA" : pad(visitDiarias(v))}</td></tr>`).join("")||'<tr><td colspan="7" class="empty-note">NENHUMA VISITA CADASTRADA.</td></tr>'}
             </tbody>
           </table>
           
@@ -3411,6 +3427,9 @@ window.editTravelVisit = function(i) {
   document.getElementById("tReservaVeiculo").value = v.reservaVeiculo || "SIM";
   document.getElementById("tReservaHotel").value = v.reservaHotel || "SIM";
   document.getElementById("tHotelPref").value = v.hotelPref || "";
+  // Visitas antigas de 1 dia sem a informação contavam 1 diária: mantém "SIM" como padrão na edição.
+  document.getElementById("tDiariaUmDia").value = v.diariaUmDia || (visitIsOneDay(v) ? "SIM" : "");
+  updateDiariaUmDiaVisibility();
 
   document.getElementById("addTravelVisitBtn").textContent = "💾 SALVAR ALTERAÇÃO";
   document.getElementById("cancelTravelVisitBtn").style.display = "block";
@@ -3427,7 +3446,14 @@ window.cancelEditTravelVisit = function() {
   document.getElementById("tSaidaData").value = "";
   document.getElementById("tChegadaData").value = "";
   document.getElementById("tHotelPref").value = "";
-  
+  document.getElementById("tSistemas").value = "SISTEMA INTEGRADO";
+  document.getElementById("tSaidaHora").value = "09:00";
+  document.getElementById("tChegadaHora").value = "18:00";
+  document.getElementById("tReservaVeiculo").value = "SIM";
+  document.getElementById("tReservaHotel").value = "SIM";
+  document.getElementById("tDiariaUmDia").value = "";
+  updateDiariaUmDiaVisibility();
+
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
   setupDropdownCheckboxes("tDropdownContainer", uniqueMems);
@@ -3472,6 +3498,9 @@ window.cancelEditTravelPending = function() {
   document.getElementById("pSaidaData").value = "";
   document.getElementById("pChegadaData").value = "";
   document.getElementById("pObs").value = "";
+  document.getElementById("pSistemas").value = "SISTEMA INTEGRADO";
+  document.getElementById("pVeiculo").value = "NO CLIENTE";
+  document.getElementById("pHotel").value = "NO CLIENTE";
 
   const allMems = []; TEAM_NAMES.forEach(t => allMems.push(...((allStatesCache[t] && allStatesCache[t].members) || DEFAULT_MEMBERS[t] || [])));
   const uniqueMems = Array.from(new Set(allMems)).sort();
@@ -3483,13 +3512,39 @@ window.cancelEditTravelPending = function() {
   document.getElementById("pendFormTitle").textContent = "➕ NOVA VISITA PENDENTE";
 };
 
+// Mostra a pergunta "TERÁ DIÁRIA?" somente quando a viagem é de 1 dia (saída = chegada).
+function updateDiariaUmDiaVisibility(){
+  const s = document.getElementById("tSaidaData").value, c = document.getElementById("tChegadaData").value;
+  const grp = document.getElementById("tDiariaUmDiaGroup");
+  if(!grp) return;
+  const oneDay = !!(s && c && s === c);
+  grp.style.display = oneDay ? "" : "none";
+  grp.classList.remove("missing");
+}
+document.getElementById("tSaidaData").addEventListener("change", () => {
+  // Facilita: ao escolher a saída, preenche a chegada com a mesma data se estiver vazia ou anterior.
+  const s = document.getElementById("tSaidaData"), c = document.getElementById("tChegadaData");
+  if(s.value && (!c.value || c.value < s.value)) c.value = s.value;
+  updateDiariaUmDiaVisibility();
+});
+document.getElementById("tChegadaData").addEventListener("change", updateDiariaUmDiaVisibility);
+document.getElementById("tDiariaUmDia").addEventListener("change", () => document.getElementById("tDiariaUmDiaGroup").classList.remove("missing"));
+
 document.getElementById("addTravelVisitBtn").onclick = async ()=>{
-  const cliente = document.getElementById("tCliente").value.trim().toUpperCase().replace(/[<>&"\\`]/g, ""); const motivo = document.getElementById("tMotivo").value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
+  const cliente = cleanText(document.getElementById("tCliente").value); const motivo = cleanText(document.getElementById("tMotivo").value);
   const techs = getSelectedTechs("tDropdownContent"); const saida = document.getElementById("tSaidaData").value; const chegada = document.getElementById("tChegadaData").value;
   if(!cliente || !motivo || !techs.length || !saida || !chegada) return alert("PREENCHA OS CAMPOS E SELECIONE AO MENOS UM TÉCNICO.");
   if(chegada < saida) return alert("A DATA DE CHEGADA NÃO PODE SER ANTERIOR À DATA DE SAÍDA.");
   const hS = document.getElementById("tSaidaHora").value, hC = document.getElementById("tChegadaHora").value;
   if(chegada === saida && hS && hC && hC < hS) return alert("NO MESMO DIA, O HORÁRIO DE CHEGADA DEVE SER POSTERIOR AO DE SAÍDA.");
+  const oneDay = saida === chegada;
+  const diariaUmDia = oneDay ? document.getElementById("tDiariaUmDia").value : "";
+  if(oneDay && !diariaUmDia){
+    updateDiariaUmDiaVisibility();
+    const grp = document.getElementById("tDiariaUmDiaGroup"); grp.classList.add("missing");
+    document.getElementById("tDiariaUmDia").focus();
+    return alert("VIAGEM DE 1 DIA: INFORME SE VAI TER DIÁRIA (SIM OU NÃO).");
+  }
   for(const t of techs) if(memberHasVacationOverlap(t, saida, chegada)) return alert(`⚠️ ${t} ESTÁ DE FÉRIAS NESTE PERÍODO!`);
   const editIdxCheck = document.getElementById("tEditingIndex").value;
   const busy = [];
@@ -3502,33 +3557,32 @@ document.getElementById("addTravelVisitBtn").onclick = async ()=>{
 
   const visitObj = { 
     cliente, 
-    sistema: document.getElementById("tSistemas").value.toUpperCase(), 
-    motivo, 
-    tecnicos: techs.join("/"), 
-    saidaData: saida, 
-    saidaHora: document.getElementById("tSaidaHora").value, 
-    chegadaData: chegada, 
-    chegadaHora: document.getElementById("tChegadaHora").value, 
-    reservaVeiculo: document.getElementById("tReservaVeiculo").value, 
-    reservaHotel: document.getElementById("tReservaHotel").value, 
-    hotelPref: document.getElementById("tHotelPref").value.toUpperCase() 
+    sistema: cleanText(document.getElementById("tSistemas").value),
+    motivo,
+    tecnicos: techs.join("/"),
+    saidaData: saida,
+    saidaHora: document.getElementById("tSaidaHora").value,
+    chegadaData: chegada,
+    chegadaHora: document.getElementById("tChegadaHora").value,
+    reservaVeiculo: document.getElementById("tReservaVeiculo").value,
+    reservaHotel: document.getElementById("tReservaHotel").value,
+    hotelPref: cleanText(document.getElementById("tHotelPref").value),
+    diariaUmDia
   };
 
+  if(!Array.isArray(TRAVEL_DATA.visits)) TRAVEL_DATA.visits = [];
   const editingIndex = document.getElementById("tEditingIndex").value;
-  if(editingIndex !== "") {
-    TRAVEL_DATA.visits[parseInt(editingIndex)] = visitObj;
-    cancelEditTravelVisit();
-  } else {
-    TRAVEL_DATA.visits.push(visitObj);
-    cancelEditTravelVisit();
-  }
-  toast("VISITA SALVA. DIÁRIAS: " + pad(calcDiarias(saida, chegada)) + " POR TÉCNICO.", "success");
+  if(editingIndex !== "") TRAVEL_DATA.visits[parseInt(editingIndex)] = visitObj;
+  else TRAVEL_DATA.visits.push(visitObj);
+  cancelEditTravelVisit();
+  const qtdMsg = visitHasNoDiaria(visitObj) ? "SEM DIÁRIA (VIAGEM DE 1 DIA)." : "DIÁRIAS: " + pad(visitDiarias(visitObj)) + " POR TÉCNICO.";
+  toast("VISITA SALVA. " + qtdMsg, "success");
 
   await saveTravelData(); renderTravelPanel();
 };
 
 document.getElementById("addTravelPendingBtn").onclick = async ()=>{
-  const cliente = document.getElementById("pCliente").value.trim().toUpperCase().replace(/[<>&"\\`]/g, ""); const motivo = document.getElementById("pMotivo").value.trim().toUpperCase().replace(/[<>&"\\`]/g, "");
+  const cliente = cleanText(document.getElementById("pCliente").value); const motivo = cleanText(document.getElementById("pMotivo").value);
   const techs = getSelectedTechs("pDropdownContent"); const saida = document.getElementById("pSaidaData").value; const chegada = document.getElementById("pChegadaData").value;
   if(!cliente || !motivo) return alert("INFORME AO MENOS O CLIENTE E O MOTIVO.");
   if(saida && chegada && chegada < saida) return alert("A DATA DE CHEGADA NÃO PODE SER ANTERIOR À DATA DE SAÍDA.");
@@ -3536,16 +3590,17 @@ document.getElementById("addTravelPendingBtn").onclick = async ()=>{
   
   const pendingObj = { 
     cliente, 
-    sistema: document.getElementById("pSistemas").value.toUpperCase(), 
-    motivo, 
-    tecnicos: techs.join("/")||"A DEFINIR", 
-    saidaData: saida, 
-    chegadaData: chegada, 
-    veiculo: document.getElementById("pVeiculo").value.toUpperCase(), 
-    hotel: document.getElementById("pHotel").value.toUpperCase(), 
-    obs: document.getElementById("pObs").value.toUpperCase() 
+    sistema: cleanText(document.getElementById("pSistemas").value),
+    motivo,
+    tecnicos: techs.join("/")||"A DEFINIR",
+    saidaData: saida,
+    chegadaData: chegada,
+    veiculo: cleanText(document.getElementById("pVeiculo").value),
+    hotel: cleanText(document.getElementById("pHotel").value),
+    obs: cleanText(document.getElementById("pObs").value)
   };
 
+  if(!Array.isArray(TRAVEL_DATA.pendings)) TRAVEL_DATA.pendings = [];
   const editingIndex = document.getElementById("pEditingIndex").value;
   if(editingIndex !== "") {
     TRAVEL_DATA.pendings[parseInt(editingIndex)] = pendingObj;
@@ -3623,7 +3678,8 @@ document.getElementById("saveVacationBtn").onclick = async ()=>{
   const text = `${formatDatePt(ini)} À ${formatDatePt(fim)} - ${pad(diff)} DIAS (AUTORIZADO)`;
   if(!VACATION_DATA[name]) VACATION_DATA[name] = { admissao: "JANEIRO", solicitacao: "" };
   VACATION_DATA[name].solicitacao = VACATION_DATA[name].solicitacao ? VACATION_DATA[name].solicitacao + " - " + text : text;
-  await saveVacationData(); renderVacationPanel(); alert("FÉRIAS SALVAS!");
+  document.getElementById("vDataInicioInput").value = ""; document.getElementById("vDataFimInput").value = "";
+  await saveVacationData(); await renderVacationPanel(); document.getElementById("vFuncionarioSelect").value = name; alert("FÉRIAS SALVAS!");
 };
 
 document.getElementById("printVacationBtn").onclick = ()=>{
@@ -3739,6 +3795,19 @@ window.saveEditedMember = async function(oldName) {
     await saveVacationData();
   }
 
+  // Corrigido: ao renomear, as regras (conflitos e impedimentos) ficavam presas ao nome antigo.
+  if(oldName !== newName){
+    let rulesChanged = false;
+    Object.keys(RULE_CONFIGS.conflicts || {}).forEach(t => (RULE_CONFIGS.conflicts[t] || []).forEach(p => {
+      if(p[0] === oldName){ p[0] = newName; rulesChanged = true; }
+      if(p[1] === oldName){ p[1] = newName; rulesChanged = true; }
+    }));
+    if(RULE_CONFIGS.managerBlocked && RULE_CONFIGS.managerBlocked[oldName]){
+      RULE_CONFIGS.managerBlocked[newName] = true; delete RULE_CONFIGS.managerBlocked[oldName]; rulesChanged = true;
+    }
+    if(rulesChanged) await saveRulesData();
+  }
+
   await saveState();
   await refreshAllStatesCache();
   render();
@@ -3760,7 +3829,7 @@ function renderForcedList(){
   if(!state.forced.length){ holder.innerHTML = `<span class="empty-note">NENHUM DIA FORÇADO.</span>`; return; }
   holder.innerHTML = state.forced.map(d => `<div class="forced-chip"><span>${d.slice(8,10)}/${d.slice(5,7)}</span><button onclick="removeForced('${d}')">✕</button></div>`).join("");
 }
-window.removeForced = function(d){ state.forced = state.forced.filter(x=>x!==d); saveState(); render(); };
+window.removeForced = async function(d){ state.forced = state.forced.filter(x=>x!==d); await saveState(); render(); };
 
 function renderTable(){
   const weeks = getWeekdayWeeks(currentYear, currentMonth);
@@ -4240,15 +4309,17 @@ document.getElementById("addMemberBtn").onclick = async ()=>{
   await saveState(); await refreshAllStatesCache(); render(); alert(`COLABORADOR ${name} ADICIONADO!`);
 };
 
-document.getElementById("forceDayBtn").onclick = ()=>{
+document.getElementById("forceDayBtn").onclick = async ()=>{
   const inp = document.getElementById("forcedDateInput"); if(!inp.value) return;
   const [fy, fm] = inp.value.split("-").map(Number);
   if(fy !== currentYear || fm - 1 !== currentMonth) return alert(`ESCOLHA UMA DATA DENTRO DE ${MONTH_NAMES[currentMonth]}/${currentYear} (MÊS SELECIONADO).`);
   const fdow = parseIsoLocal(inp.value).getDay();
   if(fdow === 0 || fdow === 6) return alert("ESCOLHA UM DIA ÚTIL (SEGUNDA A SEXTA).");
+  if(isNationalHoliday(inp.value)) return alert("ESTA DATA JÁ É FERIADO NACIONAL.");
   if(!state.forced.includes(inp.value)) state.forced.push(inp.value);
+  state.forced.sort();
   state.members.forEach(m => state.ho[m] = (state.ho[m]||[]).filter(d => d !== inp.value));
-  inp.value = ""; saveState(); render();
+  inp.value = ""; await saveState(); render();
 };
 
 document.getElementById("forceWeekdayBtn").onclick = async ()=>{
@@ -4432,7 +4503,7 @@ window.renderBiPanel = async function(){
   (TRAVEL_DATA.visits || []).forEach(v => {
     if(!v.saidaData || !v.chegadaData || v.chegadaData < mIni || v.saidaData > mFim) return;
     const ini = v.saidaData < mIni ? mIni : v.saidaData, fim = v.chegadaData > mFim ? mFim : v.chegadaData;
-    const qtd = calcDiarias(ini, fim);
+    const qtd = visitDiarias(v, ini, fim);
     splitTechs(v.tecnicos).forEach(tc => {
       if(teamFilter && !memberSet.has(tc)) return;
       if(!tripAgg[tc]) tripAgg[tc] = { diarias: 0, viagens: 0, clientes: [] };
@@ -4534,6 +4605,7 @@ window.populatePublicMembersForPlatform = async function(){
   const sel = document.getElementById("publicSearchMemberSelect");
   if(!sel) return;
   if(!plat || !PLATAFORMAS[plat]){ sel.innerHTML = `<option value="">SELECIONE A PLATAFORMA PRIMEIRO...</option>`; return; }
+  const prevSel = sel.value;
   sel.innerHTML = `<option value="">CARREGANDO...</option>`;
   const y = parseInt((document.getElementById("publicSearchYear") || {}).value) || new Date().getFullYear();
   const mv = parseInt((document.getElementById("publicSearchMonth") || {}).value);
@@ -4542,6 +4614,7 @@ window.populatePublicMembersForPlatform = async function(){
   for(const t of PLATAFORMAS[plat]){ const st = await loadTeamStateForMonth(t, y, mo); (st.members || []).forEach(x => all.add(x)); }
   const list = [...all].sort((a, b) => a.localeCompare(b, "pt-BR"));
   sel.innerHTML = `<option value="">SELECIONE SEU NOME...</option>` + list.map(x => `<option value="${biEsc(x)}">${biEsc(x)}</option>`).join("");
+  if(prevSel && list.includes(prevSel)) sel.value = prevSel;
 };
 
 const themeToggleBtn = document.getElementById("themeToggleBtn");
